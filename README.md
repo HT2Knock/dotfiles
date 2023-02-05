@@ -7,7 +7,7 @@ My own dot files ( picking up idea from different places work for me tho)
 
 + Font Awesome 6
 + Jetbrains Mono (inspired by syntax fm)
-+ Nord font ( It's nord or nothing)
++ Nord Themes Palette ( It's nord or nothing)
 
 ## Package Requires
 
@@ -23,3 +23,4 @@ My own dot files ( picking up idea from different places work for me tho)
 + lxappearance
 + arandr
 + pavucontrol
++ maim
