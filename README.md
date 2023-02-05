@@ -1,7 +1,7 @@
 # dotfiles
 My own dot files ( picking up idea from different places work for me tho) 
 
-![alt text](screenshot.jpg)
+![Themes](screenshot.png)
 
 ## Themes and Fonts
 
