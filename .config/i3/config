@@ -2,13 +2,17 @@
 set $mod Mod4
 
 # font
-font pango: JetBrains Mono,Font Awesome 6 Free 11
+font pango: JetBrains Mono 11
 
 # use these keys for focus, movement, and resize directions
 set $left   j
 set $down   k
 set $up     l
 set $right  semicolon
+
+# set monitor name (in case working with multiple monitor)
+set $fm eDP-1
+set $sm HDMI-1
 
 # drag windows
 floating_modifier $mod
@@ -103,12 +107,12 @@ bindsym $mod+Shift+m move position mouse
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1  "
+set $ws1 "1  "
 set $ws2 "2  "
-set $ws3 "3  "
+set $ws3 "3  "
 set $ws4 "4: "
 set $ws5 "5: "
-set $ws6 "6: "
+set $ws6 "6: "
 set $ws7 "7:"
 set $ws8 "8"
 set $ws9 "9"
@@ -127,6 +131,15 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+
+# Move workspace to monitor
+workspace 1 output $sm
+workspace 2 output $fm
+workspace 3 output $sm
+workspace 4 output $fm
+workspace 5 output $fm
+workspace 6 output $fm
+workspace 7 output $fm
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -151,7 +164,7 @@ for_window [title="Preferences$"]                   floating enable
 
 
 # assign application to a ws
-assign [class="firefox"] $ws1
+assign [class="Microsoft-edge"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Slack"] $ws4
@@ -233,7 +246,7 @@ bar {
 	}
 }
 
-bindsym $mod+Shift+x exec ~/lock-screen.sh 
+bindsym $mod+Shift+x exec ~/Documents/lock-screen.sh && echo mem > /sys/power/state
 
 # Control audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -257,12 +270,15 @@ bindsym $mod+Print exec maim --select | tee ~/Pictures/Screenshot/$(date +%s).pn
 # start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
+# open rofi bluetooth
+bindsym $mod+Shift+b exec --no-startup-id ~/.config/rofi/rofi-bluetooth/rofi-bluetooth
+
 # Exec on start up
-exec --no-startup-id firefox
+exec --no-startup-id Microsoft-edge 
 
 # Exec always start instance
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
+exec_always --no-startup-id ~/.screenlayout/ngoc-home-2.sh
 exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpaper/Nordic-Heroin.png
 exec_always --no-startup-id picom
 exec --no-startup-id ibus-daemon --xim -d -r
