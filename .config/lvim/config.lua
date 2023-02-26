@@ -35,6 +35,24 @@ lvim.builtin.which_key.mappings["t"] = {
 	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Diagnostics" },
 }
 
+lvim.keys.normal_mode["<F9>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
+lvim.keys.normal_mode["<F5>"] = "<cmd>lua require'dap'.continue()<cr>"
+lvim.keys.normal_mode["<F10>"] = "<cmd>lua require'dap'.step_over()<cr>"
+lvim.keys.normal_mode["<F11>"] = "<cmd>lua require'dap'.step_into()<cr>"
+lvim.keys.normal_mode["<F12>"] = "<cmd>lua require'dap'.step_out()<cr>"
+
+lvim.builtin.which_key.mappings["d"] = {
+	name = "Debug",
+	b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+	c = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+	d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+	g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+	p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
+	r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+	q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+	u = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
+}
+
 lvim.builtin.which_key.mappings["S"] = {
 	name = "Session",
 	c = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
@@ -156,6 +174,7 @@ dap.configurations.typescript = {
 		name = "Attach to port 9229",
 		type = "node2",
 		request = "attach",
+		sourceMaps = true,
 		skipFiles = { "<node_internals>/**" },
 		port = "9229",
 		restart = true,
