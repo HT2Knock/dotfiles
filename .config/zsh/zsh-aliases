@@ -48,8 +48,12 @@ alias restart='sudo shutdown -r now'
 # Copy using clip
 alias copy='xclip -sel clip'
 
+# cool scripts
+alias source-setup="source $HOME/Documents/scripts/sourceSetup.sh"
+alias debian-ubuntu-cleanup="source $HOME/Documents/scripts/debian-ubuntu-clean.sh"
+
 # quick config path
-alias zshconfig="nvim ~/.config/zsh/.zshrc"
+alias zshconfig="cd ~/.config/zsh && nvim"
 alias alacrittyconfig="nvim ~/.alacritty.yml"
 alias i3config='nvim ~/.config/i3/config'
 alias tmuxconfig='nvim ~/.tmux.conf'

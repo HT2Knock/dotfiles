@@ -5,10 +5,10 @@ function zsh_add_file() {
 
 function zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         # For plugins
         zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+            zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
     else
         git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
     fi
@@ -16,16 +16,40 @@ function zsh_add_plugin() {
 
 function zsh_add_completion() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         # For completions
-		completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-		fpath+="$(dirname "${completion_file_path}")"
+        completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+        fpath+="$(dirname "${completion_file_path}")"
         zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
     else
         git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-		fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-		rm $ZDOTDIR/.zccompdump
+        fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+        rm $ZDOTDIR/.zccompdump
     fi
-	completion_file="$(basename "${completion_file_path}")"
-	if [ "$2" = true ] && compinit "${completion_file:1}"
+    completion_file="$(basename "${completion_file_path}")"
+    if [ "$2" = true ] && compinit "${completion_file:1}"
+}
+
+function auto_start_ssh(){
+    if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
+        eval $(ssh-agent -s) > /dev/null
+        if [ "$(ssh-add -l)" = "The agent has no identities." ] ; then
+            ssh-add $1 > /dev/null 2>&1
+        fi
+    fi
+}
+
+function mem_look(){
+    free -h | awk '/Gi$/ {print $1, $3, "/", $2}'
+}
+
+function check_packages(){
+    package="$(dpkg-query -W --showformat='${Status}\n' "$1" | grep "ok installed")"
+
+    echo Checking for "$1": "$package"
+    if [ -z "$package" ]; then
+        echo "No $1. Setting up $1."
+
+        sudo apt install $1
+    fi
 }
