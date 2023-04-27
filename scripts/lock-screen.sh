@@ -10,35 +10,35 @@ VERIF_TEXT='#8fbcbb'
 VERIFYING='#d8dee9'
 
 i3lock \
---insidever-color=$CLEAR     \
---ringver-color=$VERIFYING   \
-\
---insidewrong-color=$CLEAR   \
---ringwrong-color=$WRONG     \
-\
---inside-color=$BLANK        \
---ring-color=$DEFAULT        \
---line-color=$BLANK          \
---separator-color=$DEFAULT   \
-\
---verif-color=$VERIF_TEXT    \
---wrong-color=$WRONG_TEXT    \
---time-color=$TEXT           \
---date-color=$TEXT           \
---layout-color=$TEXT         \
---keyhl-color=$WRONG         \
---bshl-color=$WRONG          \
-\
---wrong-text="XXX"           \
---verif-text="..."           \
-\
---wrong-font="JetBrains Mono" \
---verif-font="JetBrain Mono"  \
---time-font="JetBrains Mono"  \
---date-font="JetBrains Mono"  \
---screen 1                   \
---blur 5                     \
---clock                      \
---indicator                  \
---time-str="%H:%M"           \
---date-str="%Y-%m-%d"       \
+    --insidever-color=$CLEAR     \
+    --ringver-color=$VERIFYING   \
+    \
+    --insidewrong-color=$CLEAR   \
+    --ringwrong-color=$WRONG     \
+    \
+    --inside-color=$BLANK        \
+    --ring-color=$DEFAULT        \
+    --line-color=$BLANK          \
+    --separator-color=$DEFAULT   \
+    \
+    --verif-color=$VERIF_TEXT    \
+    --wrong-color=$WRONG_TEXT    \
+    --time-color=$TEXT           \
+    --date-color=$TEXT           \
+    --layout-color=$TEXT         \
+    --keyhl-color=$WRONG         \
+    --bshl-color=$WRONG          \
+    \
+    --wrong-text="xxx"           \
+    --verif-text="..."           \
+    \
+    --wrong-font="JetBrains Mono" \
+    --verif-font="JetBrain Mono"  \
+    --time-font="JetBrains Mono"  \
+    --date-font="JetBrains Mono"  \
+    --screen 1                   \
+    --blur 10                     \
+    --clock                      \
+    --indicator                  \
+    --time-str="%H:%M"           \
+    --date-str="%Y-%m-%d"       \
