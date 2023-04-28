@@ -30,13 +30,9 @@ function zsh_add_completion() {
     if [ "$2" = true ] && compinit "${completion_file:1}"
 }
 
-function auto_start_ssh(){
-    if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
-        eval $(ssh-agent -s) > /dev/null
-        if [ "$(ssh-add -l)" = "The agent has no identities." ] ; then
-            ssh-add $1 > /dev/null 2>&1
-        fi
-    fi
+function start_ssh(){
+    eval $(ssh-agent -s) > /dev/null
+    ssh-add $1 > /dev/null 2>&1
 }
 
 function mem_look(){
@@ -52,4 +48,10 @@ function check_packages(){
 
         sudo apt install $1
     fi
+}
+
+function generate_empty_ssh() {
+    [ -d $1 ] || mkdir -p $1
+
+    ssh-keygen -b 2048 -t rsa -f $1 -q -N ""
 }
