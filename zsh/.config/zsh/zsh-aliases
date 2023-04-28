@@ -54,8 +54,8 @@ alias debian-ubuntu-cleanup="source $HOME/Documents/scripts/debian-ubuntu-clean.
 
 # quick config path
 alias zshconfig="cd ~/.config/zsh && nvim"
-alias alacrittyconfig="nvim ~/.alacritty.yml"
+alias alacrittyconfig="nvim ~/.config/alacritty/alacritty.yml"
 alias i3config='nvim ~/.config/i3/config'
-alias tmuxconfig='nvim ~/.tmux.conf'
+alias tmuxconfig='nvim ~/.config/tmux/tmux.conf'
 alias i3statusrs_config='nvim ~/.config/i3status-rust/config.toml'
 alias picomconfig='nvim ~/.config/picom/picom.conf'
