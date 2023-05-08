@@ -1,0 +1,82 @@
+# NOTE: this example targets the master branch of i3status-rust.
+#
+# For latest stable version, refer to
+# https://github.com/greshake/i3status-rust/blob/v0.22.0/examples/config.toml
+
+icons_format = "{icon}"
+
+[theme]
+theme = "nord-dark"
+
+[icons]
+icons = "awesome6"
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "uptime"
+interval = 3600
+
+[[block]]
+block = "memory"
+format = " $icon $mem_used_percents.eng(w:1) "
+format_alt = " $icon_swap $swap_free.eng(w:3,u:B,p:M)/$swap_total.eng(w:3,u:B,p:M)($swap_used_percents.eng(w:2)) "
+interval = 30
+warning_mem = 70
+critical_mem = 90
+
+[[block]]
+block = "disk_space"
+info_type = "available"
+alert_unit = "GB"
+alert = 10.0
+warning = 15.0
+format = " $icon $available "
+format_alt = " $icon $available / $total "
+
+[[block]]
+block = "docker"
+interval = 2
+format = " $icon $running/$total "
+
+[[block]]
+block = "net"
+format = " $icon $ip "
+
+
+[[block]]
+block = "sound"
+format = " $icon { $volume|} "
+headphones_indicator=true
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "time"
+interval = 60
+[block.format]
+full = " $icon $timestamp.datetime(f:'%a %R') "
+short = " $icon $timestamp.datetime(f:%R) "
+
+[[block]]
+block = "battery"
+format = "$icon $percentage"
+missing_format = ""
+
+[[block]]
+block = "menu"
+text = ""
+[[block.items]]
+display = " -&gt;  &lt;-"
+cmd = "i3 exit"
+confirm_msg = "Are you sure you want to log out?"
+[[block.items]]
+display = " -&gt;  &lt;-"
+cmd = "poweroff"
+confirm_msg = "Are you sure you want to power off?"
+[[block.items]]
+display = " -&gt;  &lt;-"
+cmd = "reboot"
+confirm_msg = "Are you sure you want to reboot?"
