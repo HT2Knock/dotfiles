@@ -8,3 +8,5 @@ ftplugin
 spell
 .luarc.json
 nvim/*
+lazygit/state.yml
+lazydocker/state.yml
