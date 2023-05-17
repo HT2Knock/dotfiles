@@ -86,6 +86,9 @@ bindsym $mod+b bar mode toggle
 
 bindsym $mod+i bar mode invisible
 
+# open green clip using rofi
+bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -106,13 +109,13 @@ bindsym $mod+Shift+m move position mouse
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 " " 
 set $ws2 " "
-set $ws3 " "
+set $ws3 ""
 set $ws4 " "
 set $ws5 " "
 set $ws6 " "
 set $ws7 ""
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 ""
 set $ws10 "10"
 
 
@@ -149,6 +152,7 @@ workspace $ws4 output $fm
 workspace $ws5 output $fm
 workspace $ws6 output $fm
 workspace $ws7 output $fm
+workspace $ws9 output $fm
 
 # floating
 for_window [floating] move position center
@@ -164,6 +168,7 @@ for_window [title="Preferences$"]                   floating enable
 assign [class="Microsoft-edge"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
+assign [class="Evince"] $ws3
 assign [class="Slack"] $ws4
 assign [class="DBeaver"] $ws5
 assign [class="RedisInsight-v2"] $ws5

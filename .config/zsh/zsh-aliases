@@ -44,6 +44,7 @@ alias list_systemctl="systemctl list-unit-files --state=enabled"
 # frequent command
 alias shutdown='sudo shutdown now'
 alias restart='sudo shutdown -r now'
+alias zshreload='source ~/.config/zsh/zshrc'
 
 # Copy using clip
 alias copy='xclip -sel clip'

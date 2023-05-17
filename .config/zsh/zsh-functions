@@ -55,3 +55,8 @@ function generate_empty_ssh() {
 
     ssh-keygen -b 2048 -t rsa -f $1 -q -N ""
 }
+
+function killport() {
+    kill $(lsof -t -i :$1)
+    echo "Port $1 killed"
+}
