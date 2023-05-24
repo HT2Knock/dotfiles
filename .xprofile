@@ -16,3 +16,5 @@ greenclip daemon &
 
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
+
+flatpak run com.microsoft.Edge &
