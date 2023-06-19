@@ -72,6 +72,7 @@ short = " $icon $timestamp.datetime(f:%R) "
 [[block]]
 block = "battery"
 format = " $icon $percentage "
+missing_format=""
 
 [[block]]
 block = "menu"
