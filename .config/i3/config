@@ -231,7 +231,7 @@ client.background       #242424
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
-        font pango:JetBrains Mono, Font Awesome 6 Free 10 
+        font pango:JetBrains Mono, Font Awesome 6 Pro 10 
         status_command i3status-rs
 	position top
 	colors {
