@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(pwd )"/script-functions.sh
+source "$(pwd)"/lib/script-functions.sh
 
 config_core(){
     cd "config/$1" && pwd
