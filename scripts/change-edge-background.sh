@@ -3,8 +3,8 @@
 source "$(pwd)"/lib/common.sh
 source "$(pwd)"/lib/script-functions.sh
 
-source_path="$HOME/Pictures/Wallpaper"
-edge_path="$HOME/.var/app/com.microsoft.Edge/config/microsoft-edge/Default"
+source_path="$HOME/Pictures/nordic-wallpapers/wallpapers"
+edge_path="$XDG_CONFIG_HOME/microsoft-edge/Default"
 edge_bg_filepath="$edge_path/edge_background.jpg"
 
 get_random_file (){
