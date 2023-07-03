@@ -151,7 +151,9 @@ workspace $ws4 output $fm
 workspace $ws5 output $fm
 workspace $ws6 output $fm
 workspace $ws7 output $fm
+workspace $ws8 output $fm
 workspace $ws9 output $fm
+workspace $ws10 output $sm
 
 # floating
 for_window [floating] move position center
