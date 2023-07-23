@@ -6,14 +6,18 @@ gui:
   sidePanelWidth: 0.3333 # number from 0 to 1
   expandFocusedSidePanel: false
   mainPanelSplitMode: "flexible" # one of 'horizontal' | 'flexible' | 'vertical'
-  language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
-  timeFormat: "02 Jan 06 15:04 MST" # https://pkg.go.dev/time#Time.Format
+  language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko' | 'ru'
+  timeFormat: "02 Jan 06" # https://pkg.go.dev/time#Time.Format
+  shortTimeFormat: "3:04PM"
   theme:
     activeBorderColor:
       - green
       - bold
     inactiveBorderColor:
       - white
+    searchingActiveBorderColor:
+      - cyan
+      - bold
     optionsTextColor:
       - blue
     selectedLineBgColor:
@@ -31,24 +35,27 @@ gui:
   commitLength:
     show: true
   mouseEvents: true
-  skipUnstageLineWarning: false
+  skipDiscardChangeWarning: false
   skipStashWarning: false
   showFileTree: true # for rendering changes files in a tree format
   showListFooter: true # for seeing the '5 of 20' message in list panels
   showRandomTip: true
+  showBranchCommitHash: false # show commit hashes alongside branch names
+  experimentalShowBranchHeads: false # visualize branch heads with (*) in commits list
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
   showCommandLog: true
-  showIcons: true
+  showIcons: false # deprecated: use nerdFontsVersion instead
+  nerdFontsVersion: "3" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
   skipRewordInEditorWarning: false # for skipping the confirmation before launching the reword editor
+  border: "single" # one of 'single' | 'double' | 'rounded' | 'hidden'
 git:
   paging:
     colorArg: always
-    useConfig: true
+    useConfig: false
   commit:
     signOff: false
-    verbose: default # one of 'default' | 'always' | 'never'
   merging:
     # only applicable to unix users
     manualCommit: false
@@ -65,8 +72,12 @@ git:
     # displays the whole git graph by default in the commits panel (equivalent to passing the `--all` argument to `git log`)
     showWholeGraph: false
   skipHookPrefix: WIP
+  # The main branches. We colour commits green if they belong to one of these branches,
+  # so that you can easily see which commits are unique to your branch (coloured in yellow)
+  mainBranches: [master, main]
   autoFetch: true
   autoRefresh: true
+  fetchAll: true # Pass --all flag when running git fetch. Set to false to fetch only origin (or the current branch's upstream remote if there is one)
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
   allBranchesLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium"
   overrideGpg: false # prevents lazygit from spawning a separate process when using GPG
@@ -74,9 +85,12 @@ git:
   parseEmoji: true
   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 os:
-  editCommand: "nvim" # see 'Configuring File Editing' section
-  editCommandTemplate: ""
-  openCommand: ""
+  editPreset: "nvim" # see 'Configuring File Editing' section
+  edit: "nvim {{filename}}"
+  editAtLine: "nvim --line={{line}} {{filename}}"
+  editAtLineAndWait: "nvim --block --line={{line}} {{filename}}"
+  open: "xdg-open {{filename}} >/dev/null"
+  openLink: ""
 refresher:
   refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
   fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
@@ -94,8 +108,6 @@ keybinding:
     quit: "q"
     quit-alt1: "<c-c>" # alternative/alias of quit
     return: "<esc>" # return to previous menu, will quit if there's nowhere to return
-    # When set to a printable character, this will work for returning from non-prompt panels
-    return-alt1: null
     quitWithoutChangingDirectory: "Q"
     togglePanel: "<tab>" # goto the next panel
     prevItem: "<up>" # go one line up
@@ -115,13 +127,12 @@ keybinding:
     jumpToBlock: ["1", "2", "3", "4", "5"] # goto the Nth block / panel
     nextMatch: "n"
     prevMatch: "N"
-    optionMenu: "x" # show help menu
+    optionMenu: null # show help menu
     optionMenu-alt1: "?" # show help menu
     select: "<space>"
     goInto: "<enter>"
     openRecentRepos: "<c-r>"
     confirm: "<enter>"
-    confirm-alt1: "y"
     remove: "d"
     new: "n"
     edit: "e"
@@ -149,7 +160,6 @@ keybinding:
     diffingMenu-alt: "<c-e>" # deprecated
     copyToClipboard: "<c-o>"
     submitEditorText: "<enter>"
-    appendNewline: "<a-enter>"
     extrasMenu: "@"
     toggleWhitespaceInDiffView: "<c-w>"
     increaseContextInDiffView: "}"
@@ -182,6 +192,7 @@ keybinding:
     mergeIntoCurrentBranch: "M"
     viewGitFlowOptions: "i"
     fastForward: "f" # fast-forward this branch from its upstream
+    createTag: "T"
     pushTag: "P"
     setUpstream: "u" # set as upstream of checked-out branch
     fetchRemote: "f"
