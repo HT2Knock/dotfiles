@@ -52,6 +52,9 @@ stats:
     - caption: Memory (%)
       statPath: DerivedStats.MemoryPercentage
       color: green
+    - caption: Network received (%)
+      statPath: ClientStats.Networks.Eth0.RxBytes
+      color: yellow
 customCommands:
   containers:
     - name: bash
