@@ -2,7 +2,6 @@
 
 # shorcut to modern tool
 alias ls="exa"
-alias cat="batcat"
 alias lg="lazygit"
 alias lzd="lazydocker"
 alias microsoft-edge='flatpak run com.microsoft.Edge'
