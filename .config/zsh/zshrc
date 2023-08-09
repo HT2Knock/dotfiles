@@ -54,6 +54,9 @@ bindkey "^n" down-line-or-beginning-search # Down
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Python virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper.sh
+
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
