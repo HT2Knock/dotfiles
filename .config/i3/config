@@ -271,8 +271,6 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshot using maim
-bindsym Print exec maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i
-bindsym $mod+Print exec maim --select | tee ~/Pictures/Screenshot/$(date +%s).png | xclip -sel c -t image/png
 bindsym $mod+p exec exec ~/.config/rofi/applets/bin/screenshot.sh
 
 # start rofi (a program launcher)
