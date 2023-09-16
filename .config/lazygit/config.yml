@@ -41,10 +41,8 @@ gui:
   showListFooter: true # for seeing the '5 of 20' message in list panels
   showRandomTip: true
   showBranchCommitHash: false # show commit hashes alongside branch names
-  experimentalShowBranchHeads: false # visualize branch heads with (*) in commits list
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
   showCommandLog: true
-  showIcons: false # deprecated: use nerdFontsVersion instead
   nerdFontsVersion: "3" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
@@ -53,7 +51,7 @@ gui:
 git:
   paging:
     colorArg: always
-    useConfig: false
+    useConfig: true
   commit:
     signOff: false
   merging:
@@ -85,11 +83,12 @@ git:
   parseEmoji: true
   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 os:
-  editPreset: "nvim" # see 'Configuring File Editing' section
-  edit: "nvim {{filename}}"
-  editAtLine: "nvim --line={{line}} {{filename}}"
-  editAtLineAndWait: "nvim --block --line={{line}} {{filename}}"
-  open: "xdg-open {{filename}} >/dev/null"
+  copyToClipboardCmd: "" # See 'Custom Command for Copying to Clipboard' section
+  editPreset: "" # see 'Configuring File Editing' section
+  edit: ""
+  editAtLine: ""
+  editAtLineAndWait: ""
+  open: ""
   openLink: ""
 refresher:
   refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
