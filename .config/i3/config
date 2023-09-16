@@ -11,15 +11,16 @@ set $up     l
 set $right  semicolon
 
 # set monitor name (in case working with multiple monitor)
+set $fm eDP-1
 set $sm HDMI-1
-set $fm DP-1
 
 # drag windows
 floating_modifier $mod
 
+
 # Change basic setting 
 title_align center
-default_border pixel 2
+default_border pixel 1
 default_floating_border none
 focus_follows_mouse no
 hide_edge_borders none 
@@ -64,6 +65,7 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -104,7 +106,6 @@ bindsym $mod+Shift+h move absolute position center
 # move focused floating window to the current position of the cursor
 bindsym $mod+Shift+m move position mouse
 
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 " " 
@@ -131,6 +132,18 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+# Move workspace to monitor
+workspace $ws1 output $sm
+workspace $ws2 output $fm
+workspace $ws3 output $sm
+workspace $ws4 output $fm
+workspace $ws5 output $sm
+workspace $ws6 output $fm
+workspace $ws7 output $sm
+workspace $ws8 output $sm
+workspace $ws9 output $sm
+workspace $ws10 output $sm
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -142,16 +155,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
-
-# Move workspace to monitor
-workspace $ws1 output $sm
-workspace $ws2 output $sm
-workspace $ws3 output $sm
-workspace $ws4 output $fm
-workspace $ws5 output $fm
-workspace $ws6 output $fm
-workspace $ws7 output $fm
-workspace $ws9 output $fm
 
 # floating
 for_window [floating] move position center
@@ -169,10 +172,12 @@ assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Evince"] $ws3
 assign [class="Slack"] $ws4
+assign [class="Discord"] $ws4
 assign [class="DBeaver"] $ws5
 assign [class="RedisInsight-v2"] $ws5
 assign [class="Nautilus"] $ws6
 assign [class="Postman"] $ws7
+assign [class="Sublime_merge"] $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -231,7 +236,7 @@ client.background       #242424
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
-        font pango:JetBrains Mono, Font Awesome 6 Free 10 
+        font pango: JetBrains Mono, Font Awesome 6 Pro 10 
         status_command i3status-rs
 	position top
 	colors {
@@ -248,7 +253,7 @@ bar {
 	}
 }
 
-bindsym $mod+Shift+x exec ~/Documents/dotfiles/scripts/lock-screen.sh 
+bindsym $mod+Shift+x exec ~/Documents/lock-screen.sh && echo mem > /sys/power/state
 
 # Control audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -265,6 +270,17 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# Screenshot using maim
+bindsym Print exec maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i
+bindsym $mod+Print exec maim --select | tee ~/Pictures/Screenshot/$(date +%s).png | xclip -sel c -t image/png
+
+# start rofi (a program launcher)
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t2
+bindsym $mod+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t2
+
+# open rofi bluetooth
+bindsym $mod+Shift+b exec --no-startup-id ~/.config/rofi/rofi-bluetooth/rofi-bluetooth
+
 # notification
 bindsym Ctrl+space              exec --no-startup-id dunstctl close
 bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
@@ -272,28 +288,16 @@ bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 
-# Screenshot using maim
-bindsym Print exec maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i
-bindsym $mod+Print exec maim --select | tee ~/Pictures/Screenshots/$(date +%s).png | xclip -sel c -t image/png
-
-# start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
-
-# Exec on start up
-exec --no-startup-id microsoft-edge 
-exec --no-startup-id alacritty 
-exec --no-startup-id slack 
-exec --no-startup-id postman 
-
-
 # Exec always start instance
-# exec_always --no-startup-id ~/.screenlayout/work-1.sh
-exec_always --no-startup-id nm-applet 
-exec_always --no-startup-id feh --bg-scale --randomize ~/Pictures/nordic-wallpapers/wallpapers
+exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
+exec_always --no-startup-id ~/Documents/scripts/change-edge-background.sh
+exec_always --no-startup-id feh --bg-scale --randomize ~/Pictures/Wallpaper
 exec_always --no-startup-id picom
+exec_always --no-startup-id nm-applet 
+
 exec --no-startup-id ibus-daemon --xim -d -r
+exec --no-startup-id flatpak run com.microsoft.EdgeDev
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id ~/Documents/scripts/change-edge-background.sh
 
 # Keys
 exec_always --no-startup-id setxkbmap -option caps:escape
