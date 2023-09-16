@@ -271,7 +271,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshot using maim
-bindsym $mod+p exec exec ~/.config/rofi/applets/bin/screenshot.sh
+bindsym $mod+p exec ~/.config/rofi/applets/bin/screenshot.sh
 
 # start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t2
