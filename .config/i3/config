@@ -290,7 +290,6 @@ bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # Exec always start instance
 exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
-exec_always --no-startup-id ~/Documents/scripts/change-edge-background.sh
 exec_always --no-startup-id feh --bg-scale --randomize ~/Pictures/Wallpaper
 exec_always --no-startup-id picom
 exec_always --no-startup-id nm-applet 
@@ -298,6 +297,7 @@ exec_always --no-startup-id nm-applet
 exec --no-startup-id ibus-daemon --xim -d -r
 exec --no-startup-id flatpak run com.microsoft.EdgeDev
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id ~/Documents/scripts/change-edge-background.sh
 
 # Keys
 exec_always --no-startup-id setxkbmap -option caps:escape
