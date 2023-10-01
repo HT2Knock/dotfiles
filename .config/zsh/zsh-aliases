@@ -5,7 +5,7 @@ alias ls="exa"
 alias cat="batcat"
 alias lg="lazygit"
 alias lzd="lazydocker"
-alias microsoft-edge='flatpak run com.microsoft.Edge'
+alias microsoft-edge='flatpak run com.microsoft.EdgeDev'
 alias f='zi'
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
