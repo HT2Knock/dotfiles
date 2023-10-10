@@ -289,7 +289,7 @@ bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # Exec always start instance
 exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
-exec_always --no-startup-id shuf -e -n1 ~/Pictures/Wallpaper/wallpapers | xargs feh --bg-scale
+exec_always --no-startup-id shuf -e -n1 ~/Pictures/Wallpaper/wallpapers/* | xargs feh --bg-scale
 exec_always --no-startup-id picom
 exec_always --no-startup-id nm-applet 
 
