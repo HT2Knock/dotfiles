@@ -292,7 +292,7 @@ exec --no-startup-id postman
 # Exec always start instance
 # exec_always --no-startup-id ~/.screenlayout/work-1.sh
 exec_always --no-startup-id nm-applet 
-exec_always --no-startup-id shuf -e -n1 ~/Pictures/nordic-wallpapers/wallpapers/* | xargs feh --bg-scale
+exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh
 exec_always --no-startup-id picom
 exec --no-startup-id ibus-daemon --xim -d -r
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
