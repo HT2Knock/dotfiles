@@ -300,3 +300,4 @@ exec --no-startup-id ~/Documents/scripts/change-edge-background.sh
 
 # Keys
 exec_always --no-startup-id setxkbmap -option caps:escape
+exec --no-startup-id xmodmap -e "pointer = 3 2 1"
