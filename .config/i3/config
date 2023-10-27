@@ -172,6 +172,7 @@ assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Evince"] $ws3
 assign [class="Slack"] $ws4
+assign [class="discord"] $ws4
 assign [class="Discord"] $ws4
 assign [class="DBeaver"] $ws5
 assign [class="RedisInsight-v2"] $ws5
