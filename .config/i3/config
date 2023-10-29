@@ -296,7 +296,6 @@ exec_always --no-startup-id nm-applet
 
 exec --no-startup-id ibus-daemon --xim -d -r
 exec --no-startup-id thorium-browser
-exec --no-startup-id ~/Documents/scripts/change-edge-background.sh
 
 # Keys
 exec_always --no-startup-id setxkbmap -option caps:escape
