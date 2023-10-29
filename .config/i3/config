@@ -168,6 +168,7 @@ for_window [title="Preferences$"]                   floating enable
 
 # assign application to a ws
 assign [class="Microsoft-edge"] $ws1
+assign [class="Thorium-browser"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Evince"] $ws3
@@ -290,9 +291,9 @@ bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # Exec always start instance
 exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
-exec_always --no-startup-id shuf -e -n1 ~/Pictures/Wallpaper/wallpapers/* | xargs feh --bg-scale
 exec_always --no-startup-id picom
 exec_always --no-startup-id nm-applet
+exec_always --no-startup-id shuf -e -n1 ~/Pictures/Wallpaper/wallpapers/* | xargs feh --bg-scale
 
 exec --no-startup-id ibus-daemon --xim -d -r
 exec --no-startup-id thorium-browser
