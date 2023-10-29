@@ -293,7 +293,7 @@ bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
 exec_always --no-startup-id picom
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id shuf -e -n1 ~/Pictures/Wallpaper/wallpapers/* | xargs feh --bg-scale
+exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh
 
 exec --no-startup-id ibus-daemon --xim -d -r
 exec --no-startup-id thorium-browser
