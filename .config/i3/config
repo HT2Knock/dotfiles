@@ -167,6 +167,7 @@ for_window [title="Preferences$"]                   floating enable
 
 # assign application to a ws
 assign [class="Microsoft-edge"] $ws1
+assign [class="Thorium-browser"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Evince"] $ws3
@@ -283,10 +284,10 @@ bindsym $mod+Print exec maim --select | tee ~/Pictures/Screenshots/$(date +%s).p
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # Exec on start up
-exec --no-startup-id microsoft-edge 
-exec --no-startup-id alacritty 
-exec --no-startup-id slack 
-exec --no-startup-id postman 
+exec --no-startup-id thorium-browser
+exec --no-startup-id alacritty
+exec --no-startup-id slack
+exec --no-startup-id postman
 
 
 # Exec always start instance
