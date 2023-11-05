@@ -51,7 +51,6 @@ alias sys-suspend='sudo pm-suspend'
 # reload zsh
 alias zshreload='source ~/.config/zsh/zshrc'
 
-
 # get port
 alias port="netstat -tulpn | grep"
 

@@ -74,3 +74,11 @@ function tsa(){
         echo "There is no existing TMUX session."
     fi
 }
+
+function cst(){
+    if [[ -x "$(command -v gum)" ]]; then
+        cht.sh "$@" | gum pager
+    else
+        cht.sh "$@" | less
+    fi
+}
