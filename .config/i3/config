@@ -176,6 +176,8 @@ assign [class="DBeaver"] $ws5
 assign [class="RedisInsight-v2"] $ws5
 assign [class="Nautilus"] $ws6
 assign [class="Postman"] $ws7
+assign [class="figma-linux"] $ws7
+assign [class="ResponsivelyApp"] $ws7
 assign [class="Sublime_merge"] $ws9
 
 # reload the configuration file
