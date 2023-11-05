@@ -51,6 +51,10 @@ alias sys-suspend='sudo pm-suspend'
 # reload zsh
 alias zshreload='source ~/.config/zsh/zshrc'
 
+
+# get port
+alias port="netstat -tulpn | grep"
+
 # x11
 alias xpropc='xprop | grep WM_CLASS'
 
