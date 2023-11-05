@@ -44,8 +44,14 @@ alias list_systemctl="systemctl list-unit-files --state=enabled"
 
 # frequent command
 alias shutdown='sudo shutdown now'
-alias restart='sudo shutdown -r now'
+alias restart='sudo reboot'
+alias sys-suspend='sudo pm-suspend'
+
+# reload zsh
 alias zshreload='source ~/.config/zsh/zshrc'
+
+# x11
+alias xpropc='xprop | grep WM_CLASS'
 
 # Copy using clip
 alias copy='xclip -sel clip'
@@ -55,7 +61,7 @@ alias source-setup="source $HOME/Documents/scripts/sourceSetup.sh"
 alias debian-ubuntu-cleanup="source $HOME/Documents/scripts/debian-ubuntu-clean.sh"
 
 # quick config path
-alias zshconfig="cd ~/.config/zsh && nvim"
+alias zshconfig="nvim ~/.config/zsh/zshrc"
 alias alacrittyconfig="nvim ~/.config/alacritty/alacritty.yml"
 alias i3config='nvim ~/.config/i3/config'
 alias tmuxconfig='nvim ~/.config/tmux/tmux.conf'
