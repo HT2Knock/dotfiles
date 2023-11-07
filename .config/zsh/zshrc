@@ -44,8 +44,8 @@ zsh_add_plugin "jeffreytse/zsh-vi-mode"
 
 # Key-bindings
 bindkey -s '^o' 'ranger\n'
-bindkey -s '^f' 'zi\n'
-bindkey -s '^s' 'ncdu\n'
+bindkey -s '^f' 'v\n'
+bindkey -s '^s' 'dust\n'
 bindkey -s '^v' 'nvim\n'
 bindkey -s '^z' 'zi\n'
 bindkey '^[[P' delete-char
