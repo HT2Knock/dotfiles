@@ -1,7 +1,7 @@
 # Environment variables set everywhere
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-export BROWSER="microsoft-edge"
+export BROWSER="thorium-browser"
 
 # XDG Paths
 export XDG_CONFIG_HOME=$HOME/.config

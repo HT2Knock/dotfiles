@@ -167,7 +167,7 @@ for_window [title="Preferences$"]                   floating enable
 
 # assign application to a ws
 assign [class="Microsoft-edge"] $ws1
-assign [class="Thorium-browser"] $ws1
+assign [class="Thorium"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Evince"] $ws3
