@@ -48,7 +48,7 @@ alias restart='sudo reboot'
 alias sys-suspend='sudo pm-suspend'
 
 # reload zsh
-alias zshreload='source ~/.config/zsh/zshrc'
+alias zshreload='source ~/.config/zsh/.zshrc'
 
 # get port
 alias port="netstat -tulpn | grep"
@@ -64,7 +64,7 @@ alias source-setup="source $HOME/Documents/scripts/sourceSetup.sh"
 alias debian-ubuntu-cleanup="source $HOME/Documents/scripts/debian-ubuntu-clean.sh"
 
 # quick config path
-alias zshconfig="nvim ~/.config/zsh/zshrc"
+alias zshconfig="~/.config/zsh/ && nvim"
 alias alacrittyconfig="nvim ~/.config/alacritty/alacritty.yml"
 alias i3config='nvim ~/.config/i3/config'
 alias tmuxconfig='nvim ~/.config/tmux/tmux.conf'
