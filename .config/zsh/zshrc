@@ -43,6 +43,7 @@ zsh_add_plugin "jeffreytse/zsh-vi-mode"
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
+bindkey -s '^d' 'ranger\n'
 bindkey -s '^v' 'v\n'
 bindkey -s '^s' 'dust\n'
 bindkey -s '^o' 'nvim\n'
