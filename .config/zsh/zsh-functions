@@ -31,7 +31,13 @@ function zsh_add_completion() {
 }
 
 function start_ssh(){
-    eval $(ssh-agent -s) > /dev/null
+    if ps -p $SSH_AGENT_PID > /dev/null
+    then
+        echo "ssh-agent is already running"
+    else
+        eval `ssh-agent -s`
+    fi
+
     ssh-add $1 > /dev/null 2>&1
 }
 
