@@ -56,6 +56,9 @@ alias port="netstat -tulpn | grep"
 # x11
 alias xpropc='xprop | grep WM_CLASS'
 
+# grap emoji from fzf
+alias emoj='emoji-fzf preview | fzf -m --preview "emoji-fzf get --name {1}" | cut -d " " -f 1 | emoji-fzf get'
+
 # Copy using clip
 alias copy='xclip -sel clip'
 
