@@ -31,7 +31,7 @@ function zsh_add_completion() {
 }
 
 function start_ssh(){
-    if ps -p $SSH_AGENT_PID > /dev/null
+    if [ -n "$SSH_AGENT_PID" ]
     then
         echo "ssh-agent is already running"
     else
