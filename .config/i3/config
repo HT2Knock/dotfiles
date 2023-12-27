@@ -26,9 +26,9 @@ focus_follows_mouse no
 hide_edge_borders none 
 
 # window gaps
-smart_gaps on 
-gaps inner 8
-gaps outer 2
+# smart_gaps on 
+# gaps inner 8
+# gaps outer 2
 
 # set popups during fullscreen mode
 popup_during_fullscreen smart
