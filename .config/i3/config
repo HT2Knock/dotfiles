@@ -242,7 +242,7 @@ bar {
 
                     #                   border  background text
                     focused_workspace  #16161d #16161d    #7aa2f7
-                    active_workspace   #16161d #a9b1d6    #5e81ac
+                    active_workspace   #16161d #16161d    #5e81ac
                     inactive_workspace #16161d #16161d    #4c566a
                     urgent_workspace   #16161d #16161d    #9ece6a
                     binding_mode       #16161d #a9b1d6    #2e3440
