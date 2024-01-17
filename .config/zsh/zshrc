@@ -19,6 +19,9 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 
+autoload bashcompinit && bashcompinit
+complete -C '/usr/local/bin/aws_completer' aws
+
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
