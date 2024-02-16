@@ -293,6 +293,7 @@ exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh
 
 exec --no-startup-id ibus-daemon --xim -d -r
 exec --no-startup-id thorium-browser
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 # Keys
 exec_always --no-startup-id setxkbmap -option caps:escape
