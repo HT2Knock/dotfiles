@@ -12,7 +12,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 xbanish &
 
 # Start greenclip daemon
-greenclip daemon &
+#greenclip daemon &
 
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
