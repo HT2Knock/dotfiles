@@ -286,15 +286,17 @@ exec --no-startup-id alacritty
 exec --no-startup-id slack
 exec --no-startup-id postman
 
+#Exec utility
+exec_always --no-startup-id xbanish
+exec_always --no-startup-id greenclip daemon
 
 # Exec always start instance
-# exec_always --no-startup-id ~/.screenlayout/work-1.sh
+exec_always --no-startup-id ~/.screenlayout/work-1.sh
 exec_always --no-startup-id nm-applet 
 exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh
 exec_always --no-startup-id picom
 exec --no-startup-id ibus-daemon --xim -d -r
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id ~/Documents/scripts/change-edge-background.sh
 
 # Keys
 exec_always --no-startup-id setxkbmap -option caps:escape
