@@ -1,9 +1,13 @@
 #!/bin/bash
 
-SOURCE_DIR="$HOME/Pictures/walls"
+SOURCE_DIR="$HOME/Pictures/aesthetic-wallpapers/images"
 
-category_path="$(find "$SOURCE_DIR" -maxdepth 1 -type d -not -name "animated" -and -not -name ".*" | shuf -n 1)"
+pushd "$SOURCE_DIR" >/dev/null || exit 1
 
-wall_paper=$(find "$category_path" -not -name "*.md" -and -not -name ".*" | shuf -n 1)
+category_dir="$(find "${SOURCE_DIR}" -type -f | shuf -n 1)"
 
-feh --bg-scale "$wall_paper"
+pushd "$category_dir" >/dev/null || exit 1
+
+img_name=$(ls *.{png,jpg,jpeg} | shuf -n 1)
+
+feh --bg-fill "${img_name}"
