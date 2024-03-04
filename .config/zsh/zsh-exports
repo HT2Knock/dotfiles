@@ -9,6 +9,7 @@ export MANWIDTH=999
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/share/fnm:$PATH
 export PATH="$HOME/.bun/bin":$PATH
+export PATH="$HOME/go/bin":$PATH
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
