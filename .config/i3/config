@@ -82,7 +82,7 @@ bindsym $mod+b bar mode toggle
 bindsym $mod+i bar mode invisible
 
 # open green clip using rofi
-bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mod+c exec ~/.config/rofi/applets/bin/clipboard.sh 
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -267,16 +267,19 @@ bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
 bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
+# Screenshot using maim
+bindsym $mod+p exec ~/.config/rofi/applets/bin/screenshot.sh
+
+# start rofi (a program launcher)
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t2
+bindsym $mod+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t2
+
+# open rofi bluetooth
+bindsym $mod+Shift+b exec --no-startup-id ~/.config/rofi/rofi-bluetooth/rofi-bluetooth
+
 # Exec utilities
 exec_always --no-startup-id xbanish
 exec_always --no-startup-id greenclip daemon
-
-# Screenshot using maim
-bindsym Print exec maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i
-bindsym $mod+Print exec maim --select | tee ~/Pictures/Screenshots/$(date +%s).png | xclip -sel c -t image/png
-
-# start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # Exec on start up
 exec --no-startup-id thorium-browser
