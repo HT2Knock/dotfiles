@@ -284,7 +284,6 @@ exec_always --no-startup-id greenclip daemon
 # Exec on start up
 exec --no-startup-id thorium-browser
 exec --no-startup-id alacritty
-exec --no-startup-id slack
 exec --no-startup-id postman
 
 #Exec utility
