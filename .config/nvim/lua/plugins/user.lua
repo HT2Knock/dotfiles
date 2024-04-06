@@ -2,22 +2,12 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    priority = 1000,
-    opts = {
-      transparent = false,
-    },
   },
   { "christoomey/vim-tmux-navigator" },
   {
     "windwp/nvim-spectre",
     event = "BufRead",
     config = function() require("spectre").setup() end,
-  },
-  {
-    "folke/todo-comments.nvim",
-    event = "User AstroFile",
-    cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
-    opts = {},
   },
   {
     "folke/trouble.nvim",
