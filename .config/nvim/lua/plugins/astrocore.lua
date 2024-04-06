@@ -30,6 +30,14 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
+        conceallevel = 2, -- enable conceal
+        list = true, -- show whitespace characters
+        listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
+        showbreak = "↪ ",
+        splitkeep = "screen",
+        swapfile = false,
+        guifont = "JetBrainsMono Nerd Font Mono:h9",
+        linespace = 5,
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
