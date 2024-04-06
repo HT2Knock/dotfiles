@@ -3,12 +3,9 @@ colors/*
 docs
 ginit.vim
 lua/user
-plugin
 ftplugin
 spell
 .luarc.json
 .config/nvim/*
 .config/lazygit/state.yml
 .config/lazydocker/state.yml
-/*/.git
-/*/.github

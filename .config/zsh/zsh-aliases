@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# shorcut to modern tool
+# shortcut to modern tool
 alias ls="exa"
 alias lg="lazygit"
 alias lzd="lazydocker"
