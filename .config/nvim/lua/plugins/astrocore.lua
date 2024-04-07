@@ -50,32 +50,53 @@ return {
     mappings = {
       -- first key is the mode
       n = {
-        -- second key is the lefthand side of the map
-
-        -- navigate buffer tabs with `H` and `L`
-        -- L = {
-        --   function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-        --   desc = "Next buffer",
-        -- },
-        -- H = {
-        --   function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-        --   desc = "Previous buffer",
-        -- },
-
-        -- mappings seen under group name "Buffer"
-        ["<Leader>bD"] = {
-          function()
-            require("astroui.status.heirline").buffer_picker(
-              function(bufnr) require("astrocore.buffer").close(bufnr) end
-            )
-          end,
-          desc = "Pick to close",
-        },
-        -- tables with just a `desc` key will be registered with which-key if it's installed
+        ["<C-q>"] = false,
+        ["<C-s>"] = false,
+        ["q:"] = ":",
+        -- better buffer navigation
+        ["]b"] = false,
+        ["[b"] = false,
+        ["L"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
+        ["H"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        -- better increment/decrement
+        ["-"] = { "<c-x>", desc = "Descrement number" },
+        ["+"] = { "<c-a>", desc = "Increment number" },
         -- this is useful for naming menus
-        ["<Leader>b"] = { desc = "Buffers" },
-        -- quick save
-        -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+        ["<leader>b"] = { name = " Buffers" },
+        ["<leader>k"] = { "i<Enter><Esc>", desc = "down a line" },
+        -- replace which key
+        ["<leader>s"] = { desc = "󰛔 Search/Replace" },
+        ["<leader>ss"] = { function() require("spectre").open() end, desc = "Spectre" },
+        ["<leader>sf"] = { function() require("spectre").open_file_search() end, desc = "Spectre (current file)" },
+        ["<leader>sw"] = {
+          function() require("spectre").open_visual { select_word = true } end,
+          desc = "Spectre (current word)",
+        },
+        -- telescope
+        ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find project" },
+        ["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
+        --trouble
+        ["<leader>x"] = { desc = "󰒡 Trouble" },
+        ["<leader>xx"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+        ["<leader>xX"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+        ["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+        ["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+        ["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
+
+        -- set CWD
+        ["<leader>."] = { "<cmd>cd %:p:h<cr>", desc = "Set CWD" },
+
+        --obsidian map
+        ["<leader>o"] = { name = " Notes" },
+        ["<leader>od"] = { "<cmd>ObsidianToday<cr>", desc = "Daily notes today" },
+        ["<leader>oy"] = { "<cmd>ObsidianYesterday<cr>", desc = "Daily notes yesterday" },
+        ["<leader>op"] = { "<cmd>ObsidianPasteImg<cr>", desc = "Paste image from clipboard" },
+        ["<leader>oc"] = { "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch notes" },
+        ["<leader>on"] = { "<cmd>ObsidianNew<cr>", desc = "Create a new note" },
+        ["<leader>oh"] = { "<cmd>ObsidianTemplate<cr>", desc = "Insert template" },
+        ["<leader>oo"] = { "<cmd>ObsidianOpen<cr>", desc = "Open obsidian note" },
+        ["<leader>ob"] = { "<cmd>ObsidianBacklinks<cr>", desc = "Open list back links" },
+        ["<leader>of"] = { "<cmd>ObsidianSearch<cr>", desc = "Find in notes" },
       },
       t = {
         -- setting a mapping to false will disable it
