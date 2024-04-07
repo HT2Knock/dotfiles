@@ -1,7 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
-    { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
     {
       "Exafunction/codeium.nvim",
       config = function() require("codeium").setup {} end,
