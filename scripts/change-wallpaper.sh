@@ -8,14 +8,12 @@ if [ ! -d "$SOURCE_DIR" ]; then
 	exit 1
 fi
 
-category_dir="$(find "${SOURCE_DIR}" -type -f | shuf -n 1)"
-
 # Select a random image file
 while IFS= read -r -d '' img_name; do
 	# Set desktop background
 	feh --bg-scale "$img_name"
 	break # Exit after setting the background once
-done < <(find . \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \) -print0 | shuf -zn 1)
+done < <(fd -0 -e png -e jpg -e jpeg . "/home/knock-huynh/Pictures/aesthetic-wallpapers/images" | shuf -zn 1)
 
 # Check if img_name is empty
 if [ "$img_name" = "" ]; then
