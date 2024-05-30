@@ -17,7 +17,6 @@ return {
         "cssls",
         "tailwindcss",
         "yamlls",
-        "eslint",
       })
     end,
   },
