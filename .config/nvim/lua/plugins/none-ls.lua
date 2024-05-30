@@ -1,3 +1,4 @@
+if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 -- Customize None-ls sources
 
 ---@type LazySpec
@@ -10,11 +11,7 @@ return {
     local null_ls = require "null-ls"
     config.sources = {
       null_ls.setup {
-        sources = {
-          require "none-ls.diagnostics.eslint_d",
-          require "none-ls.formatting.eslint_d",
-          require "none-ls.code_actions.eslint_d",
-        },
+        sources = {},
       },
     }
     return config
