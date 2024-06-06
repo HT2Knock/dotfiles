@@ -75,13 +75,6 @@ return {
         -- telescope
         ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find project" },
         ["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
-        --trouble
-        ["<leader>x"] = { desc = "󰒡 Trouble" },
-        ["<leader>xx"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-        ["<leader>xX"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-        ["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-        ["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
-        ["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
 
         -- set CWD
         ["<leader>."] = { "<cmd>cd %:p:h<cr>", desc = "Set CWD" },
