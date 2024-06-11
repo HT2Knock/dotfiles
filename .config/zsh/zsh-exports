@@ -9,6 +9,7 @@ export MANWIDTH=999
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/share/fnm:$PATH
 export PATH=$PATH:/usr/local/go/bin
+export PATH=${PATH}:$(go env GOPATH)/bin
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
