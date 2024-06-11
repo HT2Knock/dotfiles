@@ -64,14 +64,7 @@ return {
         -- this is useful for naming menus
         ["<leader>b"] = { name = " Buffers" },
         ["<leader>k"] = { "i<Enter><Esc>", desc = "down a line" },
-        -- replace which key
-        ["<leader>s"] = { desc = "󰛔 Search/Replace" },
-        ["<leader>ss"] = { function() require("spectre").open() end, desc = "Spectre" },
-        ["<leader>sf"] = { function() require("spectre").open_file_search() end, desc = "Spectre (current file)" },
-        ["<leader>sw"] = {
-          function() require("spectre").open_visual { select_word = true } end,
-          desc = "Spectre (current word)",
-        },
+
         -- telescope
         ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find project" },
         ["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
