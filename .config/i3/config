@@ -274,13 +274,6 @@ bindsym $mod+p exec ~/.config/rofi/applets/bin/screenshot.sh
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t2
 bindsym $mod+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t2
 
-# open rofi bluetooth
-bindsym $mod+Shift+b exec --no-startup-id ~/.config/rofi/rofi-bluetooth/rofi-bluetooth
-
-# Exec utilities
-exec_always --no-startup-id xbanish
-exec_always --no-startup-id greenclip daemon
-
 # Exec on start up
 exec --no-startup-id thorium-browser
 exec --no-startup-id alacritty
