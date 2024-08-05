@@ -79,7 +79,7 @@ return {
         ["<leader>op"] = { "<cmd>ObsidianPasteImg<cr>", desc = "Paste image from clipboard" },
         ["<leader>oc"] = { "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch notes" },
         ["<leader>on"] = { "<cmd>ObsidianNew<cr>", desc = "Create a new note" },
-        ["<leader>oh"] = { "<cmd>ObsidianTemplate<cr>", desc = "Insert template" },
+        ["<leader>oh"] = { "<cmd>ObsidianNewFromTemplate<cr>", desc = "New from template" },
         ["<leader>oo"] = { "<cmd>ObsidianOpen<cr>", desc = "Open obsidian note" },
         ["<leader>ob"] = { "<cmd>ObsidianBacklinks<cr>", desc = "Open list back links" },
         ["<leader>of"] = { "<cmd>ObsidianSearch<cr>", desc = "Find in notes" },
