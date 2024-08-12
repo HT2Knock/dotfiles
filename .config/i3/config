@@ -227,7 +227,8 @@ client.background       #1a1b26
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
-        font pango:JetBrainsMono Nerd Font 10 
+        mode hide
+        font pango:JetBrainsMono Nerd Font 11 
         status_command i3status-rs
 	position top
 	colors {
