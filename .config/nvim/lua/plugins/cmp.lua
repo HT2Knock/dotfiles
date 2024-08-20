@@ -18,7 +18,7 @@ return {
     -- modify the sources part of the options table
     opts.sources = cmp.config.sources {
       { name = "nvim_lsp", priority = 750 },
-      { name = "codeium", priority = 700 },
+      { name = "codeium", priority = 770 },
       { name = "luasnip", priority = 725 },
       { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
