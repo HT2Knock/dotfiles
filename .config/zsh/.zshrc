@@ -141,3 +141,7 @@ zsh_add_file "zsh-aliases"
 
 # bun completions
 [ -s "/home/ngochuynh/.bun/_bun" ] && source "/home/ngochuynh/.bun/_bun"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
