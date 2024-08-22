@@ -127,6 +127,7 @@ for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 # }}} End configuration added by Zim install
+zstyle ':zim:ssh' ids 'id_ed25519'
 
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
