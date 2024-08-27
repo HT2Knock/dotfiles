@@ -13,6 +13,7 @@ return {
     "epwalsh/obsidian.nvim",
     event = { "BufReadPre " .. vim.fn.expand "~" .. "/Documents/JT-notes/*.md" },
     cmd = { "ObsidianToday", "ObsidianNew", "ObsidianSearch" },
+    ft = { "markdown" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
