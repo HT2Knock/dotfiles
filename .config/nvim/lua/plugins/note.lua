@@ -1,13 +1,9 @@
 return {
   {
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    ft = { "markdown", "yaml" },
-    config = function()
-      require("headlines").setup {
-        markdown = { headline_highlights = { "Headline" } },
-      }
-    end,
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown" },
+    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
   },
   {
     "epwalsh/obsidian.nvim",
@@ -37,6 +33,10 @@ return {
 
       attachments = {
         img_folder = "resources/imgs",
+      },
+
+      ui = {
+        enable = false,
       },
     },
   },
