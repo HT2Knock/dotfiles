@@ -1,9 +1,11 @@
 return {
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown" },
-    opts = {},
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+    opts = {
+      modes = { "n", "no", "c" }, -- Change these modes
+      hybrid_modes = { "n" }, -- Uses this feature on
+    },
   },
   {
     "epwalsh/obsidian.nvim",
