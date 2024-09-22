@@ -3,13 +3,14 @@ return {
     "OXY2DEV/markview.nvim",
     lazy = false, -- Recommended
     opts = {
-      modes = { "n", "no", "c", "i" },
-      hybrid_modes = { "n", "i" },
-      callbacks = {
-        on_enable = function(_, win)
-          vim.wo[win].conceallevel = 2
-          vim.wo[win].concealcursor = "c"
-        end,
+      modes = { "n", "no", "c", "i" }, -- Change these modes
+      hybrid_modes = { "n", "i" }, -- Uses this feature on
+      checkboxes = {
+        enable = true,
+        unchecked = {
+          text = "",
+          hl = "MarkViewCheckboxUnchecked",
+        },
       },
     },
   },
