@@ -8,15 +8,14 @@ if [ ! -d "$SOURCE_DIR" ]; then
 	exit 1
 fi
 
-# Select a random image file
-while IFS= read -r -d '' img_name; do
-	# Set desktop background
-	feh --bg-scale "$img_name"
-	break # Exit after setting the background once
-done < <(fd -0 -e png -e jpg -e jpeg . "/home/knock-huynh/Pictures/aesthetic-wallpapers/images" | shuf -zn 1)
+# Select and set a random image as background
+img_name=$(fd -t f -e png -e jpg -e jpeg . "$SOURCE_DIR" | shuf -n 1)
 
-# Check if img_name is empty
-if [ "$img_name" = "" ]; then
+# Check if an image was found
+if [ -z "$img_name" ]; then
 	echo "Error: No image files found in $SOURCE_DIR." >&2
 	exit 1
 fi
+
+# Set desktop background
+feh --bg-fill "$img_name"
