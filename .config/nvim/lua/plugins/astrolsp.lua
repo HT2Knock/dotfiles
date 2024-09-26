@@ -48,6 +48,16 @@ return {
       tailwindcss = {
         root_dir = require("lspconfig.util").root_pattern("tailwind.config.ts", "tailwind.config.js"),
       },
+      harper_ls = {
+        settings = {
+          ["harper-ls"] = {
+            linters = {
+              sentence_capitalization = false,
+              avoid_curses = false,
+            },
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
