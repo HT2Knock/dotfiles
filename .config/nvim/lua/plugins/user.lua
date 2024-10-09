@@ -3,12 +3,6 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
   },
-  { "christoomey/vim-tmux-navigator" },
-  {
-    "windwp/nvim-spectre",
-    event = "BufRead",
-    config = function() require("spectre").setup() end,
-  },
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
