@@ -135,3 +135,4 @@ zsh_add_file "zsh-aliases"
 
 # bun completions
 [ -s "/home/cubable-be-4/.bun/_bun" ] && source "/home/cubable-be-4/.bun/_bun"
+source "$HOME/.rye/env"
