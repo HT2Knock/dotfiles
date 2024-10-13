@@ -61,7 +61,7 @@ alias copy='xclip -sel clip'
 alias debian-ubuntu-cleanup="source $HOME/Documents/scripts/debian-ubuntu-clean.sh"
 
 # quick config path
-alias zshconfig="~/.config/zsh/ && nvim"
+alias zshconfig="nvim ~/.config/zsh/.zshrc"
 alias alacrittyconfig="nvim ~/.config/alacritty/alacritty.toml"
 alias i3config='nvim ~/.config/i3/config'
 alias tmuxconfig='nvim ~/.config/tmux/tmux.conf'
