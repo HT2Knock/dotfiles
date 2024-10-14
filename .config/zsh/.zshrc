@@ -51,6 +51,7 @@ zinit cdreplay -q
 
 # Key bindings
 bindkey -v
+bindkey -s '^o' 'nvim\n'
 bindkey -s '^v' 'v\n'
 bindkey '^f' autosuggest-accept
 bindkey '^p' history-search-backward
