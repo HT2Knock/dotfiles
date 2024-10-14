@@ -8,8 +8,11 @@ if [ ! -d "$SOURCE_DIR" ]; then
 	exit 1
 fi
 
-# Select and set a random image as background
-img_name=$(fd -t f -e png -e jpg -e jpeg . "$SOURCE_DIR" | shuf -n 1)
+# Seed the random generator using high-precision time for better randomness
+RANDOM=$(od -vAn -N4 -tu4 </dev/urandom)
+
+# Find all valid image files (png, jpg, jpeg) and shuffle the list
+img_name=$(fd -t f -e png -e jpg -e jpeg . "$SOURCE_DIR" | sort -R | head -n 1)
 
 # Check if an image was found
 if [ -z "$img_name" ]; then
@@ -17,5 +20,5 @@ if [ -z "$img_name" ]; then
 	exit 1
 fi
 
-# Set desktop background
+# Set desktop background using feh
 feh --bg-fill "$img_name"
