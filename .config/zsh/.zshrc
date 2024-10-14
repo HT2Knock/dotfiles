@@ -1,11 +1,11 @@
 # Load source
 source "$ZDOTDIR/zsh-functions"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-source "$HOME/.atuin/bin/env"
-source "$HOME/.rye/env"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source "$HOME/.atuin/bin/env" "$HOME/.rye/env"
 
 for file in zsh-exports zsh-aliases; do
-  zsh_add_file "$file"
+  [ -f "$ZDOTDIR/$file" ] && source "$ZDOTDIR/$file"
 done
 
 ### Added by Zinit's installer
@@ -62,3 +62,13 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
