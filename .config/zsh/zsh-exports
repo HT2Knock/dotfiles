@@ -13,6 +13,6 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/go/bin":$PATH
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd j)"
 eval "$(atuin init zsh)"
 eval "$(fzf --zsh)"
