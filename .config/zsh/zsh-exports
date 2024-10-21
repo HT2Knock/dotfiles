@@ -18,7 +18,7 @@ if [[ ! "$PATH" == */home/knock-huynh/.fzf/bin* ]]; then
 fi
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd j)"
 eval "$(atuin init zsh)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
