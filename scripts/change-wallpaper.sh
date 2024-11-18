@@ -21,4 +21,4 @@ if [ -z "$img_name" ]; then
 fi
 
 # Set desktop background using feh
-feh --bg-fill "$img_name"
+feh --bg-scale "$img_name"
