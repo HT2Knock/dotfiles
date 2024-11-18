@@ -139,13 +139,13 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Move workspace to monitor
-workspace $ws1 output $sm
-workspace $ws2 output $sm
-workspace $ws3 output $sm
+workspace $ws1 output $fm
+workspace $ws2 output $fm
+workspace $ws3 output $fm
 workspace $ws4 output $fm
-workspace $ws5 output $fm
+workspace $ws5 output $sm
 workspace $ws6 output $fm
-workspace $ws7 output $fm
+workspace $ws7 output $sm
 workspace $ws8 output $fm
 workspace $ws9 output $fm
 workspace $ws10 output $sm
@@ -171,7 +171,7 @@ assign [class="obsidian"] $ws3
 assign [class="Evince"] $ws3
 assign [class="Slack"] $ws4
 assign [class="DBeaver"] $ws5
-assign [class="RedisInsight-v2"] $ws5
+assign [class="MongoDB Compass"] $ws5
 assign [class="Nautilus"] $ws6
 assign [class="Postman"] $ws7
 assign [class="figma-linux"] $ws7
@@ -278,7 +278,6 @@ bindsym $mod+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t2
 # Exec on start up
 exec --no-startup-id thorium-browser
 exec --no-startup-id alacritty
-exec --no-startup-id postman
 
 #Exec utility
 exec_always --no-startup-id xbanish
