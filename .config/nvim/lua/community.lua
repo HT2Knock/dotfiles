@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.bash" },
