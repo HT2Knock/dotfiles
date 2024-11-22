@@ -143,9 +143,9 @@ workspace $ws1 output $fm
 workspace $ws2 output $fm
 workspace $ws3 output $fm
 workspace $ws4 output $fm
-workspace $ws5 output $sm
+workspace $ws5 output $fm
 workspace $ws6 output $sm
-workspace $ws7 output $sm
+workspace $ws7 output $fm
 workspace $ws8 output $sm
 workspace $ws9 output $sm
 workspace $ws10 output $sm

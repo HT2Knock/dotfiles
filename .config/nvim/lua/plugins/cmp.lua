@@ -7,7 +7,7 @@ return {
         keymaps = {
           accept_suggestion = "<C-f>",
           clear_suggestion = "<Nop>",
-          accept_word = "<C-w>",
+          accept_word = "<A-w>",
         },
         log_level = "warn",
         disable_inline_completion = true, -- disables inline completion for use with cmp
