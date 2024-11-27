@@ -2,6 +2,7 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.motion.nvim-surround" },
+  { import = "astrocommunity.recipes.disable-tabline" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.bash" },
