@@ -11,8 +11,8 @@ set $up     l
 set $right  semicolon
 
 # set monitor name (in case working with multiple monitor)
-set $sm HDMI-1
-set $fm DP-1
+set $sm DP-1
+set $fm HDMI-1
 
 # drag windows
 floating_modifier $mod
