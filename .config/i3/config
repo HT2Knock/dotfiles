@@ -173,6 +173,7 @@ assign [class="Slack"] $ws4
 assign [class="discord"] $ws4
 assign [class="Discord"] $ws4
 assign [class="DBeaver"] $ws5
+assign [class="MongoDB Compass"] $ws5
 assign [class="RedisInsight-v2"] $ws5
 assign [class="Nautilus"] $ws6
 assign [class="Nemo"] $ws6
@@ -230,8 +231,7 @@ client.background       #1a1b26
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
-        mode hide
-        font pango: JetBrainsMono Nerd Font 11.5
+        font pango: JetBrainsMono Nerd Font 10
         status_command i3status-rs
 	position top
 	colors {
@@ -272,9 +272,6 @@ bindsym $mod+p exec ~/.config/rofi/applets/bin/screenshot.sh
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t2
 bindsym $mod+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t2
 
-# open rofi bluetooth
-bindsym $mod+Shift+b exec --no-startup-id ~/.config/rofi/rofi-bluetooth/rofi-bluetooth
-
 # notification
 bindsym Ctrl+space              exec --no-startup-id dunstctl close
 bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
@@ -288,7 +285,6 @@ exec_always --no-startup-id greenclip daemon
 # Exec always start instance
 exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
 exec_always --no-startup-id picom
-exec_always --no-startup-id nm-applet
 exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh
 
 exec --no-startup-id fcitx -d
