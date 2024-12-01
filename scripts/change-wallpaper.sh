@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCE_DIR="$HOME/Pictures/aesthetic-wallpapers/images"
+SOURCE_DIR="$HOME/Pictures/walle/images"
 
 # Check if SOURCE_DIR exists
 if [ ! -d "$SOURCE_DIR" ]; then
