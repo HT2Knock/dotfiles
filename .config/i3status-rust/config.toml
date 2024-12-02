@@ -44,7 +44,7 @@ device_kind = "source"
 
 [[block]]
 block = "custom"
-command = "~/Documents/scripts/fcitx-status.sh"
+command = "~/Documents/scripts/ibus-status.sh"
 interval = 1
 
 [[block]]
