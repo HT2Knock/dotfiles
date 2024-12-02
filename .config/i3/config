@@ -275,6 +275,10 @@ bindsym $mod+p exec ~/.config/rofi/applets/bin/screenshot.sh
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t2
 bindsym $mod+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t2
 
+# Exec on start up
+exec --no-startup-id thorium-browser
+exec --no-startup-id alacritty
+
 # Exec utilities
 exec_always --no-startup-id xbanish
 exec_always --no-startup-id greenclip daemon
