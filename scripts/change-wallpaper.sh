@@ -8,17 +8,23 @@ if [ ! -d "$SOURCE_DIR" ]; then
 	exit 1
 fi
 
-# Seed the random generator using high-precision time for better randomness
-RANDOM=$(od -vAn -N4 -tu4 </dev/urandom)
+# Find all valid image files (png, jpg, jpeg) and store them in an array
+mapfile -t images < <(find "$SOURCE_DIR" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \))
 
-# Find all valid image files (png, jpg, jpeg) and shuffle the list
-img_name=$(fd -t f -e png -e jpg -e jpeg . "$SOURCE_DIR" | sort -R | head -n 1)
-
-# Check if an image was found
-if [ -z "$img_name" ]; then
+# Check if any images are found
+if [ ${#images[@]} -eq 0 ]; then
 	echo "Error: No image files found in $SOURCE_DIR." >&2
 	exit 1
 fi
 
-# Set desktop background using feh
-feh --bg-scale "$img_name"
+# Select two random images
+img1=${images[RANDOM % ${#images[@]}]}
+img2=${images[RANDOM % ${#images[@]}]}
+
+# Ensure different images are chosen for each monitor
+while [ "$img2" == "$img1" ]; do
+	img2=${images[RANDOM % ${#images[@]}]}
+done
+
+# Set wallpapers for dual monitors
+feh --bg-fill "$img1" "$img2"

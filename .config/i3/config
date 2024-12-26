@@ -228,9 +228,10 @@ client.background       #1a1b26
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
-        font pango: JetBrainsMono Nerd Font 10
+        font pango: JetBrainsMono Nerd Font 9
         status_command i3status-rs
 	position top
+	output $fm
 	colors {
                     separator  #16161d
                     background #16161d

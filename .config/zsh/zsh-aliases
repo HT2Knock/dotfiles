@@ -63,6 +63,9 @@ alias copy='xclip -sel clip'
 # cool scripts
 alias debian-ubuntu-cleanup="source $HOME/Documents/scripts/debian-ubuntu-clean.sh"
 
+# git trick
+alias cleanup-merged="git branch --merged | grep -v \* | xargs git branch -D"
+
 # quick config path
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
 alias alacrittyconfig="nvim ~/.config/alacritty/alacritty.toml"
