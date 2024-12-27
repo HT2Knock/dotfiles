@@ -8,17 +8,13 @@ if [ ! -d "$SOURCE_DIR" ]; then
 	exit 1
 fi
 
-# Seed the random generator using high-precision time for better randomness
-RANDOM=$(od -vAn -N4 -tu4 </dev/urandom)
-
-# Find all valid image files (png, jpg, jpeg) and shuffle the list
-img_name=$(fd -t f -e png -e jpg -e jpeg . "$SOURCE_DIR" | sort -R | head -n 1)
-
-# Check if an image was found
-if [ -z "$img_name" ]; then
-	echo "Error: No image files found in $SOURCE_DIR." >&2
+# Check if nitrogen is installed
+if ! command -v nitrogen &>/dev/null; then
+	echo "Error: Nitrogen is not installed. Please install it and try again." >&2
 	exit 1
 fi
 
-# Set desktop background using feh
-feh --bg-scale "$img_name"
+# Set random wallpapers directly for all monitors
+for wallpaper in {0..2}; do
+	nitrogen --set-auto --random "$SOURCE_DIR" --head="$wallpaper" >/dev/null 2>&1
+done
