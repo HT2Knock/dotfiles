@@ -8,23 +8,13 @@ if [ ! -d "$SOURCE_DIR" ]; then
 	exit 1
 fi
 
-# Find all valid image files (png, jpg, jpeg) and store them in an array
-mapfile -t images < <(find "$SOURCE_DIR" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \))
-
-# Check if any images are found
-if [ ${#images[@]} -eq 0 ]; then
-	echo "Error: No image files found in $SOURCE_DIR." >&2
+# Check if nitrogen is installed
+if ! command -v nitrogen &>/dev/null; then
+	echo "Error: Nitrogen is not installed. Please install it and try again." >&2
 	exit 1
 fi
 
-# Select two random images
-img1=${images[RANDOM % ${#images[@]}]}
-img2=${images[RANDOM % ${#images[@]}]}
-
-# Ensure different images are chosen for each monitor
-while [ "$img2" == "$img1" ]; do
-	img2=${images[RANDOM % ${#images[@]}]}
+# Set random wallpapers directly for all monitors
+for wallpaper in {0..2}; do
+	nitrogen --set-auto --random "$SOURCE_DIR" --head="$wallpaper" >/dev/null 2>&1
 done
-
-# Set wallpapers for dual monitors
-feh --bg-fill "$img1" "$img2"
