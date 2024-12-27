@@ -15,7 +15,6 @@ return {
         "cssls",
         "tailwindcss",
         "yamlls",
-        "harper_ls",
       })
     end,
   },
