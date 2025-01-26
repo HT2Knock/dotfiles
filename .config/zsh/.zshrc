@@ -3,6 +3,7 @@ source "$ZDOTDIR/zsh-functions"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 source "$HOME/.atuin/bin/env"
 source "$HOME/.rye/env"
+source <(kubectl completion zsh)
 
 for file in zsh-exports zsh-aliases; do
   zsh_add_file "$file"
