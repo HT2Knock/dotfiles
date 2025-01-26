@@ -35,7 +35,7 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 32
-    icon_path = /usr/share/icons/Papirus/16x16/status/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/apps/
+    icon_path = /usr/share/icons/Papirus/16x16/status/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/apps/:/usr/share/icons/Papirus/16x16/emotes/:/usr/share/icons/Papirus/16x16/actions/:/usr/share/icons/Papirus/16x16/categories/:/usr/share/icons/Papirus/16x16/emblems/
     sticky_history = yes
     history_length = 20
     always_run_script = true
