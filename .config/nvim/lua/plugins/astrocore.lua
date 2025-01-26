@@ -30,9 +30,9 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = true, -- sets vim.opt.wrap
-        conceallevel = 2, -- enable conceal
-        list = true, -- show whitespace characters
-        listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
+        -- conceallevel = 2, -- enable conceal
+        -- list = true, -- show whitespace characters
+        -- listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
         showbreak = "↪ ",
         splitkeep = "screen",
         swapfile = false,
