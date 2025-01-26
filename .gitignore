@@ -1,12 +1,11 @@
 !colors/astronvim.lua
+*.null-ls*
 colors/*
 docs
 ginit.vim
 lua/user
-plugin
 ftplugin
 spell
 .luarc.json
-nvim/*
-lazygit/state.yml
-lazydocker/state.yml
+.config/lazygit/state.yml
+.config/lazydocker/state.yml

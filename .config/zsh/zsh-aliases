@@ -1,13 +1,9 @@
 #!/bin/sh
 
-# shorcut to modern tool
-alias ls="exa"
-alias cat="batcat"
+# shortcut to modern tool
+alias ls="exa --icons --group-directories-first"
 alias lg="lazygit"
 alias lzd="lazydocker"
-alias microsoft-edge='flatpak run com.microsoft.Edge'
-alias f='zi'
-alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -29,6 +25,9 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
+# command put stuff to nvim
+alias v='fd --type f --hidden --exclude .git | sk --preview "bat --style=numbers --color=always --line-range :50 {}" | xargs -r nvim'
+
 # gpg encryption
 # verify signature for isos
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
@@ -43,19 +42,27 @@ alias list_systemctl="systemctl list-unit-files --state=enabled"
 
 # frequent command
 alias shutdown='sudo shutdown now'
-alias restart='sudo shutdown -r now'
-alias zshreload='source ~/.config/zsh/zshrc'
+alias restart='sudo reboot'
+alias sys-suspend='sudo pm-suspend'
+
+# reload zsh
+alias zshreload='source ~/.config/zsh/.zshrc'
+
+# get port
+alias port="netstat -tulpn | grep"
+
+# x11
+alias xpropc='xprop | grep WM_CLASS'
 
 # Copy using clip
 alias copy='xclip -sel clip'
 
 # cool scripts
-alias source-setup="source $HOME/Documents/scripts/sourceSetup.sh"
 alias debian-ubuntu-cleanup="source $HOME/Documents/scripts/debian-ubuntu-clean.sh"
 
 # quick config path
-alias zshconfig="cd ~/.config/zsh && nvim"
-alias alacrittyconfig="nvim ~/.config/alacritty/alacritty.yml"
+alias zshconfig="nvim ~/.config/zsh/.zshrc"
+alias alacrittyconfig="nvim ~/.config/alacritty/alacritty.toml"
 alias i3config='nvim ~/.config/i3/config'
 alias tmuxconfig='nvim ~/.config/tmux/tmux.conf'
 alias i3statusrs_config='nvim ~/.config/i3status-rust/config.toml'
