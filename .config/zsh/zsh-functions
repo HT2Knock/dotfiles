@@ -3,35 +3,14 @@ function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
 
-function zsh_add_plugin() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
-        # For plugins
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-            zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-    fi
-}
-
-function zsh_add_completion() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
-        # For completions
-        completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-        fpath+="$(dirname "${completion_file_path}")"
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-        fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-        rm $ZDOTDIR/.zccompdump
-    fi
-    completion_file="$(basename "${completion_file_path}")"
-    if [ "$2" = true ] && compinit "${completion_file:1}"
-}
-
 function start_ssh(){
-    eval $(ssh-agent -s) > /dev/null
+    if [ -n "$SSH_AGENT_PID" ]
+    then
+        echo "ssh-agent is already running"
+    else
+        eval `ssh-agent -s`
+    fi
+
     ssh-add $1 > /dev/null 2>&1
 }
 
@@ -59,4 +38,26 @@ function generate_empty_ssh() {
 function killport() {
     kill $(lsof -t -i :$1)
     echo "Port $1 killed"
+}
+
+function tsa(){
+    tmux ls -F \#S > /dev/null 2>&1
+    if [ $? -eq 0 ]
+    then
+        SESSION=$(tmux ls -F \#S | gum choose --limit=1)
+
+        if [ ! -z "$SESSION" ]; then
+            tmux attach -t "$SESSION"
+        fi
+    else
+        echo "There is no existing TMUX session."
+    fi
+}
+
+function cst(){
+    if [[ -x "$(command -v gum)" ]]; then
+        cht.sh "$@" | gum pager
+    else
+        cht.sh "$@" | less
+    fi
 }

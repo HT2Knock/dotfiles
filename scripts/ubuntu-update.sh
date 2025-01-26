@@ -80,7 +80,7 @@ echo "${red}$HEADER${normal}"
 if [[ -z $uOff ]]; then
 echo -e "
 \e[32m#############################
-#     Updating Data Base    #
+#     Updating DataBase    #
 #############################\e[0m
 "
 apt-get update | tee /tmp/update-output.txt

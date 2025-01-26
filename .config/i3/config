@@ -11,29 +11,25 @@ set $up     l
 set $right  semicolon
 
 # set monitor name (in case working with multiple monitor)
-set $sm HDMI-1
-set $fm DP-1
+set $sm eDP-1
+set $fm HDMI-1
 
 # drag windows
 floating_modifier $mod
 
+
 # Change basic setting 
 title_align center
-default_border pixel 2
+default_border pixel 1
 default_floating_border none
 focus_follows_mouse no
 hide_edge_borders none 
-
-# window gaps
-smart_gaps on 
-gaps inner 8
-gaps outer 2
 
 # set popups during fullscreen mode
 popup_during_fullscreen smart
 
 # start a terminal
-bindsym $mod+Return workspace $ws2; exec --no-startup-id alacritty
+bindsym $mod+Return workspace $ws2; exec --no-startup-id ghostty
 
 # kill focused window
 bindsym $mod+q kill
@@ -64,6 +60,7 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -79,7 +76,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+F floating toggle
 
 # bar toggle, hide or show
 bindsym $mod+b bar mode toggle
@@ -87,7 +84,7 @@ bindsym $mod+b bar mode toggle
 bindsym $mod+i bar mode invisible
 
 # open green clip using rofi
-bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mod+c exec ~/.config/rofi/applets/bin/clipboard.sh 
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -104,19 +101,18 @@ bindsym $mod+Shift+h move absolute position center
 # move focused floating window to the current position of the cursor
 bindsym $mod+Shift+m move position mouse
 
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 " " 
-set $ws2 " "
-set $ws3 ""
-set $ws4 " "
-set $ws5 " "
-set $ws6 " "
-set $ws7 ""
-set $ws8 ""
-set $ws9 ""
-set $ws10 ""
+set $ws1 "1" 
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 
 # switch to workspace
@@ -131,6 +127,18 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+# Move workspace to monitor
+workspace $ws1 output $fm
+workspace $ws2 output $fm
+workspace $ws3 output $sm
+workspace $ws4 output $sm
+workspace $ws5 output $fm
+workspace $ws6 output $fm
+workspace $ws7 output $fm
+workspace $ws8 output $sm
+workspace $ws9 output $sm
+workspace $ws10 output $sm
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -142,16 +150,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
-
-# Move workspace to monitor
-workspace $ws1 output $sm
-workspace $ws2 output $sm
-workspace $ws3 output $sm
-workspace $ws4 output $fm
-workspace $ws5 output $fm
-workspace $ws6 output $fm
-workspace $ws7 output $fm
-workspace $ws9 output $fm
 
 # floating
 for_window [floating] move position center
@@ -165,14 +163,25 @@ for_window [title="Preferences$"]                   floating enable
 
 # assign application to a ws
 assign [class="Microsoft-edge"] $ws1
+assign [class="Thorium-browser"] $ws1
 assign [class="Alacritty"] $ws2
+assign [class="ghostty"] $ws2
+assign [class="obsidian"] $ws3
 assign [class="Code"] $ws3
 assign [class="Evince"] $ws3
+assign [class="calibre"] $ws3
 assign [class="Slack"] $ws4
+assign [class="discord"] $ws4
+assign [class="Discord"] $ws4
 assign [class="DBeaver"] $ws5
+assign [class="MongoDB Compass"] $ws5
 assign [class="RedisInsight-v2"] $ws5
 assign [class="Nautilus"] $ws6
+assign [class="Nemo"] $ws6
 assign [class="Postman"] $ws7
+assign [class="figma-linux"] $ws7
+assign [class="ResponsivelyApp"] $ws7
+assign [class="Sublime_merge"] $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -211,51 +220,43 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2e3440
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #88c0d0
-set $indicator-color     #d8dee9
-
-
 # Window color settings
 # class                 border  backgr. text    indicator
-client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1
-client.unfocused        #2e3440 #1f222d #888888 #1f222d
-client.focused_inactive #2e3440 #1f222d #888888 #1f222d
-client.placeholder      #2e3440 #1f222d #888888 #1f222d
-client.urgent           #900000 #900000 #ffffff #900000
+client.focused           #9aa5ce #364A82 #7aa2f7 #9aa5ce   #9aa5ce
+client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
+client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
+client.placeholder      #16161d #16161d  #c0caf5  #16161d
+client.urgent           #9ece6a #9ece6a #73daca #9ece6a
 
-client.background       #242424
+client.background       #1a1b26
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
-        font pango:JetBrains Mono, Font Awesome 6 Free 10 
+        font pango: JetBrainsMono Nerd Font 9 
         status_command i3status-rs
 	position top
 	colors {
-                    separator  #1f222d
-                    background #1f222d
-                    statusline #81a1c1
+                    separator  #16161d
+                    background #16161d
+                    statusline #a9b1d6
 
                     #                   border  background text
-                    focused_workspace  #1f222d #1f222d    #81a1c1
-                    active_workspace   #1f222d #252936    #5e81ac
-                    inactive_workspace #1f222d #1f222d    #4c566a
-                    urgent_workspace   #1f222d #1f222d    #ee829f
-                    binding_mode       #1f222d #81a1c1    #2e3440
+                    focused_workspace  #16161d #16161d    #7aa2f7
+                    active_workspace   #16161d #16161d    #5e81ac
+                    inactive_workspace #16161d #16161d    #4c566a
+                    urgent_workspace   #16161d #16161d    #9ece6a
+                    binding_mode       #16161d #a9b1d6    #2e3440
 	}
 }
 
-bindsym $mod+Shift+x exec ~/Documents/dotfiles/scripts/lock-screen.sh 
+bindsym $mod+Shift+x exec ~/Documents/scripts/lock-screen.sh && echo mem > /sys/power/state
 
 # Control audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-# Sreen brightness controls
+# Screen brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl set +20% # increase screen brightness
 bindsym XF86MonBrightnessDown exec brightnessctl set 20%- # decrease screen brightness
 
@@ -265,35 +266,29 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# Screenshot using maim
+bindsym $mod+p exec ~/.config/rofi/applets/bin/screenshot.sh
+
+# start rofi (a program launcher)
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t2
+bindsym $mod+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t2
+
 # notification
 bindsym Ctrl+space              exec --no-startup-id dunstctl close
 bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
 bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
+bindsym Ctrl+Shift+grave        exec --no-startup-id ~/Documents/scripts/toggle_dnd.sh
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
-
-# Screenshot using maim
-bindsym Print exec maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i
-bindsym $mod+Print exec maim --select | tee ~/Pictures/Screenshots/$(date +%s).png | xclip -sel c -t image/png
-
-# start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
-
-# Exec on start up
-exec --no-startup-id microsoft-edge 
-exec --no-startup-id alacritty 
-exec --no-startup-id slack 
-exec --no-startup-id postman 
-
+# Exec utilities
+exec_always --no-startup-id xbanish
+exec_always --no-startup-id greenclip daemon
 
 # Exec always start instance
-# exec_always --no-startup-id ~/.screenlayout/work-1.sh
-exec_always --no-startup-id nm-applet 
-exec_always --no-startup-id feh --bg-scale --randomize ~/Pictures/nordic-wallpapers/wallpapers
+exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
 exec_always --no-startup-id picom
-exec --no-startup-id ibus-daemon --xim -d -r
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id ~/Documents/scripts/change-edge-background.sh
+exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh
 
-# Keys
-exec_always --no-startup-id setxkbmap -option caps:escape
+exec --no-startup-id fcitx -d
+exec --no-startup-id thorium-browser
+exec --no-startup-id ghostty
