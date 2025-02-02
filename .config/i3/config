@@ -20,7 +20,7 @@ floating_modifier $mod
 
 # Change basic setting 
 title_align center
-default_border pixel 1
+default_border pixel 2
 default_floating_border none
 focus_follows_mouse no
 hide_edge_borders none 
