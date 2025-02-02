@@ -3,8 +3,10 @@ return {
     "OXY2DEV/markview.nvim",
     lazy = false, -- Recommended
     opts = {
-      modes = { "n", "no", "c", "i" }, -- Change these modes
-      hybrid_modes = { "n", "i" }, -- Uses this feature on
+      preview = {
+        modes = { "n", "no", "c", "i" }, -- Change these modes
+        hybrid_modes = { "n", "i" }, -- Uses this feature on
+      },
       checkboxes = {
         enable = true,
         unchecked = {
