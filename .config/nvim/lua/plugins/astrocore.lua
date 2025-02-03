@@ -27,12 +27,12 @@ return {
       opt = { -- vim.opt.<key>
         relativenumber = true, -- sets vim.opt.relativenumber
         number = true, -- sets vim.opt.number
-        spell = true, -- sets vim.opt.spell
+        spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = true, -- sets vim.opt.wrap
-        conceallevel = 2, -- enable conceal
-        list = true, -- show whitespace characters
-        listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
+        -- conceallevel = 2, -- enable conceal
+        -- list = true, -- show whitespace characters
+        -- listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
         showbreak = "↪ ",
         splitkeep = "screen",
         swapfile = false,
