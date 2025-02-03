@@ -126,18 +126,6 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-# Move workspace to monitor
-workspace $ws1 output $fm
-workspace $ws2 output $fm
-workspace $ws3 output $sm
-workspace $ws4 output $fm
-workspace $ws5 output $sm
-workspace $ws6 output $fm
-workspace $ws7 output $sm
-workspace $ws8 output $sm
-workspace $ws9 output $sm
-workspace $ws10 output $sm
-
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -275,12 +263,6 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-
-# notification
-bindsym Ctrl+space              exec --no-startup-id dunstctl close
-bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
-bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
-bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # Screenshot using maim
 bindsym $mod+p exec ~/.config/rofi/applets/bin/screenshot.sh
