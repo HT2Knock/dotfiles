@@ -30,10 +30,6 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = true, -- sets vim.opt.wrap
-        -- conceallevel = 2, -- enable conceal
-        -- list = true, -- show whitespace characters
-        -- listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
-        showbreak = "↪ ",
         splitkeep = "screen",
         swapfile = false,
         guifont = "JetBrainsMono Nerd Font Mono:h9",
@@ -58,9 +54,7 @@ return {
         ["[b"] = false,
         ["L"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["H"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
-        -- better increment/decrement
-        ["-"] = { "<c-x>", desc = "Descrement number" },
-        ["+"] = { "<c-a>", desc = "Increment number" },
+
         -- this is useful for naming menus
         ["<leader>b"] = { name = " Buffers" },
         ["<leader>k"] = { "i<Enter><Esc>", desc = "down a line" },
@@ -83,6 +77,9 @@ return {
         ["<leader>oo"] = { "<cmd>ObsidianOpen<cr>", desc = "Open obsidian note" },
         ["<leader>ob"] = { "<cmd>ObsidianBacklinks<cr>", desc = "Open list back links" },
         ["<leader>of"] = { "<cmd>ObsidianSearch<cr>", desc = "Find in notes" },
+
+        -- set oil
+        ["-"] = { "<cmd>Oil<cr>", desc = "Oil" },
       },
       t = {
         -- setting a mapping to false will disable it
