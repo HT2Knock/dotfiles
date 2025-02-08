@@ -221,32 +221,33 @@ bindsym $mod+r mode "resize"
 
 
 # Window color settings
-# class                 border  backgr. text    indicator
-client.focused           #9aa5ce #364A82 #7aa2f7 #9aa5ce   #9aa5ce
-client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
-client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
-client.placeholder      #16161d #16161d  #c0caf5  #16161d
-client.urgent           #9ece6a #9ece6a #73daca #9ece6a
+# class                 border    backgr.   text      indicator
+client.focused           #7aa2f7  #1a1b26dd #c0caf5   #7aa2f7
+client.focused_inactive  #1a1b26  #1a1b26dd #565f89   #1a1b26
+client.unfocused         #1a1b26  #1a1b26dd #565f89   #1a1b26
+client.placeholder       #1a1b26  #1a1b26dd #565f89   #1a1b26
+client.urgent           #f7768e  #f7768edd #c0caf5   #f7768e
 
-client.background       #1a1b26
+client.background       #1a1b26dd
 
-# Start i3bar to display a workspace bar (plus the system information i3status
+# i3bar settings
 bar {
-        font pango: JetBrainsMono Nerd Font 9 
+        font pango: JetBrainsMono Nerd Font 9
         status_command i3status-rs
-	position top
-	colors {
-                    separator  #16161d
-                    background #16161d
-                    statusline #a9b1d6
+        position top
+        colors {
 
-                    #                   border  background text
-                    focused_workspace  #16161d #16161d    #7aa2f7
-                    active_workspace   #16161d #16161d    #5e81ac
-                    inactive_workspace #16161d #16161d    #4c566a
-                    urgent_workspace   #16161d #16161d    #9ece6a
-                    binding_mode       #16161d #a9b1d6    #2e3440
-	}
+                    separator  #565f89cc
+                    background #00000000  # Fully Transparent
+                    statusline #c0caf5
+
+                    #                   border     background   text
+                    focused_workspace  #7aa2f7ff  #7aa2f7cc     #1a1b26
+                    active_workspace   #565f89ff  #565f89cc     #1a1b26
+                    inactive_workspace #1a1b26ff  #1a1b2600     #565f89
+                    urgent_workspace   #f7768eff  #f7768ecc     #1a1b26
+                    binding_mode       #bb9af7ff  #bb9af7cc     #1a1b26
+        }
 }
 
 bindsym $mod+Shift+x exec ~/Documents/scripts/lock-screen.sh && echo mem > /sys/power/state
