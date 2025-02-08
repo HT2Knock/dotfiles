@@ -6,7 +6,7 @@
 icons_format = "{icon}"
 
 [theme]
-theme = "nord-dark"
+theme = "tokyo_night.toml"
 
 [icons]
 icons = "material-nf"
