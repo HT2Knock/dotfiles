@@ -283,7 +283,10 @@ exec_always --no-startup-id xbanish
 exec_always --no-startup-id greenclip daemon
 
 # Exec always start instance
+exec_always --no-startup-id picom
 exec_always --no-startup-id ~/.screenlayout/work-1.sh
 exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh
-exec_always --no-startup-id picom
 exec --no-startup-id ibus-daemon --xim -d -r
+
+exec --no-startup-id thorium-browser
+exec --no-startup-id ghostty

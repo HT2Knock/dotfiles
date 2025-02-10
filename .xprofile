@@ -1,6 +1,6 @@
 # Environment variables set everywhere
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="xterm-ghostty"
 export BROWSER="thorium-browser"
 
 # XDG Paths
