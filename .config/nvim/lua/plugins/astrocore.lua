@@ -56,8 +56,9 @@ return {
         ["H"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
         -- this is useful for naming menus
-        ["<leader>b"] = { name = " Open Snipe Buffer menu" },
+        ["<leader>b"] = { name = " Buffer" },
         ["<leader>bc"] = { "<cmd>%bd|edit#|bd#<cr>", desc = "close all buffer except the current one" },
+        ["<leader>bb"] = { function() require("snipe").open_buffer_menu() end, desc = "snipe buffer menu" },
         ["<leader>k"] = { "i<Enter><Esc>", desc = "down a line" },
 
         -- telescope
