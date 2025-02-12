@@ -250,7 +250,7 @@ bar {
         }
 }
 
-bindsym $mod+Shift+x exec ~/Documents/scripts/lock-screen.sh && echo mem > /sys/power/state
+bindsym $mod+Shift+x exec ~/Documents/scripts/lock-screen.sh && systemctl suspend
 
 # Control audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
