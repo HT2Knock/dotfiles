@@ -9,6 +9,7 @@ VERIFYING='#bb9af7' # Verifying color
 KEYHL='#7dcfff'
 
 i3lock \
+	--nofork \
 	--insidever-color=$BG \
 	--ringver-color=$VERIFYING \
 	\
