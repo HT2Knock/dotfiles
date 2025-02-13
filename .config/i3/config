@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # font
-font pango: JetBrains Mono 11
+font pango: JetBrainsMono Nerd Font 11
 
 # use these keys for focus, movement, and resize directions
 set $left   j
@@ -279,7 +279,6 @@ bindsym Ctrl+Shift+grave        exec --no-startup-id ~/Documents/scripts/toggle_
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # Exec utilities
-exec_always --no-startup-id xbanish
 exec_always --no-startup-id greenclip daemon
 
 # Exec always start instance

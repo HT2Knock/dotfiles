@@ -18,8 +18,6 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
 fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -47,7 +45,8 @@ zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::ssh-agent
 
-# Relay cached zsh completion
+# Load completions
+autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # Key bindings
@@ -56,7 +55,7 @@ bindkey -s '^o' 'nvim\n'
 bindkey -s '^v' 'v\n'
 bindkey '^f' autosuggest-accept
 bindkey '^p' history-search-backward
-bindkey '^n' history-search-backward
+bindkey '^n' history-search-forward
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -64,4 +63,3 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-zstyle :omz:plugins:ssh-agent identities ~/ngoc-office

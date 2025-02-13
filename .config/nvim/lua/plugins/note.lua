@@ -14,7 +14,7 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     opts = {
-      dir = vim.env.HOME .. "/Documents/JT-notes", -- specify the vault location. no need to call 'vim.fn.expand' here
+      dir = vim.env.HOME .. "/Documents/T2Knock/JT-notes", -- specify the vault location. no need to call 'vim.fn.expand' here
       finder = "telescope.nvim",
       mappings = {},
 
