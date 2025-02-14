@@ -21,6 +21,14 @@ format = " $icon $available "
 format_alt = " $icon $available / $total "
 
 [[block]]
+block = "memory"
+format = " $icon $mem_used"
+format_alt = " $icon $mem_free / $mem_total"
+interval = 30
+warning_mem = 70
+critical_mem = 90
+
+[[block]]
 block = "docker"
 interval = 2
 format = " $icon $running/$total "
