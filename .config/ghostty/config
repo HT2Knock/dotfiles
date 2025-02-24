@@ -1,6 +1,6 @@
 # Theme
 theme = tokyonight
-background-opacity = 0.7
+background-opacity = 0.8
 
 # Font
 font-family = "JetBrains Mono Nerd Font"
