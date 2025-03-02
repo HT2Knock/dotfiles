@@ -65,10 +65,10 @@ return {
         CursorLine = { bg = "none" },
         ColorColumn = { bg = "none" },
         -- Pmenu
-        Pmenu = { bg = "none" },
-        PmenuSel = { bg = "none" },
-        PmenuSbar = { bg = "none" },
-        PmenuThumb = { bg = "none" },
+        -- Pmenu = { bg = "none" },
+        -- PmenuSel = { bg = "none" },
+        -- PmenuSbar = { bg = "none" },
+        -- PmenuThumb = { bg = "none" },
         -- Notifications
         NotifyINFOBody = { bg = "none" },
         NotifyWARNBody = { bg = "none" },
