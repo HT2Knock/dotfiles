@@ -1,4 +1,10 @@
 return {
-  "sphamba/smear-cursor.nvim",
-  opts = {},
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {},
+  },
 }
