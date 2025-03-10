@@ -3,8 +3,6 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.recipes.disable-tabline" },
   { import = "astrocommunity.motion.nvim-surround" },
-  { import = "astrocommunity.colorscheme.tokyonight-nvim" },
-  { import = "astrocommunity.file-explorer.oil-nvim" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.bash" },
