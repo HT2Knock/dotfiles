@@ -48,6 +48,8 @@ return {
       n = {
         ["<C-q>"] = false,
         ["<C-s>"] = false,
+        ["<C-d>"] = { "<C-d>zz" },
+        ["<C-u>"] = { "<C-u>zz" },
         ["q:"] = ":",
         -- better buffer navigation
         ["]b"] = false,
@@ -81,6 +83,8 @@ return {
 
         -- set oil
         ["-"] = { "<cmd>Oil<cr>", desc = "Oil" },
+
+        ["<Esc>"] = { "<cmd>noh<cr>" },
       },
       t = {
         -- setting a mapping to false will disable it
