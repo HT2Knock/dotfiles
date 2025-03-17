@@ -36,15 +36,6 @@ return {
         DiagnosticVirtualTextWarn = { fg = "#e0af68", bg = "none" },
         DiagnosticVirtualTextInfo = { fg = "#9ece6a", bg = "none" },
         DiagnosticVirtualTextError = { fg = "#bd2c00", bg = "none" },
-        -- NeoTree
-        NeoTreeNormal = { bg = "none" },
-        NeoTreeNormalNC = { bg = "none" },
-        NeoTreeTabInactive = { bg = "none" },
-        NeoTreeTabSeperatorActive = { fg = "#F2F3F5", bg = "none" },
-        NeoTreeTabSeperatorInactive = { fg = "#F2F3F5", bg = "none" },
-        NvimTreeTabSeperatorActive = { fg = "#F2F3F5", bg = "none" },
-        NvimTreeTabSeperatorInactive = { fg = "#F2F3F5", bg = "none" },
-        MiniTabLineFill = { fg = "#F2F3F5", bg = "none" },
         -- Spectre
         DiffChange = { fg = "#F2F3F5", bg = "#050a30" },
         DiffDelete = { fg = "#F2F3F5", bg = "#bd2c00" },
@@ -60,15 +51,7 @@ return {
         TabLine = { bg = "none" },
         TabLineSel = { bg = "none" },
         TabLineFill = { bg = "none" },
-        -- Cursor
-        CursorLineNr = { bg = "none" },
-        CursorLine = { bg = "none" },
-        ColorColumn = { bg = "none" },
-        -- Pmenu
-        -- Pmenu = { bg = "none" },
-        -- PmenuSel = { bg = "none" },
-        -- PmenuSbar = { bg = "none" },
-        -- PmenuThumb = { bg = "none" },
+
         -- Notifications
         NotifyINFOBody = { bg = "none" },
         NotifyWARNBody = { bg = "none" },
