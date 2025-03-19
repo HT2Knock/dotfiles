@@ -63,10 +63,6 @@ return {
         ["<leader>bb"] = { function() require("snipe").open_buffer_menu() end, desc = "snipe buffer menu" },
         ["<leader>k"] = { "i<Enter><Esc>", desc = "down a line" },
 
-        -- telescope
-        ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find project" },
-        ["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
-
         -- set CWD
         ["<leader>."] = { "<cmd>cd %:p:h<cr>", desc = "Set CWD" },
 
