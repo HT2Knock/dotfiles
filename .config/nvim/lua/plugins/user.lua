@@ -14,18 +14,16 @@ return {
   { "akinsho/bufferline.nvim", enabled = false },
   {
     "stevearc/oil.nvim",
-    opts = {},
-    dependencies = {
-      {
-        "echasnovski/mini.icons",
-        opts = {
-          default_file_epxlorer = true,
-          view_options = {
-            show_hidden = true,
-          },
-        },
+    opts = {
+      default_file_epxlorer = true,
+      view_options = {
+        show_hidden = true,
       },
     },
+    dependencies = { { "echasnovski/mini.icons" } },
     lazy = false,
+    keys = {
+      { "-", "<cmd>Oil<cr>", desc = "Oil" },
+    },
   },
 }
