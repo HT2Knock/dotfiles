@@ -1,20 +1,31 @@
 return {
   {
     "folke/tokyonight.nvim",
-    lazy = false,
-  },
-  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
-  { "dmmulroy/tsc.nvim", enabled = false },
-  {
-    "sphamba/smear-cursor.nvim",
     opts = {
-      hide_target_hack = true,
-      cursor_color = "none",
-      legacy_computing_symbols_support = true,
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
+  { "folke/flash.nvim", enabled = false },
+  { "folke/persistence.nvim", enabled = false },
+  { "akinsho/bufferline.nvim", enabled = false },
   {
-    "vuki656/package-info.nvim",
-    enabled = false,
+    "stevearc/oil.nvim",
+    opts = {},
+    dependencies = {
+      {
+        "echasnovski/mini.icons",
+        opts = {
+          default_file_epxlorer = true,
+          view_options = {
+            show_hidden = true,
+          },
+        },
+      },
+    },
+    lazy = false,
   },
 }
