@@ -41,4 +41,10 @@ return {
       { "-", "<cmd>Oil<cr>", desc = "Oil" },
     },
   },
+  {
+    "snacks.nvim",
+    opts = {
+      scroll = { enabled = false },
+    },
+  },
 }
