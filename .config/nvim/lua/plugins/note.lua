@@ -8,12 +8,13 @@ return {
     },
   },
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "ibhagwan/fzf-lua",
+      "folke/snacks.nvim",
+      "saghen/blink.cmp",
     },
     event = {
       "BufReadPre " .. vim.fn.expand("~") .. "/Document/T2Knock/JT-notes/*.md",

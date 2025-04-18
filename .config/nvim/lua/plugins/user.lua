@@ -1,5 +1,11 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = { enabled = false },
+    },
+  },
+  {
     "folke/tokyonight.nvim",
     opts = {
       transparent = true,
@@ -10,23 +16,6 @@ return {
     },
   },
   { "folke/flash.nvim", enabled = false },
-  { "folke/persistence.nvim", enabled = false },
-  { "akinsho/bufferline.nvim", enabled = false },
-  {
-    "leath-dub/snipe.nvim",
-    opts = {
-      position = "center",
-    },
-    keys = {
-      {
-        "<leader>bb",
-        function()
-          require("snipe").open_buffer_menu()
-        end,
-        desc = "Open Snipe buffer menu",
-      },
-    },
-  },
   {
     "stevearc/oil.nvim",
     opts = {
@@ -39,12 +28,6 @@ return {
     lazy = false,
     keys = {
       { "-", "<cmd>Oil<cr>", desc = "Oil" },
-    },
-  },
-  {
-    "snacks.nvim",
-    opts = {
-      scroll = { enabled = false },
     },
   },
 }
