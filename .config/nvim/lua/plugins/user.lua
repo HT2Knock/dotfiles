@@ -1,5 +1,11 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = { enabled = false },
+    },
+  },
+  {
     "folke/tokyonight.nvim",
     opts = {
       transparent = true,
@@ -10,8 +16,6 @@ return {
     },
   },
   { "folke/flash.nvim", enabled = false },
-  { "folke/persistence.nvim", enabled = false },
-  { "akinsho/bufferline.nvim", enabled = false },
   {
     "stevearc/oil.nvim",
     opts = {
@@ -24,9 +28,6 @@ return {
     lazy = false,
     keys = {
       { "-", "<cmd>Oil<cr>", desc = "Oil" },
-    },
-  },
-  {
     },
   },
 }
