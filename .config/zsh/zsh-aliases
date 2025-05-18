@@ -26,7 +26,7 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 # command put stuff to nvim
-alias v='fd --type f --hidden --exclude .git | sk --preview "bat --style=numbers --color=always --line-range :50 {}" | xargs -r nvim'
+alias v='fd --type f --hidden --exclude .git | sk --preview "bat --theme=Enki-Tokyo-Night --style=numbers --color=always --line-range :50 {}" | xargs -r nvim'
 
 # gpg encryption
 # verify signature for isos
