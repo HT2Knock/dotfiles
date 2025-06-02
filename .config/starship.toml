@@ -38,3 +38,6 @@ format = "[$symbol($version )]($style)"
 version_format = "v${major}.${minor}"
 style = "blue"
 symbol = " "
+
+[aws]
+disabled = true
