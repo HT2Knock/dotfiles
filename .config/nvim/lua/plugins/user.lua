@@ -9,6 +9,7 @@ return {
     "folke/tokyonight.nvim",
     opts = {
       transparent = true,
+      style = "night",
       styles = {
         sidebars = "transparent",
         floats = "transparent",
@@ -41,5 +42,13 @@ return {
       }
       return opts
     end,
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    lazy = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {
+      max_count = 5,
+    },
   },
 }
