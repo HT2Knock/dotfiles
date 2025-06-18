@@ -37,8 +37,8 @@ return {
       opts.completion = opts.completion or {}
       opts.completion.list = opts.completion.list or {}
       opts.completion.list.selection = {
-        preselect = false, -- Do not preselect suggestions
-        auto_insert = false, -- Do not auto insert suggestions
+        preselect = true,
+        auto_insert = true,
       }
       return opts
     end,
