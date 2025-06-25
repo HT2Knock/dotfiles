@@ -5,17 +5,6 @@ return {
       inlay_hints = { enabled = false },
     },
   },
-  {
-    "folke/tokyonight.nvim",
-    opts = {
-      transparent = true,
-      style = "night",
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
-  },
   { "folke/flash.nvim", enabled = false },
   {
     "stevearc/oil.nvim",
