@@ -40,4 +40,36 @@ return {
       max_count = 5,
     },
   },
+  {
+    "olimorris/codecompanion.nvim",
+    opts = {
+      prompt_library = {
+        ["Commit Message"] = {
+          strategy = "inline",
+          description = "Generate a commit message",
+          opts = {
+            short_name = "commit_message",
+            auto_submit = true,
+            placement = "before",
+          },
+          prompts = {
+            {
+              role = "user",
+              contains_code = true,
+              content = function()
+                return [[You are an expert at following the Conventional Commit specification based on the following diff:
+]] .. vim.fn.system("git diff --cached") .. [[
+Generate a commit message for me. Return the code only and no markdown codeblocks.
+                    ]]
+              end,
+            },
+          },
+        },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
 }
