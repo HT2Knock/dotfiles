@@ -9,9 +9,8 @@ bold-is-bright = true
 # Appearance
 gtk-titlebar = false
 gtk-single-instance = true
-gtk-tabs-location = top
 gtk-wide-tabs = false
-window-decoration = false
+window-decoration = server
 
 # Other
 mouse-hide-while-typing = true
