@@ -17,10 +17,10 @@ return {
       "saghen/blink.cmp",
     },
     event = {
-      "BufReadPre " .. vim.fn.expand("~") .. "/Document/T2Knock/JT-notes/*.md",
+      "BufReadPre " .. vim.fn.expand("~") .. "/workspace/github.com/T2Knock/JT-notes/*.md",
     },
     opts = {
-      dir = vim.env.HOME .. "/Documents/T2Knock/JT-notes",
+      dir = vim.env.HOME .. "/workspace/github.com/T2Knock/JT-notes",
       daily_notes = {
         folder = "dailies",
         template = "daily_note.md",
