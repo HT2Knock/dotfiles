@@ -7,6 +7,20 @@ return {
   },
   { "folke/flash.nvim", enabled = false },
   {
+    "stevearc/oil.nvim",
+    opts = {
+      default_file_epxlorer = true,
+      view_options = {
+        show_hidden = true,
+      },
+    },
+    dependencies = { { "echasnovski/mini.icons" } },
+    lazy = false,
+    keys = {
+      { "-", "<cmd>Oil<cr>", desc = "Oil" },
+    },
+  },
+  {
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
     dependencies = {
@@ -14,7 +28,7 @@ return {
     },
     keys = {
       {
-        "-",
+        "<leader>e",
         mode = { "n", "v" },
         "<cmd>Yazi<cr>",
         desc = "Open yazi at the current file",
