@@ -4,105 +4,106 @@ set $mod Mod4
 # font
 font pango: JetBrains Mono 11
 
-# use these keys for focus, movement, and resize directions
-set $left   j
-set $down   k
-set $up     l
-set $right  semicolon
+# Use these keys for focus, movement, and resize directions
+set $left j
+set $down k
+set $up l
+set $right semicolon
 
-# set monitor name (in case working with multiple monitor)
+# Set monitor names (in case working with multiple monitors)
 set $sm eDP-1
 set $fm HDMI-1
 
-# drag windows
+# Drag windows with the modifier key
 floating_modifier $mod
 
-
-# Change basic setting 
+# --- Basic Window and UI Settings ---
 title_align center
-default_border pixel 1
+default_border pixel 2
 default_floating_border none
 focus_follows_mouse no
-hide_edge_borders none 
+hide_edge_borders none
 
-# set popups during fullscreen mode
+# Set popups to appear intelligently during fullscreen mode
 popup_during_fullscreen smart
 
-# start a terminal
+# --- Keybindings for Core Workflow ---
+# Start a terminal on workspace 2
 bindsym $mod+Return workspace $ws2; exec --no-startup-id ghostty
 
-# kill focused window
+# Kill the focused window
 bindsym $mod+q kill
 
-# switching window with win+tab
+# Launch Rofi for quick window switching
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
-# change focus
+# Change focus using defined direction keys
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 
-# alternatively, you can use the cursor keys:
+# Change focus using arrow keys (for consistency)
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
+# Move focused window using defined direction keys
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
-# alternatively, you can use the cursor keys:
+# Move focused window using arrow keys (for consistency)
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+# Split container in horizontal orientation
 bindsym $mod+h split h
 
-# split in vertical orientation
+# Split container in vertical orientation
 bindsym $mod+v split v
 
-# enter fullscreen mode for the focused container
+# Toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
+# Change container layout: stacking, tabbed, or toggle split
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
+# Toggle between tiling and floating mode for the focused window
 bindsym $mod+Shift+F floating toggle
 
-# bar toggle, hide or show
+# Bar visibility toggle (show/hide)
 bindsym $mod+b bar mode toggle
 
+# Bar visibility to invisible (still there but not visible)
 bindsym $mod+i bar mode invisible
 
-# open green clip using rofi
-bindsym $mod+c exec ~/.config/rofi/applets/bin/clipboard.sh 
+# Open Greenclip clipboard manager using Rofi
+bindsym $mod+c exec ~/.config/rofi/applets/bin/clipboard.sh
 
-# change focus between tiling / floating windows
+# Toggle focus between tiling and floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
+# Focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
+# Focus the child container (uncomment if frequently used)
 #bindsym $mod+d focus child
 
-# move focused floating window to the center of all outputs
+# Move focused floating window to the center of all outputs
 bindsym $mod+Shift+h move absolute position center
 
-# move focused floating window to the current position of the cursor
+# Move focused floating window to the current cursor position
 bindsym $mod+Shift+m move position mouse
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# --- Workspace Definitions ---
+# Define names for default workspaces with emojis for visual cues
 set $ws1 "1" 
 set $ws2 "2"
 set $ws3 "3"
@@ -114,8 +115,8 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-
-# switch to workspace
+# --- Workspace Switching and Movement ---
+# Switch to specific workspaces
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -127,7 +128,7 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-# Move workspace to monitor
+# Assign workspaces to specific monitors
 workspace $ws1 output $fm
 workspace $ws2 output $fm
 workspace $ws3 output $sm
@@ -139,7 +140,7 @@ workspace $ws8 output $sm
 workspace $ws9 output $sm
 workspace $ws10 output $sm
 
-# move focused container to workspace
+# Move focused container to a specific workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -151,17 +152,17 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# floating
+# --- Window Behavior and Autostarting Apps ---
+# Center floating windows by default
 for_window [floating] move position center
 
-# set specific windows to floating mode
-for_window [window_role="app"]                      floating enable
-for_window [window_role="pop-up"]                   floating enable
-for_window [window_role="task_dialog"]              floating enable
-for_window [title="Preferences$"]                   floating enable
+# Automatically float specific window types (e.g., dialogs, pop-ups)
+for_window [window_role="app"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
 
-
-# assign application to a ws
+# Assign specific applications to designated workspaces upon launch
 assign [class="Microsoft-edge"] $ws1
 assign [class="Thorium-browser"] $ws1
 assign [class="Alacritty"] $ws2
@@ -183,112 +184,111 @@ assign [class="figma-linux"] $ws7
 assign [class="ResponsivelyApp"] $ws7
 assign [class="Sublime_merge"] $ws9
 
-# reload the configuration file
+# --- System Control & Utilities ---
+# Reload the i3 configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# Restart i3 in-place (preserves layout/session, useful for upgrades)
 bindsym $mod+Shift+r restart
-# manage i3 session
-bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:JetBrains Mono 10" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit" -B "Lock" "pkill i3-nagbar &&  ~/lock-screen.sh" -B "Reboot " "pkill i3-nagbar && reboot" -B "Shutdown " "pkill i3-nagbar && shutdown -h now"
 
-# resize window
-
-# resize window (you can also use the mouse for that)
+# Resize mode: Enter this mode with $mod+r, then use direction keys to resize.
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    # Shrink/grow window width/height by 10 pixels or 10 percent
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym $left resize shrink width 10 px or 10 ppt
-        bindsym $down resize grow height 10 px or 10 ppt
-        bindsym $up resize shrink height 10 px or 10 ppt
-        bindsym $right resize grow width 10 px or 10 ppt
+    # Same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # Exit resize mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
+# Enter resize mode
 bindsym $mod+r mode "resize"
 
+# --- Window Color Settings (Tokyo Night color scheme) ---
+# class                 border   background text     indicator
+client.focused         #7aa2f7 #7aa2f7 #24283b #7aa2f7         
+client.focused_inactive #414868 #414868 #a9b1d6 #414868       
+client.unfocused       #1d202f #1d202f #a9b1d6 #1d202f         
+client.placeholder     #f7768e #f7768e #1d202f #f7768e        
+client.urgent          #1d202f #1d202f #a9b1d6 #1d202f       
 
-# Window color settings
-# class                 border  backgr. text    indicator
-client.focused           #9aa5ce #364A82 #7aa2f7 #9aa5ce   #9aa5ce
-client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
-client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
-client.placeholder      #16161d #16161d  #c0caf5  #16161d
-client.urgent           #9ece6a #9ece6a #73daca #9ece6a
-
-client.background       #1a1b26
-
-# Start i3bar to display a workspace bar (plus the system information i3status
+# --- i3bar Settings ---
 bar {
-        font pango: JetBrainsMono Nerd Font 9 
-        status_command i3status-rs
-	position top
-	colors {
-                    separator  #16161d
-                    background #16161d
-                    statusline #a9b1d6
-
-                    #                   border  background text
-                    focused_workspace  #16161d #16161d    #7aa2f7
-                    active_workspace   #16161d #16161d    #5e81ac
-                    inactive_workspace #16161d #16161d    #4c566a
-                    urgent_workspace   #16161d #16161d    #9ece6a
-                    binding_mode       #16161d #a9b1d6    #2e3440
-	}
+      font pango: JetBrainsMono Nerd Font 9
+      status_command i3status-rs # Uses i3status-rs for system information
+      position top # Bar position (top or bottom)
+      colors {
+            separator  #a9b1d6
+            background #24283b
+            statusline #c0caf5
+                               #border  #background  #text   #indicator
+            focused_workspace  #7aa2f7 #7aa2f7 #24283b #a9b1d6   # Current active workspace
+            active_workspace   #414868 #414868 #a9b1d6 #a9b1d6   # Active workspace on another monitor
+            inactive_workspace #1d202f #1d202f #414868 #414868   # Inactive workspace
+            urgent_workspace   #f7768e #f7768e #1d202f #c0caf5   # Workspace with an urgent window
+            binding_mode       #bb9af7 #bb9af7 #1d202f #c0caf5   # Indicator for binding modes (e.g., resize mode)
+      }
 }
 
-bindsym $mod+Shift+x exec ~/Documents/scripts/lock-screen.sh && echo mem > /sys/power/state
+# --- System Action Keybindings ---
+# Lock the screen
+bindsym $mod+Shift+x exec ~/Documents/scripts/lock-screen.sh
 
-# Control audio
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# Audio Controls (using pactl for PulseAudio/PipeWire)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% # Increase volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% # Decrease volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # Toggle mute
 
-# Screen brightness controls
-bindsym XF86MonBrightnessUp exec brightnessctl set +20% # increase screen brightness
-bindsym XF86MonBrightnessDown exec brightnessctl set 20%- # decrease screen brightness
+# Screen Brightness Controls (using brightnessctl)
+bindsym XF86MonBrightnessUp exec brightnessctl set +20% # Increase brightness
+bindsym XF86MonBrightnessDown exec brightnessctl set 20%- # Decrease brightness
 
-# Media player controls
+# Media Player Controls (using playerctl)
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Screenshot using maim
+# Screenshot using maim and Rofi
 bindsym $mod+p exec ~/.config/rofi/applets/bin/screenshot.sh
 
-# start rofi (a program launcher)
+# Launch Rofi application launcher and power menu
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t2
 bindsym $mod+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t2
 
-# notification
-bindsym Ctrl+space              exec --no-startup-id dunstctl close
-bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
-bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
-bindsym Ctrl+Shift+grave        exec --no-startup-id ~/Documents/scripts/toggle_dnd.sh
-bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
+# Notification Controls (Dunst)
+bindsym Ctrl+space exec --no-startup-id dunstctl close # Close last notification
+bindsym Ctrl+Shift+space exec --no-startup-id dunstctl close-all # Close all notifications
+bindsym Ctrl+grave exec --no-startup-id dunstctl history-pop # Show notification history
+bindsym Ctrl+Shift+grave exec --no-startup-id ~/Documents/scripts/toggle_dnd.sh # Toggle Do Not Disturb
+bindsym Ctrl+Shift+period exec --no-startup-id dunstctl context # Show context menu (if available)
 
-# Exec utilities
-exec_always --no-startup-id xbanish
-exec_always --no-startup-id greenclip daemon
+# --- Autostart Applications and Utilities ---
+# Utilities that should always be running
+exec_always --no-startup-id xbanish # Hides mouse cursor when not in use
+exec_always --no-startup-id greenclip daemon # Clipboard manager daemon
 
-# Exec always start instance
-exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh
-exec_always --no-startup-id picom
-exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh
+# Visuals and core services that run on startup
+exec_always --no-startup-id ~/.screenlayout/ngoc-home.sh # Apply screen layout
+exec_always --no-startup-id picom # Compositor for transparency, shadows, etc.
+exec_always --no-startup-id ~/Documents/scripts/change-wallpaper.sh # Dynamic wallpaper script
 
-exec --no-startup-id fcitx -d
-exec --no-startup-id thorium-browser
-exec --no-startup-id ghostty
+# Applications to launch on startup
+exec --no-startup-id fcitx -d # Input method editor
+exec --no-startup-id thorium-browser # Primary web browser
+exec --no-startup-id ghostty # Primary terminal emulator
+
+# --- Optional UI/UX Enhancements (Uncomment to enable) ---
+# Gaps configuration: Adds space between windows and screen edges for a cleaner look
+gaps inner 5 
+gaps outer 0 
+smart_gaps inverse_outer 

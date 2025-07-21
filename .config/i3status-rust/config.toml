@@ -6,7 +6,7 @@
 icons_format = "{icon}"
 
 [theme]
-theme = "nord-dark"
+theme = "tokyo_night.toml"
 
 [icons]
 icons = "material-nf"
@@ -19,6 +19,14 @@ alert = 10.0
 warning = 15.0
 format = " $icon $available "
 format_alt = " $icon $available / $total "
+
+[[block]]
+block = "memory"
+format = " $icon $mem_used"
+format_alt = " $icon $mem_free / $mem_total"
+interval = 30
+warning_mem = 70
+critical_mem = 90
 
 [[block]]
 block = "docker"

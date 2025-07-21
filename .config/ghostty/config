@@ -1,7 +1,18 @@
+# Theme
 theme = tokyonight
-bold-is-bright = true
-font-family = JetBrains Mono Nerd Font
-window-decoration = false
-background-opacity = 0.5
-background-blur-radius = 20
+background-opacity = 0.8
 
+# Font
+font-family = "JetBrains Mono Nerd Font"
+bold-is-bright = true
+
+# Appearance
+gtk-titlebar = false
+gtk-single-instance = true
+gtk-wide-tabs = false
+window-decoration = server
+
+# Other
+mouse-hide-while-typing = true
+shell-integration-features = cursor,sudo,no-title
+confirm-close-surface = false
