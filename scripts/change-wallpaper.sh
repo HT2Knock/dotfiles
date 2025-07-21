@@ -14,7 +14,10 @@ if ! command -v nitrogen &>/dev/null; then
 	exit 1
 fi
 
-# Set random wallpapers directly for all monitors
-for wallpaper in {0..2}; do
-	nitrogen --set-auto --random "$SOURCE_DIR" --head="$wallpaper" >/dev/null 2>&1
+# Get a random wallpaper file
+WALLPAPER=$(find "$SOURCE_DIR" -type f | shuf -n 1)
+
+# Set the same wallpaper for all monitors
+for monitor in {0..1}; do
+	nitrogen --set-auto "$WALLPAPER" --head="$monitor" >/dev/null 2>&1
 done
