@@ -39,7 +39,7 @@ This repository includes a `setup_machine.sh` script to automate the installatio
 
 - Jetbrains Mono (inspired by syntax fm)
 
-## Package Requires
+## Package Requires (via apt)
 
 - [Neovim](https://neovim.io/)
 - [alacritty](https://github.com/alacritty/alacritty)
@@ -55,3 +55,42 @@ This repository includes a `setup_machine.sh` script to automate the installatio
 - [arandr](https://github.com/haad/arandr)
 - [pavucontrol](https://freedesktop.org/software/pulseaudio/pavucontrol/)
 - [maim](https://github.com/naelstrof/maim)
+- git
+- curl
+- build-essential
+- nitrogen
+- papirus-icon-theme
+- xclip
+- fzf
+- zsh
+- brightnessctl
+- playerctl
+- fcitx
+
+## Additional Tools (Installed by Script)
+
+### Rust/Cargo Tools
+- bat
+- bottom
+- dua-cli
+- exa
+- eza
+- fd-find
+- git-delta
+- i3status-rs
+- ripgrep
+- starship
+- tree-sitter-cli
+- zoxide
+
+### Go Tools
+- lazygit
+- lazydocker
+- gum
+
+### Node.js Tools
+- pnpm
+
+### Shell Tools
+- atuin
+- zinit
