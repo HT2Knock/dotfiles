@@ -40,6 +40,28 @@ function killport() {
     echo "Port $1 killed"
 }
 
+function zsa(){
+    if [ "$(echo "$(zellij list-sessions -s)" | wc -l)" -ge 2 ]
+    then
+      zellij attach \
+    "$(echo "$(zellij list-sessions -s)" | sk)"
+    else
+      zellij attach -c
+    fi
+}
+
+function zellij_tab_name_update() {
+  if [[ -n $ZELLIJ ]]; then
+      local current_dir=$PWD
+      if [[ $current_dir == $HOME ]]; then
+          current_dir="~"
+      else
+          current_dir=${current_dir##*/}
+      fi
+      command nohup zellij action rename-tab $current_dir >/dev/null 2>&1
+  fi
+}
+
 function tsa(){
     tmux ls -F \#S > /dev/null 2>&1
     if [ $? -eq 0 ]
