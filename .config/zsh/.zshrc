@@ -67,3 +67,6 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle :omz:plugins:ssh-agent identities ~/.ssh/ngoc-cubable
+
+zellij_tab_name_update
+chpwd_functions+=(zellij_tab_name_update)
