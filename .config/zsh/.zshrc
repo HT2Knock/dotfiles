@@ -56,7 +56,7 @@ zinit cdreplay -q
 bindkey -v
 bindkey -s '^o' 'nvim\n'
 bindkey -s '^v' 'v\n'
-bindkey '^f' autosuggest-accept
+bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-backward
 
@@ -69,4 +69,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle :omz:plugins:ssh-agent identities ~/.ssh/ngoc-cubable
 
 zellij_tab_name_update
-chpwd_functions+=(zellij_tab_name_update)
+if [[ ! " ${chpwd_functions[@]} " =~ " zellij_tab_name_update " ]]; then
+  chpwd_functions+=(zellij_tab_name_update)
+fi
