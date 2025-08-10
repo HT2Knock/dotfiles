@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # Load source
 source "$ZDOTDIR/zsh-functions"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -54,7 +56,7 @@ zinit cdreplay -q
 
 # Key bindings
 bindkey -v
-bindkey -s '^o' 'nvim\n'
+bindkey -s '^o' 'yazi\n'
 bindkey -s '^v' 'v\n'
 bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
