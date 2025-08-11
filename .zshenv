@@ -1,5 +1,5 @@
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="ghostty"
 export BROWSER="thorium-browser"
 
 export XDG_CONFIG_HOME="$HOME/.config"
