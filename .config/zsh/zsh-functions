@@ -85,3 +85,21 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+
+function jtoday() {
+  local notes_dir=~/workspace/github.com/T2Knock/JT-notes
+
+  if [[ ! -d "$notes_dir" ]]; then
+    echo "Error: Notes directory not found at $notes_dir" >&2
+    return 1
+  fi
+
+  pushd "$notes_dir" >/dev/null || return 1
+
+  nvim \
+    +":lua require('lazy').load({plugins = {'obsidian.nvim'}})" \
+    +":Obsidian today"
+
+  popd >/dev/null || return 1
+}

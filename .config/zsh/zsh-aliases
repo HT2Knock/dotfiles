@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # shortcut to modern tool
 alias ls="eza --icons --group-directories-first"
@@ -58,7 +58,7 @@ alias xpropc='xprop | grep WM_CLASS'
 alias copy='xclip -sel clip'
 
 # cool scripts
-alias debian-ubuntu-cleanup="source $HOME/Documents/scripts/debian-ubuntu-clean.sh"
+alias debian-ubuntu-cleanup="source ~/Documents/scripts/debian-ubuntu-clean.sh"
 
 # quick config path
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
