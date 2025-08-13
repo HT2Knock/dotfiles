@@ -51,7 +51,7 @@ return {
     keys = {
       { '<leader>nd', '<cmd>Obsidian today<cr>', desc = 'Today Note' },
       { '<leader>ny', '<cmd>Obsidian yesterday<cr>', desc = 'Yesteday Note' },
-      { '<leader>nt', '<cmd>Obsidian tommorrow<cr>', desc = 'Tomorrow Note' },
+      { '<leader>nt', '<cmd>Obsidian tomorrow<cr>', desc = 'Tomorrow Note' },
       { '<leader>nf', '<cmd>Obsidian search<cr>', desc = 'Find in notes' },
       { '<leader>np', '<cmd>Obsidian paste_img<cr>', desc = 'Paste image from clipboard' },
       { '<leader>nc', '<cmd>Obsidian quick_switch<cr>', desc = 'Quick switch notes' },
