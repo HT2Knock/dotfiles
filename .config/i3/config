@@ -93,14 +93,14 @@ bindsym $mod+space focus mode_toggle
 # Focus the parent container
 bindsym $mod+a focus parent
 
-# Focus the child container (uncomment if frequently used)
-#bindsym $mod+d focus child
-
 # Move focused floating window to the center of all outputs
 bindsym $mod+Shift+h move absolute position center
 
 # Move focused floating window to the current cursor position
 bindsym $mod+Shift+m move position mouse
+
+bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+minus move scratchpad
 
 # --- Workspace Definitions ---
 # Define names for default workspaces with emojis for visual cues
@@ -161,6 +161,8 @@ for_window [window_role="app"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [title="(?i).*sharing your screen.*"] move scratchpad
 
 # Assign specific applications to designated workspaces upon launch
 assign [class="Microsoft-edge"] $ws1
