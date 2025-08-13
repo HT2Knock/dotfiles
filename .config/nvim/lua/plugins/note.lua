@@ -1,51 +1,62 @@
 return {
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {
-      checkbox = {
-        enabled = true,
-      },
+    'OXY2DEV/markview.nvim',
+    lazy = false,
+    priority = 49,
+    dependencies = {
+      'saghen/blink.cmp',
     },
   },
   {
-    "obsidian-nvim/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
+    'obsidian-nvim/obsidian.nvim',
+    version = '*',
     lazy = true,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "folke/snacks.nvim",
-      "saghen/blink.cmp",
-    },
     event = {
-      "BufReadPre " .. vim.fn.expand("~") .. "/workspace/github.com/T2Knock/JT-notes/*.md",
+      'BufReadPre ' .. vim.fn.expand '~' .. '/workspace/github.com/T2Knock/JT-notes/*.md',
+      'BufNewFile ' .. vim.fn.expand '~' .. '/workspace/github.com/T2Knock/JT-notes/*.md',
     },
     opts = {
-      dir = vim.env.HOME .. "/workspace/github.com/T2Knock/JT-notes",
+      workspaces = {
+        {
+          name = 'personal',
+          path = '~/workspace/github.com/T2Knock/JT-notes',
+        },
+      },
       daily_notes = {
-        folder = "dailies",
-        template = "daily_note.md",
+        folder = 'dailies',
+        template = 'daily_note.md',
+        default_tags = { 'daily-notes' },
+        workdays_only = false,
+      },
+      completion = {
+        nvim_cmp = false,
+        blink = true,
+      },
+      picker = {
+        name = 'snacks.pick',
       },
       templates = {
-        subdir = "templates",
-        date_format = "%Y-%m-%d-%a",
-        time_format = "%H:%M",
+        subdir = 'templates',
+        date_format = '%Y-%m-%d-%a',
+        time_format = '%H:%M',
       },
       attachments = {
-        img_folder = "resources/imgs",
+        img_folder = 'resources/imgs',
       },
+      legacy_commands = false,
       ui = {
-        enable = false,
+        enabled = false,
       },
     },
     keys = {
-      { "<leader>o", name = " Notes" },
-      { "<leader>od", "<cmd>ObsidianToday<cr>", desc = "Today Note" },
-      { "<leader>oy", "<cmd>ObsidianYesterday <cr>", desc = "Yesteday Note" },
-      { "<leader>of", "<cmd>ObsidianSearch<cr>", desc = "Find in notes" },
-      { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Paste image from clipboard" },
-      { "<leader>oc", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch notes" },
-      { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create a new note" },
-      { "<leader>oh", "<cmd>ObsidianTemplate<cr>", desc = "Insert template" },
+      { '<leader>nd', '<cmd>Obsidian today<cr>', desc = 'Today Note' },
+      { '<leader>ny', '<cmd>Obsidian yesterday<cr>', desc = 'Yesteday Note' },
+      { '<leader>nt', '<cmd>Obsidian tommorrow<cr>', desc = 'Tomorrow Note' },
+      { '<leader>nf', '<cmd>Obsidian search<cr>', desc = 'Find in notes' },
+      { '<leader>np', '<cmd>Obsidian paste_img<cr>', desc = 'Paste image from clipboard' },
+      { '<leader>nc', '<cmd>Obsidian quick_switch<cr>', desc = 'Quick switch notes' },
+      { '<leader>nn', '<cmd>Obsidian new<cr>', desc = 'Create a new note' },
+      { '<leader>nh', '<cmd>Obsidian template<cr>', desc = 'Insert template' },
     },
   },
 }
