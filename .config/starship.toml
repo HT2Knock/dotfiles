@@ -1,10 +1,12 @@
-# Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """$directory$character"""
 right_format = """$all"""
 add_newline = true
 command_timeout = 1000
+
+[cmd_duration]
+disabled = true
 
 [package]
 disabled = true
@@ -13,13 +15,13 @@ disabled = true
 disabled = false
 
 [character]
-success_symbol = "[󱞩](bold blue)"
-error_symbol = "[](bold red)"
-vimcmd_symbol = "[󱞥](bold blue)"
+success_symbol = "[](bold blue) "
+error_symbol = "[🙄](bold red)"
+vimcmd_symbol = "[](bold blue) "
 
 [git_branch]
 format = '[$symbol$branch(:$remote_branch)]($style) '
-symbol = " "
+symbol = " "
 
 [git_status]
 disabled = true

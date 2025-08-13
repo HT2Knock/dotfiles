@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # Load source
 source "$ZDOTDIR/zsh-functions"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -36,7 +38,6 @@ zinit light-mode for \
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light Aloxaf/fzf-tab
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
@@ -54,19 +55,26 @@ zinit cdreplay -q
 
 # Key bindings
 bindkey -v
-bindkey -s '^o' 'nvim\n'
+bindkey -s '^o' 'yazi\n'
 bindkey -s '^v' 'v\n'
-bindkey '^f' autosuggest-accept
+bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-backward
 
 # Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list \
+  'm:{a-zA-Z}={A-Za-z}' \
+  'r:|[._-]=** r:|=**' \
+  'l:|=* r:|=*'
+(( ${+LS_COLORS} )) || LS_COLORS=$(dircolors -b)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%B%d%b'
+
 zstyle :omz:plugins:ssh-agent identities ~/.ssh/ngoc-cubable
 
 zellij_tab_name_update
-chpwd_functions+=(zellij_tab_name_update)
+if [[ ! " ${chpwd_functions[@]} " =~ " zellij_tab_name_update " ]]; then
+  chpwd_functions+=(zellij_tab_name_update)
+fi
