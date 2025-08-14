@@ -29,7 +29,7 @@ return {
       scss = { 'prettierd' },
       html = { 'prettierd' },
       yaml = { 'prettierd' },
-      go = { 'gofumpt' },
+      go = { 'gofumpt', 'goimports' },
     },
   },
   keys = {
