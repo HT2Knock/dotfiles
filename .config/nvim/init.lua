@@ -4,5 +4,6 @@ require 'config.lsp'
 require 'config.keymaps'
 require 'config.autocommands'
 
--- Setting colorschemes
+-- Setting
 vim.cmd [[colorscheme tokyonight]]
+vim.filetype.add { extension = { ['http'] = 'http' } }

@@ -14,6 +14,7 @@ return {
         { '<leader>c', group = '[C]ode', icon = '' },
         { '<leader>n', group = '[N]otes', icon = '' },
         { '<leader>m', group = 'Debug [M]aster', icon = '󰃤' },
+        { '<leader>R', group = '[R]est', icon = '󰏚' },
       },
     },
   },
