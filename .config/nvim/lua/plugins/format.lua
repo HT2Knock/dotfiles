@@ -30,6 +30,7 @@ return {
       html = { 'prettierd' },
       yaml = { 'prettierd' },
       go = { 'gofumpt', 'goimports' },
+      sql = { 'sleek' },
     },
   },
   keys = {
