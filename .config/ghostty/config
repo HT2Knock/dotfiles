@@ -3,7 +3,6 @@ theme = tokyonight
 background-opacity = 0.8
 
 # Font
-font-family = "JetBrains Mono Nerd Font"
 bold-is-bright = true
 
 # Appearance
