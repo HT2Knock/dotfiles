@@ -5,7 +5,6 @@ docs
 ginit.vim
 lua/user
 ftplugin
-spell
 .luarc.json
 .config/lazygit/state.yml
 .config/lazydocker/state.yml
