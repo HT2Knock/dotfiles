@@ -12,7 +12,7 @@ sudo pacman -Syu --noconfirm
 
 # Install official packages
 sudo pacman -S --needed --noconfirm \
-  base-devel unzip curl wget git fastfetch openssh wl-clipboard \
+  base-devel unzip curl wget git fastfetch openssh wl-clipboard hyprland \
   gcc clang go \
   neovim zsh ghostty \
   lazygit lazydocker \
