@@ -57,13 +57,6 @@ alias xpropc='xprop | grep WM_CLASS'
 # Copy using clip
 alias copy='xclip -sel clip'
 
-# cool scripts
-alias debian-ubuntu-cleanup="source ~/Documents/scripts/debian-ubuntu-clean.sh"
-
 # quick config path
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
-alias alacrittyconfig="nvim ~/.config/alacritty/alacritty.toml"
-alias i3config='nvim ~/.config/i3/config'
 alias tmuxconfig='nvim ~/.config/tmux/tmux.conf'
-alias i3statusrs_config='nvim ~/.config/i3status-rust/config.toml'
-alias picomconfig='nvim ~/.config/picom/picom.conf'
