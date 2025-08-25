@@ -2,14 +2,8 @@
 
 # Load source
 source "$ZDOTDIR/zsh-functions"
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-source "$HOME/.atuin/bin/env"
-source "$HOME/.rye/env"
-source <(kubectl completion zsh)
-
-for file in zsh-exports zsh-aliases; do
-  zsh_add_file "$file"
-done
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-aliases"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -38,19 +32,18 @@ zinit light-mode for \
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
+zinit load atuinsh/atuin
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::aws
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::ssh-agent
 
-
-# Relay cached zsh completion
+autoload -Uz compinit
+compinit
 zinit cdreplay -q
 
 # Key bindings
@@ -72,9 +65,8 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%B%d%b'
 
-zstyle :omz:plugins:ssh-agent identities ~/.ssh/ngoc-cubable
-
-zellij_tab_name_update
-if [[ ! " ${chpwd_functions[@]} " =~ " zellij_tab_name_update " ]]; then
-  chpwd_functions+=(zellij_tab_name_update)
-fi
+eval "$(fnm env --use-on-cd)"
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh --cmd j)"
+eval "$(fzf --zsh)"
+eval "$(uv generate-shell-completion zsh)"
