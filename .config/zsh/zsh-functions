@@ -67,7 +67,7 @@ function tsa(){
     tmux ls -F \#S > /dev/null 2>&1
     if [ $? -eq 0 ]
     then
-        SESSION=$(tmux ls -F \#S | gum choose --limit=1)
+        SESSION=$(tmux ls -F \#S | fzf)
 
         if [ ! -z "$SESSION" ]; then
             tmux attach -t "$SESSION"
