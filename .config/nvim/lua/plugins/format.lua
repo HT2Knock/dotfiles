@@ -31,6 +31,7 @@ return {
       yaml = { 'prettierd' },
       go = { 'gofumpt', 'goimports' },
       sql = { 'sleek' },
+      sh = { 'shfmt' },
     },
   },
   keys = {
