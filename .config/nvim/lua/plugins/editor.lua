@@ -1,6 +1,17 @@
 return {
   { 'NMAC427/guess-indent.nvim', event = 'BufReadPost', opts = {} },
   {
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {
+      user_default_options = {
+        css = true,
+        css_fn = true,
+        tailwind = true,
+      },
+    },
+  },
+  {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
