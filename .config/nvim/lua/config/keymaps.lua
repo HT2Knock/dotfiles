@@ -45,3 +45,9 @@ vim.keymap.set('n', '<M-p>', '<cmd>lprevious<CR>', { desc = 'Location list: prev
 -- Jump to first/last quickfix item
 vim.keymap.set('n', '<M-h>', '<cmd>cfirst<CR>', { desc = 'Quickfix: first item' })
 vim.keymap.set('n', '<M-l>', '<cmd>clast<CR>', { desc = 'Quickfix: last item' })
+
+-- better up/down
+vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
