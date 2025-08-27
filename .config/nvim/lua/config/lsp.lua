@@ -1,4 +1,4 @@
-vim.lsp.enable { 'lua_ls', 'stylua', 'ts_ls', 'gopls', 'marksman', 'ruff', 'taplo', 'bashls', 'yamlls', 'jsonls', 'postgres_lsp' }
+vim.lsp.enable { 'lua_ls', 'stylua', 'ts_ls', 'gopls', 'marksman', 'ruff', 'taplo', 'bashls', 'yamlls', 'jsonls', 'postgres_lsp', 'cssls' }
 
 vim.diagnostic.config {
   severity_sort = true,
