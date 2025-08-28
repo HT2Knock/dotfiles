@@ -21,13 +21,14 @@ echo -e "${GREEN}Starting package installation...${NC}"
 sudo pacman -Syu --noconfirm
 
 sudo pacman -S --needed --noconfirm \
-    base-devel unzip curl wget git fastfetch openssh wl-clipboard hyprland \
+    base-devel unzip curl wget git fastfetch openssh wl-clipboard \
     gcc clang go \
-    neovim zsh ghostty rofi dunst \
+    neovim zsh ghostty rofi dunst nautilus nwg-look \
     lazygit lazydocker \
     tmux ffmpeg p7zip jq poppler fzf \
     imagemagick stow \
-    bottom starship eza duf dust git-delta dua-cli skim zoxide bat yazi fd ripgrep atuin
+    bottom starship eza duf dust git-delta dua-cli skim zoxide bat yazi fd ripgrep atuin \
+    hyprland waybar
 
 if ! command -v paru &>/dev/null; then
     echo -e "${GREEN}Installing paru...${NC}"
@@ -42,7 +43,7 @@ paru -S --needed --noconfirm \
     thorium-browser-avx2-bin \
     fnm uv \
     kanata \
-    getnf
+    getnf tokyonight-gtk-theme-git
 
 # Setup Node.js
 echo -e "${GREEN}Installing Node.js LTS...${NC}"
