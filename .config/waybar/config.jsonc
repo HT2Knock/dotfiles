@@ -106,8 +106,8 @@
     "format": "  {percent}%",
   },
   "custom/shutdown": {
-    "on-click": "wlogout",
-    "format": "",
+    "on-click": "~/dotfiles/.config/rofi/scripts/powermenu_t1",
+    "format": "󰣇",
   },
   "mpris": {
     "format": "{player_icon} {dynamic}",
