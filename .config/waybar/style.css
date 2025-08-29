@@ -23,6 +23,7 @@ window#waybar {
 #mpris,
 #tray,
 #backlight,
+#bluetooth,
 #disk,
 #power-profiles-daemon {
   border: 2px rgba(122, 162, 247, 0.6) solid;
@@ -50,6 +51,7 @@ window#waybar {
 #mpris:hover,
 #tray:hover,
 #backlight:hover,
+#bluetooth:hover,
 #custom-shutdown:hover,
 #power-profiles-daemon:hover {
   border: 2px rgba(125, 207, 255, 0.9) solid;

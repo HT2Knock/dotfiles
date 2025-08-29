@@ -11,6 +11,7 @@
   "modules-right": [
     "backlight",
     "pulseaudio",
+    "bluetooth",
     "power-profiles-daemon",
     "tray",
     "custom/shutdown",
@@ -81,6 +82,14 @@
     "nospacing": 1,
     "on-click": "pavucontrol",
     "tooltip": true,
+  },
+  "bluetooth": {
+    "format": "",
+    "format-connected": " {num_connections} connected",
+    "format-disabled": "",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
   },
   "power-profiles-daemon": {
     "format": "{icon}",
