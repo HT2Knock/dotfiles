@@ -27,8 +27,8 @@ sudo pacman -S --needed --noconfirm \
     lazygit lazydocker \
     tmux ffmpeg p7zip jq poppler fzf \
     imagemagick stow \
-    bottom starship eza duf dust git-delta dua-cli skim zoxide bat yazi fd ripgrep atuin \
-    hyprland waybar
+    bottom starship eza duf dust git-delta dua-cli skim zoxide bat yazi fd ripgrep atuin bluetui impala \
+    hyprland swww waybar
 
 if ! command -v paru &>/dev/null; then
     echo -e "${GREEN}Installing paru...${NC}"
