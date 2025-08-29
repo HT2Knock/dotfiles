@@ -56,14 +56,16 @@ window#waybar {
 #memory.critical,
 #cpu.critical {
   color: #f7768e;
+  border-color: rgba(247, 118, 142, 0.8);
 }
 
 #battery.warning {
   color: #ff9e64;
+  border-color: rgba(255, 158, 100, 0.8);
 }
 
 #workspaces button {
-  padding: 0 5px 0 2px;
+  padding: 0 8px 0 4px;
   color: #565f89;
   background: transparent;
   border: none;
@@ -73,5 +75,44 @@ window#waybar {
 
 #workspaces button:hover {
   color: #7dcfff;
-  background: rgba(125, 207, 255, 0.1);
+  background: rgba(125, 207, 255, 0.5);
+}
+
+#workspaces button.active {
+  color: #7aa2f7;
+  background: rgba(122, 162, 247, 0.5);
+}
+
+#workspaces button.urgent {
+  color: #f7768e;
+  background: rgba(247, 118, 142, 0.5);
+  animation: blink 1s linear infinite alternate;
+}
+
+@keyframes blink {
+  to {
+    color: #ff9e64;
+    background: rgba(255, 158, 100, 0.5);
+  }
+}
+
+#network.ethernet {
+  color: #9ece6a;
+}
+
+#network.wifi {
+  color: #7dcfff;
+}
+
+#network.disconnected {
+  color: #f7768e;
+  border-color: rgba(247, 118, 142, 0.8);
+}
+
+#mpris.paused {
+  color: #565f89;
+}
+
+#mpris.playing {
+  color: #9ece6a;
 }
