@@ -6,9 +6,10 @@
   "margin-right": 0,
   "margin-bottom": 0,
   "margin-left": 0,
-  "modules-left": ["cpu", "memory", "network", "battery"],
+  "modules-left": ["disk", "cpu", "memory", "network", "battery"],
   "modules-center": ["hyprland/workspaces", "clock", "mpris"],
   "modules-right": [
+    "backlight",
     "pulseaudio",
     "power-profiles-daemon",
     "tray",
@@ -37,6 +38,14 @@
   "clock": {
     "format": "{:%a %d, %I:%M %p}",
     "tooltip": false,
+  },
+  "disk": {
+    "format": "󰋊 {percentage_free}%",
+    "states": {
+      "critical": 70,
+      "warning": 50,
+    },
+    "on-click": "ghostty -e dua i ~/",
   },
   "cpu": {
     "format": "  {usage}%",
@@ -68,7 +77,7 @@
     "scroll-step": 5,
     "max-volume": 150,
     "format": "󰕾 {volume}%",
-    "format-bluetooth": "󰕾  {volume}%",
+    "format-bluetooth": "󰕾 {volume}%",
     "nospacing": 1,
     "on-click": "pavucontrol",
     "tooltip": true,
@@ -84,9 +93,12 @@
       "power-saver": "",
     },
   },
+  "backlight": {
+    "format": "  {percent}%",
+  },
   "custom/shutdown": {
     "on-click": "wlogout",
-    "format": "",
+    "format": "",
   },
   "mpris": {
     "format": "{player_icon} {dynamic}",
