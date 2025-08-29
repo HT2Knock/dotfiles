@@ -27,7 +27,7 @@ sudo pacman -S --needed --noconfirm \
     lazygit lazydocker \
     tmux ffmpeg p7zip jq poppler fzf \
     imagemagick stow \
-    bottom starship eza duf dust git-delta dua-cli skim zoxide bat yazi fd ripgrep atuin bluetui impala \
+    bottom starship eza duf dust git-delta dua-cli skim zoxide bat yazi fd ripgrep atuin bluetui nm-connection-editor \
     hyprland swww waybar swaync
 
 if ! command -v paru &>/dev/null; then
