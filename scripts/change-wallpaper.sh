@@ -1,10 +1,21 @@
 #!/usr/bin/env bash
 
 WALLPAPER_DIR="$HOME/Pictures/walle/images"
-CURRENT_WALL=$(hyprctl hyprpaper listloaded)
+INTERVAL=900 # 15 minutes
 
-# Get a random wallpaper that is not the current one
-WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
-
-# Apply the selected wallpaper
-hyprctl hyprpaper reload ,"$WALLPAPER"
+while true; do
+    # Generate a randomized list of all files
+    find "$WALLPAPER_DIR" -type f |
+        while read -r img; do
+            echo "$(</dev/urandom tr -dc 0-9 | head -c 8):$img"
+        done |
+        sort -n | cut -d':' -f2- |
+        while read -r img; do
+            [ -n "$img" ] && swww img "$img" \
+                --resize fit \
+                --transition-type center \
+                --transition-fps 60 \
+                --transition-step 2
+            sleep "$INTERVAL"
+        done
+done
