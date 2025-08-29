@@ -23,12 +23,12 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm \
     base-devel unzip curl wget git fastfetch openssh wl-clipboard \
     gcc clang go \
-    neovim zsh ghostty rofi dunst nautilus nwg-look \
+    neovim zsh ghostty rofi nautilus nwg-look \
     lazygit lazydocker \
     tmux ffmpeg p7zip jq poppler fzf \
     imagemagick stow \
     bottom starship eza duf dust git-delta dua-cli skim zoxide bat yazi fd ripgrep atuin bluetui impala \
-    hyprland swww waybar
+    hyprland swww waybar swaync
 
 if ! command -v paru &>/dev/null; then
     echo -e "${GREEN}Installing paru...${NC}"
