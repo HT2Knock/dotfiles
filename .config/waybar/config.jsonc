@@ -6,14 +6,11 @@
   "margin-right": 0,
   "margin-bottom": 0,
   "margin-left": 0,
-  "modules-left": ["clock", "mpris"],
-  "modules-center": ["hyprland/workspaces"],
+  "modules-left": ["cpu", "memory", "network", "battery"],
+  "modules-center": ["hyprland/workspaces", "clock", "mpris"],
   "modules-right": [
-    "cpu",
-    "memory",
-    "battery",
-    "network",
     "pulseaudio",
+    "power-profiles-daemon",
     "tray",
     "custom/shutdown",
   ],
@@ -51,6 +48,7 @@
     "states": {
       "critical": 70,
     },
+    "on-click": "ghostty -e btm",
   },
   "memory": {
     "format": "  {percentage}%",
@@ -64,8 +62,6 @@
       "warning": 20,
       "critical": 10,
     },
-    "tooltip": false,
-    "on-double-click": "pkill waybar && waybar",
   },
   "network": {
     "format-wifi": "  up",
@@ -81,6 +77,17 @@
     "nospacing": 1,
     "on-click": "pavucontrol",
     "tooltip": true,
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    },
   },
   "custom/shutdown": {
     "on-click": "wlogout",
