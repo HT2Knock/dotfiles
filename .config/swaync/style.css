@@ -1,0 +1,61 @@
+/* === swaync tokyonight theme === */
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 13px;
+  border-radius: 12px;
+}
+
+/* Notification popup */
+.notification {
+  background: #1a1b26; /* tokyonight bg */
+  border: 1px solid #2ac3de; /* cyan accent */
+  color: #c0caf5; /* foreground text */
+  padding: 10px;
+}
+
+/* App name */
+.notification .app-name {
+  color: #7aa2f7; /* blue */
+  font-weight: bold;
+}
+
+/* Title */
+.notification .summary {
+  color: #bb9af7; /* purple */
+  font-weight: bold;
+}
+
+/* Body text */
+.notification .body {
+  color: #c0caf5;
+}
+
+/* Buttons */
+.notification-action {
+  background: #2e3c64;
+  color: #c0caf5;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+.notification-action:hover {
+  background: #2ac3de;
+  color: #1a1b26;
+}
+
+/* Notification Center Window */
+#main-window {
+  background: #1a1b26;
+  border: 1px solid #2ac3de;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+#main-window .title {
+  color: #7aa2f7;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#main-window .notification {
+  margin: 6px 0;
+}
