@@ -18,14 +18,9 @@
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "urgent": "",
-      "default": "",
-      "active": "",
+      "urgent": "",
+      "default": "",
+      "active": "󰮯",
     },
     "sort-by-number": true,
     "persistent-workspaces": {
@@ -59,8 +54,8 @@
   "battery": {
     "format": "  {capacity}%",
     "states": {
-      "warning": 20,
-      "critical": 10,
+      "warning": 50,
+      "critical": 20,
     },
   },
   "network": {
@@ -94,16 +89,17 @@
     "format": "",
   },
   "mpris": {
-    "format": "{player_icon}  {dynamic}",
+    "format": "{player_icon} {dynamic}",
     "format-paused": "{status_icon} <i>{dynamic}</i>",
     "player-icons": {
-      "default": "󰝚",
-      "mpv": "",
+      "default": " ",
+      "mpv": " ",
     },
     "status-icons": {
-      "paused": "⏸",
+      "paused": " ",
     },
     "dynamic-order": ["title", "artist"],
     "dynamic-len": 30,
+    "tooltip-format": "{player}: {dynamic}",
   },
 }
