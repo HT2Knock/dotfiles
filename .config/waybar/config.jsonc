@@ -38,7 +38,8 @@
   },
   "clock": {
     "format": "{:%a %d, %I:%M %p}",
-    "tooltip": false,
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip": true,
   },
   "disk": {
     "format": "󰋊 {percentage_free}%",
@@ -60,6 +61,7 @@
     "states": {
       "critical": 80,
     },
+    "tooltip-format": "RAM: {used:0.1f}G/{total:0.1f}G ({percentage}%)",
   },
   "battery": {
     "format": "  {capacity}%",
@@ -72,7 +74,9 @@
     "format-wifi": "  up",
     "format-ethernet": "󰈀  up",
     "format-disconnected": "󰤯  dead",
-    "tooltip": false,
+    "tooltip-format-wifi": "WiFi: {essid} ({signalStrength}%)\n󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "Ethernet: {ifname}\n󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}",
+    "on-click": "nm-connection-editor",
   },
   "pulseaudio": {
     "scroll-step": 5,
