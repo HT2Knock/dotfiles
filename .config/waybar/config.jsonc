@@ -7,7 +7,7 @@
   "margin-bottom": 0,
   "margin-left": 0,
   "modules-left": ["disk", "cpu", "memory", "network", "battery"],
-  "modules-center": ["hyprland/workspaces", "clock", "mpris"],
+  "modules-center": ["hyprland/workspaces", "clock", "custom/notification"],
   "modules-right": [
     "backlight",
     "pulseaudio",
@@ -31,6 +31,21 @@
       "3": [],
       "4": [],
     },
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󰂚",
+      "none": "󰂜",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰂜",
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "escape": true,
   },
   "tray": {
     "spacing": 8,
@@ -115,19 +130,5 @@
   "custom/shutdown": {
     "on-click": "~/dotfiles/.config/rofi/scripts/powermenu_t1",
     "format": "󰣇",
-  },
-  "mpris": {
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
-    "player-icons": {
-      "default": " ",
-      "mpv": " ",
-    },
-    "status-icons": {
-      "paused": " ",
-    },
-    "dynamic-order": ["title", "artist"],
-    "dynamic-len": 30,
-    "tooltip-format": "{player}: {dynamic}",
   },
 }
