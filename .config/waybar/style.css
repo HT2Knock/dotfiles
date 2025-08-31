@@ -104,19 +104,6 @@ window#waybar {
   }
 }
 
-#network.ethernet {
-  color: #9ece6a;
-}
-
-#network.wifi {
-  color: #7dcfff;
-}
-
-#network.disconnected {
-  color: #f7768e;
-  border-color: rgba(247, 118, 142, 0.8);
-}
-
 #mpris.paused {
   color: #565f89;
 }

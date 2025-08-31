@@ -33,8 +33,9 @@
     },
   },
   "tray": {
-    "spacing": 10,
-    "tooltip": false,
+    "spacing": 8,
+    "show-passive-items": true,
+    "smooth-scrolling-threshold": 1.0,
   },
   "clock": {
     "format": "{:%a %d, %I:%M %p}",
@@ -71,9 +72,7 @@
     },
   },
   "network": {
-    "format-wifi": "  up",
-    "format-ethernet": "󰈀  up",
-    "format-disconnected": "󰤯  dead",
+    "format": "󰩟 {ipaddr}",
     "tooltip-format-wifi": "WiFi: {essid} ({signalStrength}%)\n󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}",
     "tooltip-format-ethernet": "Ethernet: {ifname}\n󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}",
     "on-click": "nm-connection-editor",
@@ -81,11 +80,15 @@
   "pulseaudio": {
     "scroll-step": 5,
     "max-volume": 150,
-    "format": "󰕾 {volume}%",
-    "format-bluetooth": "󰕾 {volume}%",
-    "nospacing": 1,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "󰂯 {volume}%",
+    "format-muted": "󰖁 Muted",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"],
+      "headphone": "󰋋",
+    },
     "on-click": "pavucontrol",
-    "tooltip": true,
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
   },
   "bluetooth": {
     "format": "",
