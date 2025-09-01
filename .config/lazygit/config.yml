@@ -50,15 +50,12 @@ gui:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
   theme:
     activeBorderColor:
-      - "#89ddff"
+      - "blue"
       - bold
     inactiveBorderColor:
-      - "#565f89"
+      - "gray"
     optionsTextColor:
-      - "#3d59a1"
-    selectedLineBgColor:
-      - "#292e42"
-      - bold
+      - "#7aa2f7"
   # Config relating to the commit length indicator
   commitLength:
     # If true, show an indicator of commit message length
