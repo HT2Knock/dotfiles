@@ -1,6 +1,6 @@
 # Theme
 theme = tokyonight
-background-opacity = 0.8
+background-opacity = 0.9
 
 # Font
 bold-is-bright = true
