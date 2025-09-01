@@ -75,6 +75,11 @@ window#waybar {
   border-color: rgba(255, 158, 100, 0.8);
 }
 
+#workspaces .active {
+  padding: 1px 20px;
+  border-radius: 14px;
+}
+
 #workspaces button {
   padding: 0 8px 0 4px;
   color: #565f89;
