@@ -23,7 +23,7 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm \
     base-devel unzip curl wget git fastfetch openssh wl-clipboard \
     gcc clang go \
-    neovim zsh ghostty nautilus nwg-look fuzzel cliphist \
+    neovim zsh ghostty nautilus nwg-look fuzzel cliphist bemoji wtype \
     lazygit lazydocker \
     tmux ffmpeg p7zip jq poppler fzf \
     imagemagick stow \
