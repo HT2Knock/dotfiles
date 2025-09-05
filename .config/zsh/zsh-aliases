@@ -16,8 +16,8 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # easier to read disk
-alias df='df -h'                          # human-readable sizes
-alias free='free -h'                      # human-reader sizes
+alias df='df -h'     # human-readable sizes
+alias free='free -h' # human-reader sizes
 
 # get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
@@ -25,8 +25,8 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-# command put stuff to nvim
-alias v='fd --type f --hidden --exclude .git | sk --preview "bat --theme=Enki-Tokyo-Night --style=numbers --color=always --line-range :50 {}" | xargs -r nvim'
+# simple fuzzy open with nvim
+alias v='fzf --preview "bat --style=numbers --color=always --line-range :50 {}" | xargs -r nvim'
 
 # gpg encryption
 # verify signature for isos
@@ -50,12 +50,6 @@ alias zshreload='source ~/.config/zsh/.zshrc'
 
 # get port
 alias port="netstat -tulpn | grep"
-
-# x11
-alias xpropc='xprop | grep WM_CLASS'
-
-# Copy using clip
-alias copy='xclip -sel clip'
 
 # quick config path
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
