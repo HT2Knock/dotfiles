@@ -128,7 +128,8 @@
     "format": "  {percent}%",
   },
   "custom/shutdown": {
-    "on-click": "~/dotfiles/.config/rofi/scripts/powermenu_t1",
+    "on-click": "hyprlock",
+    "on-click-right": "hyprctl dispatch exit",
     "format": "󰣇",
   },
 }
