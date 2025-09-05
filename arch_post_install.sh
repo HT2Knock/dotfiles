@@ -21,7 +21,7 @@ echo -e "${GREEN}Starting package installation...${NC}"
 sudo pacman -Syu --noconfirm
 
 sudo pacman -S --needed --noconfirm \
-    base-devel unzip curl wget git fastfetch openssh wl-clipboard \
+    base-devel unzip curl wget git fastfetch imv openssh wl-clipboard \
     gcc clang go \
     neovim zsh ghostty nautilus nwg-look fuzzel cliphist bemoji wtype \
     lazygit lazydocker \
