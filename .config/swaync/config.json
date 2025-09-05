@@ -4,23 +4,8 @@
   "layer": "overlay",
   "control-center-layer": "overlay",
   "layer-shell": true,
-
   "cssPriority": "user",
-  "iconTheme": "Papirus-Dark",
-
-  "timeout": 5000,
-  "timeout-low": 3000,
-  "timeout-critical": 0,
-
-  "notification-visibility": "all",
-  "group-by-app-name": true,
-
-  "keyboard-shortcuts": {
-    "dismiss-notification": "SUPER+d",
-    "dismiss-all": "SUPER+Shift+d",
-    "toggle-panel": "SUPER+n"
-  },
-
+  "widgets": ["title", "dnd", "notifications", "mpris"],
   "window": {
     "width": 360,
     "height": 600,
@@ -28,12 +13,9 @@
     "margin": 12,
     "border-radius": 16
   },
-
   "dnd": {
-    "toggle-shortcut": "SUPER+Shift+n",
     "indicator": true
   },
-
   "popup": {
     "max-visible": 4,
     "anchor": "top right",

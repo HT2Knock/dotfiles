@@ -1,3 +1,30 @@
+:root {
+  /* Tokyo Night Night - Main backgrounds */
+  --cc-bg: rgba(26, 27, 38, 0.7);
+  --noti-border-color: rgba(167, 177, 225, 0.15);
+  --noti-bg: 26, 27, 38;
+  --noti-bg-alpha: 0.8;
+  --noti-bg-darker: rgb(21, 22, 31);
+  --noti-bg-hover: rgb(33, 35, 49);
+  --noti-bg-focus: rgba(41, 44, 62, 0.6);
+
+  /* Tokyo Night Night - Interactive elements */
+  --noti-close-bg: rgb(55, 59, 84);
+  --noti-close-bg-hover: rgb(68, 73, 103);
+
+  /* Tokyo Night Night - Text colors */
+  --text-color: rgb(192, 202, 245);
+  --text-color-disabled: rgb(120, 127, 168);
+
+  /* Tokyo Night Night - Accent color (blue) */
+  --bg-selected: rgb(125, 207, 255);
+
+  /* Icon sizes (unchanged) */
+  --notification-icon-size: 64px;
+  --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
+  --notification-group-icon-size: 32px;
+}
+
 /* === swaync tokyonight theme === */
 * {
   font-family: "JetBrainsMono Nerd Font", monospace;
@@ -7,9 +34,9 @@
 
 /* Notification popup */
 .notification {
-  background: #1a1b26; /* tokyonight bg */
-  border: 1px solid #2ac3de; /* cyan accent */
-  color: #c0caf5; /* foreground text */
+  background: #1a1b26;
+  border: 2px solid #7aa2f7;
+  color: #c0caf5;
   padding: 10px;
 }
 
@@ -45,7 +72,7 @@
 /* Notification Center Window */
 #main-window {
   background: #1a1b26;
-  border: 1px solid #2ac3de;
+  border: 1px solid #7aa2f7;
   border-radius: 16px;
   padding: 8px;
 }
