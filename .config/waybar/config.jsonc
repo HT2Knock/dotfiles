@@ -129,7 +129,6 @@
   },
   "custom/shutdown": {
     "on-click": "hyprlock",
-    "on-click-right": "hyprctl dispatch exit",
     "format": "󰣇",
   },
 }
