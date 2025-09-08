@@ -72,6 +72,9 @@ install_official_packages() {
         # System utilities
         fastfetch imv wl-clipboard p7zip jq poppler fzf imagemagick stow
 
+        # Input Method
+        fcitx5-im fcitx5-bamboo
+
         # Development tools
         gcc clang go neovim tmux
 
@@ -145,7 +148,7 @@ install_aur_packages() {
     log "INFO" "AUR packages installed successfully"
 }
 
-setup_nodejs() {
+setup_devtool() {
     log "INFO" "Setting up Node.js..."
 
     # Add fnm to PATH for this session
@@ -198,6 +201,14 @@ EOF
     log "INFO" "Kanata setup completed"
 }
 
+setup_zsh() {
+    sudo chsh -s /bin/zsh
+    ln -sf "$HOME/dotfiles/.zshenv" "$HOME/.zshenv"
+    touch "$HOME"/.local/share/zsh/history
+
+    zsh
+}
+
 # Create necessary directories
 create_directories() {
     log "INFO" "Creating necessary directories..."
@@ -217,6 +228,10 @@ create_directories() {
 setup_dotfile() {
     log "INFO" "Setting up dotfiles..."
 
+    if [ ! -d "$HOME/Pictures/walle" ]; then
+        git clone https://github.com/T2Knock/walle.git "$HOME/Pictures/"
+    fi
+
     if [ ! -d "$HOME/dotfiles" ]; then
         git clone https://github.com/T2Knock/dotfiles.git "$HOME/"
 
@@ -224,19 +239,18 @@ setup_dotfile() {
 
         stow -vt ~/.config .config
 
-        setup_nodejs
+        setup_zsh
         setup_kanata
+        setup_devtool
     fi
 }
 
 main() {
     log "INFO" "Starting Arch Linux post-installation script..."
 
-    # Pre-flight checks
     check_not_root
     create_directories
 
-    # Installation steps
     install_fonts
     update_system
     install_official_packages
