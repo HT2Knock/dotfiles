@@ -202,14 +202,20 @@ EOF
 }
 
 setup_zsh() {
-    sudo chsh -s /bin/zsh
-    ln -sf "$HOME/dotfiles/.zshenv" "$HOME/.zshenv"
-    touch "$HOME"/.local/share/zsh/history
+    if [[ "$SHELL" != "/bin/zsh" ]] && [[ "$SHELL" != "/usr/bin/zsh" ]]; then
+        sudo chsh -s /bin/zsh "$USER"
+        log "INFO" "Default shell changed to zsh"
+    fi
 
-    zsh
+    ln -sf "$HOME/dotfiles/.zshenv" "$HOME/.zshenv"
+    mkdir -p "$HOME/.local/share/zsh"
+    touch "$HOME/.local/share/zsh/history"
+
+    if [[ -z "${ZSH_VERSION:-}" ]]; then
+        exec zsh
+    fi
 }
 
-# Create necessary directories
 create_directories() {
     log "INFO" "Creating necessary directories..."
 
@@ -217,6 +223,7 @@ create_directories() {
         "$HOME/.config"
         "$HOME/.local/bin"
         "$HOME/.local/share"
+        "$HOME/.local/share/zsh"
         "$FONT_DIR"
     )
 
@@ -228,20 +235,25 @@ create_directories() {
 setup_dotfile() {
     log "INFO" "Setting up dotfiles..."
 
-    if [ ! -d "$HOME/Pictures/walle" ]; then
-        git clone https://github.com/T2Knock/walle.git "$HOME/Pictures/"
+    if [[ ! -d "$HOME/Pictures/walle" ]]; then
+        git clone https://github.com/T2Knock/walle.git "$HOME/Pictures/walle"
+        log "INFO" "Wallpapers cloned"
     fi
 
-    if [ ! -d "$HOME/dotfiles" ]; then
-        git clone https://github.com/T2Knock/dotfiles.git "$HOME/"
+    if [[ ! -d "$HOME/dotfiles" ]]; then
+        git clone https://github.com/T2Knock/dotfiles.git "$HOME/dotfiles"
+        log "INFO" "Dotfiles cloned"
 
         cd "$HOME/dotfiles"
-
         stow -vt ~/.config .config
+        log "INFO" "Dotfiles linked"
 
         setup_zsh
         setup_kanata
         setup_devtool
+    else
+        log "INFO" "Dotfiles already exist, skipping clone and setup"
+        log "WARN" "If you want to re-setup, remove ~/dotfiles directory first"
     fi
 }
 
@@ -258,6 +270,9 @@ main() {
     install_aur_packages
 
     setup_dotfile
+
+    log "INFO" "Post-installation script completed!"
+    log "INFO" "You may need to reboot for all changes to take effect"
 }
 
 main "$@"
