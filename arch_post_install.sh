@@ -258,6 +258,19 @@ setup_dotfile() {
 }
 
 main() {
+    if [[ "${1:-}" == "--confirm" ]]; then
+        log "INFO" "Running with --confirm flag"
+    else
+        if [[ -t 0 ]]; then
+            read -p "This will install and configure your Arch setup. Continue? (y/N): " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                log "INFO" "Installation cancelled"
+                exit 0
+            fi
+        fi
+    fi
+
     log "INFO" "Starting Arch Linux post-installation script..."
 
     check_not_root
