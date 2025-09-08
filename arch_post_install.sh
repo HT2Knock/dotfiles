@@ -88,26 +88,26 @@ install_official_packages() {
         starship eza duf dust git-delta dua-cli zoxide bat atuin bottom
 
         # Git tools
-        lazygit lazydocker
+        lazygit lazydocker github-cli
 
         # Media
         ffmpeg
 
         # Network tools
-        bluetui nm-connection-editor nm-applet
+        bluetui nm-connection-editor network-manager-applet
 
         # Hyprland ecosystem
         hyprland hyprpolkitagent hyprshot hyprlock hypridle hyprsunset
         swww waybar swaync
 
         # Application launcher and utilities
-        nwg-look fuzzel cliphist bemoji wtype appimagelauncher
+        nwg-look fuzzel cliphist wtype
 
         # Document viewer
         zathura zathura-pdf-mupdf
     )
 
-    sudo pacman -S --needed --noconfirm "${packages[@]}" || error_exit "Failed to install official packages"
+    sudo pacman -S --needed "${packages[@]}" || error_exit "Failed to install official packages"
     log "INFO" "Official packages installed successfully"
 }
 
@@ -142,6 +142,8 @@ install_aur_packages() {
         kanata
         getnf
         tokyonight-gtk-theme-git
+        bemoji
+        appimagelauncher
     )
 
     paru -S --needed --noconfirm "${aur_packages[@]}" || error_exit "Failed to install AUR packages"
@@ -151,14 +153,9 @@ install_aur_packages() {
 setup_devtool() {
     log "INFO" "Setting up Node.js..."
 
-    # Add fnm to PATH for this session
-    export PATH="$HOME/.local/share/fnm:$PATH"
-
-    # Initialize fnm
     if command -v fnm &>/dev/null; then
-        eval "$(fnm env 2>/dev/null)" || true
         fnm install --lts || log "WARN" "Failed to install Node.js LTS"
-        fnm use lts-latest 2>/dev/null || log "WARN" "Failed to set LTS as default"
+
         log "INFO" "Node.js setup completed"
     else
         log "WARN" "fnm not found, skipping Node.js setup"
