@@ -11,7 +11,7 @@ pick_wallpaper() {
 
 set_wallpaper() {
     local img="$1"
-    swww img "$img" --transition-type "random"
+    swww img "$img" --resize "fit" --transition-type "random"
     echo "$img" >"$STATE_FILE"
 }
 
