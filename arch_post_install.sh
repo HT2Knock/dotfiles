@@ -98,7 +98,10 @@ install_official_packages() {
 
         # Hyprland ecosystem
         hyprland hyprpolkitagent hyprshot hyprlock hypridle hyprsunset
-        swww waybar swaync
+        swww waybar swaync xdg-desktop-portal-hyprland sddm
+
+        # QT
+        qt5-wayland qt6-wayland kvatum qt5ct qt6ct
 
         # Application launcher and utilities
         nwg-look fuzzel cliphist wtype
@@ -209,7 +212,7 @@ setup_zsh() {
     touch "$HOME/.local/share/zsh/history"
 
     if [[ -z "${ZSH_VERSION:-}" ]]; then
-        exec zsh
+        zsh
     fi
 }
 
@@ -245,9 +248,15 @@ setup_dotfile() {
         stow -vt ~/.config .config
         log "INFO" "Dotfiles linked"
 
-        setup_zsh
+        # Update bat binary cache
+        bat cache --build
+
+        # Clone tmux tpm
+        git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && ~/.config/tmux/plugins/tpm/bin/install_plugins
+
         setup_kanata
         setup_devtool
+        setup_zsh
     else
         log "INFO" "Dotfiles already exist, skipping clone and setup"
         log "WARN" "If you want to re-setup, remove ~/dotfiles directory first"
