@@ -35,6 +35,7 @@ return {
             'gofumpt',
             'goimports',
             'shfmt',
+            'sleek',
           },
         },
       },
