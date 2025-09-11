@@ -76,7 +76,7 @@ install_official_packages() {
         fcitx5-im fcitx5-bamboo
 
         # Development tools
-        gcc clang go rustup neovim tmux docker
+        gcc clang go rustup neovim tmux docker docker-compose
 
         # Shell and terminal
         zsh ghostty
