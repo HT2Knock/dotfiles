@@ -76,7 +76,7 @@ install_official_packages() {
         fcitx5-im fcitx5-bamboo
 
         # Development tools
-        gcc clang go rustup neovim tmux
+        gcc clang go rustup neovim tmux docker
 
         # Shell and terminal
         zsh ghostty
@@ -209,6 +209,22 @@ EOF
     fi
 
     log "INFO" "Kanata setup completed"
+}
+
+setup_docker() {
+    log "INFO" "Setting up docker"
+
+    if command -v docker &>/dev/null; then
+        sudo systemctl enable docker.service
+        sudo systemctl start docker.service
+
+        newgrp docker
+        sudo usermod -aG docker "$USER"
+
+        log "INFO" "Docker setup completed"
+    else
+        log "WARN" "docker not found, skipping Node.js setup"
+    fi
 }
 
 setup_zsh() {
