@@ -76,7 +76,7 @@ install_official_packages() {
         fcitx5-im fcitx5-bamboo
 
         # Development tools
-        gcc clang go neovim tmux
+        gcc clang go rustup neovim tmux
 
         # Shell and terminal
         zsh ghostty
@@ -162,6 +162,16 @@ setup_devtool() {
         log "INFO" "Node.js setup completed"
     else
         log "WARN" "fnm not found, skipping Node.js setup"
+    fi
+
+    log "INFO" "Setting up Rust..."
+
+    if command -v rustup &>/dev/null; then
+        rustup default statble || log "WARN" "Failed to install rust stable version"
+
+        log "INFO" "Rust setup completed"
+    else
+        log "WARN" "rutstup not found, skipping rust setup"
     fi
 }
 
