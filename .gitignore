@@ -8,3 +8,5 @@ ftplugin
 .luarc.json
 .config/lazygit/state.yml
 .config/lazydocker/state.yml
+.config/pgcli/log
+.config/pgcli/history
