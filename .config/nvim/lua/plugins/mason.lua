@@ -18,6 +18,7 @@ return {
             'bash-language-server',
             'yaml-language-server',
             'eslint-lsp',
+            'postgrestools',
 
             -- dap
             'delve',
@@ -33,6 +34,7 @@ return {
             'prettierd',
             'gofumpt',
             'goimports',
+            'shfmt',
           },
         },
       },
