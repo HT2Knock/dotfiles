@@ -3,6 +3,7 @@
 HISTSIZE=1000000
 SAVEHIST=1000000
 
+export PSPG_CONF="$HOME/.config/pspg/conf"
 export HISTFILE="$XDG_DATA_HOME"/zsh/history
 export MANPAGER='nvim +Man!'
 export PATH="$HOME/.local/bin:$PATH"
