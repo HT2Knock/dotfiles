@@ -11,7 +11,13 @@ pick_wallpaper() {
 
 set_wallpaper() {
     local img="$1"
-    swww img "$img" --resize "fit" --transition-type "random"
+
+    if [[ "$img" == *.gif ]]; then
+        swww img "$img" --transition-type "random"
+    else
+        swww img "$img" --reize "fit" --transition-type "random"
+    fi
+
     echo "$img" >"$STATE_FILE"
 }
 
@@ -27,7 +33,6 @@ just_change() {
     set_wallpaper "$(pick_wallpaper)"
 }
 
-# Handle user flags
 if [[ "$1" == "--skip" ]]; then
     [[ -f "$PID_FILE" ]] && kill -USR1 "$(cat "$PID_FILE")" || echo "No daemon running."
     exit 0
