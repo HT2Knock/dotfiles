@@ -15,7 +15,7 @@ set_wallpaper() {
     if [[ "$img" == *.gif ]]; then
         swww img "$img" --transition-type "random"
     else
-        swww img "$img" --reize "fit" --transition-type "random"
+        swww img "$img" --resize "fit" --transition-type "random"
     fi
 
     echo "$img" >"$STATE_FILE"
