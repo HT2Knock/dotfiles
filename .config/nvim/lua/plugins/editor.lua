@@ -1,4 +1,8 @@
 return {
+  {
+    'MagicDuck/grug-far.nvim',
+    opts = {},
+  },
   { 'NMAC427/guess-indent.nvim', event = 'BufReadPost', opts = {} },
   {
     'catgoose/nvim-colorizer.lua',
