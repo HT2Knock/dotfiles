@@ -11,6 +11,7 @@ return {
             'lua-language-server',
             'stylua',
             'typescript-language-server',
+            'astro-language-server',
             'gopls',
             'marksman',
             'ruff',
@@ -31,7 +32,7 @@ return {
             'markdownlint-cli2',
 
             -- formatter
-            'prettierd',
+            'prettier',
             'gofumpt',
             'goimports',
             'shfmt',
