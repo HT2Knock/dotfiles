@@ -45,19 +45,7 @@ return {
         },
         lualine_x = { 'lsp_status', formatter, linter_progress },
       },
-      tabline = {
-        lualine_c = {
-          {
-            'filename',
-            icon = '󱇧',
-            file_status = true,
-            path = 3,
-            color = { fg = '#7aa2f7', gui = 'bold' },
-            paddding = 3,
-          },
-        },
-        lualine_z = { 'tabs' },
-      },
+      extensions = { 'oil', 'quickfix' },
     }
   end,
 }
