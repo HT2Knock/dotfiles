@@ -1,5 +1,9 @@
 return {
   {
+    'Bekaboo/dropbar.nvim',
+    opts = {},
+  },
+  {
     'MagicDuck/grug-far.nvim',
     opts = {},
   },

@@ -51,3 +51,8 @@ vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, si
 vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
+-- dropbar winbar interaction
+vim.keymap.set('n', '<Leader>;', require('dropbar.api').pick, { desc = 'Pick symbols in winbar' })
+vim.keymap.set('n', '[;', require('dropbar.api').goto_context_start, { desc = 'Go to start of current context' })
+vim.keymap.set('n', '];', require('dropbar.api').select_next_context, { desc = 'Select next context' })
