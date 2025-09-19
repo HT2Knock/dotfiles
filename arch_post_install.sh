@@ -283,6 +283,8 @@ setup_dotfile() {
         setup_kanata
         setup_devtool
         setup_zsh
+
+        loginctl enable-linger "$USER"
     else
         log "INFO" "Dotfiles already exist, skipping clone and setup"
         log "WARN" "If you want to re-setup, remove ~/dotfiles directory first"
