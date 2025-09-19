@@ -17,6 +17,17 @@ return {
         css_fn = true,
         tailwind = true,
       },
+      filetypes = {
+        'css',
+        'scss',
+        'sass',
+        'less',
+        'html',
+        'javascript',
+        'lua',
+        'jsx',
+        'tsx',
+      },
     },
   },
   {
