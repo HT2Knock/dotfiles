@@ -20,6 +20,7 @@ return {
             'yaml-language-server',
             'eslint-lsp',
             'postgrestools',
+            'css-lsp',
 
             -- dap
             'delve',
