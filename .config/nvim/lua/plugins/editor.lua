@@ -9,29 +9,20 @@ return {
   },
   { 'NMAC427/guess-indent.nvim', event = 'BufReadPost', opts = {} },
   {
-    'catgoose/nvim-colorizer.lua',
-    event = 'BufReadPre',
-    opts = {
-      user_default_options = {
-        css = true,
-        css_fn = true,
-        tailwind = true,
-      },
-      filetypes = {
-        'css',
-        'scss',
-        'sass',
-        'less',
-        'html',
-        'javascript',
-        'lua',
-        'jsx',
-        'tsx',
-        'astro',
-        'json',
-        'jsonc',
+    'eero-lehtinen/oklch-color-picker.nvim',
+    event = 'VeryLazy',
+    version = '*',
+    keys = {
+      {
+        '<leader>v',
+        function()
+          require('oklch-color-picker').pick_under_cursor()
+        end,
+        desc = 'Color pick under cursor',
       },
     },
+    ---@type oklch.Opts
+    opts = {},
   },
   {
     'folke/which-key.nvim',
