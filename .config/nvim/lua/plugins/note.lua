@@ -54,9 +54,8 @@ return {
       { '<leader>nt', '<cmd>Obsidian tomorrow<cr>', desc = 'Tomorrow Note' },
       { '<leader>nf', '<cmd>Obsidian search<cr>', desc = 'Find in notes' },
       { '<leader>np', '<cmd>Obsidian paste_img<cr>', desc = 'Paste image from clipboard' },
-      { '<leader>nc', '<cmd>Obsidian quick_switch<cr>', desc = 'Quick switch notes' },
       { '<leader>nn', '<cmd>Obsidian new<cr>', desc = 'Create a new note' },
-      { '<leader>nh', '<cmd>Obsidian template<cr>', desc = 'Insert template' },
+      { '<leader>nh', '<cmd>Obsidian new from template<cr>', desc = 'Insert template' },
     },
   },
 }
