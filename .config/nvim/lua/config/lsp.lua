@@ -11,6 +11,7 @@ vim.lsp.enable {
   'jsonls',
   'postgres_lsp',
   'cssls',
+  'html',
   'astro',
   'tailwindcss',
 }
