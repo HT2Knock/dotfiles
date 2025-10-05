@@ -48,6 +48,33 @@ return {
   },
   {
     'andrewferrier/debugprint.nvim',
-    opts = {},
+    opts = {
+      keymaps = {
+        normal = {
+          plain_below = '<Leader>dp',
+          plain_above = '<Leader>dP',
+          variable_below = '<Leader>dv',
+          variable_above = '<Leader>dV',
+          variable_below_alwaysprompt = '',
+          variable_above_alwaysprompt = '',
+          surround_plain = '<Leader>dsp',
+          surround_variable = '<Leader>dsv',
+          surround_variable_alwaysprompt = '',
+          textobj_below = '<Leader>do',
+          textobj_above = '<Leader>dO',
+          textobj_surround = '<Leader>dso',
+          toggle_comment_debug_prints = '<Leader>dt',
+          delete_debug_prints = '<Leader>dd',
+        },
+        insert = {
+          plain = '<C-D>p',
+          variable = '<C-D>v',
+        },
+        visual = {
+          variable_below = '<Leader>dv',
+          variable_above = '<Leader>dV',
+        },
+      },
+    },
   },
 }
