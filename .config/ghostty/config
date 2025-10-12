@@ -10,6 +10,7 @@ gtk-titlebar = false
 gtk-single-instance = true
 gtk-wide-tabs = false
 window-decoration = server
+window-padding-y = 8,0
 cursor-style = block
 
 # Other
