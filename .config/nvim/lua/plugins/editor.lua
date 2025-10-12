@@ -7,6 +7,7 @@ return {
     'MagicDuck/grug-far.nvim',
     opts = {},
   },
+  { 'windwp/nvim-ts-autotag', opts = {} },
   { 'NMAC427/guess-indent.nvim', event = 'BufReadPost', opts = {} },
   {
     'eero-lehtinen/oklch-color-picker.nvim',
