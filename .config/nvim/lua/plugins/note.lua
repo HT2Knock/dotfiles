@@ -37,8 +37,16 @@ return {
       },
       templates = {
         subdir = 'templates',
-        date_format = '%Y-%m-%d-%a',
+        date_format = '%Y-%m-%d',
         time_format = '%H:%M',
+        substitutions = {
+          yesterday = function()
+            return os.date('%Y-%m-%d', os.time() - 86400)
+          end,
+          tomorrow = function()
+            return os.date('%Y-%m-%d', os.time() + 86400)
+          end,
+        },
       },
       attachments = {
         img_folder = 'resources/imgs',
@@ -55,7 +63,7 @@ return {
       { '<leader>nf', '<cmd>Obsidian search<cr>', desc = 'Find in notes' },
       { '<leader>np', '<cmd>Obsidian paste_img<cr>', desc = 'Paste image from clipboard' },
       { '<leader>nn', '<cmd>Obsidian new<cr>', desc = 'Create a new note' },
-      { '<leader>nh', '<cmd>Obsidian new from template<cr>', desc = 'Insert template' },
+      { '<leader>nh', '<cmd>Obsidian new_from_template<cr>', desc = 'Insert template' },
     },
   },
 }
