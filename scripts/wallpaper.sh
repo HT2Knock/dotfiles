@@ -43,6 +43,12 @@ if [[ "$1" == "--next" ]]; then
     exit 0
 fi
 
+echo "Waiting for swww-daemon to start..."
+while ! pgrep -x "swww-daemon" >/dev/null; do
+    sleep 0.5
+done
+echo "swww-daemon is running. Starting wallpaper rotation."
+
 echo $$ >"$PID_FILE"
 
 trap delete_and_change USR1
