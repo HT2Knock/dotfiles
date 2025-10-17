@@ -12,6 +12,7 @@ vim.filetype.add {
     env = 'conf',
   },
   pattern = {
+    ['.*http%-client%.env%.json'] = 'json',
     ['.*%.env%..+'] = 'conf',
   },
 }
