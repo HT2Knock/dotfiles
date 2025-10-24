@@ -4,6 +4,15 @@ return {
     opts = {},
   },
   {
+    'saxon1964/neovim-tips',
+    version = '*',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'OXY2DEV/markview.nvim',
+    },
+    opts = {},
+  },
+  {
     'MagicDuck/grug-far.nvim',
     opts = {},
   },
