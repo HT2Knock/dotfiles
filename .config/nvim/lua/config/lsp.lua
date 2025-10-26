@@ -1,7 +1,6 @@
 vim.lsp.enable {
   'lua_ls',
   'stylua',
-  'ts_ls',
   'gopls',
   'ruff',
   'taplo',
