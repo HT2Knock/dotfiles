@@ -26,7 +26,7 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 # simple fuzzy open with nvim
-alias v='fzf --preview "bat --style=numbers --color=always --line-range :50 {}" | xargs -r nvim'
+alias v='nvim "$(fzf --preview "bat --style=numbers --color=always --line-range :50 {}")"'
 
 # gpg encryption
 # verify signature for isos
