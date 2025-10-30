@@ -22,11 +22,14 @@ alias free='free -h' # human-reader sizes
 # get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
 
-# get top process eating cpu ##
+# get top process eating cpu
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-# simple fuzzy open with nvim
+# open with nvim
 alias v='nvim "$(fzf --preview "bat --style=numbers --color=always --line-range :50 {}")"'
+
+# choose open sessions
+alias tsa="~/dotfiles/scripts/tmux-sesh.sh"
 
 # gpg encryption
 # verify signature for isos
