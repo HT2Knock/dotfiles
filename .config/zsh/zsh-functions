@@ -4,30 +4,18 @@ function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
 
-function start_ssh(){
-    if [ -n "$SSH_AGENT_PID" ]
-    then
+function start_ssh() {
+    if [ -n "$SSH_AGENT_PID" ]; then
         echo "ssh-agent is already running"
     else
-        eval `ssh-agent -s`
+        eval $(ssh-agent -s)
     fi
 
-    ssh-add $1 > /dev/null 2>&1
+    ssh-add $1 >/dev/null 2>&1
 }
 
-function mem_look(){
+function mem_look() {
     free -h | awk '/Gi$/ {print $1, $3, "/", $2}'
-}
-
-function check_packages(){
-    package="$(dpkg-query -W --showformat='${Status}\n' "$1" | grep "ok installed")"
-
-    echo Checking for "$1": "$package"
-    if [ -z "$package" ]; then
-        echo "No $1. Setting up $1."
-
-        sudo apt install $1
-    fi
 }
 
 function generate_empty_ssh() {
@@ -41,65 +29,28 @@ function killport() {
     echo "Port $1 killed"
 }
 
-function zsa(){
-    if [ "$(echo "$(zellij list-sessions -s)" | wc -l)" -ge 2 ]
-    then
-      zellij attach \
-    "$(echo "$(zellij list-sessions -s)" | sk)"
-    else
-      zellij attach -c
-    fi
-}
-
-function zellij_tab_name_update() {
-  if [[ -n $ZELLIJ ]]; then
-      local current_dir=$PWD
-      if [[ $current_dir == $HOME ]]; then
-          current_dir="~"
-      else
-          current_dir=${current_dir##*/}
-      fi
-      command nohup zellij action rename-tab $current_dir >/dev/null 2>&1
-  fi
-}
-
-function tsa(){
-    tmux ls -F \#S > /dev/null 2>&1
-    if [ $? -eq 0 ]
-    then
-        SESSION=$(tmux ls -F \#S | fzf)
-
-        if [ ! -z "$SESSION" ]; then
-            tmux attach -t "$SESSION"
-        fi
-    else
-        echo "There is no existing TMUX session."
-    fi
-}
-
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
 }
-
 
 function jtoday() {
-  local notes_dir=~/workspace/github.com/T2Knock/JT-notes
+    local notes_dir=~/workspace/github.com/T2Knock/JT-notes
 
-  if [[ ! -d "$notes_dir" ]]; then
-    echo "Error: Notes directory not found at $notes_dir" >&2
-    return 1
-  fi
+    if [[ ! -d "$notes_dir" ]]; then
+        echo "Error: Notes directory not found at $notes_dir" >&2
+        return 1
+    fi
 
-  pushd "$notes_dir" >/dev/null || return 1
+    pushd "$notes_dir" >/dev/null || return 1
 
-  nvim \
-    +":lua require('lazy').load({plugins = {'obsidian.nvim'}})" \
-    +":Obsidian today"
+    nvim \
+        +":lua require('lazy').load({plugins = {'obsidian.nvim'}})" \
+        +":Obsidian today"
 
-  popd >/dev/null || return 1
+    popd >/dev/null || return 1
 }
