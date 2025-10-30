@@ -17,9 +17,6 @@ end, { desc = 'Jump to previous error' })
 vim.keymap.set('n', ']e', function()
   vim.diagnostic.jump { severity = vim.diagnostic.severity.ERROR, count = 1 }
 end, { desc = 'Jump to next error' })
-vim.keymap.set('n', '<leader>cd', function()
-  vim.diagnostic.open_float()
-end, { desc = 'Show diagnostics for current line' })
 
 -- Window navigation
 -- See `:help wincmd` for all window commands
