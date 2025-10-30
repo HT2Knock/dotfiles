@@ -16,7 +16,7 @@ vim.lsp.enable {
 
 vim.diagnostic.config {
   severity_sort = true,
-  virtual_text = false,
+  virtual_text = true,
   float = {
     border = 'rounded',
     source = true,
@@ -24,7 +24,7 @@ vim.diagnostic.config {
   underline = {
     severity = vim.diagnostic.severity.ERROR,
   },
-  jump = { float = false },
+  jump = { float = true },
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = '󰅚 ',
