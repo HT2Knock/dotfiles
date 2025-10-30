@@ -147,6 +147,7 @@ install_aur_packages() {
         tokyonight-gtk-theme-git
         bemoji
         appimagelauncher
+        sesh-bin
     )
 
     paru -S --needed --noconfirm "${aur_packages[@]}" || error_exit "Failed to install AUR packages"
