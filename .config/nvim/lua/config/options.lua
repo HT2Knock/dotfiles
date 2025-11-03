@@ -1,8 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 vim.g.have_nerd_font = true
-vim.o.number = true
-vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
 vim.o.breakindent = true
@@ -34,3 +32,11 @@ vim.opt.conceallevel = 2
 vim.opt.spelllang = 'en'
 vim.opt.spellfile = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add'
 vim.opt.spelloptions = 'camel'
+
+vim.opt.number = true
+vim.opt.relativenumber = false -- disable for better performance
+-- Or enable only in normal mode
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+  pattern = '*',
+  command = 'set relativenumber',
+})
