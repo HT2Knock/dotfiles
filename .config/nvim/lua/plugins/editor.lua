@@ -8,7 +8,7 @@ return {
     version = '*',
     dependencies = {
       'MunifTanjim/nui.nvim',
-      'OXY2DEV/markview.nvim',
+      'MeanderingProgrammer/render-markdown.nvim',
     },
     opts = {},
   },
