@@ -17,6 +17,7 @@ local function setup_toggles()
   require('snacks').toggle.option('wrap', { name = '󰖶 Wrap Long Lines' }):map '<leader>tw'
   require('snacks').toggle.diagnostics({ name = ' Diagnostics' }):map '<leader>tD'
   require('snacks').toggle.treesitter({ name = ' Treesitter Highlighting' }):map '<leader>tt'
+  require('snacks').toggle.zen():map '<leader>tz'
 end
 
 -- Keymap configurations organized by category
@@ -366,6 +367,14 @@ return {
     quickfile = { enabled = true },
     rename = { enabled = true },
     health = { enabled = true },
+    zen = {
+      toggles = { dim = false },
+      win = {
+        backdrop = {
+          transparent = false,
+        },
+      },
+    },
     image = {
       enabled = true,
       resolve = function(path, src)
