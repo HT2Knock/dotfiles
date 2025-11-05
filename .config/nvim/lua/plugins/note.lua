@@ -1,11 +1,8 @@
 return {
   {
-    'OXY2DEV/markview.nvim',
-    lazy = false,
-    priority = 49,
-    dependencies = {
-      'saghen/blink.cmp',
-    },
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },
+    opts = {},
   },
   {
     'obsidian-nvim/obsidian.nvim',
@@ -27,10 +24,6 @@ return {
         template = 'daily_note.md',
         default_tags = { 'daily-notes' },
         workdays_only = false,
-      },
-      completion = {
-        nvim_cmp = false,
-        blink = true,
       },
       picker = {
         name = 'snacks.pick',
@@ -55,6 +48,14 @@ return {
       ui = {
         enabled = false,
       },
+      checkbox = {
+        enabled = true,
+        create_new = false,
+        order = { ' ', 'x', '~', '!', '>' },
+      },
+      note_id_func = function(title)
+        return title
+      end,
     },
     keys = {
       { '<leader>nd', '<cmd>Obsidian today<cr>', desc = 'Today Note' },
