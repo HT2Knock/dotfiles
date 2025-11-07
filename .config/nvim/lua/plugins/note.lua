@@ -29,7 +29,7 @@ return {
         name = 'snacks.pick',
       },
       templates = {
-        subdir = 'templates',
+        folder = 'templates',
         date_format = '%Y-%m-%d',
         time_format = '%H:%M',
         substitutions = {
@@ -39,6 +39,15 @@ return {
           tomorrow = function()
             return os.date('%Y-%m-%d', os.time() + 86400)
           end,
+        },
+        customizations = {
+          weekly_review = {
+            notes_subdir = 'review/weeklies',
+            note_id_func = function(title)
+              local name = title:lower():gsub('[^%w%s_-]', ''):gsub('%s+', '_')
+              return name
+            end,
+          },
         },
       },
       attachments = {
@@ -54,7 +63,8 @@ return {
         order = { ' ', 'x', '~', '!', '>' },
       },
       note_id_func = function(title)
-        return title
+        local name = title:lower():gsub('[^%w%s_-]', ''):gsub('%s+', '_')
+        return name
       end,
     },
     keys = {
