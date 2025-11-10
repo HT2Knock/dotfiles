@@ -133,7 +133,9 @@
     "format": "  {percent}%",
   },
   "custom/shutdown": {
-    "on-click": "hyprlock",
+    "on-click": "systemctl suspend",
     "format": "󰣇",
+    "tooltip": "true",
+    "tooltip-format": "Click to **Suspend** (Go to Sleep)",
   },
 }
