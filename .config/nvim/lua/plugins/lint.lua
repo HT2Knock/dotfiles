@@ -18,7 +18,7 @@ return {
       sh = { 'shellcheck' },
       bash = { 'shellcheck' },
 
-      markdown = { 'markdownlint' },
+      markdown = { 'rumdl' },
     }
 
     -- Create autocommand for linting
