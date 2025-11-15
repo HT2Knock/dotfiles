@@ -3,6 +3,7 @@ vim.lsp.enable {
   'stylua',
   'gopls',
   'ruff',
+  'rumdl',
   'taplo',
   'bashls',
   'yamlls',
