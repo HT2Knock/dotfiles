@@ -21,7 +21,7 @@ return {
             'yaml-language-server',
             'json-lsp',
             'eslint-lsp',
-            'postgrestools',
+            'postgres-language-server',
             'css-lsp',
 
             -- dap
@@ -32,7 +32,7 @@ return {
             -- linter
             'shellcheck',
             'golangci-lint',
-            'markdownlint-cli2',
+            'rumdl',
 
             -- formatter
             'prettier',
