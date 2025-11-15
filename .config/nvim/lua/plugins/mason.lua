@@ -14,7 +14,7 @@ return {
             'astro-language-server',
             'tailwindcss-language-server',
             'gopls',
-            'marksman',
+            'harper-ls',
             'ruff',
             'taplo',
             'bash-language-server',

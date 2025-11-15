@@ -4,6 +4,7 @@ vim.lsp.enable {
   'gopls',
   'ruff',
   'rumdl',
+  'harper_ls',
   'taplo',
   'bashls',
   'yamlls',
