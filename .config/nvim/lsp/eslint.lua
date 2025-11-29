@@ -31,7 +31,37 @@
 ---
 --- Additional messages you can handle: `eslint/noConfig`
 
-local util = require 'lspconfig.util'
+--- Insert package.json into config files list if it contains the specified field
+--- @param config_files table List of config file names
+--- @param field string Field name to check for in package.json (e.g., 'eslintConfig')
+--- @param filepath string Path to start searching from
+--- @return table Extended list of config files
+local function insert_package_json(config_files, field, filepath)
+  local package_json_path = vim.fs.find('package.json', {
+    path = filepath,
+    upward = true,
+    limit = 1,
+  })[1]
+
+  if not package_json_path then
+    return config_files
+  end
+
+  local ok, content = pcall(vim.fn.readfile, package_json_path)
+  if not ok then
+    return config_files
+  end
+
+  local json_ok, data = pcall(vim.json.decode, table.concat(content, '\n'))
+  if json_ok and data[field] ~= nil then
+    local result = vim.list_extend({}, config_files)
+    table.insert(result, 'package.json')
+    return result
+  end
+
+  return config_files
+end
+
 local lsp = vim.lsp
 
 return {
@@ -80,7 +110,7 @@ return {
     }
 
     local fname = vim.api.nvim_buf_get_name(bufnr)
-    root_file_patterns = util.insert_package_json(root_file_patterns, 'eslintConfig', fname)
+    root_file_patterns = insert_package_json(root_file_patterns, 'eslintConfig', fname)
     on_dir(vim.fs.dirname(vim.fs.find(root_file_patterns, { path = fname, upward = true })[1]))
   end,
   -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
