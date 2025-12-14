@@ -1,9 +1,4 @@
 return {
-  {
-    'Yuki-bun/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {},
-  },
   { 'windwp/nvim-ts-autotag', event = 'InsertEnter', opts = {} },
   {
     'eero-lehtinen/oklch-color-picker.nvim',
