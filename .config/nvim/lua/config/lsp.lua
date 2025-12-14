@@ -15,6 +15,7 @@ vim.lsp.enable {
   'astro',
   'tailwindcss',
   'eslint',
+  'tsgo',
 }
 
 vim.diagnostic.config {
