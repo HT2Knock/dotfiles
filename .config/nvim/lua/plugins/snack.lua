@@ -37,6 +37,20 @@ local keymaps = {
     end,
     desc = 'Buffers',
   },
+  {
+    '<leader>:',
+    function()
+      Snacks.picker.command_history()
+    end,
+    desc = 'Command History',
+  },
+  {
+    '<leader>e',
+    function()
+      Snacks.explorer()
+    end,
+    desc = 'File Explorer',
+  },
   -- File operations (f prefix)
   {
     '<leader>fc',
