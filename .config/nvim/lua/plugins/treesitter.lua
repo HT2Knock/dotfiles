@@ -3,6 +3,9 @@ return {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
     build = ':TSUpdate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-context',
+    },
   },
   {
     'MeanderingProgrammer/treesitter-modules.nvim',
@@ -19,6 +22,8 @@ return {
         'html',
         'css',
         'lua',
+        'tsx',
+        'json',
         'luadoc',
         'markdown',
         'markdown_inline',

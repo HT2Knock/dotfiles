@@ -5,10 +5,6 @@ return {
     opts = {},
   },
   {
-    'Bekaboo/dropbar.nvim',
-    opts = {},
-  },
-  {
     'saxon1964/neovim-tips',
     version = '*',
     dependencies = {
