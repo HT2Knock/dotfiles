@@ -26,7 +26,8 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 # open with nvim
-alias v='nvim "$(fzf --preview "bat --style=numbers --color=always --line-range :50 {}")"'
+alias v='nvim'
+alias vfuzz='nvim "$(fzf --preview "bat --style=numbers --color=always --line-range :50 {}")"'
 
 # choose open sessions
 alias tsa="~/dotfiles/scripts/tmux-sesh.sh"

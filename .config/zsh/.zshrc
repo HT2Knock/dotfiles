@@ -49,7 +49,7 @@ zinit cdreplay -q
 # Key bindings
 bindkey -v
 bindkey -s '^o' 'y\n'
-bindkey -s '^v' 'v\n'
+bindkey -s '^v' 'vfuzz\n'
 bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-backward
