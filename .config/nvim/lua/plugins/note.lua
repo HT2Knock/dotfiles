@@ -39,6 +39,12 @@ return {
           tomorrow = function()
             return os.date('%Y-%m-%d', os.time() + 86400)
           end,
+          year = function()
+            return os.date '%Y'
+          end,
+          month = function()
+            return os.date '%m'
+          end,
         },
         customizations = {
           weekly_review = {
