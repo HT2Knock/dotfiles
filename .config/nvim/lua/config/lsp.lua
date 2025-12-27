@@ -2,6 +2,7 @@ vim.lsp.enable {
   'lua_ls',
   'stylua',
   'gopls',
+  'templ',
   'ruff',
   'rumdl',
   'harper_ls',
