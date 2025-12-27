@@ -43,6 +43,8 @@ zinit snippet OMZP::command-not-found
 zinit snippet OMZP::ssh-agent
 
 autoload -Uz compinit
+autoload -Uz edit-command-line
+zle -N edit-command-line
 compinit
 zinit cdreplay -q
 
@@ -50,6 +52,7 @@ zinit cdreplay -q
 bindkey -v
 bindkey -s '^o' 'y\n'
 bindkey -s '^v' 'vfuzz\n'
+bindkey '^x^e' edit-command-line
 bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-backward
