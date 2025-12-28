@@ -1,5 +1,10 @@
 return {
   {
+    'esmuellert/vscode-diff.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim' },
+    cmd = 'CodeDiff',
+  },
+  {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     opts = {},
