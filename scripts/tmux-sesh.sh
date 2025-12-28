@@ -2,7 +2,9 @@
 
 set -euo pipefail
 
-if ! sesh list --icons | grep -q .; then
+session_list=$(sesh list --icons)
+
+if [[ -z "$session_list" ]]; then
     echo "No sessions available" >&2
     exit 0
 fi
