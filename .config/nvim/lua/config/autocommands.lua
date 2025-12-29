@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Turn on spell check for text file',
-  pattern = { 'markdown', 'text' },
+  pattern = { 'markdown' },
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.textwidth = 80
