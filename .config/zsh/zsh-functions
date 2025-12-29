@@ -46,11 +46,20 @@ function jtoday() {
         return 1
     fi
 
-    pushd "$notes_dir" >/dev/null || return 1
-
     nvim \
         +":lua require('lazy').load({plugins = {'obsidian.nvim'}})" \
         +":Obsidian today"
+}
 
-    popd >/dev/null || return 1
+function calendar() {
+    local file_path=~/workspace/github.com/T2Knock/JT-notes/calendar.txt
+
+    if [[ ! -f "$file_path" ]]; then
+        echo "Error: Calendar file not found at $file_path" >&2
+        return 1
+    fi
+
+    local line_number=$(rg --line-number "$(date -I)" "$file_path" | cut -d: -f1 | head -n 1)
+
+    nvim "$file_path" +$line_number
 }
