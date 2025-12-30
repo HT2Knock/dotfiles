@@ -14,3 +14,12 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.textwidth = 80
   end,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Turn on preference for text file',
+  pattern = { 'text' },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.wrap = false
+  end,
+})
