@@ -31,7 +31,6 @@ return {
     'java',
     'javascript',
     'lua',
-    'text',
     'markdown',
     'nix',
     'python',
