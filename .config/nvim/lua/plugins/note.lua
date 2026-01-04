@@ -57,7 +57,7 @@ return {
         },
       },
       attachments = {
-        img_folder = 'resources/imgs',
+        folder = 'resources/imgs',
       },
       legacy_commands = false,
       ui = {
