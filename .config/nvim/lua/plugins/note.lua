@@ -72,6 +72,7 @@ return {
         local name = title:lower():gsub('[^%w%s_-]', ''):gsub('%s+', '_')
         return name
       end,
+      footer = { enabled = false },
     },
     keys = {
       { '<leader>nd', '<cmd>Obsidian today<cr>', desc = 'Today Note' },
