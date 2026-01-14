@@ -19,8 +19,8 @@ return {
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = lint_augroup,
       callback = function()
-        -- Only lint if buffer is modifiable and has a filetype
-        if vim.bo.modifiable and vim.bo.filetype ~= '' then
+        local path = vim.fn.expand '%:p'
+        if not path:find 'leetcode' and vim.bo.modifiable and vim.bo.filetype ~= '' then
           lint.try_lint()
         end
       end,
