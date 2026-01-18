@@ -40,7 +40,7 @@ local keymaps = {
   {
     '<leader>:',
     function()
-      Snacks.picker.command_history()
+      require('snacks').picker.command_history()
     end,
     desc = 'Command History',
   },

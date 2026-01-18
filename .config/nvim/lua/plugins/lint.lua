@@ -6,7 +6,7 @@ return {
 
     lint.linters_by_ft = {
       python = { 'ruff' },
-      go = { 'golangcilint' },
+      go = { 'golangci-lint' },
 
       sh = { 'shellcheck' },
       bash = { 'shellcheck' },
