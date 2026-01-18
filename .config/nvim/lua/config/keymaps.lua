@@ -53,3 +53,32 @@ vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true,
 vim.keymap.set('n', '[;', function()
   require('treesitter-context').go_to_context(vim.v.count1)
 end, { desc = 'Go upward in context', silent = true })
+
+-- text object
+vim.keymap.set({ 'x', 'o' }, 'af', function()
+  require('nvim-treesitter-textobjects.select').select_textobject('@function.outer', 'textobjects')
+end)
+vim.keymap.set({ 'x', 'o' }, 'if', function()
+  require('nvim-treesitter-textobjects.select').select_textobject('@function.inner', 'textobjects')
+end)
+
+vim.keymap.set({ 'x', 'o' }, 'ab', function()
+  require('nvim-treesitter-textobjects.select').select_textobject('@block.outer', 'textobjects')
+end)
+vim.keymap.set({ 'x', 'o' }, 'ib', function()
+  require('nvim-treesitter-textobjects.select').select_textobject('@block.inner', 'textobjects')
+end)
+
+vim.keymap.set({ 'x', 'o' }, 'al', function()
+  require('nvim-treesitter-textobjects.select').select_textobject('@loop.outer', 'textobjects')
+end)
+vim.keymap.set({ 'x', 'o' }, 'il', function()
+  require('nvim-treesitter-textobjects.select').select_textobject('@loop.inner', 'textobjects')
+end)
+
+vim.keymap.set({ 'x', 'o' }, 'aa', function()
+  require('nvim-treesitter-textobjects.select').select_textobject('@parameter.outer', 'textobjects')
+end)
+vim.keymap.set({ 'x', 'o' }, 'ia', function()
+  require('nvim-treesitter-textobjects.select').select_textobject('@parameter.inner', 'textobjects')
+end)
