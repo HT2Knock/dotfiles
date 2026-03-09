@@ -10,3 +10,4 @@ ftplugin
 .config/lazydocker/state.yml
 .config/pgcli/log
 .config/pgcli/history
+.config/fcitx5/conf/cached_layouts
