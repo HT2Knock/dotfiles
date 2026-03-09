@@ -32,6 +32,7 @@ return {
     'javascript',
     'lua',
     'markdown',
+    'yaml',
     'nix',
     'python',
     'ruby',
