@@ -220,7 +220,7 @@ local keymaps = {
   {
     '<leader>sg',
     function()
-      require('snacks').picker.grep()
+      require('snacks').picker.grep { hidden = true }
     end,
     desc = 'Grep',
   },
