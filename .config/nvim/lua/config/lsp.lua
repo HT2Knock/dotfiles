@@ -76,5 +76,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end,
       })
     end
+
+    local buf_name = vim.api.nvim_buf_get_name(event.buf)
+    if vim.bo.filetype == 'markdown' and buf_name:find 'notes' == nil then
+      vim.diagnostic.enable(false, { bufnr = event.buf })
+    end
   end,
 })
