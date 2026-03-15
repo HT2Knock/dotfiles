@@ -10,6 +10,7 @@ shell-integration-features = no-cursor
 mouse-hide-while-typing = true
 
 # Keybinds
+keybind = ctrl+enter=ignore
 keybind = ctrl+a>n=next_tab
 keybind = ctrl+a>p=previous_tab
 keybind = ctrl+a>c=new_tab
