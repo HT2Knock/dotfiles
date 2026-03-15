@@ -2,6 +2,7 @@
 theme = TokyoNight Night
 background-opacity = 0.9
 background-blur = true
+custom-shader = cursor_warp.glsl 
 
 # Appearance
 window-padding-x = 4
