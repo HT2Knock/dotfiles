@@ -4,7 +4,6 @@ background-opacity = 0.9
 background-blur = true
 
 # Appearance
-gtk-wide-tabs = false
 window-padding-x = 4
 window-padding-y = 4
 shell-integration-features = no-cursor
