@@ -1,7 +1,7 @@
 # Theme
 theme = TokyoNight Night
 background-opacity = 0.9
-
+background-blur = true
 
 # Appearance
 gtk-wide-tabs = false
@@ -9,3 +9,35 @@ window-padding-x = 4
 window-padding-y = 4
 shell-integration-features = no-cursor
 mouse-hide-while-typing = true
+
+# Keybinds
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
+keybind = ctrl+a>c=new_tab
+
+keybind = ctrl+a>-=new_split
+keybind = ctrl+a>h=goto_split:left
+keybind = ctrl+a>j=goto_split:bottom
+keybind = ctrl+a>k=goto_split:top
+keybind = ctrl+a>l=goto_split:right
+
+# Scroll mode
+keybind = ctrl+a>[=activate_key_table:scroll
+
+keybind = scroll/j=scroll_page_lines:+10
+keybind = scroll/k=scroll_page_lines:-10
+keybind = scroll/ctrl+u=scroll_page_up
+keybind = scroll/ctrl+d=scroll_page_down
+keybind = scroll/escape=deactivate_key_table
+keybind = scroll/catch_all=ignore
+
+# Resize mode
+keybind = ctrl+a>r=activate_key_table:resize
+
+keybind = resize/arrow_up=resize_split:up,10
+keybind = resize/arrow_down=resize_split:down,10
+keybind = resize/arrow_left=resize_split:left,10
+keybind = resize/arrow_right=resize_split:right,10
+keybind = resize/escape=deactivate_key_table
+keybind = resize/catch_all=ignore
+
