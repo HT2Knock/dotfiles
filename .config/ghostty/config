@@ -19,6 +19,7 @@ keybind = ctrl+a>h=goto_split:left
 keybind = ctrl+a>j=goto_split:bottom
 keybind = ctrl+a>k=goto_split:top
 keybind = ctrl+a>l=goto_split:right
+keybind = ctrl+a>o=write_scrollback_file:copy
 
 # Scroll mode
 keybind = ctrl+a>[=activate_key_table:scroll
