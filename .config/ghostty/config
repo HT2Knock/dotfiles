@@ -2,20 +2,10 @@
 theme = TokyoNight Night
 background-opacity = 0.9
 
-# Font
-bold-is-bright = true
 
 # Appearance
-gtk-titlebar = false
-gtk-single-instance = true
 gtk-wide-tabs = false
-window-decoration = server
+window-padding-x = 4
 window-padding-y = 4
-window-padding-x = 2
-window-padding-balance = true
-cursor-style = block
-
-# Other
+shell-integration-features = no-cursor
 mouse-hide-while-typing = true
-shell-integration-features = no-cursor,sudo,no-title
-confirm-close-surface = false
