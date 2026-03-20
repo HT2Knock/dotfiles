@@ -2,11 +2,10 @@
 theme = TokyoNight Night
 background-opacity = 0.9
 background-blur = true
-custom-shader = cursor_warp.glsl 
 
 # Appearance
-window-padding-x = 4
-window-padding-y = 4
+window-padding-y = 4,2
+window-padding-balance = true
 shell-integration-features = no-cursor
 mouse-hide-while-typing = true
 
@@ -42,4 +41,3 @@ keybind = resize/arrow_left=resize_split:left,10
 keybind = resize/arrow_right=resize_split:right,10
 keybind = resize/escape=deactivate_key_table
 keybind = resize/catch_all=ignore
-
