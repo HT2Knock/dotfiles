@@ -14,6 +14,7 @@ keybind = ctrl+enter=ignore
 keybind = ctrl+a>n=next_tab
 keybind = ctrl+a>p=previous_tab
 keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>t=prompt_tab_title
 
 keybind = ctrl+a>-=new_split
 keybind = ctrl+a>h=goto_split:left
