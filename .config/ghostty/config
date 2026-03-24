@@ -4,6 +4,7 @@ background-opacity = 0.9
 background-blur = true
 
 # Appearance
+window-padding-y = 4,0
 window-padding-balance = true
 shell-integration-features = no-cursor
 mouse-hide-while-typing = true
