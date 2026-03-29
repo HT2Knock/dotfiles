@@ -30,7 +30,7 @@ return {
       html = { 'prettier' },
       yaml = { 'prettier' },
       astro = { 'prettier' },
-      go = { 'gofumpt' },
+      go = { 'gofumpt', 'goimports' },
       sql = { 'sleek' },
       sh = { 'shfmt' },
     },
