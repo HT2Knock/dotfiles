@@ -30,15 +30,16 @@
 --- Messages handled in lspconfig: `eslint/openDoc`, `eslint/confirmESLintExecution`, `eslint/probeFailed`, `eslint/noLibrary`
 ---
 --- Additional messages you can handle: `eslint/noConfig`
+---
+--- ### Monorepo support
+---
+--- `vscode-eslint-language-server` supports monorepos by default. It will automatically find the config file corresponding to the package you are working on.
 
---- Insert package.json into config files list if it contains the specified field
---- @param config_files table List of config file names
---- @param field string Field name to check for in package.json (e.g., 'eslintConfig')
---- @param filepath string Path to start searching from
---- @return table Extended list of config files
-local function insert_package_json(config_files, field, filepath)
+local lsp = vim.lsp
+
+local function insert_package_json(config_files, field, fname)
   local package_json_path = vim.fs.find('package.json', {
-    path = filepath,
+    path = fname,
     upward = true,
     limit = 1,
   })[1]
@@ -62,17 +63,29 @@ local function insert_package_json(config_files, field, filepath)
   return config_files
 end
 
-local lsp = vim.lsp
+local eslint_config_files = {
+  '.eslintrc',
+  '.eslintrc.js',
+  '.eslintrc.cjs',
+  '.eslintrc.yaml',
+  '.eslintrc.yml',
+  '.eslintrc.json',
+  'eslint.config.js',
+  'eslint.config.mjs',
+  'eslint.config.cjs',
+  'eslint.config.ts',
+  'eslint.config.mts',
+  'eslint.config.cts',
+}
 
+---@type vim.lsp.Config
 return {
   cmd = { 'vscode-eslint-language-server', '--stdio' },
   filetypes = {
     'javascript',
     'javascriptreact',
-    'javascript.jsx',
     'typescript',
     'typescriptreact',
-    'typescript.tsx',
     'vue',
     'svelte',
     'astro',
@@ -80,7 +93,7 @@ return {
   },
   workspace_required = true,
   on_attach = function(client, bufnr)
-    vim.api.nvim_buf_create_user_command(0, 'LspEslintFixAll', function()
+    vim.api.nvim_buf_create_user_command(bufnr, 'LspEslintFixAll', function()
       client:request_sync('workspace/executeCommand', {
         command = 'eslint.applyAllFixes',
         arguments = {
@@ -92,35 +105,37 @@ return {
       }, nil, bufnr)
     end, {})
   end,
-  -- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
   root_dir = function(bufnr, on_dir)
-    local root_file_patterns = {
-      '.eslintrc',
-      '.eslintrc.js',
-      '.eslintrc.cjs',
-      '.eslintrc.yaml',
-      '.eslintrc.yml',
-      '.eslintrc.json',
-      'eslint.config.js',
-      'eslint.config.mjs',
-      'eslint.config.cjs',
-      'eslint.config.ts',
-      'eslint.config.mts',
-      'eslint.config.cts',
-    }
+    local root_markers = { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock' }
+    root_markers = vim.fn.has('nvim-0.11.3') == 1 and { root_markers, { '.git' } }
+      or vim.list_extend(root_markers, { '.git' })
 
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    root_file_patterns = insert_package_json(root_file_patterns, 'eslintConfig', fname)
-    on_dir(vim.fs.dirname(vim.fs.find(root_file_patterns, { path = fname, upward = true })[1]))
+    if vim.fs.root(bufnr, { 'deno.json', 'deno.jsonc', 'deno.lock' }) then
+      return
+    end
+
+    local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
+
+    local filename = vim.api.nvim_buf_get_name(bufnr)
+    local eslint_config_files_with_package_json = insert_package_json(eslint_config_files, 'eslintConfig', filename)
+    local is_buffer_using_eslint = vim.fs.find(eslint_config_files_with_package_json, {
+      path = filename,
+      type = 'file',
+      limit = 1,
+      upward = true,
+      stop = vim.fs.dirname(project_root),
+    })[1]
+    if not is_buffer_using_eslint then
+      return
+    end
+
+    on_dir(project_root)
   end,
-  -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
   settings = {
     validate = 'on',
     packageManager = nil,
     useESLintClass = false,
-    experimental = {
-      useFlatConfig = false,
-    },
+    experimental = {},
     codeActionOnSave = {
       enable = false,
       mode = 'all',
@@ -133,11 +148,8 @@ return {
     problems = {
       shortenToSingleLine = false,
     },
-    -- nodePath configures the directory in which the eslint server should start its node_modules resolution.
-    -- This path is relative to the workspace folder (root dir) of the server instance.
     nodePath = '',
-    -- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
-    workingDirectory = { mode = 'location' },
+    workingDirectory = { mode = 'auto' },
     codeAction = {
       disableRuleComment = {
         enable = true,
@@ -149,9 +161,6 @@ return {
     },
   },
   before_init = function(_, config)
-    -- The "workspaceFolder" is a VSCode concept. It limits how far the
-    -- server will traverse the file system when locating the ESLint config
-    -- file (e.g., .eslintrc).
     local root_dir = config.root_dir
 
     if root_dir then
@@ -161,30 +170,10 @@ return {
         name = vim.fn.fnamemodify(root_dir, ':t'),
       }
 
-      -- Support flat config
-      local flat_config_files = {
-        'eslint.config.js',
-        'eslint.config.mjs',
-        'eslint.config.cjs',
-        'eslint.config.ts',
-        'eslint.config.mts',
-        'eslint.config.cts',
-      }
-
-      for _, file in ipairs(flat_config_files) do
-        if vim.fn.filereadable(root_dir .. '/' .. file) == 1 then
-          config.settings.experimental = config.settings.experimental or {}
-          config.settings.experimental.useFlatConfig = true
-          break
-        end
-      end
-
-      -- Support Yarn2 (PnP) projects
       local pnp_cjs = root_dir .. '/.pnp.cjs'
       local pnp_js = root_dir .. '/.pnp.js'
-      if vim.uv.fs_stat(pnp_cjs) or vim.uv.fs_stat(pnp_js) then
-        local cmd = config.cmd
-        config.cmd = vim.list_extend({ 'yarn', 'exec' }, cmd)
+      if type(config.cmd) == 'table' and (vim.uv.fs_stat(pnp_cjs) or vim.uv.fs_stat(pnp_js)) then
+        config.cmd = vim.list_extend({ 'yarn', 'exec' }, config.cmd)
       end
     end
   end,
@@ -199,7 +188,7 @@ return {
       if not result then
         return
       end
-      return 4 -- approved
+      return 4
     end,
     ['eslint/probeFailed'] = function()
       vim.notify('[lspconfig] ESLint probe failed.', vim.log.levels.WARN)
