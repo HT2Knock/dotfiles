@@ -361,6 +361,13 @@ local keymaps = {
     end,
     desc = 'Goto T[y]pe Definition',
   },
+  {
+    '<C-/>',
+    function()
+      require('snacks').terminal.toggle()
+    end,
+    desc = 'Toggle Terminal',
+  },
 }
 
 return {
@@ -377,6 +384,7 @@ return {
     explorer = { enabled = true },
     toggle = { enabled = true },
     input = { enabled = true },
+    terminal = { enabled = true },
     words = { enabled = true },
     quickfile = { enabled = true },
     rename = { enabled = true },
