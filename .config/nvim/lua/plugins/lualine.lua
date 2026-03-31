@@ -34,6 +34,7 @@ return {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         theme = custom_tokyonight,
+        disabled_filetypes = { 'snacks_terminal' },
       },
       sections = {
         lualine_b = {
