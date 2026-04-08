@@ -32,6 +32,7 @@ keybind = scroll/k=scroll_page_lines:-10
 keybind = scroll/ctrl+u=scroll_page_up
 keybind = scroll/ctrl+d=scroll_page_down
 keybind = scroll/escape=deactivate_key_table
+keybind = scroll/q=deactivate_key_table
 keybind = scroll/catch_all=ignore
 
 # Resize mode
