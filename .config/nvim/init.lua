@@ -3,6 +3,7 @@ require 'config.lazy'
 require 'config.lsp'
 require 'config.keymaps'
 require 'config.autocommands'
+require('vim._core.ui2').enable()
 
 -- Setting
 vim.cmd [[colorscheme tokyonight]]
