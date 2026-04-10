@@ -47,7 +47,7 @@ local keymaps = {
   {
     '<leader>e',
     function()
-      Snacks.explorer()
+      Snacks.explorer { hidden = true }
     end,
     desc = 'File Explorer',
   },
@@ -69,7 +69,7 @@ local keymaps = {
   {
     '<leader>ff',
     function()
-      require('snacks').picker.files()
+      require('snacks').picker.files { hidden = true }
     end,
     desc = 'Find Files',
   },
