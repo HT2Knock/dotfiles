@@ -8,7 +8,7 @@ return {
     local linter_progress = function()
       local linters = require('lint').get_running()
       if #linters == 0 then
-        return ' '
+        return ''
       end
 
       return '󱉶 ' .. table.concat(linters, ', ')
@@ -18,7 +18,7 @@ return {
       local running_formatters = require('conform').list_formatters_to_run()
 
       if not running_formatters or #running_formatters == 0 then
-        return '  '
+        return ''
       end
 
       local formatter_names = {}

@@ -9,15 +9,6 @@ return {
     opts = {},
   },
   {
-    'saxon1964/neovim-tips',
-    version = '*',
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-      'MeanderingProgrammer/render-markdown.nvim',
-    },
-    opts = {},
-  },
-  {
     'MagicDuck/grug-far.nvim',
     opts = {},
   },

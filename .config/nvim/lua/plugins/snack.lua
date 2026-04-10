@@ -1,5 +1,5 @@
 local function setup_toggles()
-  require('snacks').toggle
+  Snacks.toggle
     .new({
       id = 'gitsigns_blame',
       name = ' Gitsigns Blame',
@@ -12,12 +12,11 @@ local function setup_toggles()
     })
     :map '<leader>tb'
 
-  require('snacks').toggle.inlay_hints({ name = '󱄽 Inlay Hint' }):map '<leader>th'
-  require('snacks').toggle.option('spell', { name = '󰓆 Spell Checking' }):map '<leader>ts'
-  require('snacks').toggle.option('wrap', { name = '󰖶 Wrap Long Lines' }):map '<leader>tw'
-  require('snacks').toggle.diagnostics({ name = ' Diagnostics' }):map '<leader>tD'
-  require('snacks').toggle.treesitter({ name = ' Treesitter Highlighting' }):map '<leader>tt'
-  require('snacks').toggle.zen():map '<leader>tz'
+  Snacks.toggle.inlay_hints({ name = '󱄽 Inlay Hint' }):map '<leader>th'
+  Snacks.toggle.option('spell', { name = '󰓆 Spell Checking' }):map '<leader>ts'
+  Snacks.toggle.option('wrap', { name = '󰖶 Wrap Long Lines' }):map '<leader>tw'
+  Snacks.toggle.diagnostics({ name = ' Diagnostics' }):map '<leader>tD'
+  Snacks.toggle.treesitter({ name = ' Treesitter Highlighting' }):map '<leader>tt'
 end
 
 -- Keymap configurations organized by category
@@ -26,21 +25,21 @@ local keymaps = {
   {
     '<leader><space>',
     function()
-      require('snacks').picker.smart()
+      Snacks.picker.smart()
     end,
     desc = 'Smart Find Files',
   },
   {
     '<leader>,',
     function()
-      require('snacks').picker.buffers { focus = 'list' }
+      Snacks.picker.buffers { focus = 'list' }
     end,
     desc = 'Buffers',
   },
   {
     '<leader>:',
     function()
-      require('snacks').picker.command_history()
+      Snacks.picker.command_history()
     end,
     desc = 'Command History',
   },
@@ -55,42 +54,42 @@ local keymaps = {
   {
     '<leader>fc',
     function()
-      require('snacks').picker.files { cwd = vim.fn.stdpath 'config' }
+      Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
     end,
     desc = 'Find Config File',
   },
   {
     '<leader>fC',
     function()
-      require('snacks').picker.colorschemes()
+      Snacks.picker.colorschemes()
     end,
     desc = 'Colorschemes',
   },
   {
     '<leader>ff',
     function()
-      require('snacks').picker.files { hidden = true }
+      Snacks.picker.files { hidden = true }
     end,
     desc = 'Find Files',
   },
   {
     '<leader>fg',
     function()
-      require('snacks').picker.git_files()
+      Snacks.picker.git_files()
     end,
     desc = 'Find Git Files',
   },
   {
     '<leader>fp',
     function()
-      require('snacks').picker.files { cwd = vim.fs.joinpath(vim.fn.stdpath 'data', 'lazy') }
+      Snacks.picker.files { cwd = vim.fs.joinpath(vim.fn.stdpath 'data', 'lazy') }
     end,
     desc = 'Search for packages',
   },
   {
     '<leader>fr',
     function()
-      require('snacks').picker.recent()
+      Snacks.picker.recent()
     end,
     desc = 'Recent',
   },
@@ -99,56 +98,56 @@ local keymaps = {
   {
     '<leader>gg',
     function()
-      require('snacks').lazygit()
+      Snacks.lazygit()
     end,
     desc = 'Lazygit',
   },
   {
     '<leader>gb',
     function()
-      require('snacks').picker.git_branches()
+      Snacks.picker.git_branches()
     end,
     desc = 'Git Branches',
   },
   {
     '<leader>gl',
     function()
-      require('snacks').picker.git_log()
+      Snacks.picker.git_log()
     end,
     desc = 'Git Log',
   },
   {
     '<leader>gL',
     function()
-      require('snacks').picker.git_log_line()
+      Snacks.picker.git_log_line()
     end,
     desc = 'Git Log Line',
   },
   {
     '<leader>gs',
     function()
-      require('snacks').picker.git_status()
+      Snacks.picker.git_status()
     end,
     desc = 'Git Status',
   },
   {
     '<leader>gS',
     function()
-      require('snacks').picker.git_stash()
+      Snacks.picker.git_stash()
     end,
     desc = 'Git Stash',
   },
   {
     '<leader>gd',
     function()
-      require('snacks').picker.git_diff()
+      Snacks.picker.git_diff()
     end,
     desc = 'Git Diff (Hunks)',
   },
   {
     '<leader>gf',
     function()
-      require('snacks').picker.git_log_file()
+      Snacks.picker.git_log_file()
     end,
     desc = 'Git Log File',
   },
@@ -157,192 +156,206 @@ local keymaps = {
   {
     '<leader>s"',
     function()
-      require('snacks').picker.registers()
+      Snacks.picker.registers()
     end,
     desc = 'Registers',
   },
   {
     '<leader>s/',
     function()
-      require('snacks').picker.search_history()
+      Snacks.picker.search_history()
     end,
     desc = 'Search History',
   },
   {
     '<leader>sa',
     function()
-      require('snacks').picker.autocmds()
+      Snacks.picker.autocmds()
     end,
     desc = 'Autocmds',
   },
   {
     '<leader>sb',
     function()
-      require('snacks').picker.lines()
+      Snacks.picker.lines()
     end,
     desc = 'Buffer Lines',
   },
   {
     '<leader>sB',
     function()
-      require('snacks').picker.grep_buffers()
+      Snacks.picker.grep_buffers()
     end,
     desc = 'Grep Open Buffers',
   },
   {
     '<leader>sc',
     function()
-      require('snacks').picker.command_history()
+      Snacks.picker.command_history()
     end,
     desc = 'Command History',
   },
   {
     '<leader>sC',
     function()
-      require('snacks').picker.commands()
+      Snacks.picker.commands()
     end,
     desc = 'Commands',
   },
   {
     '<leader>sd',
     function()
-      require('snacks').picker.diagnostics()
+      Snacks.picker.diagnostics()
     end,
     desc = 'Diagnostics',
   },
   {
     '<leader>sD',
     function()
-      require('snacks').picker.diagnostics_buffer()
+      Snacks.picker.diagnostics_buffer()
     end,
     desc = 'Buffer Diagnostics',
   },
   {
     '<leader>sg',
     function()
-      require('snacks').picker.grep { hidden = true }
+      Snacks.picker.grep { hidden = true }
     end,
     desc = 'Grep',
   },
   {
     '<leader>sh',
     function()
-      require('snacks').picker.help()
+      Snacks.picker.help()
     end,
     desc = 'Help Pages',
   },
   {
     '<leader>sH',
     function()
-      require('snacks').picker.highlights()
+      Snacks.picker.highlights()
     end,
     desc = 'Highlights',
   },
   {
     '<leader>si',
     function()
-      require('snacks').picker.icons()
+      Snacks.picker.icons()
     end,
     desc = 'Icons',
   },
   {
     '<leader>sj',
     function()
-      require('snacks').picker.jumps()
+      Snacks.picker.jumps()
     end,
     desc = 'Jumps',
   },
   {
     '<leader>sk',
     function()
-      require('snacks').picker.keymaps()
+      Snacks.picker.keymaps()
     end,
     desc = 'Keymaps',
   },
   {
     '<leader>sl',
     function()
-      require('snacks').picker.loclist()
+      Snacks.picker.loclist()
     end,
     desc = 'Location List',
   },
   {
     '<leader>sm',
     function()
-      require('snacks').picker.marks()
+      Snacks.picker.marks()
     end,
     desc = 'Marks',
   },
   {
     '<leader>sM',
     function()
-      require('snacks').picker.man()
+      Snacks.picker.man()
     end,
     desc = 'Man Pages',
   },
   {
     '<leader>sq',
     function()
-      require('snacks').picker.qflist()
+      Snacks.picker.qflist()
     end,
     desc = 'Quickfix List',
   },
   {
     '<leader>sR',
     function()
-      require('snacks').picker.resume()
+      Snacks.picker.resume()
     end,
     desc = 'Resume',
   },
   {
     '<leader>ss',
     function()
-      require('snacks').picker.lsp_symbols()
+      Snacks.picker.lsp_symbols()
     end,
     desc = 'LSP Symbols',
   },
   {
     '<leader>sS',
     function()
-      require('snacks').picker.lsp_workspace_symbols()
+      Snacks.picker.lsp_workspace_symbols()
     end,
     desc = 'LSP Workspace Symbols',
   },
   {
     '<leader>su',
     function()
-      require('snacks').picker.undo()
+      Snacks.picker.undo()
     end,
     desc = 'Undo History',
   },
   {
     '<leader>sw',
     function()
-      require('snacks').picker.grep_word()
+      Snacks.picker.grep_word()
     end,
     desc = 'Visual selection or word',
     mode = { 'n', 'x' },
+  },
+  {
+    '<leader>st',
+    function()
+      Snacks.picker.todo_comments()
+    end,
+    desc = 'Todo',
+  },
+  {
+    '<leader>sT',
+    function()
+      Snacks.picker.todo_comments { keywords = { 'TODO', 'FIX', 'FIXME' } }
+    end,
+    desc = 'Todo/Fix/Fixme',
   },
 
   -- LSP operations
   {
     'gd',
     function()
-      require('snacks').picker.lsp_definitions()
+      Snacks.picker.lsp_definitions()
     end,
     desc = 'Goto Definition',
   },
   {
     'gD',
     function()
-      require('snacks').picker.lsp_declarations()
+      Snacks.picker.lsp_declarations()
     end,
     desc = 'Goto Declaration',
   },
   {
     'grr',
     function()
-      require('snacks').picker.lsp_references()
+      Snacks.picker.lsp_references()
     end,
     nowait = true,
     desc = 'References',
@@ -350,21 +363,35 @@ local keymaps = {
   {
     'gri',
     function()
-      require('snacks').picker.lsp_implementations()
+      Snacks.picker.lsp_implementations()
     end,
     desc = 'Goto Implementation',
   },
   {
     'grt',
     function()
-      require('snacks').picker.lsp_type_definitions()
+      Snacks.picker.lsp_type_definitions()
     end,
     desc = 'Goto T[y]pe Definition',
   },
   {
+    'gai',
+    function()
+      Snacks.picker.lsp_incoming_calls()
+    end,
+    desc = 'C[a]lls Incoming',
+  },
+  {
+    'gao',
+    function()
+      Snacks.picker.lsp_outgoing_calls()
+    end,
+    desc = 'C[a]lls Outgoing',
+  },
+  {
     '<C-/>',
     function()
-      require('snacks').terminal.toggle()
+      Snacks.terminal.toggle()
     end,
     desc = 'Toggle Terminal',
   },
@@ -374,29 +401,18 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
-
+  dependencies = { 'folke/todo-comments.nvim', opts = {} },
   opts = {
-    animate = { enabled = true },
     bigfile = { enabled = true },
-    scroll = { enabled = true },
     lazygit = { enabled = true },
     statuscolumn = { enabled = true },
     explorer = { enabled = true },
     toggle = { enabled = true },
-    input = { enabled = true },
     terminal = { enabled = true },
     words = { enabled = true },
     quickfile = { enabled = true },
     rename = { enabled = true },
     health = { enabled = true },
-    zen = {
-      toggles = { dim = false },
-      win = {
-        backdrop = {
-          transparent = false,
-        },
-      },
-    },
     image = {
       enabled = true,
       resolve = function(path, src)
@@ -405,13 +421,12 @@ return {
         end
       end,
     },
-    picker = {},
   },
 
   keys = keymaps,
 
   config = function(_, opts)
-    require('snacks').setup(opts)
+    Snacks.setup(opts)
     setup_toggles()
   end,
 }
