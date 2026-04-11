@@ -421,6 +421,9 @@ return {
         end
       end,
     },
+    picker = {
+      layout = 'ivy',
+    },
   },
 
   keys = keymaps,
