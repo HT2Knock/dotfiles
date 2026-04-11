@@ -10,10 +10,10 @@ vim.cmd [[colorscheme tokyonight]]
 vim.filetype.add {
   extension = {
     http = 'http',
-    env = 'conf',
+    env = 'dosini',
   },
   pattern = {
     ['.*http%-client%.env%.json'] = 'json',
-    ['.*%.env%..+'] = 'conf',
+    ['.*%.env%..+'] = 'dosini',
   },
 }

@@ -1,25 +1,67 @@
+local function augroup(name)
+  return vim.api.nvim_create_augroup('ht2knock_' .. name, { clear = true })
+end
+
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  desc = 'Highlight on yank',
+  group = augroup 'highlight_yank',
   callback = function()
-    vim.hl.on_yank()
+    vim.hl.on_yank { higroup = 'IncSearch', timeout = 200 }
+  end,
+})
+
+vim.api.nvim_create_autocmd('VimResized', {
+  desc = 'Resize splits on terminal resize',
+  group = augroup 'resize_splits',
+  command = 'wincmd =',
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Disable auto-commenting new lines',
+  group = vim.api.nvim_create_augroup('no_auto_comment', { clear = true }),
+  callback = function()
+    vim.schedule(function()
+      vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
+    end)
   end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Turn on spell check for text file',
-  pattern = { 'markdown' },
-  callback = function()
+  desc = 'FileType specific settings',
+  group = augroup 'filetype_settings',
+  pattern = { 'markdown', 'text', 'gitcommit' },
+  callback = function(args)
     vim.opt_local.spell = true
-    vim.opt_local.textwidth = 80
+
+    if vim.bo[args.buf].filetype == 'markdown' then
+      vim.opt_local.textwidth = 80
+    end
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Turn on preference for text file',
-  pattern = { 'text' },
+-- Smart Cursorline (only in active window)
+local cursorline_group = augroup 'active_cursorline'
+vim.api.nvim_create_autocmd({ 'WinEnter', 'BufEnter' }, {
+  group = cursorline_group,
   callback = function()
-    vim.opt_local.spell = true
-    vim.opt_local.wrap = false
+    vim.wo.cursorline = true
+  end,
+})
+vim.api.nvim_create_autocmd({ 'WinLeave', 'BufLeave' }, {
+  group = cursorline_group,
+  callback = function()
+    vim.wo.cursorline = false
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+  desc = 'Return to last edit position',
+  group = augroup 'last_loc',
+  callback = function(args)
+    local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+    if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(args.buf) then
+      vim.api.nvim_win_set_cursor(0, mark)
+      vim.cmd 'normal! zz'
+    end
   end,
 })
