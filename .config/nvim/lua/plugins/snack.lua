@@ -112,7 +112,7 @@ local keymaps = {
   {
     '<leader>gl',
     function()
-      Snacks.picker.git_log()
+      Snacks.lazygit.log()
     end,
     desc = 'Git Log',
   },
@@ -147,7 +147,7 @@ local keymaps = {
   {
     '<leader>gf',
     function()
-      Snacks.picker.git_log_file()
+      Snacks.lazygit.log_file()
     end,
     desc = 'Git Log File',
   },
