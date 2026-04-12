@@ -1,4 +1,5 @@
 return {
+  { 'folke/todo-comments.nvim', opts = {} },
   {
     'esmuellert/vscode-diff.nvim',
     cmd = 'CodeDiff',

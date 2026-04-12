@@ -325,14 +325,14 @@ local keymaps = {
   {
     '<leader>st',
     function()
-      Snacks.picker.todo_comments()
+      Snacks.picker.todo_comments { hidden = true }
     end,
     desc = 'Todo',
   },
   {
     '<leader>sT',
     function()
-      Snacks.picker.todo_comments { keywords = { 'TODO', 'FIX', 'FIXME' } }
+      Snacks.picker.todo_comments { keywords = { 'TODO', 'FIX', 'FIXME' }, hidden = true }
     end,
     desc = 'Todo/Fix/Fixme',
   },
@@ -401,7 +401,6 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
-  dependencies = { 'folke/todo-comments.nvim', opts = {} },
   opts = {
     bigfile = { enabled = true },
     lazygit = { enabled = true },
@@ -420,6 +419,10 @@ return {
           return require('obsidian.api').resolve_image_path(src)
         end
       end,
+    },
+    notifier = {
+      enabled = true,
+      style = 'minimal',
     },
     picker = {
       layout = 'ivy',
