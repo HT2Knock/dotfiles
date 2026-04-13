@@ -27,6 +27,7 @@ return {
       css = { 'prettier' },
       scss = { 'prettier' },
       html = { 'prettier' },
+      markdown = { 'prettier' },
       yaml = { 'prettier' },
       astro = { 'prettier' },
       go = { 'gofumpt' },
