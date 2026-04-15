@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd('VimResized', {
 
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Disable auto-commenting new lines',
-  group = vim.api.nvim_create_augroup('no_auto_comment', { clear = true }),
+  group = augroup 'no_auto_comment',
   callback = function()
     vim.schedule(function()
       vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
@@ -63,5 +63,16 @@ vim.api.nvim_create_autocmd('BufReadPost', {
       vim.api.nvim_win_set_cursor(0, mark)
       vim.cmd 'normal! zz'
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = augroup 'auto_create_dir',
+  callback = function(event)
+    if event.match:match '^%w%w+:[\\/][\\/]' then
+      return
+    end
+    local file = vim.uv.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
