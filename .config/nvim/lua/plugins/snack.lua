@@ -404,6 +404,7 @@ return {
   opts = {
     bigfile = { enabled = true },
     lazygit = { enabled = true },
+    input = { enabled = true },
     statuscolumn = { enabled = true },
     explorer = { enabled = true },
     toggle = { enabled = true },
