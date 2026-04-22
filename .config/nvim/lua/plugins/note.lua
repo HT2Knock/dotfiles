@@ -8,10 +8,6 @@ return {
     'obsidian-nvim/obsidian.nvim',
     version = '*',
     lazy = true,
-    event = {
-      'BufReadPre ' .. vim.fn.expand '~' .. '/workspace/github.com/T2Knock/JT-notes/*.md',
-      'BufNewFile ' .. vim.fn.expand '~' .. '/workspace/github.com/T2Knock/JT-notes/*.md',
-    },
     opts = {
       workspaces = {
         {
@@ -74,6 +70,7 @@ return {
       end,
       footer = { enabled = false },
     },
+    cmd = { 'Obsidian' },
     keys = {
       { '<leader>nd', '<cmd>Obsidian today<cr>', desc = 'Today Note' },
       { '<leader>ny', '<cmd>Obsidian yesterday<cr>', desc = 'Yesteday Note' },
