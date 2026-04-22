@@ -58,3 +58,6 @@ alias port="netstat -tulpn | grep"
 # quick config path
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
 alias tmuxconfig='nvim ~/.config/tmux/tmux.conf'
+
+# today note
+alias ot="nvim '+Obsidian today'"
