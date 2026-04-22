@@ -13,9 +13,9 @@ set_wallpaper() {
     local img="$1"
 
     if [[ "$img" == *.gif ]]; then
-        swww img "$img" --transition-type "random"
+        awww img "$img" --transition-type "random"
     else
-        swww img "$img" --resize "fit" --transition-type "random"
+        awww img "$img" --resize "fit" --transition-type "random"
     fi
 
     echo "$img" >"$STATE_FILE"
@@ -43,11 +43,11 @@ if [[ "$1" == "--next" ]]; then
     exit 0
 fi
 
-echo "Waiting for swww-daemon to start..."
-while ! pgrep -x "swww-daemon" >/dev/null; do
+echo "Waiting for awww-daemon to start..."
+while ! pgrep -x "awww-daemon" >/dev/null; do
     sleep 0.5
 done
-echo "swww-daemon is running. Starting wallpaper rotation."
+echo "awww-daemon is running. Starting wallpaper rotation."
 
 echo $$ >"$PID_FILE"
 
