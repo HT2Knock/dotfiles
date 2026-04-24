@@ -1,11 +1,9 @@
 #!/usr/bin/zsh
 
-# Load source
-source "$ZDOTDIR/zsh-functions"
-zsh_add_file "zsh-exports"
-zsh_add_file "zsh-aliases"
+# =============================================================================
+# ZINIT PLUGIN MANAGER
+# =============================================================================
 
-### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
@@ -18,54 +16,70 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 ((${+_comps})) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
 zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-### End of Zinit's installer chunk
+# =============================================================================
+# COMPLETION SYSTEM
+# =============================================================================
 
-# Add in zsh plugins
+autoload -Uz compinit
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+compinit -C
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+# =============================================================================
+# PLUGINS
+# =============================================================================
+
+# Configure eza BEFORE loading (required)
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'git-status' yes
+zstyle ':omz:plugins:eza' 'header' yes
+zstyle ':omz:plugins:eza' 'icons' yes
+
+zinit snippet OMZP::git
+zinit snippet OMZP::aws
+zinit snippet OMZP::ssh-agent
+zinit snippet OMZP::eza
+
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit load atuinsh/atuin
+zinit light Aloxaf/fzf-tab
+zinit light atuinsh/atuin
 
-# Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::aws
-zinit snippet OMZP::command-not-found
-zinit snippet OMZP::ssh-agent
-
-autoload -Uz compinit
-autoload -Uz edit-command-line
-zle -N edit-command-line
-compinit
 zinit cdreplay -q
 
-# Key bindings
+# =============================================================================
+# KEY BINDINGS
+# =============================================================================
+
 bindkey -v
 bindkey -s '^o' 'y\n'
 bindkey -s '^v' 'nvim "$(p)"\n'
 bindkey '^x^e' edit-command-line
 bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
-bindkey '^n' history-search-backward
+bindkey '^n' history-search-forward
 
-# Completion styling
-zstyle ':completion:*' matcher-list \
-    'm:{a-zA-Z}={A-Za-z}' \
-    'r:|[._-]=** r:|=**' \
-    'l:|=* r:|=*'
-((${+LS_COLORS})) || LS_COLORS=$(dircolors -b)
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu select
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format '%B%d%b'
+# =============================================================================
+# SHELL ENVS
+# =============================================================================
+
+source "$ZDOTDIR/zsh-functions"
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-aliases"
+
+# =============================================================================
+# TOOL INITIALIZATIONS
+# =============================================================================
 
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
