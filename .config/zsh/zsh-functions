@@ -50,3 +50,32 @@ function calendar() {
 
     nvim "$file_path" +$line_number
 }
+
+function get_git_root() {
+    local root=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [[ -n "$root" ]]; then
+        echo "${root:t}"
+    fi
+}
+
+function set_title() {
+    local cmd_name="${1:-zsh}"
+    local git_root=$(get_git_root)
+    local path_display
+
+    if [[ -n "$git_root" ]]; then
+        path_display=" $git_root"
+    else
+        path_display=$(print -P "%3~")
+    fi
+
+    echo -ne "\e]2;${cmd_name} — ${path_display}\a"
+}
+
+preexec() {
+    set_title "${1%% *}"
+}
+
+precmd() {
+    set_title "zsh"
+}
