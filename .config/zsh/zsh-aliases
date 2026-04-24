@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 # shortcut to modern tool
-alias ls="eza --icons --group-directories-first"
 alias lg="lazygit"
 alias lzd="lazydocker"
 
