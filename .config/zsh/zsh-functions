@@ -38,6 +38,12 @@ function y() {
     rm -f -- "$tmp"
 }
 
+function f() {
+    local selected
+    selected=$(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")
+    [[ -n "$selected" ]] && nvim "$selected"
+}
+
 function calendar() {
     local file_path=~/workspace/github.com/T2Knock/JT-notes/calendar.txt
 
