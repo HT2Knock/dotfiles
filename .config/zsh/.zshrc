@@ -1,4 +1,5 @@
 #!/usr/bin/zsh
+# zmodload zsh/zprof
 
 # =============================================================================
 # ZINIT PLUGIN MANAGER
@@ -41,29 +42,20 @@ zstyle ':omz:plugins:eza' 'git-status' yes
 zstyle ':omz:plugins:eza' 'header' yes
 zstyle ':omz:plugins:eza' 'icons' yes
 
-zinit snippet OMZP::git
-zinit snippet OMZP::aws
-zinit snippet OMZP::ssh-agent
-zinit snippet OMZP::eza
+# Load snippets with Turbo Mode
+zinit wait'0' lucid for \
+    OMZP::git \
+    OMZP::aws \
+    OMZP::ssh-agent \
+    OMZP::eza
 
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light Aloxaf/fzf-tab
-zinit light atuinsh/atuin
-
-zinit cdreplay -q
-
-# =============================================================================
-# KEY BINDINGS
-# =============================================================================
-
-ZVM_INIT_MODE=sourcing
-zinit light jeffreytse/zsh-vi-mode
-
-bindkey -s "^o" "y^J"
-bindkey -s "^v" "f^J"
-bindkey "^y" autosuggest-accept
+# Load plugins with Turbo Mode
+zinit wait'0' lucid for \
+    zsh-users/zsh-autosuggestions \
+    zdharma-continuum/fast-syntax-highlighting \
+    zsh-users/zsh-completions \
+    Aloxaf/fzf-tab \
+    atuinsh/atuin
 
 # =============================================================================
 # SHELL OPTIONS
@@ -96,3 +88,22 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd j)"
 eval "$(fzf --zsh)"
 eval "$(uv generate-shell-completion zsh)"
+
+# =============================================================================
+# KEY BINDINGS
+# =============================================================================
+
+# Function to be called after zsh-vi-mode is initialized
+function zvm_after_init() {
+    bindkey -s "^o" "y^J"
+    bindkey -s "^v" "f^J"
+    bindkey "^y" autosuggest-accept
+}
+
+zinit wait'0' lucid for \
+    jeffreytse/zsh-vi-mode
+
+zinit wait'0' lucid atload"zinit cdreplay -q" blockf for \
+    zsh-users/zsh-completions
+
+# zprof
