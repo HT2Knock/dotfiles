@@ -58,10 +58,12 @@ zinit cdreplay -q
 # KEY BINDINGS
 # =============================================================================
 
+ZVM_INIT_MODE=sourcing
 zinit light jeffreytse/zsh-vi-mode
-bindkey -s '^o' 'y\n'
-bindkey -s '^v' 'f\n'
-bindkey '^y' autosuggest-accept
+
+bindkey -s "^o" "y^J"
+bindkey -s "^v" "f^J"
+bindkey "^y" autosuggest-accept
 
 # =============================================================================
 # SHELL OPTIONS
