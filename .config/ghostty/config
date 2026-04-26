@@ -7,7 +7,7 @@ background-blur = true
 window-padding-y = 4,0
 window-padding-balance = true
 mouse-hide-while-typing = true
-shell-integration-features = no-title
+shell-integration-features = no-title, ssh-env, ssh-terminfo
 
 # Keybinds
 keybind = ctrl+enter=ignore

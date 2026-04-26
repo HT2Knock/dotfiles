@@ -31,9 +31,6 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 compinit -C
 
-autoload -Uz edit-command-line
-zle -N edit-command-line
-
 # =============================================================================
 # PLUGINS
 # =============================================================================
@@ -61,17 +58,28 @@ zinit cdreplay -q
 # KEY BINDINGS
 # =============================================================================
 
-bindkey -v
+zinit light jeffreytse/zsh-vi-mode
 bindkey -s '^o' 'y\n'
-bindkey -s '^v' 'nvim "$(p)"\n'
-bindkey '^x^e' edit-command-line
+bindkey -s '^v' 'f\n'
 bindkey '^y' autosuggest-accept
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+
+# =============================================================================
+# SHELL OPTIONS
+# =============================================================================
+
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt SHARE_HISTORY
+setopt AUTO_CD
+setopt GLOB_COMPLETE
+setopt MENU_COMPLETE
 
 # =============================================================================
 # SHELL ENVS
 # =============================================================================
+
+# Ensure cache directory exists
+mkdir -p "$XDG_CACHE_HOME/zsh"
 
 source "$ZDOTDIR/zsh-functions"
 zsh_add_file "zsh-exports"
