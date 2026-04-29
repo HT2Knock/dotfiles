@@ -71,8 +71,8 @@ return {
           variable = '<C-D>v',
         },
         visual = {
-          variable_below = '<Leader>dv',
-          variable_above = '<Leader>dV',
+          plain_below = '<Leader>dp',
+          plain_above = '<Leader>dP',
         },
       },
     },
