@@ -21,7 +21,7 @@ vim.lsp.enable {
 
 vim.diagnostic.config {
   severity_sort = true,
-  virtual_text = true,
+  virtual_text = false,
   float = {
     border = 'rounded',
     source = true,
