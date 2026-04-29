@@ -45,7 +45,7 @@ function f() {
 }
 
 function calendar() {
-    local file_path=~/workspace/github.com/T2Knock/JT-notes/calendar.txt
+    local file_path=~/workspace/github.com/T2Knock/JT-notes/personal/calendar.txt
 
     if [[ ! -f "$file_path" ]]; then
         echo "Error: Calendar file not found at $file_path" >&2
