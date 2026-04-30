@@ -1,7 +1,6 @@
 !colors/astronvim.lua
 *.null-ls*
 colors/*
-docs
 ginit.vim
 lua/user
 ftplugin
