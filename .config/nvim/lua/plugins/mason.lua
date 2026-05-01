@@ -16,6 +16,7 @@ return {
             'gopls',
             'harper-ls',
             'ruff',
+            'ty',
             'taplo',
             'bash-language-server',
             'yaml-language-server',

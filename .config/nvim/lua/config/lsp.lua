@@ -4,6 +4,7 @@ vim.lsp.enable {
   'gopls',
   'templ',
   'ruff',
+  'ty',
   'rumdl',
   'harper_ls',
   'taplo',
