@@ -47,7 +47,8 @@ zinit wait'0' lucid for \
     OMZP::git \
     OMZP::aws \
     OMZP::ssh-agent \
-    OMZP::eza
+    OMZP::eza \
+    OMZP::gcloud
 
 # Load plugins with Turbo Mode
 zinit wait'0' lucid for \
