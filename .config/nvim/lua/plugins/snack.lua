@@ -12,6 +12,23 @@ local function setup_toggles()
     })
     :map '<leader>tb'
 
+  Snacks.toggle
+    .new({
+      id = 'copilot',
+      name = ' Copilot',
+      get = function()
+        local ok, client = pcall(require, 'copilot.client')
+        if ok and client.is_disabled then
+          return not client.is_disabled()
+        end
+        return false
+      end,
+      set = function(state)
+        vim.cmd('Copilot ' .. (state and 'enable' or 'disable'))
+      end,
+    })
+    :map '<leader>tc'
+
   Snacks.toggle.inlay_hints({ name = '󱄽 Inlay Hint' }):map '<leader>th'
   Snacks.toggle.option('spell', { name = '󰓆 Spell Checking' }):map '<leader>ts'
   Snacks.toggle.option('wrap', { name = '󰖶 Wrap Long Lines' }):map '<leader>tw'
