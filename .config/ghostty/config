@@ -5,9 +5,14 @@ background-blur = true
 
 # Appearance
 window-padding-y = 4,0
+window-padding-x = 4
 window-padding-balance = true
-mouse-hide-while-typing = true
 shell-integration-features = no-title, ssh-env, ssh-terminfo
+
+# Behavior 
+notify-on-command-finish = unfocused
+copy-on-select = true
+mouse-hide-while-typing = true
 
 # Keybinds
 keybind = ctrl+enter=ignore
@@ -16,7 +21,8 @@ keybind = ctrl+a>p=previous_tab
 keybind = ctrl+a>c=new_tab
 keybind = ctrl+a>t=prompt_tab_title
 
-keybind = ctrl+a>-=new_split
+keybind = ctrl+a>-=new_split:right
+keybind = ctrl+a>shift+-=new_split:down
 keybind = ctrl+a>h=goto_split:left
 keybind = ctrl+a>j=goto_split:bottom
 keybind = ctrl+a>k=goto_split:top
