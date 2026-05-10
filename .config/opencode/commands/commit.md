@@ -1,7 +1,5 @@
 ---
 description: git commit and push
-model: opencode-go/kimi-k2.5
-subtask: true
 ---
 
 commit and push
@@ -10,10 +8,7 @@ make sure follow pattern from previous commit
 
 !`git show -s --format=%s -10`
 
-For anything in the packages/web use the docs: prefix.
-
-prefer to explain WHY something was done from an end user perspective instead of
-WHAT was done.
+prefer to explain WHY something was done from instead of WHAT was done.
 
 do not do generic messages like "improved agent experience" be very specific
 about changes were made
