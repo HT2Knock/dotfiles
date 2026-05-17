@@ -1,5 +1,4 @@
 #!/usr/bin/zsh
-# zmodload zsh/zprof
 
 # =============================================================================
 # ZINIT PLUGIN MANAGER
@@ -17,12 +16,6 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 ((${+_comps})) && _comps[zinit]=_zinit
 
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
 # =============================================================================
 # COMPLETION SYSTEM
 # =============================================================================
@@ -30,7 +23,7 @@ zinit light-mode for \
 autoload -Uz compinit
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
-compinit -C
+compinit
 
 # =============================================================================
 # PLUGINS
@@ -42,29 +35,30 @@ zstyle ':omz:plugins:eza' 'git-status' yes
 zstyle ':omz:plugins:eza' 'header' yes
 zstyle ':omz:plugins:eza' 'icons' yes
 
-# Load snippets with Turbo Mode
-zinit wait'0' lucid for \
+# OMZ snippets
+zinit for \
     OMZP::git \
     OMZP::aws \
     OMZP::ssh-agent \
     OMZP::eza \
     OMZP::gcloud
 
-# Load plugins with Turbo Mode
-zinit wait'0' lucid for \
+# Core interactive plugins (load eagerly for reliability)
+zinit for \
     zsh-users/zsh-autosuggestions \
     zdharma-continuum/fast-syntax-highlighting \
     zsh-users/zsh-completions \
     Aloxaf/fzf-tab \
-    atuinsh/atuin
+    atuinsh/atuin \
+    jeffreytse/zsh-vi-mode
 
 # =============================================================================
 # SHELL OPTIONS
 # =============================================================================
 
 setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
-setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 setopt AUTO_CD
 setopt GLOB_COMPLETE
 setopt MENU_COMPLETE
@@ -100,11 +94,3 @@ function zvm_after_init() {
     bindkey -s "^v" "f^J"
     bindkey "^y" autosuggest-accept
 }
-
-zinit wait'0' lucid for \
-    jeffreytse/zsh-vi-mode
-
-zinit wait'0' lucid atload"zinit cdreplay -q" blockf for \
-    zsh-users/zsh-completions
-
-# zprof
