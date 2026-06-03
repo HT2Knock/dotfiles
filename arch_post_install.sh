@@ -167,7 +167,6 @@ install_aur_packages() {
 		thorium-browser-avx2-bin
 		fnm
 		uv
-		kanata
 		getnf
 		tokyonight-gtk-theme-git
 		bemoji
@@ -199,68 +198,6 @@ setup_devtool() {
 	else
 		log "WARN" "rustup not found, skipping rust setup"
 	fi
-}
-
-setup_kanata() {
-	log "INFO" "Setting up kanata..."
-
-	if ! getent group uinput &>/dev/null; then
-		sudo groupadd uinput || log "WARN" "Failed to create uinput group"
-	else
-		log "INFO" "uinput group already exists"
-	fi
-
-	local user_groups=$(groups "$USER")
-	if ! echo "$user_groups" | grep -q input; then
-		sudo usermod -aG input "$USER" || log "WARN" "Failed to add user to input group"
-	else
-		log "INFO" "User already in input group"
-	fi
-
-	if ! echo "$user_groups" | grep -q uinput; then
-		sudo usermod -aG uinput "$USER" || log "WARN" "Failed to add user to uinput group"
-	else
-		log "INFO" "User already in uinput group"
-	fi
-
-	if [[ ! -f /etc/udev/rules.d/99-uinput.rules ]]; then
-		sudo tee /etc/udev/rules.d/99-uinput.rules >/dev/null <<'EOF'
-KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-EOF
-		sudo udevadm control --reload-rules || log "WARN" "Failed to reload udev rules"
-		sudo udevadm trigger || log "WARN" "Failed to trigger udev rules"
-		log "INFO" "Udev rules created"
-	else
-		log "INFO" "Udev rules already exist"
-	fi
-
-	if ! lsmod | grep -q uinput; then
-		sudo modprobe uinput || log "WARN" "Failed to load uinput module"
-		log "INFO" "Uinput module loaded"
-	else
-		log "INFO" "Uinput module already loaded"
-	fi
-
-	if [[ ! -f /etc/modules-load.d/uinput.conf ]]; then
-		echo 'uinput' | sudo tee /etc/modules-load.d/uinput.conf >/dev/null || log "WARN" "Failed to create uinput module config"
-		log "INFO" "Uinput module persistence configured"
-	else
-		log "INFO" "Uinput module persistence already configured"
-	fi
-
-	systemctl --user daemon-reload || log "WARN" "Failed to reload systemd user daemon"
-	if systemctl --user list-unit-files 2>/dev/null | grep -q kanata.service; then
-		if ! systemctl --user is-enabled kanata.service &>/dev/null; then
-			systemctl --user enable kanata.service || log "WARN" "Failed to enable kanata service"
-			log "INFO" "Kanata service enabled"
-		else
-			log "INFO" "Kanata service already enabled"
-		fi
-	else
-		log "WARN" "Kanata service file not found, you may need to create it manually"
-	fi
-
-	log "INFO" "Kanata setup completed (you may need to log out and back in for group changes to take effect)"
 }
 
 setup_docker() {
@@ -351,7 +288,6 @@ setup_dotfile() {
 			log "WARN" "Failed to clone tmux plugin manager"
 		fi
 
-		setup_kanata
 		setup_devtool
 		setup_zsh
 
