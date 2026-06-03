@@ -26,9 +26,11 @@ vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window right' })
 vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window down' })
 vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window up' })
 
--- Quickfix navigation
-vim.keymap.set('n', '<M-j>', '<cmd>cnext<CR>', { desc = 'Quickfix: next item' })
-vim.keymap.set('n', '<M-k>', '<cmd>cprevious<CR>', { desc = 'Quickfix: previous item' })
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- Location list navigation
 vim.keymap.set('n', '<M-n>', '<cmd>lnext<CR>', { desc = 'Location list: next item' })
@@ -38,11 +40,27 @@ vim.keymap.set('n', '<M-p>', '<cmd>lprevious<CR>', { desc = 'Location list: prev
 vim.keymap.set('n', '<M-h>', '<cmd>cfirst<CR>', { desc = 'Quickfix: first item' })
 vim.keymap.set('n', '<M-l>', '<cmd>clast<CR>', { desc = 'Quickfix: last item' })
 
+-- Quickfix navigation (vim-style)
+vim.keymap.set('n', '[q', '<cmd>cprevious<cr>', { desc = 'Previous Quickfix' })
+vim.keymap.set('n', ']q', '<cmd>cnext<cr>', { desc = 'Next Quickfix' })
+
 -- better up/down
 vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
+-- Saner n/N behavior (respects search direction and opens folds)
+vim.keymap.set({ 'n', 'x', 'o' }, 'n', "'Nn'[v:searchforward].'zv'", { expr = true, desc = 'Next Search Result' })
+vim.keymap.set({ 'n', 'x', 'o' }, 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'Previous Search Result' })
+
+-- Add undo break-points
+vim.keymap.set('i', ',', ',<c-g>u')
+vim.keymap.set('i', '.', '.<c-g>u')
+vim.keymap.set('i', ';', ';<c-g>u')
+
+-- Save file in all modes
+vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
 -- context upward
 vim.keymap.set('n', '[;', function()
@@ -84,3 +102,63 @@ end, { desc = 'Next function' })
 vim.keymap.set({ 'n', 'o', 'x' }, ']F', function()
   require('nvim-treesitter-textobjects.move').goto_previous('@function.outer', 'textobjects')
 end, { desc = 'Previous function' })
+
+-- Move lines with Alt+j/k
+vim.keymap.set('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
+vim.keymap.set('n', '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
+vim.keymap.set('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
+vim.keymap.set('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
+vim.keymap.set('v', '<A-j>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
+vim.keymap.set('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
+
+-- Buffer navigation
+vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Previous Buffer' })
+vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Previous Buffer' })
+vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+vim.keymap.set('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+
+-- Buffer deletion with Snacks
+vim.keymap.set('n', '<leader>bd', function()
+  local ok, snacks = pcall(require, 'snacks')
+  if ok then
+    snacks.bufdelete()
+  end
+end, { desc = 'Delete Buffer' })
+vim.keymap.set('n', '<leader>bo', function()
+  local ok, snacks = pcall(require, 'snacks')
+  if ok then
+    snacks.bufdelete.other()
+  end
+end, { desc = 'Delete Other Buffers' })
+vim.keymap.set('n', '<leader>bD', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
+
+-- Clear search, diff update and redraw
+vim.keymap.set('n', '<leader>ur', '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>', { desc = 'Redraw / Clear hlsearch / Diff Update' })
+
+-- Keywordprg
+vim.keymap.set('n', '<leader>K', '<cmd>norm! K<cr>', { desc = 'Keywordprg' })
+
+-- Better indenting (keep visual selection)
+vim.keymap.set('x', '<', '<gv')
+vim.keymap.set('x', '>', '>gv')
+
+-- Add comments above/below (uses built-in gc operator, Neovim 0.10+)
+vim.keymap.set('n', 'gco', 'o<esc>gcc', { desc = 'Add Comment Below' })
+vim.keymap.set('n', 'gcO', 'O<esc>gcc', { desc = 'Add Comment Above' })
+
+-- Quickfix/location list toggle
+vim.keymap.set('n', '<leader>xq', function()
+  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = 'Quickfix List' })
+
+vim.keymap.set('n', '<leader>xl', function()
+  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = 'Location List' })
