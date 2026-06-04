@@ -16,7 +16,6 @@ return {
       end
     end,
     formatters_by_ft = {
-      lua = { 'stylua' },
       python = { 'ruff_organize_imports', 'ruff_format' },
       javascript = { 'prettier' },
       typescript = { 'prettier' },
@@ -30,7 +29,6 @@ return {
       markdown = { 'prettier', 'rumdl' },
       yaml = { 'prettier' },
       astro = { 'prettier' },
-      go = { 'gofumpt' },
       sql = { 'sleek' },
       sh = { 'shfmt' },
     },
