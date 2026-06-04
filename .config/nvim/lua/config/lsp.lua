@@ -16,6 +16,39 @@
 --     },
 --   })
 
+vim.lsp.codelens.enable(true)
+vim.lsp.inlay_hint.enable(true)
+
+vim.lsp.config('gopls', {
+  settings = {
+    gopls = {
+      directoryFilters = { '-node_modules', '-.git', '-.github', '-bin', '-build' },
+      gofumpt = true,
+      usePlaceholders = true,
+      staticcheck = true,
+
+      analyses = {
+        fieldalignment = true,
+        shadow = true,
+        unusedwrite = true,
+        useany = true,
+        nilness = true,
+        unusedparams = true,
+      },
+
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
+})
+
 vim.diagnostic.config {
   signs = {
     text = {

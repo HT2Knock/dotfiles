@@ -162,3 +162,6 @@ vim.keymap.set('n', '<leader>xl', function()
     vim.notify(err, vim.log.levels.ERROR)
   end
 end, { desc = 'Location List' })
+
+-- LSP codelens
+vim.keymap.set('n', '<leader>cr', vim.lsp.codelens.run, { desc = '[C]odeLens [R]un' })
