@@ -1,24 +1,20 @@
-vim.lsp.enable {
-  'lua_ls',
-  'stylua',
-  'gopls',
-  'templ',
-  'ruff',
-  'ty',
-  'rumdl',
-  'harper_ls',
-  'taplo',
-  'bashls',
-  'yamlls',
-  'jsonls',
-  'postgres_lsp',
-  'cssls',
-  'html',
-  'astro',
-  'tailwindcss',
-  'eslint',
-  'tsgo',
-}
+-- Override individual server settings by extending lspconfig's defaults.
+-- This deep-merges with nvim-lspconfig's configs — no need to maintain full files.
+--
+-- Example: tweak gopls to use gofumpt by default
+--   vim.lsp.config('gopls', {
+--     settings = { gopls = { formatting = { gofumpt = true } } },
+--   })
+--
+-- Example: custom lua-language-server settings
+--   vim.lsp.config('lua_ls', {
+--     settings = {
+--       Lua = {
+--         completion = { callSnippet = 'Replace' },
+--         diagnostics = { disable = { 'missing-fields' } },
+--       },
+--     },
+--   })
 
 vim.diagnostic.config {
   signs = {
@@ -36,26 +32,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-    -- Set up document highlighting if supported by the LSP server
-    -- This highlights all references to the symbol under the cursor
     if client and client:supports_method('textDocument/documentHighlight', event.buf) then
       local highlight_group = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
 
-      -- Highlight references when cursor stops moving
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
         group = highlight_group,
         callback = vim.lsp.buf.document_highlight,
       })
 
-      -- Clear highlights when cursor moves
       vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
         buffer = event.buf,
         group = highlight_group,
         callback = vim.lsp.buf.clear_references,
       })
 
-      -- Clean up highlights when LSP detaches
       vim.api.nvim_create_autocmd('LspDetach', {
         group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
         callback = function(detach_event)
