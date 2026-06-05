@@ -389,7 +389,7 @@ local keymaps = {
     desc = 'C[a]lls Outgoing',
   },
   {
-    '<C-/>',
+    '<C-\\>',
     function()
       Snacks.terminal.toggle()
     end,

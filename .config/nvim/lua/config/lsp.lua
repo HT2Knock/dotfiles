@@ -17,7 +17,6 @@
 --   })
 
 vim.lsp.codelens.enable(true)
-vim.lsp.inlay_hint.enable(true)
 
 vim.lsp.config('gopls', {
   settings = {
