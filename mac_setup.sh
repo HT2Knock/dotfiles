@@ -112,7 +112,7 @@ install_packages() {
 		fnm uv sesh
 
 		# System tools
-		fastfetch orbstack
+		fastfetch
 	)
 
 	brew install "${formulae[@]}" || error_exit "Failed to install Homebrew formulae"
@@ -129,6 +129,7 @@ install_packages() {
 		dbeaver-community
 		signal
 		microsoft-teams
+		orbstack
 		claude-code
 	)
 
@@ -201,11 +202,6 @@ create_directories() {
 
 setup_dotfile() {
 	log "INFO" "Setting up dotfiles..."
-
-	if [[ ! -d "$HOME/Pictures/walle" ]]; then
-		git clone https://github.com/T2Knock/walle.git "$HOME/Pictures/walle" || log "WARN" "Failed to clone wallpapers"
-		log "INFO" "Wallpapers cloned"
-	fi
 
 	if [[ ! -d "$HOME/dotfiles" ]]; then
 		log "ERROR" "Dotfiles repository not found at ~/dotfiles"
