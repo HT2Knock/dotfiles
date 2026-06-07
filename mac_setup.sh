@@ -91,7 +91,7 @@ install_packages() {
 		go gcc rustup-init awscli
 
 		# Editor and multiplexer
-		neovim tmux herdr
+		neovim tmux herdr opencode
 
 		# File management
 		yazi fd ripgrep stow
@@ -111,8 +111,8 @@ install_packages() {
 		# Development version managers
 		fnm uv sesh
 
-		# System info
-		fastfetch
+		# System tools
+		fastfetch orbstack
 	)
 
 	brew install "${formulae[@]}" || error_exit "Failed to install Homebrew formulae"
@@ -121,10 +121,15 @@ install_packages() {
 	log "INFO" "Installing Homebrew casks..."
 
 	local casks=(
+		bitwarden
+		firefox
 		ghostty
-		docker
 		raycast
 		zed
+		dbeaver-community
+		signal
+		microsoft-teams
+		claude-code
 	)
 
 	brew install --cask "${casks[@]}" || log "WARN" "Failed to install some casks"
