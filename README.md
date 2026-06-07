@@ -81,5 +81,4 @@ The script handles:
 
 ## Related
 
-- [T2Knock/walle](https://github.com/T2Knock/walle) — wallpaper collection
 - [T2Knock/JT-notes](https://github.com/T2Knock/JT-notes) — personal notes (Obsidian)
