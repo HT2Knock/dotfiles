@@ -1,6 +1,6 @@
 export EDITOR="nvim"
 export TERMINAL="ghostty"
-export BROWSER="thorium-browser-avx2"
+export BROWSER="/Applications/Thorium.app/Contents/MacOS/Thorium"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"

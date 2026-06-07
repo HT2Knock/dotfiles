@@ -9,7 +9,6 @@ dotfiles/
 ├── .config/
 │   ├── nvim/          # Neovim configuration
 │   ├── zsh/           # Zsh shell configuration
-│   ├── hypr/          # Hyprland window manager
 │   ├── tmux/          # Tmux terminal multiplexer
 │   ├── yazi/          # Yazi file manager
 │   ├── opencode/      # OpenCode AI assistant
@@ -18,7 +17,7 @@ dotfiles/
 ├── scripts/           # Utility shell scripts
 ├── fonts/             # Custom fonts
 ├── assets/            # Images, themes, etc.
-└── arch_post_install.sh  # Arch Linux setup script
+└── mac_setup.sh        # macOS setup script
 ```
 
 ## Build/Lint/Test Commands
@@ -57,7 +56,7 @@ shellcheck scripts/*.sh
 shellcheck .config/zsh/*.zsh
 
 # Validate bash syntax
-bash -n arch_post_install.sh
+bash -n mac_setup.sh
 ```
 
 ### Neovim Health Check
@@ -79,9 +78,6 @@ zsh -i -c 'echo "Zsh config OK"'
 
 # Test tmux config
 tmux -f .config/tmux/tmux.conf start-server \; kill-server
-
-# Validate JSON configs
-python3 -m json.tool .config/swaync/config.json > /dev/null
 
 # Validate YAML configs
 python3 -m yaml .config/lazygit/config.yml 2>/dev/null || yamllint .config/lazygit/config.yml

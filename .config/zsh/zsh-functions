@@ -15,7 +15,17 @@ function start_ssh() {
 }
 
 function mem_look() {
-    free -h | awk '/Gi$/ {print $1, $3, "/", $2}'
+    vm_stat | awk '
+    /Pages free/ { free = $3 }
+    /Pages active/ { active = $3 }
+    /Pages inactive/ { inactive = $3 }
+    /Pages wired/ { wired = $3 }
+    END {
+        gsub(/,/,"",free); gsub(/,/,"",active); gsub(/,/,"",inactive); gsub(/,/,"",wired);
+        used = (active + inactive + wired) * 4096 / 1024 / 1024 / 1024;
+        total = (free + active + inactive + wired) * 4096 / 1024 / 1024 / 1024;
+        printf "Used: %.2f GB / Total: %.2f GB\n", used, total
+    }'
 }
 
 function generate_empty_ssh() {
@@ -52,7 +62,7 @@ function calendar() {
         return 1
     fi
 
-    local line_number=$(rg --line-number "$(date -I)" "$file_path" | cut -d: -f1 | head -n 1)
+    local line_number=$(rg --line-number "$(date +%Y-%m-%d)" "$file_path" | cut -d: -f1 | head -n 1)
 
     nvim "$file_path" +$line_number
 }
