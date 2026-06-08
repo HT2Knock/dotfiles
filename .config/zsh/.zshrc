@@ -78,6 +78,7 @@ zsh_add_file "zsh-aliases"
 # TOOL INITIALIZATIONS
 # =============================================================================
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd j)"
