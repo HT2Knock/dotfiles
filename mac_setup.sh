@@ -131,6 +131,7 @@ install_packages() {
 		microsoft-teams
 		orbstack
 		claude-code
+		nikitabobko/tap/aerospace
 	)
 
 	brew install --cask "${casks[@]}" || log "WARN" "Failed to install some casks"
