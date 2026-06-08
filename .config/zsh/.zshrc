@@ -35,6 +35,9 @@ zstyle ':omz:plugins:eza' 'git-status' yes
 zstyle ':omz:plugins:eza' 'header' yes
 zstyle ':omz:plugins:eza' 'icons' yes
 
+
+zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_second
+
 # OMZ snippets
 zinit for \
     OMZP::git \
