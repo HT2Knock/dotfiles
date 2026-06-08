@@ -4,16 +4,6 @@ function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
 
-function start_ssh() {
-    if [ -n "$SSH_AGENT_PID" ]; then
-        echo "ssh-agent is already running"
-    else
-        eval $(ssh-agent -s)
-    fi
-
-    ssh-add $1 >/dev/null 2>&1
-}
-
 function mem_look() {
     vm_stat | awk '
     /Pages free/ { free = $3 }
