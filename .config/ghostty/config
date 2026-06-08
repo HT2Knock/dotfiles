@@ -4,7 +4,7 @@ background-opacity = 0.9
 background-blur = true
 
 # Appearance
-window-padding-x = 4
+font-size=16
 window-padding-balance = true
 shell-integration-features = no-title, ssh-env, ssh-terminfo
 
