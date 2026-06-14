@@ -103,13 +103,19 @@ install_packages() {
 		lazygit lazydocker gh
 
 		# Media and utilities
-		ffmpeg imagemagick jq p7zip
+		ffmpeg imagemagick jq yq p7zip
 
 		# Fuzzy finder
 		fzf
 
 		# Development version managers
 		fnm uv sesh
+
+		# Kubernetes
+		kubernetes-cli k9s
+
+		# Database
+		pgcli
 
 		# System tools
 		fastfetch
@@ -121,7 +127,6 @@ install_packages() {
 	log "INFO" "Installing Homebrew casks..."
 
 	local casks=(
-		bitwarden
 		firefox
 		ghostty
 		raycast
@@ -129,9 +134,16 @@ install_packages() {
 		dbeaver-community
 		signal
 		microsoft-teams
+		microsoft-outlook
 		orbstack
 		claude-code
 		nikitabobko/tap/aerospace
+		betterdisplay
+		helium-browser
+		iina
+		mos
+		obsidian
+		postman
 	)
 
 	brew install --cask "${casks[@]}" || log "WARN" "Failed to install some casks"
@@ -194,6 +206,7 @@ create_directories() {
 		"$HOME/.local/share"
 		"$HOME/.local/share/zsh"
 		"$FONT_DIR"
+		"$HOME/Documents/T2Knock/JT-notes"
 	)
 
 	for dir in "${dirs[@]}"; do
@@ -238,17 +251,13 @@ print_manual_steps() {
 	log "INFO" "========================================"
 	log "INFO" "Manual steps remaining:"
 	log "INFO" "========================================"
-	log "INFO" "1. Install Thorium Browser:"
-	log "INFO" "   https://github.com/Alex313031/Thorium-MacOS/releases"
-	log "INFO" "   Download .dmg for your architecture and drag to /Applications/"
+	log "INFO" "1. Open Obsidian and set vault to ~/Documents/T2Knock/JT-notes"
 	log "INFO" ""
-	log "INFO" "2. Open Docker Desktop to complete setup"
+	log "INFO" "2. Open Ghostty and verify it works"
 	log "INFO" ""
-	log "INFO" "3. Open Ghostty and verify it works"
+	log "INFO" "3. Open tmux and press <prefix> + I to install plugins"
 	log "INFO" ""
-	log "INFO" "4. Open tmux and press <prefix> + I to install plugins"
-	log "INFO" ""
-	log "INFO" "5. Run: nvim --headless +'checkhealth' +qa"
+	log "INFO" "4. Run: nvim --headless +'checkhealth' +qa"
 	log "INFO" "========================================"
 }
 
