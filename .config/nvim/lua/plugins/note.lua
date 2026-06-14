@@ -12,7 +12,7 @@ return {
       workspaces = {
         {
           name = 'personal',
-          path = '~/workspace/github.com/T2Knock/JT-notes',
+          path = '~/Documents/T2Knock/JT-notes',
         },
       },
       daily_notes = {
