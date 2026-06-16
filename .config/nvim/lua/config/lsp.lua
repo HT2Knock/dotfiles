@@ -18,6 +18,22 @@
 
 vim.lsp.codelens.enable(true)
 
+vim.lsp.config('tailwindcss', {
+  filetypes = {
+    'html',
+    'css',
+    'less',
+    'postcss',
+    'sass',
+    'scss',
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+    'astro',
+  },
+})
+
 vim.lsp.config('gopls', {
   settings = {
     gopls = {
