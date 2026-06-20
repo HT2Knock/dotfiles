@@ -1,13 +1,16 @@
 # Theme
 theme = TokyoNight Night
-background-opacity = 0.9
-background-blur = true
+background-opacity = 0.8
+background-blur = macos-glass-clear
 
 # Appearance
+macos-titlebar-style = hidden
 font-size=16
 window-padding-x = 4
+window-padding-y = 4
 window-padding-balance = true
 shell-integration-features = no-title, ssh-env, ssh-terminfo
+custom-shader = cursor_warp.glsl
 
 # Behavior 
 notify-on-command-finish = unfocused
