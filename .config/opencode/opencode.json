@@ -3,7 +3,7 @@
   "lsp": true,
   "mcp": {
     "gh_grep": {
-      "enabled": true,
+      "enabled": false,
       "type": "remote",
       "url": "https://mcp.grep.app"
     },
