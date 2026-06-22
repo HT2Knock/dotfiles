@@ -1,7 +1,23 @@
 -- fff.nvim - the fastest Neovim file picker (Rust core, frecency-ranked)
 -- https://github.com/dmtrKovalenko/fff.nvim
--- Owns the primary file-finding keys; snacks.picker file finder is kept on
--- <leader>fF for a direct speed comparison (see snack.lua).
+-- Owns the primary file-finding and grep keys (replaces snacks.picker for those).
+
+-- Live grep prefilled with the word under the cursor (normal) or the visual
+-- selection. Uses register z and restores it so nothing is clobbered.
+local function grep_keyword()
+  local mode = vim.fn.mode()
+  local query
+  if mode == 'v' or mode == 'V' or mode == '\22' then
+    local save, save_type = vim.fn.getreg 'z', vim.fn.getregtype 'z'
+    vim.cmd 'noautocmd normal! "zy'
+    query = vim.fn.getreg 'z'
+    vim.fn.setreg('z', save, save_type)
+  else
+    query = vim.fn.expand '<cword>'
+  end
+  require('fff').live_grep { query = query }
+end
+
 return {
   'dmtrKovalenko/fff.nvim',
   build = function()
@@ -32,6 +48,12 @@ return {
         require('fff').live_grep()
       end,
       desc = 'Live Grep (fff)',
+    },
+    {
+      '<leader>sw',
+      grep_keyword,
+      desc = 'Grep Word/Selection (fff)',
+      mode = { 'n', 'x' },
     },
   },
 }
