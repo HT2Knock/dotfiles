@@ -4,5 +4,28 @@
     "@mohak34/opencode-notifier@latest",
     "@plannotator/opencode@latest",
     "@ex-machina/opencode-anthropic-auth"
-  ]
+  ],
+  "agent": {
+    "explore": {
+      "model": "opencode-go/deepseek-v4-flash"
+    },
+    "general": {
+      "model": "opencode-go/deepseek-v4-flash"
+    },
+    "plan": {
+      "model": "anthropic/claude-opus-4-8"
+    }
+  },
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--no-usage-statistics"
+      ],
+      "enabled": false
+    }
+  }
 }
