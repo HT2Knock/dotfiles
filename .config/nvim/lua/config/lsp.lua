@@ -34,6 +34,10 @@ vim.lsp.config('tailwindcss', {
   },
 })
 
+vim.lsp.config('harper_ls', {
+  filetypes = { 'markdown', 'text' },
+})
+
 vim.lsp.config('gopls', {
   settings = {
     gopls = {
