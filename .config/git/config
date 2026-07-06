@@ -12,9 +12,6 @@
 	navigate = true
 	dark = true
 
-[merge]
-	conflictstyle = zdiff3
-
 [diff]
 	colorMoved = default
 [credential "https://github.com"]
