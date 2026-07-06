@@ -1,2 +1,6 @@
 **/.claude/settings.local.json
 opencode.json
+.agents
+.claude
+.pi
+skills-lock.json
