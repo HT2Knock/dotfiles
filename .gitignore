@@ -11,6 +11,10 @@ ftplugin
 .config/pgcli/history
 .config/fcitx5/conf/cached_layouts
 .zsh_sessions
+sessions
+auth.json
+trust.json
+npm
 
 # OpenCode notifier state
 .config/opencode/opencode-notifier-state.json
