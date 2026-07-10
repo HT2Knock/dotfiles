@@ -5,17 +5,20 @@
   "packages": [
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-advisor",
-    "npm:@juicesharp/rpiv-todo",
     "npm:pi-claude-auth",
-    "npm:@tintinweb/pi-subagents",
     "npm:@ff-labs/pi-fff",
     "npm:pi-web-access",
-    "npm:pi-markdown-preview",
-    "npm:pi-vim"
+    "npm:pi-vim",
+    "npm:pi-notify",
+    "npm:@plannotator/pi-extension"
   ],
   "terminal": {
     "showTerminalProgress": true
   },
   "lastChangelogVersion": "0.80.6",
-  "theme": "tokyonight-dark"
+  "theme": "tokyonight-dark",
+  "enableInstallTelemetry": false,
+  "defaultProjectTrust": "ask",
+  "editorPaddingX": 1,
+  "outputPad": 1
 }
