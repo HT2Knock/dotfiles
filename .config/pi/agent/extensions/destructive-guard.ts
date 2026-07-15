@@ -68,20 +68,6 @@ function classifyBash(command: string): Risk | undefined {
   }
 
   if (
-    /\b(truncate|shred)\b/i.test(normalized) ||
-    />\s*[^&\s][^\n]*(\.env|package-lock\.json|pnpm-lock\.yaml|yarn\.lock|\.json|\.ts|\.tsx|\.js|\.jsx|\.py|\.rs|\.go)\b/i.test(
-      normalized,
-    )
-  ) {
-    return {
-      action: "Overwrite or erase file contents",
-      command,
-      reason: "The command may replace existing file contents.",
-      severity: "destructive",
-    };
-  }
-
-  if (
     /\b(sudo\s+)?(apt|apt-get|dnf|yum|pacman|brew)\s+(remove|purge|uninstall|autoremove)\b/i.test(
       normalized,
     )
