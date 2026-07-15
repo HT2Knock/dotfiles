@@ -1,3 +1,5 @@
 {
-  "workflow": "summary-review"
+  "provider": "exa",
+  "workflow": "none",
+  "summaryModel": "deepseek/deepseek-v4-flash"
 }

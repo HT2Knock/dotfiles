@@ -3,13 +3,11 @@
   "defaultModel": "claude-sonnet-5",
   "defaultThinkingLevel": "high",
   "packages": [
-    "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-advisor",
     "npm:pi-claude-auth",
     "npm:@ff-labs/pi-fff",
     "npm:pi-web-access",
     "npm:pi-vim",
-    "npm:pi-notify",
     "npm:@plannotator/pi-extension"
   ],
   "terminal": {
