@@ -13,6 +13,11 @@
       "model": "opencode-go/deepseek-v4-flash"
     }
   },
+  "permission": {
+    "external_directory": "allow",
+    "*.env": "allow",
+    "*.env.*": "allow"
+  },
   "mcp": {
     "chrome-devtools": {
       "type": "local",
