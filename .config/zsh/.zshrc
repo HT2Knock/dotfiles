@@ -87,6 +87,7 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd j)"
 eval "$(fzf --zsh)"
 eval "$(uv generate-shell-completion zsh)"
+eval "$(wt config shell init zsh)"
 
 # =============================================================================
 # KEY BINDINGS
