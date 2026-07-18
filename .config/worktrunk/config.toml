@@ -1,0 +1,2 @@
+[commit.generation]
+command = "opencode run -m  opencode-go/deepseek-v4-flash --variant minimal"
