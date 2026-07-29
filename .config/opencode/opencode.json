@@ -16,7 +16,9 @@
   "permission": {
     "external_directory": "allow",
     "*.env": "allow",
-    "*.env.*": "allow"
+    "*.env.*": "allow",
+    "question": "deny",
+    "websearch": "allow"
   },
   "mcp": {
     "chrome-devtools": {
