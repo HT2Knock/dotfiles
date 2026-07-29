@@ -180,13 +180,14 @@ local function copy_ref(opts)
     ref = path .. ':' .. start_line .. ':' .. end_line
   end
 
-  local note = vim.fn.input 'Prompt (optional): '
-  if note ~= '' then
-    ref = ref .. ' ' .. note
-  end
+  vim.ui.input({ prompt = 'Prompt (optional): ' }, function(note)
+    if note then
+      ref = ref .. ' ' .. note
+    end
 
-  vim.fn.setreg('+', ref)
-  vim.notify('Copied: ' .. ref)
+    vim.fn.setreg('+', ref)
+    vim.notify('Copied: ' .. ref)
+  end)
 end
 
 -- normal mode: copy just the file path
