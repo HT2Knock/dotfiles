@@ -82,7 +82,6 @@ alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 alt-shift-semicolon = 'mode service'
-alt-enter = 'exec-and-forget open -na Ghostty'
 
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
