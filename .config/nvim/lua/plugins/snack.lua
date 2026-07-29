@@ -397,9 +397,7 @@ return {
       enabled = true,
       style = 'minimal',
     },
-    picker = {
-      layout = 'ivy',
-    },
+    picker = {},
   },
 
   keys = keymaps,
