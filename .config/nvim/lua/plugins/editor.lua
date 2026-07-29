@@ -1,5 +1,6 @@
 return {
   { 'folke/todo-comments.nvim', opts = {} },
+  { 'sindrets/diffview.nvim', opts = {} },
   {
     'martindur/zdiff.nvim',
     cmd = 'Zdiff',
