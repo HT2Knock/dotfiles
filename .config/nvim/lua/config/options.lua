@@ -80,6 +80,11 @@ opt.splitbelow = true
 opt.splitkeep = 'screen'
 opt.winminwidth = 5
 
+-- dadbod results open in the preview window; default previewheight (12) makes the
+-- result panel a thin strip and resets every query. Raise it to ~half the screen
+-- so results are roughly equal to the query buffer.
+opt.previewheight = math.max(12, math.floor(vim.o.lines * 0.5))
+
 -- Formatting (lazy-loaded check)
 local has_conform, _ = pcall(require, 'conform')
 if has_conform then
