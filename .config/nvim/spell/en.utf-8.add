@@ -235,3 +235,6 @@ Buymed
 datasource
 GetHourlyFunnelMetrics/!
 ADAM
+packshot
+schema
+xhigh/!
