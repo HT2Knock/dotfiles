@@ -384,7 +384,6 @@ return {
     quickfile = { enabled = true },
     rename = { enabled = true },
     health = { enabled = true },
-    scroll = { enabled = true },
     image = {
       enabled = true,
       resolve = function(path, src)
