@@ -3,6 +3,7 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local lint = require 'lint'
+    local notes = require 'config.notes'
 
     lint.linters_by_ft = {
       python = { 'ruff' },
@@ -20,6 +21,9 @@ return {
       group = lint_augroup,
       callback = function()
         local path = vim.fn.expand '%:p'
+        if vim.bo.filetype == 'markdown' and not notes.is_note(path) then
+          return
+        end
         if not path:find 'leetcode' and vim.bo.modifiable and vim.bo.filetype ~= '' then
           lint.try_lint()
         end

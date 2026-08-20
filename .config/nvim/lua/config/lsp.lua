@@ -18,6 +18,16 @@
 
 vim.lsp.codelens.enable(true)
 
+vim.lsp.enable 'tsc'
+
+vim.lsp.config('tsc', {
+  cmd = function(dispatchers, _)
+    local mason_tsc = vim.fn.stdpath 'data' .. '/mason/bin/tsc'
+    local cmd = vim.fn.executable(mason_tsc) == 1 and mason_tsc or 'tsc'
+    return vim.lsp.rpc.start({ cmd, '--lsp', '--stdio' }, dispatchers)
+  end,
+})
+
 vim.lsp.config('tailwindcss', {
   filetypes = {
     'html',
@@ -83,6 +93,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    -- harper-ls (natural language linter) is noisy on markdown written by others/AI.
+    -- Restrict it to the personal notes workspace only.
+    if client and client.name == 'harper_ls' and not require('config.notes').is_note() then
+      client:stop(true)
+      return
+    end
 
     if client and client:supports_method('textDocument/documentHighlight', event.buf) then
       local highlight_group = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
