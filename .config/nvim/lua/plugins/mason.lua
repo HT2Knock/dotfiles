@@ -5,7 +5,11 @@ return {
   },
   {
     'mason-org/mason-lspconfig.nvim',
-    opts = {},
+    opts = {
+      automatic_enable = {
+        exclude = { 'tsgo', 'ts_ls' },
+      },
+    },
     dependencies = {
       'mason-org/mason.nvim',
       'neovim/nvim-lspconfig',
@@ -36,6 +40,7 @@ return {
         'eslint-lsp',
         'postgres-language-server',
         'css-lsp',
+        'tsc',
 
         -- DAP
         'delve',
