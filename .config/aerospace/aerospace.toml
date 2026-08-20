@@ -91,7 +91,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 # ── Workspace 1: Browsers ────────────────────────────────────────────────
 [[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
+if.app-id = 'net.imput.helium'
 run = 'move-node-to-workspace 1'
 
 # ── Workspace 2: Code / Terminal ─────────────────────────────────────────
