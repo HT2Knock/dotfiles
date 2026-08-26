@@ -5,12 +5,12 @@ background-blur = macos-glass-clear
 
 # Appearance
 macos-titlebar-style = hidden
-font-size=16
+font-size=14
 window-padding-x = 4
 window-padding-y = 4
 window-padding-balance = true
 shell-integration-features = no-title, ssh-env, ssh-terminfo
-custom-shader = cursor_warp.glsl
+custom-shader = cursor_tail.glsl
 
 # Behavior 
 notify-on-command-finish = unfocused
