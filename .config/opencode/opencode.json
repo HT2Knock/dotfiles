@@ -30,6 +30,10 @@
         "--no-usage-statistics"
       ],
       "enabled": false
+    },
+    "codebase-memory-mcp": {
+      "command": ["/Users/ht2knock/.local/bin/codebase-memory-mcp"],
+      "type": "local"
     }
   }
 }
