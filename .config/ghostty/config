@@ -5,7 +5,8 @@ background-blur = macos-glass-clear
 
 # Appearance
 macos-titlebar-style = hidden
-font-size=14
+font-size=16
+adjust-cell-height = 10%
 window-padding-x = 4
 window-padding-y = 4
 window-padding-balance = true
