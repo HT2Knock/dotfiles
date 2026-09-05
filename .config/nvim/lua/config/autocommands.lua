@@ -44,13 +44,9 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'FileType specific settings',
   group = augroup 'filetype_settings',
-  pattern = { 'text', 'gitcommit' },
-  callback = function(args)
-    vim.opt_local.spell = true
-
-    if vim.bo[args.buf].filetype == 'markdown' then
-      vim.opt_local.textwidth = 80
-    end
+  pattern = { 'text', 'gitcommit', 'markdown' },
+  callback = function()
+    vim.opt_local.wrap = false
   end,
 })
 
