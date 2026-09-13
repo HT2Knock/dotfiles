@@ -32,10 +32,11 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("$HOME/dotfiles/scripts/import_env.sh")
 	hl.exec_cmd("awww-daemon & $HOME/dotfiles/scripts/wallpaper.sh")
 	hl.exec_cmd("swaync")
-	hl.exec_cmd("systemctl --user start hyprpolkitagent")
+	hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("wl-paste --watch cliphist store")
+	hl.exec_cmd("systemctl --user start neru.service")
 end)
 
 -------------------------------
