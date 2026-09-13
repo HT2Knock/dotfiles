@@ -1,6 +1,6 @@
 # Dotfiles Repository - Agent Guidelines
 
-This is a **dotfiles repository** managed with [GNU Stow](https://www.gnu.org/software/stow/). Configurations are organized per application and symlinked to `$HOME` using stow.
+This is a **dotfiles repository** managed with [GNU Stow](https://www.gnu.org/software/stow/). Configurations are organized per application under `.config/` and symlinked into `~/.config` using stow.
 
 ## Repository Structure
 
@@ -24,19 +24,28 @@ dotfiles/
 ## Build/Lint/Test Commands
 
 ### Deploying Configurations (Stow)
+
+The repo is stowed as a single package, `.config`, with target `~/.config`.
+Each app directory under `.config/` becomes `~/.config/<app>` (a symlink into
+the repo). Stow is idempotent, so it only creates missing links; run it after
+adding an app.
+
 ```bash
-# Stow a single package (symlinks to $HOME)
-stow -t ~ .config/nvim
+# Stow / update every app under .config (run from the repo root)
+stow -t ~/.config .config
 
-# Restow (update symlinks)
-stow -R -t ~ .config/nvim
-
-# Delete symlinks
-stow -D -t ~ .config/nvim
+# Restow (re-create links, e.g. after moving files)
+stow -R -t ~/.config .config
 
 # Simulate without making changes
-stow -n -t ~ .config/nvim
+stow -n -v -t ~/.config .config
+
+# Remove one app's link (stow cannot target a single app within a package)
+rm ~/.config/<app>
 ```
+
+> Stow rejects slashes in package names, so `stow -t ~ .config/nvim` fails.
+> Use the `.config` package form above instead.
 
 ### Lua Formatting (Neovim configs)
 ```bash
@@ -228,5 +237,5 @@ Defined in `.stow-local-ignore`:
 1. Make changes to config files
 2. Run appropriate linter/formatter
 3. Test by restarting/reloading the application
-4. For stow-managed configs: `stow -R -t ~ <package>` to update symlinks
+4. For stow-managed configs: `stow -R -t ~/.config .config` to update symlinks
 5. Verify application loads without errors
