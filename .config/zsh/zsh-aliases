@@ -55,3 +55,5 @@ alias tmuxconfig='nvim ~/.config/tmux/tmux.conf'
 
 # today note
 alias ot="nvim '+Obsidian today'"
+
+alias oc="OPENCODE_ENABLE_EXA=1 opencode"
