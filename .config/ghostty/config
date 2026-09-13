@@ -4,9 +4,12 @@ background-opacity = 0.9
 background-blur = true
 
 # Appearance
+adjust-cell-height = 10%
 window-padding-x = 4
+window-padding-y = 4
 window-padding-balance = true
 shell-integration-features = no-title, ssh-env, ssh-terminfo
+custom-shader = cursor_tail.glsl
 
 # Behavior 
 notify-on-command-finish = unfocused
