@@ -14,6 +14,9 @@ ftplugin
 # OpenCode notifier state
 .config/opencode/opencode-notifier-state.json
 
+# Restic backup password and cache
+.config/restic/
+
 .zsh_sessions
 sessions
 auth.json

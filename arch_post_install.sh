@@ -91,6 +91,9 @@ install_official_packages() {
 		# System utilities
 		fastfetch imv wl-clipboard p7zip jq poppler fzf imagemagick stow
 
+		# System maintenance (zram swap, btrfs snapshots, backups)
+		zram-generator snapper snap-pac btrfsmaintenance restic
+
 		# Input Method
 		fcitx5-im fcitx5-bamboo
 
@@ -298,6 +301,17 @@ setup_dotfile() {
 	fi
 }
 
+setup_system() {
+	log "INFO" "Setting up system services (zram, snapper, scrub)"
+
+	if [[ ! -x "$HOME/dotfiles/scripts/setup-system.sh" ]]; then
+		log "WARN" "setup-system.sh not found, skipping"
+		return 0
+	fi
+
+	sudo "$HOME/dotfiles/scripts/setup-system.sh" || log "WARN" "System setup script failed"
+}
+
 main() {
 	if [[ "${1:-}" == "--confirm" ]]; then
 		log "INFO" "Running with --confirm flag"
@@ -325,7 +339,10 @@ main() {
 	install_aur_packages
 
 	setup_dotfile
+	setup_system
 
+	log "INFO" "Backup disk (optional): run scripts/format-backup-disk.sh /dev/sdX,"
+	log "INFO" "then scripts/setup-backup.sh and scripts/backup.sh"
 	log "INFO" "Post-installation script completed!"
 	log "INFO" "You may need to reboot for all changes to take effect"
 }
