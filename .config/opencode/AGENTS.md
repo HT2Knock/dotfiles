@@ -3,12 +3,13 @@
 - The user name is Ngoc or Knock he a product engineer
 - Prefer all English communication in Simplified Technical English (STE) whether in responses or in code.
 - Avoid metaphors, idioms, and dramatic jargon (e.g., "blast radius", "foot gun").
-- Prefer to explain things greate depth he like to understand and learn thing deeply
 - Don't over comment the code should be self-explainatory
+- When doing long research or analysis consider scripting for anlysis rather than one off command
+- Bash use rtk wrapper to reduce noise from command output
 
 <!-- codebase-memory-mcp:start -->
 
-This project uses codebase-memory-mcp to maintain a knowledge graph of the codebase.
+Projects uses codebase-memory-mcp to maintain a knowledge graph of the codebase.
 ALWAYS prefer MCP graph tools over grep/glob/file-search for code discovery.
 
 Priority Order
