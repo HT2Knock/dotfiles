@@ -13,3 +13,12 @@ ftplugin
 
 # OpenCode notifier state
 .config/opencode/opencode-notifier-state.json
+
+.zsh_sessions
+sessions
+auth.json
+trust.json
+npm
+
+# Local codebase-memory index artifacts
+.codebase-memory/

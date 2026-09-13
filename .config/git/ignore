@@ -1,0 +1,10 @@
+**/.claude/settings.local.json
+.agents
+.claude
+.pi
+skills-lock.json
+CONTEXT.md
+docs/adr
+
+# Local codebase-memory index artifacts
+.codebase-memory/
