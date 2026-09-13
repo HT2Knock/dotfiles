@@ -10,7 +10,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart="/home/t2knock/.local/bin/neru" launch
+ExecStart="%h/.local/bin/neru" launch
 Restart=on-failure
 RestartSec=5
 

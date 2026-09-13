@@ -31,7 +31,7 @@
       "enabled": false
     },
     "codebase-memory-mcp": {
-      "command": ["/home/t2knock/.local/bin/codebase-memory-mcp"],
+      "command": ["codebase-memory-mcp"],
       "type": "local"
     },
     "firecrawl": {
