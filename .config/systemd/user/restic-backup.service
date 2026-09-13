@@ -1,0 +1,10 @@
+[Unit]
+Description=Restic backup of home directory
+ConditionPathIsMountPoint=/mnt/work
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/dotfiles/scripts/backup.sh
+Nice=10
+IOSchedulingClass=idle
