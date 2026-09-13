@@ -177,7 +177,7 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(shiftMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
-hl.bind(shiftMod .. " + R", hl.dsp.exec_cmd("~/dotfiles/scripts/change-wallpaper.sh"))
+hl.bind(shiftMod .. " + R", hl.dsp.exec_cmd("~/dotfiles/scripts/wallpaper.sh --next"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("~/dotfiles/scripts/clipboard.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprlock"))
@@ -284,7 +284,7 @@ hl.window_rule({
 
 hl.window_rule({
 	name = "thorium-browser-workspace",
-	match = { class = "Thorium-browser" },
+	match = { class = "(?i)thorium-browser" },
 	workspace = 1,
 })
 
@@ -306,5 +306,40 @@ hl.window_rule({
 	workspace = 5,
 })
 
-hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1" })
+------------------------------
+---- WORKSPACE FOLLOWING ----
+------------------------------
+
+local laptop_monitor = "eDP-1"
+local follow_workspaces = { "1", "2" }
+local last_target = nil
+
+local function workspace_target()
+	for _, monitor in ipairs(hl.get_monitors()) do
+		if monitor.name ~= laptop_monitor then
+			return monitor.name
+		end
+	end
+	return laptop_monitor
+end
+
+local function place_follow_workspaces()
+	local target = workspace_target()
+
+	if target ~= last_target then
+		hl.workspace_rule({ workspace = "1", monitor = target, default = true })
+		hl.workspace_rule({ workspace = "2", monitor = target })
+		last_target = target
+	end
+
+	for _, workspace in ipairs(follow_workspaces) do
+		if hl.get_workspace(workspace) then
+			hl.dispatch(hl.dsp.workspace.move({ workspace = workspace, monitor = target }))
+		end
+	end
+end
+
+hl.on("hyprland.start", place_follow_workspaces)
+hl.on("monitor.added", place_follow_workspaces)
+hl.on("monitor.removed", place_follow_workspaces)
+
