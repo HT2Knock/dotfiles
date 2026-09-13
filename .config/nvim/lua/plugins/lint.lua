@@ -3,6 +3,7 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local lint = require 'lint'
+    local notes = require 'config.notes'
 
     lint.linters_by_ft = {
       python = { 'ruff' },

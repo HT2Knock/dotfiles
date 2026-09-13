@@ -23,13 +23,6 @@ end
 local keymaps = {
   -- Core navigation
   {
-    '<leader><space>',
-    function()
-      Snacks.picker.smart()
-    end,
-    desc = 'Smart Find Files',
-  },
-  {
     '<leader>,',
     function()
       Snacks.picker.buffers { focus = 'list' }
@@ -64,13 +57,6 @@ local keymaps = {
       Snacks.picker.colorschemes()
     end,
     desc = 'Colorschemes',
-  },
-  {
-    '<leader>ff',
-    function()
-      Snacks.picker.files { hidden = true }
-    end,
-    desc = 'Find Files',
   },
   {
     '<leader>fg',
@@ -217,13 +203,6 @@ local keymaps = {
     desc = 'Buffer Diagnostics',
   },
   {
-    '<leader>sg',
-    function()
-      Snacks.picker.grep { hidden = true }
-    end,
-    desc = 'Grep',
-  },
-  {
     '<leader>sh',
     function()
       Snacks.picker.help()
@@ -313,14 +292,6 @@ local keymaps = {
       Snacks.picker.undo()
     end,
     desc = 'Undo History',
-  },
-  {
-    '<leader>sw',
-    function()
-      Snacks.picker.grep_word()
-    end,
-    desc = 'Visual selection or word',
-    mode = { 'n', 'x' },
   },
   {
     '<leader>st',
@@ -425,9 +396,7 @@ return {
       enabled = true,
       style = 'minimal',
     },
-    picker = {
-      layout = 'ivy',
-    },
+    picker = {},
   },
 
   keys = keymaps,
