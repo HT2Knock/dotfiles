@@ -147,9 +147,11 @@ hl.config({
 		kb_model = "",
 		kb_options = "caps:escape",
 		kb_rules = "",
+		repeat_rate = 33,
+		repeat_delay = 225,
 		sensitivity = 0,
 		touchpad = {
-			natural_scroll = false,
+			natural_scroll = true,
 		},
 	},
 })
