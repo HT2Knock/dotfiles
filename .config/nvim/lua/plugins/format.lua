@@ -26,7 +26,7 @@ return {
       css = { 'prettier' },
       scss = { 'prettier' },
       html = { 'prettier' },
-      markdown = { 'prettier', 'rumdl' },
+      markdown = { 'prettier' },
       yaml = { 'prettier' },
       astro = { 'prettier' },
       sql = { 'sleek' },
