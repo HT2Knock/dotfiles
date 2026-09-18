@@ -1,5 +1,7 @@
 {
   "reload_style_on_change": true,
+  "start_hidden": true,
+  "on-sigusr1": "toggle",
   "layer": "top",
   "spacing": 3,
   "margin-top": 5,
