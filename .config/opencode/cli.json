@@ -6,5 +6,26 @@
   },
   "theme": {
     "name": "tokyonight"
+  },
+  "animations": true,
+  "session": {
+    "scrollbar": true,
+    "thinking": "show",
+    "permissions": "prompt"
+  },
+  "tabs": {
+    "scope": "cwd"
+  },
+  "attention": {
+    "notifications": true,
+    "sound": true,
+    "volume": 0.4,
+    "sound_pack": "opencode.default"
+  },
+  "plugins": [
+    "./herdr-opencode"
+  ],
+  "prompt": {
+    "image_preview": true
   }
 }
