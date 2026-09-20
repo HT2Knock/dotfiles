@@ -99,3 +99,6 @@ function zvm_after_init() {
     bindkey -s "^v" "f^J"
     bindkey "^y" autosuggest-accept
 }
+
+# Source local zshenv config contail api key
+[[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
