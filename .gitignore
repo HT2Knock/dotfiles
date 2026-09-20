@@ -24,3 +24,9 @@ npm
 
 # Local codebase-memory index artifacts
 .codebase-memory/
+
+# herdr-generated OpenCode integration (overwritten on herdr update)
+.config/opencode/tui.jsonc
+.config/opencode/herdr-tui-session.js
+.config/opencode/herdr-opencode/
+.config/opencode/plugins/herdr-agent-state.js
