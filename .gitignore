@@ -19,5 +19,8 @@ npm
 # OpenCode notifier state
 .config/opencode/opencode-notifier-state.json
 
+# OpenCode V2 background service state (contains a local service password)
+.config/opencode/service.json
+
 # Local codebase-memory index artifacts
 .codebase-memory/
