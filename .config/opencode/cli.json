@@ -6,8 +6,9 @@
   "animations": true,
   "session": {
     "scrollbar": true,
-    "thinking": "show",
-    "permissions": "prompt"
+    "thinking": "hide",
+    "permissions": "prompt",
+    "sidebar": "auto"
   },
   "tabs": {
     "scope": "cwd"
