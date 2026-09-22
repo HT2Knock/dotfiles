@@ -1,0 +1,22 @@
+{
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-sonnet-5",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:@juicesharp/rpiv-advisor",
+    "npm:pi-claude-auth",
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-web-access",
+    "npm:pi-vim",
+    "npm:@plannotator/pi-extension"
+  ],
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "lastChangelogVersion": "0.87.0",
+  "theme": "tokyonight-dark",
+  "enableInstallTelemetry": false,
+  "defaultProjectTrust": "ask",
+  "editorPaddingX": 1,
+  "outputPad": 1
+}

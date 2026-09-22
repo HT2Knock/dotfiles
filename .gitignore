@@ -14,6 +14,21 @@ ftplugin
 # OpenCode notifier state
 .config/opencode/opencode-notifier-state.json
 
+# OpenCode V2 background service state (contains a local service password)
+.config/opencode/service.json
+
+# herdr-generated OpenCode integration (overwritten on herdr update)
+.config/opencode/tui.jsonc
+.config/opencode/herdr-tui-session.js
+.config/opencode/herdr-opencode/
+.config/opencode/plugins/herdr-agent-state.js
+
+# Pi runtime state (config lives in .config/pi/agent)
+.config/pi/agent/models-store.json
+.config/pi/agent/safety-guard.json
+.config/pi/agent/logs/
+.config/pi/agent/cache/
+
 # Restic backup password and cache
 .config/restic/
 
