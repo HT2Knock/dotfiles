@@ -1,0 +1,13 @@
+onboarding = false
+
+[ui.toast]
+delivery = "herdr"
+delay_seconds = 1
+
+[keys]
+prefix = "ctrl+a"
+
+split_horizontal = "prefix+minus"
+split_vertical = "prefix+shift+minus"
+
+switch_workspace = "prefix+shift+1..9"
