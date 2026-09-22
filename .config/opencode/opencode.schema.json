@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenCode configuration (V2, local)",
+  "description": "Local V2-aware schema. Built from the V2 docs because no V2 schema is published upstream. Root is intentionally permissive: unknown keys never warn. See https://opencode.ai/v2/docs/config.",
+  "allowComments": true,
+  "allowTrailingCommas": true,
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON schema reference for configuration validation"
+    },
+    "model": {
+      "type": "string",
+      "description": "Default model in provider/model format"
+    },
+    "default_agent": {
+      "type": "string",
+      "description": "Primary agent used when a session does not select one"
+    },
+    "shell": {
+      "type": "string",
+      "description": "Shell used by the terminal and shell tools"
+    },
+    "username": {
+      "type": "string"
+    },
+    "share": {
+      "enum": ["manual", "auto", "disabled"],
+      "description": "Session sharing policy"
+    },
+    "update": {
+      "enum": ["disable", "notify", "auto"],
+      "description": "Update check behavior"
+    },
+    "snapshots": {
+      "type": "boolean",
+      "description": "Enable or disable filesystem snapshots"
+    },
+    "plugins": {
+      "type": "array",
+      "description": "Plugin packages or local plugin directories",
+      "items": {
+        "anyOf": [
+          { "type": "string" },
+          {
+            "type": "object",
+            "properties": {
+              "package": { "type": "string" },
+              "options": { "type": "object" }
+            },
+            "required": ["package"]
+          }
+        ]
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "description": "Ordered permission rules. The last matching rule wins.",
+      "items": { "$ref": "#/$defs/permissionRule" }
+    },
+    "agents": {
+      "type": "object",
+      "description": "Named agents, keyed by agent ID",
+      "additionalProperties": { "$ref": "#/$defs/agent" }
+    },
+    "commands": {
+      "type": "object",
+      "description": "Named prompt templates",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "template": { "type": "string" },
+          "agent": { "type": "string" },
+          "model": { "type": "string" },
+          "subtask": { "type": "boolean" }
+        }
+      }
+    },
+    "providers": {
+      "type": "object",
+      "description": "Provider configuration and model overrides"
+    },
+    "mcp": {
+      "type": "object",
+      "properties": {
+        "servers": {
+          "type": "object",
+          "description": "MCP servers, keyed by server name",
+          "additionalProperties": { "$ref": "#/$defs/mcpServer" }
+        },
+        "timeout": { "$ref": "#/$defs/mcpTimeout" }
+      }
+    },
+    "websearch": {
+      "type": "object",
+      "description": "Web search provider selection",
+      "properties": {
+        "provider": { "type": "string" }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "description": "Directories or URLs that provide agent skills",
+      "items": { "type": "string" }
+    },
+    "instructions": {
+      "type": "array",
+      "description": "Additional instruction files, globs, or URLs",
+      "items": { "type": "string" }
+    },
+    "references": {
+      "type": "object",
+      "description": "Named local directories or Git repositories"
+    },
+    "formatter": {
+      "type": ["boolean", "object"]
+    },
+    "lsp": {
+      "type": ["boolean", "object"]
+    },
+    "tool_output": {
+      "type": "object",
+      "properties": {
+        "max_lines": { "type": "integer" },
+        "max_bytes": { "type": "integer" }
+      }
+    },
+    "media": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "object",
+          "properties": {
+            "auto_resize": { "type": "boolean" },
+            "max_width": { "type": "integer" },
+            "max_height": { "type": "integer" },
+            "max_base64_bytes": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "compaction": {
+      "type": "object",
+      "properties": {
+        "auto": { "type": "boolean" },
+        "keep": {
+          "type": "object",
+          "properties": {
+            "tokens": { "type": "integer" }
+          }
+        },
+        "buffer": { "type": "integer" }
+      }
+    },
+    "warming": {
+      "type": "object",
+      "properties": {
+        "prompt": { "type": "string" },
+        "interval": { "type": "string" },
+        "duration": { "type": "string" }
+      }
+    },
+    "worktree": {
+      "type": "object",
+      "properties": {
+        "directory": { "type": "string" }
+      }
+    },
+    "watcher": {
+      "type": "object",
+      "properties": {
+        "ignore": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "experimental": {
+      "type": "object"
+    },
+    "enterprise": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "permissionRule": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "Tool or permission action, for example shell, edit, read, subagent, websearch"
+        },
+        "resource": {
+          "type": "string",
+          "description": "Path, command, agent ID, or other value matched by the action"
+        },
+        "effect": {
+          "enum": ["allow", "ask", "deny"],
+          "description": "Decision when this rule matches"
+        }
+      },
+      "required": ["action", "resource", "effect"]
+    },
+    "agent": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "mode": { "enum": ["primary", "subagent", "all"] },
+        "system": {
+          "type": "string",
+          "description": "System prompt for the agent"
+        },
+        "model": {
+          "description": "provider/model, optionally with #variant, or the expanded object form",
+          "anyOf": [
+            { "type": "string" },
+            {
+              "type": "object",
+              "properties": {
+                "providerID": { "type": "string" },
+                "model": { "type": "string" },
+                "variant": { "type": "string" }
+              }
+            }
+          ]
+        },
+        "permissions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/permissionRule" }
+        },
+        "steps": {
+          "type": "integer",
+          "description": "Maximum number of model steps"
+        },
+        "hidden": { "type": "boolean" },
+        "color": { "type": "string" },
+        "disabled": { "type": "boolean" },
+        "request": {
+          "type": "object",
+          "properties": {
+            "headers": { "type": "object" },
+            "body": { "type": "object" }
+          }
+        }
+      }
+    },
+    "mcpServer": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["local", "remote"] },
+        "command": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Executable followed by its arguments (local servers)"
+        },
+        "cwd": { "type": "string" },
+        "url": {
+          "type": "string",
+          "description": "Absolute Streamable HTTP endpoint (remote servers)"
+        },
+        "headers": { "type": "object" },
+        "environment": { "type": "object" },
+        "oauth": {
+          "description": "OAuth settings, or false to disable OAuth",
+          "anyOf": [{ "type": "boolean" }, { "type": "object" }]
+        },
+        "disabled": { "type": "boolean" },
+        "codemode": { "type": "boolean" },
+        "protocol": { "enum": ["legacy", "auto", "2026-07-28"] },
+        "timeout": { "$ref": "#/$defs/mcpTimeout" }
+      },
+      "required": ["type"]
+    },
+    "mcpTimeout": {
+      "type": "object",
+      "properties": {
+        "startup": { "type": "integer" },
+        "catalog": { "type": "integer" },
+        "execution": { "type": "integer" }
+      }
+    }
+  }
+}
