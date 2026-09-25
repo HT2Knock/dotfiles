@@ -22,7 +22,9 @@
   },
   "tabs": {
     "layout": "horizontal",
-    "scope": "cwd"
+    "scope": "cwd",
+    "indicators": "numbers",
+    "enabled": false
   },
   "attention": {
     "notifications": true,
