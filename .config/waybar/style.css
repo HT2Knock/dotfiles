@@ -26,6 +26,7 @@ window#waybar {
 #backlight,
 #bluetooth,
 #disk,
+#custom-display,
 #power-profiles-daemon {
   border: 2px rgba(122, 162, 247, 0.6) solid;
   padding: 1px 10px;
@@ -56,9 +57,26 @@ window#waybar {
 #bluetooth:hover,
 #custom-shutdown:hover,
 #custom-notification:hover,
+#custom-display:hover,
 #power-profiles-daemon:hover {
   border: 2px rgba(125, 207, 255, 0.9) solid;
   color: #7dcfff;
+}
+
+#custom-display.builtin {
+  color: #7aa2f7;
+}
+
+#custom-display.extend {
+  color: #9ece6a;
+}
+
+#custom-display.external {
+  color: #7dcfff;
+}
+
+#custom-display.mirror {
+  color: #e0af68;
 }
 
 #battery.critical,

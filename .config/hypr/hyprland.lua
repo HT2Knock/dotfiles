@@ -183,6 +183,8 @@ hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(shiftMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(shiftMod .. " + R", hl.dsp.exec_cmd("~/dotfiles/scripts/wallpaper.sh --next"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh menu"))
+hl.bind(shiftMod .. " + L", hl.dsp.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh toggle"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("~/dotfiles/scripts/clipboard.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprlock"))
@@ -345,6 +347,28 @@ local function place_follow_workspaces()
 end
 
 hl.on("hyprland.start", place_follow_workspaces)
-hl.on("monitor.added", place_follow_workspaces)
-hl.on("monitor.removed", place_follow_workspaces)
+
+hl.on("monitor.added", function()
+	place_follow_workspaces()
+	hl.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh recover")
+end)
+
+hl.on("monitor.removed", function()
+	place_follow_workspaces()
+	hl.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh recover")
+end)
+
+------------------------------
+---- DISPLAY MODE / LID ------
+------------------------------
+
+-- Closing the lid switches to the external monitor only (clamshell mode).
+-- Opening it restores the last chosen display mode.
+hl.bind("switch:on:Lid Switch", function()
+	hl.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh lid-close")
+end, { locked = true })
+
+hl.bind("switch:off:Lid Switch", function()
+	hl.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh lid-open")
+end, { locked = true })
 

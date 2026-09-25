@@ -11,6 +11,7 @@
   "modules-left": ["disk", "cpu", "memory", "network", "battery"],
   "modules-center": ["hyprland/workspaces", "clock", "custom/notification"],
   "modules-right": [
+    "custom/display",
     "backlight",
     "pulseaudio",
     "bluetooth",
@@ -139,5 +140,14 @@
     "format": "󰣇",
     "tooltip": "true",
     "tooltip-format": "Click to **Suspend** (Go to Sleep)",
+  },
+  "custom/display": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "bash -c '$HOME/dotfiles/scripts/display-mode.sh status'",
+    "interval": 2,
+    "on-click": "bash -c '$HOME/dotfiles/scripts/display-mode.sh menu'",
+    "on-click-right": "bash -c '$HOME/dotfiles/scripts/display-mode.sh toggle'",
+    "tooltip": true,
   },
 }
