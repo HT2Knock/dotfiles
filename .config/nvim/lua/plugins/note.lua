@@ -22,7 +22,7 @@ return {
         workdays_only = false,
       },
       picker = {
-        name = 'snacks.pick',
+        name = 'snacks.picker',
       },
       templates = {
         folder = 'templates',
