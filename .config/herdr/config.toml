@@ -1,7 +1,7 @@
 onboarding = false
 
 [ui.toast]
-delivery = "herdr"
+delivery = "terminal"
 delay_seconds = 1
 
 [keys]
@@ -11,3 +11,13 @@ split_horizontal = "prefix+minus"
 split_vertical = "prefix+shift+minus"
 
 switch_workspace = "prefix+shift+1..9"
+
+[ui]
+status_indicators = "symbols"
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[ui.sound]
+enabled = false
