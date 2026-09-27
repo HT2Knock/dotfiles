@@ -272,7 +272,7 @@ show_menu() {
 		lines+="$marker|$mode|$(mode_label "$mode")"$'\n'
 	done
 
-	choice="$(printf '%s' "$lines" | fuzzel --dmenu --prompt 'Display mode  ' --width 44 | cut -d'|' -f2)"
+	choice="$(printf '%s' "$lines" | vicinae dmenu -p 'Display mode' -W 600 | cut -d'|' -f2)"
 	[[ -z "$choice" ]] && return 0
 	set_mode "$choice"
 }
