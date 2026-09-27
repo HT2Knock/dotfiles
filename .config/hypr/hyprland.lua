@@ -145,7 +145,7 @@ hl.config({
 	misc = {
 		force_default_wallpaper = 1,
 		disable_hyprland_logo = true,
-		focus_on_activate = true,
+		focus_on_activate = false,
 	},
 })
 
@@ -197,6 +197,9 @@ hl.config({
 		repeat_rate = 33,
 		repeat_delay = 225,
 		sensitivity = 0,
+		follow_mouse = 0,
+		float_switch_override_focus = 0,
+		focus_on_close = 2,
 		touchpad = {
 			natural_scroll = true,
 		},
@@ -241,6 +244,17 @@ hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+
+-- Focus the floating window, or return to the tiled window
+hl.bind(mainMod .. " + TAB", hl.dsp.focus({ window = "floating" }))
+hl.bind(shiftMod .. " + TAB", hl.dsp.focus({ window = "tiled" }))
+
+-- Cycle only floating windows, forward and backward
+hl.bind("ALT + TAB", hl.dsp.window.cycle_next({ floating = true }))
+hl.bind("ALT + SHIFT + TAB", hl.dsp.window.cycle_next({ floating = true, next = false }))
+
+-- Raise the focused floating window above the other windows
+hl.bind(mainMod .. " + BACKSPACE", hl.dsp.window.bring_to_top())
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
