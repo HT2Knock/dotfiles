@@ -24,5 +24,6 @@ sesh-bin
 snitch-bin
 thorium-browser-avx2-bin
 tokyonight-gtk-theme-git
+vicinae-bin
 waybar-git
 witr-bin

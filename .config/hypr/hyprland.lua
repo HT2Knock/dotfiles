@@ -36,6 +36,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("wl-paste --watch cliphist store")
+	hl.exec_cmd("vicinae server")
 	hl.exec_cmd("systemctl --user restart neru.service")
 end)
 
@@ -146,7 +147,26 @@ hl.config({
 	misc = {
 		force_default_wallpaper = 1,
 		disable_hyprland_logo = true,
+		focus_on_activate = true,
 	},
+})
+
+-----------------------
+---- LAYER RULES ----
+-----------------------
+
+-- Vicinae launcher: blur the background and skip the open/close animation.
+hl.layer_rule({
+	match = { namespace = "vicinae" },
+	name = "vicinae-blur",
+	blur = true,
+	ignore_alpha = 0,
+})
+
+hl.layer_rule({
+	match = { namespace = "vicinae" },
+	name = "vicinae-no-animation",
+	no_anim = true,
 })
 
 ---------------
@@ -190,6 +210,7 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(shiftMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(shiftMod .. " + R", hl.dsp.exec_cmd("~/dotfiles/scripts/wallpaper.sh --next"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh menu"))
 hl.bind(shiftMod .. " + L", hl.dsp.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh toggle"))
