@@ -167,7 +167,7 @@ install_aur_packages() {
 	log "INFO" "Installing AUR packages..."
 
 	local aur_packages=(
-		thorium-browser-avx2-bin
+		helium-browser-bin
 		fnm
 		uv
 		getnf
