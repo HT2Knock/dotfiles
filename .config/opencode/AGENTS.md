@@ -22,3 +22,9 @@
   password dialog and a build take longer than the 120 s default.
 - The paru elevation path is `/usr/local/bin/sudo-gui`. Do not change it. Read the
   password dialog before you approve it.
+
+<!-- context7 -->
+For library, framework, SDK, or API questions, fetch current documentation with the
+Context7 MCP tools instead of relying on training data. See the `context7-mcp` skill
+for the workflow.
+<!-- context7 -->
