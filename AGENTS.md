@@ -1,121 +1,101 @@
 # Dotfiles Repository - Agent Guidelines
 
-This is a **dotfiles repository** managed with [GNU Stow](https://www.gnu.org/software/stow/). Configurations are organized per application under `.config/` and symlinked into `~/.config` using stow.
+This repository stores personal configuration files for GNU Stow. Each application
+directory under `.config/` is a Stow package. Stow links package files into `$HOME`.
 
-## Repository Structure
+## Instruction precedence
 
-```
-dotfiles/
-├── .config/
-│   ├── nvim/          # Neovim configuration
-│   ├── zsh/           # Zsh shell configuration
-│   ├── hypr/          # Hyprland window manager
-│   ├── tmux/          # Tmux terminal multiplexer
-│   ├── yazi/          # Yazi file manager
-│   ├── opencode/      # OpenCode AI assistant
-│   ├── starship.toml  # Starship prompt
-│   └── ...            # Other tool configs
-├── scripts/           # Utility shell scripts
-├── fonts/             # Custom fonts
-├── assets/            # Images, themes, etc.
-└── arch_post_install.sh  # Arch Linux setup script
-```
+Apply every relevant instruction file. If two instructions conflict, resolve them
+in this order:
 
-## Build/Lint/Test Commands
+1. Explicit instructions from the user.
+2. The nearest app `AGENTS.md`, for example `.config/nvim/AGENTS.md` or
+   `.config/opencode/AGENTS.md`.
+3. This file.
 
-### Deploying Configurations (Stow)
+This file holds shared rules only. Put app-specific rules in that app's `AGENTS.md`,
+next to the code they govern.
 
-The repo is stowed as a single package, `.config`, with target `~/.config`.
-Each app directory under `.config/` becomes `~/.config/<app>` (a symlink into
-the repo). Stow is idempotent, so it only creates missing links; run it after
-adding an app.
+## Repository structure
+
+- `.config/<app>/` — one Stow package per application.
+- `scripts/` — utility shell scripts.
+- `fonts/` — custom fonts.
+- `assets/` — images, themes, and agent snippets.
+- `arch_post_install.sh` — Arch Linux setup script.
+- `.stow-local-ignore` — the Stow ignore list. This file is authoritative.
+- `.gitignore` — the Git ignore list. This file is authoritative.
+
+Run `ls` for the current list. The directories are the source of truth; this map is
+an overview only.
+
+## Deploying configurations (Stow)
+
+The repository is stowed as a single package, `.config`, with target `~/.config`.
+Each app directory under `.config/` becomes `~/.config/<app>`.
 
 ```bash
-# Stow / update every app under .config (run from the repo root)
-stow -t ~/.config .config
-
-# Restow (re-create links, e.g. after moving files)
-stow -R -t ~/.config .config
-
-# Simulate without making changes
+# Show what Stow would change, without changing it
 stow -n -v -t ~/.config .config
 
-# Remove one app's link (stow cannot target a single app within a package)
+# Create or update links for every app
+stow -t ~/.config .config
+
+# Re-create links after moving or renaming files
+stow -R -t ~/.config .config
+
+# Remove one app's link (Stow cannot target a single app in a package)
 rm ~/.config/<app>
 ```
 
-> Stow rejects slashes in package names, so `stow -t ~ .config/nvim` fails.
-> Use the `.config` package form above instead.
+Stow rejects a package name that contains a slash, so `stow -t ~ .config/nvim` fails.
+Use the `.config` package form above.
 
-### Lua Formatting (Neovim configs)
-```bash
-# Format all Lua files in nvim config
-cd .config/nvim && stylua .
+## Verification by change type
 
-# Check formatting without modifying
-stylua --check .
+Use the narrowest check that covers the change. Run it before you commit.
 
-# Format specific file
-stylua .config/nvim/lua/config/options.lua
-```
+| Change | Check |
+| --- | --- |
+| Neovim Lua (`.config/nvim/**/*.lua`) | `cd .config/nvim && stylua --check .` |
+| Neovim config load | `nvim --headless +'checkhealth' +qa` |
+| LSP config (`.config/nvim/lsp/*.lua`) | `nvim --headless +'lua vim.lsp.enable({"lua_ls", "gopls"})' +qa` |
+| Single Lua file syntax | `luac -p <file>` |
+| Shell scripts (`scripts/*.sh`, `arch_post_install.sh`) | `bash -n <file>`, then `shellcheck <file>` when installed |
+| Zsh (`.config/zsh/**`) | `zsh -i -c 'echo "Zsh config OK"'` |
+| tmux (`.config/tmux/tmux.conf`) | `tmux -f .config/tmux/tmux.conf start-server \; kill-server` |
+| JSON | `python3 -m json.tool <file> > /dev/null` |
+| YAML | `python3 -m yaml <file> 2>/dev/null` or `yamllint <file>` |
+| TOML | `tomllint <file>` |
+| New or renamed Stow app | `stow -n -v -t ~/.config .config`, then `stow -t ~/.config .config` |
+| Hyprland, Waybar, swaync, Ghostty, themes | Reload the running application and check it visually. No headless check exists. |
 
-### Shell Script Linting
-```bash
-# Check shell scripts with shellcheck (if installed)
-shellcheck scripts/*.sh
-shellcheck .config/zsh/*.zsh
+## Generated artifacts
 
-# Validate bash syntax
-bash -n arch_post_install.sh
-```
+`~/.config/<app>` is a symlink that Stow generates from this repository. The file in
+the repository is the source of truth.
 
-### Neovim Health Check
-```bash
-# Check Neovim configuration health
-nvim --headless +'checkhealth' +qa
+- Edit the file in the repository. Do not edit through the symlink with a tool that
+  replaces the file, because replacement breaks the link.
+- Rebuild links after moving or renaming files: `stow -R -t ~/.config .config`.
+- Do not copy files into `~/.config` by hand. Copies drift from the repository.
+- Do not commit caches or runtime state. See `.gitignore` for the list.
 
-# Verify LSP configs load
-nvim --headless +'lua vim.lsp.enable({"lua_ls", "gopls"})' +qa
+## Code style
 
-# Quick Lua syntax check
-luac -p .config/nvim/lua/config/options.lua
-```
+### Shell scripts (Bash and Zsh)
 
-### Testing Changes
-```bash
-# Test zsh config loads without errors
-zsh -i -c 'echo "Zsh config OK"'
-
-# Test tmux config
-tmux -f .config/tmux/tmux.conf start-server \; kill-server
-
-# Validate JSON configs
-python3 -m json.tool .config/swaync/config.json > /dev/null
-
-# Validate YAML configs
-python3 -m yaml .config/lazygit/config.yml 2>/dev/null || yamllint .config/lazygit/config.yml
-
-# Validate TOML configs
-tomllint .config/starship.toml
-```
-
-## Code Style Guidelines
-
-### Shell Scripts (Bash/Zsh)
-
-**Shebang and Options:**
 ```bash
 #!/usr/bin/env bash
-set -euo pipefail  # Exit on error, undefined var, pipe failure
+set -euo pipefail
 ```
 
-**Naming Conventions:**
-- Variables: `snake_case` (lowercase)
-- Constants: `SCREAMING_SNAKE_CASE`
-- Functions: `snake_case`
-- Local variables: use `local` keyword
+- Variables and functions: `snake_case`. Constants: `SCREAMING_SNAKE_CASE`.
+- Declare local variables with `local`.
+- Quote all variable expansions: `"$var"`.
+- Use `readonly` for constants.
+- Check command success with `if` or `||`.
 
-**Example:**
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
@@ -126,116 +106,50 @@ readonly LOG_FILE="$HOME/install.log"
 log() {
     local level="$1"
     shift
-    local message="$*"
-    echo "[$level] $message" >> "$LOG_FILE"
-}
-
-main() {
-    local config_file=""
-    config_file="$SCRIPT_DIR/config.conf"
-    # ...
+    echo "[$level] $*" >> "$LOG_FILE"
 }
 ```
 
-**Error Handling:**
-- Use `set -euo pipefail` at the top
-- Check command success with `if` or `||`
-- Use `readonly` for constants
-- Quote all variable expansions: `"$var"`
+### Lua (Neovim configuration)
 
-### Lua (Neovim Configuration)
+`.config/nvim/AGENTS.md` owns the detailed Lua rules. Key points:
 
-See `.config/nvim/AGENTS.md` for detailed Lua guidelines. Key points:
+- Format with stylua, configured in `.config/nvim/.stylua.toml`.
+- Indent with 2 spaces, column width 160, single quotes.
+- Functions and variables: `snake_case`. Constants: `SCREAMING_SNAKE_CASE`.
+- Add LuaLS annotations, for example `---@type vim.lsp.Config`.
 
-- **Formatter**: stylua (config in `.config/nvim/.stylua.toml`)
-- **Indent**: 2 spaces
-- **Line width**: 160 characters
-- **Quotes**: Prefer single quotes (`AutoPreferSingle`)
-- **Naming**: `snake_case` for functions/variables, `SCREAMING_SNAKE_CASE` for constants
-- **Types**: Use LuaLS annotations (`---@type vim.lsp.Config`)
+### Configuration files
 
-### Configuration Files
+- JSON: 2-space indent. Validate with `python3 -m json.tool`.
+- YAML: 2-space indent, no tabs. Validate with `yamllint`.
+- TOML: inline tables for short data, section headers for groups.
 
-**JSON:**
-- Use 2 space indentation
-- Keep single quotes in strings (JSON requires double quotes)
-- Validate before committing
+### Zsh configuration
 
-**YAML:**
-- Use 2 space indentation
-- Avoid tabs (YAML doesn't allow them)
-- Quote strings with special characters
+- `.zshrc` is the entry point.
+- `zsh-aliases` holds aliases, `zsh-exports` holds environment variables, and
+  `zsh-functions` holds functions.
+- Aliases: lowercase and descriptive. Exports: uppercase. Functions: `snake_case`.
 
-**TOML:**
-- Use inline tables for simple data
-- Group related settings under section headers
-- Use dot notation for nested tables when appropriate
+## Hard prohibitions
 
-**Example TOML (starship.toml style):**
-```toml
-[format]
-src = """
-  $username\
-  $directory\
-"""
+- Never run `stow` without `-n` first when the change adds, moves, or removes links.
+  The simulation shows the result before it happens.
+- Never run `git add -A`, `git add .`, `git reset --hard`, `git clean -fd`, or
+  `git stash`. These commands destroy uncommitted work.
+- Never commit API keys, tokens, or passwords. See `.gitignore`.
+- Never hand-edit a generated file when its generator or source exists.
+- Never use `#!/bin/bash`. Use `#!/usr/bin/env bash` for portability.
 
-[git_branch]
-symbol = " "
-```
+## Git
 
-### Zsh Configuration
+- Stage explicit paths: `git add <path1> <path2>`.
+- Run `git status` before each commit and confirm that only your files are staged.
+- Keep one logical change per commit, with a short message.
 
-**File Organization:**
-- `.zshrc` - Main entry point
-- `zsh-aliases` - Command aliases
-- `zsh-exports` - Environment variables
-- `zsh-functions` - Custom functions
+## Plugins
 
-**Style:**
-```zsh
-# Aliases: lowercase with descriptive names
-alias lg="lazygit"
-alias v='nvim'
-
-# Exports: UPPERCASE
-export EDITOR='nvim'
-export BROWSER='firefox'
-
-# Functions: snake_case
-my_function() {
-    local var="value"
-    # ...
-}
-```
-
-## Important Rules
-
-1. **Stow packages**: Each app config must be in its own directory under `.config/` or similar
-2. **No secrets**: Never commit API keys, tokens, or passwords (see `.gitignore`)
-3. **Symlink safety**: Use `stow -n` to simulate before actual deployment
-4. **Config validation**: Always validate JSON/YAML/TOML before committing
-5. **Shell portability**: Use `#!/usr/bin/env bash` not `/bin/bash` for portability
-6. **Neovim LSP**: Uses native LSP (0.11+), NOT nvim-lspconfig plugin
-
-## File Ignore Patterns
-
-Defined in `.stow-local-ignore`:
-- `colors/` directory (except `astronvim.lua`)
-- `*.null-ls*` files
-- `lua/user/` directory
-- `ftplugin/` directory
-- `.luarc.json`, `.gitignore` specific to nested dirs
-
-## Plugin Management
-
-- **Neovim**: Uses lazy.nvim (config in `.config/nvim/lua/config/lazy.lua`)
-- **Zsh**: Uses zinit (loaded in `.zshrc`)
-- **Tmux**: Uses TPM (Tmux Plugin Manager)
-
-## Testing Workflow
-
-1. Make changes to config files
-2. Run appropriate linter/formatter
-3. Test by restarting/reloading the application
-4. For stow-managed configs: `stow -R -t ~/.config .config` to update symlinks
-5. Verify application loads without errors
+- Neovim: lazy.nvim, in `.config/nvim/lua/config/lazy.lua`.
+- Zsh: zinit, loaded in `.zshrc`.
+- tmux: TPM.
