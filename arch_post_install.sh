@@ -128,6 +128,9 @@ install_official_packages() {
 		# Application launcher and utilities
 		nwg-look fuzzel cliphist wtype
 
+		# Icon theme
+		papirus-icon-theme
+
 		# Document viewer
 		zathura zathura-pdf-mupdf
 	)
