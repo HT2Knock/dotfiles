@@ -167,6 +167,22 @@ hl.layer_rule({
 	no_anim = true,
 })
 
+-- swaync: blur behind the transparent tokyonight surfaces. Keep ignore_alpha
+-- above 0 so the transparent gaps and rounded corners stay clean.
+hl.layer_rule({
+	match = { namespace = "swaync-notification-window" },
+	name = "swaync-popup-blur",
+	blur = true,
+	ignore_alpha = 0.2,
+})
+
+hl.layer_rule({
+	match = { namespace = "swaync-control-center" },
+	name = "swaync-center-blur",
+	blur = true,
+	ignore_alpha = 0.2,
+})
+
 ---------------
 ---- INPUT ----
 ---------------
