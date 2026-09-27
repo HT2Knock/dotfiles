@@ -15,6 +15,7 @@
     "backlight",
     "pulseaudio",
     "bluetooth",
+    "custom/bt-battery",
     "power-profiles-daemon",
     "tray",
     "custom/shutdown",
@@ -120,6 +121,14 @@
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+  },
+  "custom/bt-battery": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "bash -c '$HOME/dotfiles/scripts/bt-battery.sh'",
+    "interval": 30,
+    "tooltip": true,
+    "on-click": "ghostty -e bluetoothctl",
   },
   "power-profiles-daemon": {
     "format": "{icon}",

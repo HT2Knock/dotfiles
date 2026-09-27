@@ -25,6 +25,7 @@ window#waybar {
 #tray,
 #backlight,
 #bluetooth,
+#custom-bt-battery,
 #disk,
 #custom-display,
 #power-profiles-daemon {
@@ -55,6 +56,7 @@ window#waybar {
 #tray:hover,
 #backlight:hover,
 #bluetooth:hover,
+#custom-bt-battery:hover,
 #custom-shutdown:hover,
 #custom-notification:hover,
 #custom-display:hover,
@@ -80,6 +82,7 @@ window#waybar {
 }
 
 #battery.critical,
+#custom-bt-battery.critical,
 #memory.critical,
 #cpu.critical,
 #disk.critical {
@@ -88,9 +91,20 @@ window#waybar {
 }
 
 #battery.warning,
+#custom-bt-battery.warning,
 #disk.warning {
   color: #ff9e64;
   border-color: rgba(255, 158, 100, 0.8);
+}
+
+#custom-bt-battery.unstable {
+  color: #e0af68;
+  border-color: rgba(224, 175, 104, 0.8);
+}
+
+#custom-bt-battery.off {
+  color: #565f89;
+  border-color: rgba(86, 95, 137, 0.6);
 }
 
 #workspaces .active {
