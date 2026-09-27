@@ -53,6 +53,14 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("HYPRSHOT_DIR", os.getenv("HOME") .. "/Pictures/Screenshots")
 hl.env("QT_QPA_PLATFORM", "wayland")
 
+-- GUI-spawned apps (fuzzel, waybar) do not inherit the login shell PATH, so
+-- ~/.local/bin is added here. The check keeps reloads from prefixing it again.
+local local_bin = os.getenv("HOME") .. "/.local/bin"
+local current_path = os.getenv("PATH") or ""
+if not string.find(current_path, local_bin, 1, true) then
+	hl.env("PATH", local_bin .. ":" .. current_path)
+end
+
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------

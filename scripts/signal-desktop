@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Signal's Wayland app_id is "signal" (its desktopName), but Electron's AT-SPI
+# application name is the product name "signal-desktop". Neru matches the two to
+# find the focused window on wlroots, so the mismatch hides Signal's hints.
+# Chromium derives the AT-SPI name from argv[0]'s basename; exec -a makes it
+# "signal" to match the app_id.
+readonly SIGNAL_USER_FLAGS_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/signal-desktop-flags.conf"
+readonly SIGNAL_BINARY="/usr/lib/signal-desktop/signal-desktop"
+
+signal_user_flags=""
+if [[ -f "$SIGNAL_USER_FLAGS_FILE" ]]; then
+    signal_user_flags="$(sed 's/#.*//' "$SIGNAL_USER_FLAGS_FILE" | tr '\n' ' ')"
+fi
+
+# shellcheck disable=SC2086 # the flags are a whitespace-separated list on purpose
+exec -a signal "$SIGNAL_BINARY" $signal_user_flags "$@"
