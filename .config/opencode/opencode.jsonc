@@ -32,6 +32,14 @@
         "type": "local",
         "command": ["/Users/ht2knock/.local/bin/codebase-memory-mcp"],
       },
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+      },
+      "grep": {
+        "type": "remote",
+        "url": "https://mcp.grep.app",
+      },
     },
   },
 }
