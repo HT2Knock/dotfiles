@@ -1,13 +1,24 @@
 onboarding = false
 
 [ui.toast]
-delivery = "herdr"
+delivery = "terminal"
 delay_seconds = 1
 
 [keys]
 prefix = "ctrl+a"
 
 split_horizontal = "prefix+minus"
-split_vertical = "prefix+shift+minus"
 
 switch_workspace = "prefix+shift+1..9"
+
+[theme]
+name = "tokyo-night"
+
+[ui.sound]
+enabled = false
+
+[ui]
+show_agent_labels_on_pane_borders = false
+
+[experimental]
+pane_history = false
