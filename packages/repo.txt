@@ -29,6 +29,7 @@ btrfs-progs
 cantarell-fonts
 clang
 cloudflared
+cmake
 cryptsetup
 device-mapper
 diffutils
@@ -131,6 +132,7 @@ man-pages
 mdadm
 meld
 mesa-utils
+meson
 mkcert
 modemmanager
 mpv
