@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Askpass helper for sudo. sudo runs this program and reads the password from
+# its stdout. It needs a graphical session, because the agent shell has no TTY.
+
+prompt="${1:-Password:}"
+
+if command -v zenity >/dev/null 2>&1; then
+    exec zenity --password --title 'sudo authentication'
+fi
+
+exec yad --entry --hide-text --title 'sudo authentication' --text "$prompt"

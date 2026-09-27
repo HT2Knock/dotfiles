@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Elevation wrapper for paru. It routes the sudo password prompt to a GUI
+# dialog, so paru works in a shell without a TTY.
+#
+# Install to /usr/local/bin/sudo-gui as root. Then point paru at it:
+#   ~/.config/paru/paru.conf -> [bin] Sudo = /usr/local/bin/sudo-gui
+
+export SUDO_ASKPASS=/usr/local/bin/sudo-askpass
+exec /usr/bin/sudo -A "$@"
