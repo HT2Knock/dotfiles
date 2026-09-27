@@ -19,7 +19,7 @@ hl.monitor({
 
 local terminal = "ghostty +new-window"
 local menu = "fuzzel"
-local browser = "thorium-browser-avx2"
+local browser = "helium-browser"
 
 -------------------
 ---- AUTOSTART ----
@@ -290,8 +290,8 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "thorium-browser-workspace",
-	match = { class = "(?i)thorium-browser" },
+	name = "helium-browser-workspace",
+	match = { class = "(?i)helium" },
 	workspace = 1,
 })
 
