@@ -1,15 +1,5 @@
 {
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-5",
-  "defaultThinkingLevel": "high",
-  "packages": [
-    "npm:@juicesharp/rpiv-advisor",
-    "npm:pi-claude-auth",
-    "npm:@ff-labs/pi-fff",
-    "npm:pi-web-access",
-    "npm:pi-vim",
-    "npm:@plannotator/pi-extension"
-  ],
+  "packages": [],
   "terminal": {
     "showTerminalProgress": true
   },
