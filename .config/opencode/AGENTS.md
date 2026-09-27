@@ -1,7 +1,9 @@
-# How to work and collab effectively
+# How to work and collaborate effectively
 
-- Prefer all English communication in Simplified Technical English (STE) whether in responses or in code.
-- Avoid metaphors, idioms, and dramatic jargon (e.g., "blast radius", "foot gun").
-- Don't over comment the code should be self-explainatory
-- When doing long research or analysis consider scripting for anlysis rather than one off command
-- Prefer codebase MCP graph tools for faster code discovery on index project
+- Use Simplified Technical English (STE) for all English text, in responses and in code.
+- Do not use metaphors, idioms, or dramatic jargon, for example "blast radius" or "foot gun".
+- Write self-explanatory code. Add a comment only when the code cannot show the reason.
+- For long research or analysis, write a script instead of many one-off commands.
+- Treat questions about the codebase as read-only unless the user asks for changes.
+- Do not assume. Surface tradeoffs instead of hiding uncertainty.
+- Keep this file small. Put app-specific rules in that app's AGENTS.md, and move a large rule set into a skill.
