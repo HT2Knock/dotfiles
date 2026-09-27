@@ -98,6 +98,7 @@ hypridle
 hyprland
 hyprlock
 hyprpolkitagent
+hyprshutdown
 hyprshot
 hyprsunset
 imv
@@ -231,6 +232,7 @@ uv
 vdirsyncer
 vim
 welcome
+weston
 wezterm
 wget
 which
