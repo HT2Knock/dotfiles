@@ -14,6 +14,8 @@
   `scripts/install-packages.sh`. Run `scripts/export-packages.sh` to refresh the lists
   from the current system.
 - Run package commands one at a time. A second pacman process fails on the database lock.
+- The agent shell has no TTY. Pass `--noconfirm` to paru, so pacman confirmation prompts
+  do not block.
 - Use `paru -Syu` for an upgrade. Never run `paru -Sy` or `pacman -Sy` alone, because a
   partial upgrade breaks an Arch system.
 - Set the shell timeout to at least 1800000 ms for `paru` and `makepkg` commands. The
