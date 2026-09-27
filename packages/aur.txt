@@ -3,7 +3,7 @@
 # Refresh from the live system with 'scripts/export-packages.sh'.
 appimagelauncher
 bluetuith
-bruno
+bruno-bin
 calibre-bin
 crush-bin
 dbeaver-ce-bin
