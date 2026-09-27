@@ -126,7 +126,7 @@ install_official_packages() {
 		qt5-wayland qt6-wayland kvantum qt5ct qt6ct
 
 		# Application launcher and utilities
-		nwg-look fuzzel cliphist wtype
+		nwg-look wtype
 
 		# Icon theme
 		papirus-icon-theme
@@ -175,7 +175,6 @@ install_aur_packages() {
 		uv
 		getnf
 		tokyonight-gtk-theme-git
-		bemoji
 		appimagelauncher
 		sesh-bin
 	)

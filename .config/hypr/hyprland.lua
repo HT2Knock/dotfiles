@@ -18,7 +18,6 @@ hl.monitor({
 ---------------------
 
 local terminal = "ghostty +new-window"
-local menu = "fuzzel"
 local browser = "helium-browser"
 
 -------------------
@@ -35,7 +34,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("hyprsunset")
-	hl.exec_cmd("wl-paste --watch cliphist store")
 	hl.exec_cmd("vicinae server")
 	hl.exec_cmd("systemctl --user restart neru.service")
 end)
@@ -54,7 +52,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("HYPRSHOT_DIR", os.getenv("HOME") .. "/Pictures/Screenshots")
 hl.env("QT_QPA_PLATFORM", "wayland")
 
--- GUI-spawned apps (fuzzel, waybar) do not inherit the login shell PATH, so
+-- GUI-spawned apps (vicinae, waybar) do not inherit the login shell PATH, so
 -- ~/.local/bin is added here. The check keeps reloads from prefixing it again.
 local local_bin = os.getenv("HOME") .. "/.local/bin"
 local current_path = os.getenv("PATH") or ""
@@ -204,17 +202,16 @@ local shiftMod = "SUPER + SHIFT"
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("bemoji"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("vicinae vicinae://launch/core/search-emojis"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(shiftMod .. " + F", hl.dsp.window.fullscreen())
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("vicinae toggle"))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(shiftMod .. " + R", hl.dsp.exec_cmd("~/dotfiles/scripts/wallpaper.sh --next"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh menu"))
 hl.bind(shiftMod .. " + L", hl.dsp.exec_cmd("$HOME/dotfiles/scripts/display-mode.sh toggle"))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("~/dotfiles/scripts/clipboard.sh"))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("vicinae vicinae://launch/clipboard/history"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(shiftMod .. " + X", hl.dsp.exit())
