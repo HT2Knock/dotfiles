@@ -12,16 +12,16 @@
 	// "File Search" command.
 	"search_files_in_root": true,
 
-	// Use the theme and the icon theme that match the system appearance.
-	// The dark theme matches the Tokyo Night GTK theme used on this system.
+	// "auto" makes vicinae guess Adwaita or Breeze instead of reading the GTK
+	// setting. Point it at Papirus-Dark to match the rest of the desktop.
 	"theme": {
 		"light": {
 			"name": "vicinae-light",
-			"icon_theme": "auto"
+			"icon_theme": "Papirus-Dark"
 		},
 		"dark": {
 			"name": "tokyo-night",
-			"icon_theme": "auto"
+			"icon_theme": "Papirus-Dark"
 		}
 	},
 
