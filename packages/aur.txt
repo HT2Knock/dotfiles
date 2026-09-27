@@ -1,0 +1,28 @@
+# Explicitly installed foreign and AUR packages.
+# Source of truth for 'scripts/install-packages.sh'. Edit by hand.
+# Refresh from the live system with 'scripts/export-packages.sh'.
+appimagelauncher
+bemoji
+bluetuith
+bruno
+calibre-bin
+crush-bin
+dbeaver-ce-bin
+gcalcli
+getnf
+gnu-netcat
+helium-browser-bin
+hunk-bin
+kanata
+localsend-bin
+pi
+pspg
+responsively
+rtk-bin
+sddm-silent-theme
+sesh-bin
+snitch-bin
+thorium-browser-avx2-bin
+tokyonight-gtk-theme-git
+waybar-git
+witr-bin
