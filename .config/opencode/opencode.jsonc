@@ -31,6 +31,7 @@
       "codebase-memory-mcp": {
         "type": "local",
         "command": ["/Users/ht2knock/.local/bin/codebase-memory-mcp"],
+        "disabled": true,
       },
       "context7": {
         "type": "remote",
