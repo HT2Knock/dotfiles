@@ -5,6 +5,7 @@ appimagelauncher
 bluetuith
 bruno-bin
 calibre-bin
+codebase-memory-mcp-bin
 crush-bin
 dbeaver-ce-bin
 gcalcli
