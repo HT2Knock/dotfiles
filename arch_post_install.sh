@@ -176,6 +176,7 @@ install_aur_packages() {
 		getnf
 		tokyonight-gtk-theme-git
 		appimagelauncher
+		codebase-memory-mcp-bin
 		sesh-bin
 	)
 
@@ -227,6 +228,16 @@ setup_docker() {
 	else
 		log "WARN" "docker not found, skipping Docker setup"
 	fi
+}
+
+setup_codebase_memory() {
+	if ! command -v codebase-memory-mcp &>/dev/null; then
+		log "WARN" "codebase-memory-mcp not found, skipping setup"
+		return 0
+	fi
+
+	log "INFO" "Disabling the codebase-memory-mcp graph UI"
+	codebase-memory-mcp --ui=false || log "WARN" "Failed to disable the graph UI"
 }
 
 setup_zsh() {
@@ -339,6 +350,7 @@ main() {
 	install_official_packages
 	install_paru
 	install_aur_packages
+	setup_codebase_memory
 
 	setup_dotfile
 	setup_system
