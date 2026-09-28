@@ -1,7 +1,7 @@
 onboarding = false
 
 [ui.toast]
-delivery = "terminal"
+delivery = "herdr"
 delay_seconds = 1
 
 [keys]
@@ -12,6 +12,10 @@ split_vertical = "prefix+shift+minus"
 
 switch_workspace = "prefix+shift+1..9"
 
+# Cycle workspace/worktree rows. Up/down matches the vertical sidebar order.
+previous_workspace = "prefix+up"
+next_workspace = "prefix+down"
+
 [ui]
 status_indicators = "symbols"
 
@@ -20,4 +24,4 @@ name = "tokyo-night"
 auto_switch = false
 
 [ui.sound]
-enabled = false
+enabled = true
