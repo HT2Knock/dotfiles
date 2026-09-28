@@ -10,6 +10,7 @@
     { "action": "read", "resource": "*.env.*", "effect": "allow" },
     { "action": "question", "resource": "*", "effect": "deny" },
     { "action": "websearch", "resource": "*", "effect": "allow" },
+    { "action": "browser", "resource": "*", "effect": "deny" },
     { "action": "edit", "resource": "/usr/local/bin/*", "effect": "deny" },
     { "action": "edit", "resource": "/etc/sudoers*", "effect": "deny" },
     { "action": "edit", "resource": "/etc/makepkg.conf*", "effect": "deny" },
