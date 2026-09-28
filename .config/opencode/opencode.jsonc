@@ -6,6 +6,7 @@
   },
   "permissions": [
     { "action": "external_directory", "resource": "*", "effect": "allow" },
+    { "action": "browser", "resource": "*", "effect": "deny" },
   ],
   "username": "ngoc (ht2knock)",
   "mcp": {
