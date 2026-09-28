@@ -11,6 +11,7 @@ Use for a quick positive lookup.
 - Label the answer provisional.
 - Do not claim that something is absent, unused, or dead.
 - Do not claim that a search was exhaustive.
+- Do not claim complete impact.
 
 ## Verify (default)
 
