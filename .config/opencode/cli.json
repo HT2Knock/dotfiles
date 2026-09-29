@@ -3,21 +3,21 @@
   "theme": {
     "name": "tokyonight"
   },
+  "keybinds": {
+    "app.exit": "ctrl+c,<leader>q",
+    "session.half.page.up": "ctrl+u",
+    "session.half.page.down": "ctrl+d",
+    "input.delete": "delete,shift+delete",
+    "input.delete.to.line.start": "none",
+    "session.delete": "none"
+  },
   "animations": true,
   "session": {
     "scrollbar": true,
-    "thinking": "hide",
+    "thinking": "show",
     "permissions": "prompt",
-    "sidebar": "auto"
-  },
-  "tabs": {
-    "scope": "cwd"
-  },
-  "attention": {
-    "notifications": true,
-    "sound": true,
-    "volume": 0.4,
-    "sound_pack": "opencode.default"
+    "sidebar": "hide",
+    "new_location": "launch"
   },
   "plugins": ["./herdr-opencode"],
   "prompt": {
