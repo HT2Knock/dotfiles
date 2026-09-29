@@ -16,6 +16,8 @@ switch_workspace = "prefix+shift+1..9"
 previous_workspace = "prefix+up"
 next_workspace = "prefix+down"
 
+open_worktree = "prefix+shift+o"
+
 [ui]
 status_indicators = "symbols"
 
