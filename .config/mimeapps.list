@@ -1,0 +1,13 @@
+[Default Applications]
+x-scheme-handler/http=helium.desktop
+x-scheme-handler/https=helium.desktop
+application/pdf=org.pwmt.zathura.desktop
+text/html=helium.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-startcenter.desktop
+x-scheme-handler/readest=readest-handler.desktop
+x-scheme-handler/bruno=bruno.desktop
+x-scheme-handler/readest-onedrive=readest-handler.desktop
+x-scheme-handler/com.googleusercontent.apps.209390247301-ctpmep68ppfa56r1b8tr35e4qi4p60kq=readest-handler.desktop
+
+[Added Associations]
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=calibre-gui.desktop;libreoffice-startcenter.desktop;
