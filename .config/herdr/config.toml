@@ -1,7 +1,7 @@
 onboarding = false
 
 [ui.toast]
-delivery = "herdr"
+delivery = "terminal"
 delay_seconds = 1
 
 [keys]
@@ -15,6 +15,10 @@ switch_workspace = "prefix+shift+1..9"
 # Cycle workspace/worktree rows. Up/down matches the vertical sidebar order.
 previous_workspace = "prefix+up"
 next_workspace = "prefix+down"
+
+# Cycle agent panel rows, across workspaces. Left/right pairs with workspace up/down.
+previous_agent = "prefix+left"
+next_agent = "prefix+right"
 
 open_worktree = "prefix+shift+o"
 
