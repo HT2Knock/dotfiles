@@ -22,5 +22,8 @@
   "plugins": ["./herdr-opencode"],
   "prompt": {
     "image_preview": true
+  },
+  "diffs": {
+    "tree": false
   }
 }
