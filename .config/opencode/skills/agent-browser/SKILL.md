@@ -53,20 +53,26 @@ agent-browser --restore open https://app.example.com
 ## The SPA loop
 
 1. Open the page.
+
    ```bash
    agent-browser open <url>
    ```
+
 2. Snapshot to get element refs (`@e1`, `@e2`, …).
+
    ```bash
    agent-browser snapshot -i          # interactive elements only
    agent-browser snapshot -i --json   # machine-readable, good for extraction
    ```
+
 3. Act on refs.
+
    ```bash
    agent-browser click @e3
    agent-browser fill @e2 "text"
    agent-browser press Enter
    ```
+
 4. Wait for the app to settle (next section), then snapshot again. Re-snapshot after every
    page change; refs move when the app re-renders.
 
