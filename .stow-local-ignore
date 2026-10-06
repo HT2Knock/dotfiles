@@ -26,3 +26,7 @@ _darcs
 ^/COPYING
 
 ^/plugins
+
+# gcx local config/credentials (never link into ~/.config)
+\.config/gcx
+\.gcx\.yaml
