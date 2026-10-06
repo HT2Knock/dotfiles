@@ -129,7 +129,7 @@ install_packages() {
 	local casks=(
 		firefox
 		ghostty
-		raycast
+		vicinae
 		zed
 		dbeaver-community
 		signal

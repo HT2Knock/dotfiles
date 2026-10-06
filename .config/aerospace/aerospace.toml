@@ -167,7 +167,7 @@ run = 'move-node-to-workspace 7'
 
 # ── Floating apps (don't tile) ───────────────────────────────────────────
 [[on-window-detected]]
-if.app-id = 'com.raycast.macos'
+if.app-id = 'com.vicinaehq.Vicinae'
 run = 'layout floating'
 
 [[on-window-detected]]
