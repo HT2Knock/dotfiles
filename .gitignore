@@ -30,3 +30,7 @@ npm
 .config/opencode/herdr-tui-session.js
 .config/opencode/herdr-opencode/
 .config/opencode/plugins/herdr-agent-state.js
+
+# gcx CLI config (stores the Grafana credential in plaintext)
+.config/gcx/
+.gcx.yaml
