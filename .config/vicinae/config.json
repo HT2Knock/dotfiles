@@ -1,0 +1,52 @@
+{
+	// Read-only base configuration for this machine.
+	// settings.json imports this file and always wins on conflict.
+	// The GUI writes its changes to settings.json, so keep this file stable.
+
+	"$schema": "https://vicinae.com/schemas/config.json",
+
+	// Search files directly from the root search, not only from the
+	// "File Search" command.
+	"search_files_in_root": true,
+
+	// macOS has no system icon theme; "auto" uses the native app icons.
+	"theme": {
+		"light": {
+			"name": "vicinae-light",
+			"icon_theme": "auto"
+		},
+		"dark": {
+			"name": "tokyo-night",
+			"icon_theme": "auto"
+		}
+	},
+
+	// Show clipboard history first when the search input is empty.
+	"favorites": [
+		"clipboard:history"
+	],
+
+	// Offer file search when no other result matches the query.
+	"fallbacks": [
+		"files:search"
+	],
+
+	// Launcher toggle. Hyprland bound Super+D; on macOS Super maps to Option.
+	"global_shortcuts": {
+		"toggle": "alt+d"
+	},
+
+	// Command shortcuts ported from the Hyprland binds Super+E and Super+C.
+	"providers": {
+		"core": {
+			"entrypoints": {
+				"search-emojis": { "shortcut": "alt+e" }
+			}
+		},
+		"clipboard": {
+			"entrypoints": {
+				"history": { "shortcut": "alt+c" }
+			}
+		}
+	}
+}
