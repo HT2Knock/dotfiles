@@ -1,6 +1,6 @@
 [user]
-	email = huynhtransongngoc@gmail.com
-	name = T2Knock
+	email = ngoc.hts@airrlabs.com
+	name = HT2Knock
 
 [core]
 	pager = delta
@@ -17,9 +17,6 @@
 
 [diff]
 	colorMoved = default
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
@@ -38,3 +35,7 @@
   line-numbers-zero-style       = "#3b4261"
 [init]
 	defaultBranch = main
+[credential "https://github.com/HT2Knock"]
+	helper = store --file=/home/t2knock/.config/hermes-github/personal.creds
+[credential "https://github.com/AIRR-Labs"]
+	helper = store --file=/home/t2knock/.config/hermes-github/work.creds
