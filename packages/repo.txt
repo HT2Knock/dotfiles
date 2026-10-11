@@ -260,6 +260,7 @@ yazi
 zathura
 zathura-pdf-mupdf
 zed
+zenity
 zip
 zoxide
 zram-generator
