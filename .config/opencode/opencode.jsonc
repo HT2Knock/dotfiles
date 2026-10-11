@@ -1,5 +1,6 @@
 {
   "$schema": "./opencode.schema.json",
+  "model": "openai/gpt-6-luna",
   "plugins": ["@ex-machina/opencode-anthropic-auth@next"],
   "websearch": {
     "provider": "exa",
