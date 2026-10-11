@@ -78,6 +78,14 @@ function set_title() {
     echo -ne "\e]2;${cmd_name} — ${path_display}\a"
 }
 
+# Open the OpenCode TUI on knockon, rendered in this terminal. Pass a directory
+# on knockon to open that project.
+function oc-knockon() {
+    local remote_dir="${1:-.}"
+
+    ssh -t -o BatchMode=yes knockon "cd ${(q)remote_dir} && exec opencode"
+}
+
 preexec() {
     set_title "${1%% *}"
 }
