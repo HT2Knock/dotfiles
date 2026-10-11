@@ -1,0 +1,13 @@
+[Unit]
+Description=signal-cli HTTP daemon (Hermes Signal channel)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/signal-cli daemon --http 127.0.0.1:18080
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
