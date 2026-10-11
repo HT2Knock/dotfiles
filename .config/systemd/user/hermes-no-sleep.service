@@ -1,0 +1,11 @@
+[Unit]
+Description=Block idle, sleep, and lid-suspend while Hermes is always on
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/systemd-inhibit --what=idle:sleep:handle-lid-switch --mode=block --who=hermes --why=always-on-agent-host /usr/bin/sleep infinity
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

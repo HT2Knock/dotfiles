@@ -1,0 +1,14 @@
+[Unit]
+Description=herdr server (persistent terminal workspace for coding agents)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/herdr server
+Restart=on-failure
+RestartSec=5
+WorkingDirectory=%h
+
+[Install]
+WantedBy=default.target
