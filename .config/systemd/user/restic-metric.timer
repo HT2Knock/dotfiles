@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh Restic snapshot metric for node_exporter
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+Unit=restic-metric.service
+
+[Install]
+WantedBy=timers.target
