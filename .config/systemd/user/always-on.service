@@ -1,0 +1,11 @@
+[Unit]
+Description=Block idle, sleep, and lid-suspend on the always-on host
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/systemd-inhibit --what=idle:sleep:handle-lid-switch --mode=block --who=always-on --why=always-on-agent-host /usr/bin/sleep infinity
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,6 @@
+[Unit]
+Description=Update newest Restic snapshot metric
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/update-restic-metric

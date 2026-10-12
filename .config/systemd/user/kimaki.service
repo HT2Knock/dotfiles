@@ -1,0 +1,18 @@
+[Unit]
+Description=Kimaki - OpenCode Discord bot (source build)
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/home/t2knock/workspace/github.com/remorses/kimaki/kimaki
+Environment=PATH=/home/t2knock/.local/bin:/home/t2knock/.bun/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/node /home/t2knock/workspace/github.com/remorses/kimaki/kimaki/dist/cli.js --gateway --if-not-running
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
