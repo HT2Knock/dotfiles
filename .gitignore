@@ -22,9 +22,6 @@ npm
 # OpenCode V2 background service state (contains a local service password)
 .config/opencode/service.json
 
-# Local codebase-memory index artifacts
-.codebase-memory/
-
 # herdr-generated OpenCode integration (overwritten on herdr update)
 .config/opencode/tui.jsonc
 .config/opencode/herdr-tui-session.js
