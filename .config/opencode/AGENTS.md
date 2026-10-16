@@ -6,4 +6,6 @@
 - For long research or analysis, write a script instead of many one-off commands.
 - Treat questions about the codebase as read-only unless the user asks for changes.
 - Do not assume. Surface tradeoffs instead of hiding uncertainty.
+- Prove work on the real artifact before you call it done: run the feature, read the value, inspect the diff. Do not trust a proxy, a self-report, or "it compiles". The `diagnosing-bugs` skill owns the feedback loop.
+- Do reversible work without blocking on the human: make the reasonable call, present the result, and let the human correct it. Ask only before an irreversible action.
 - Keep this file small. Put app-specific rules in that app's AGENTS.md, and move a large rule set into a skill.
