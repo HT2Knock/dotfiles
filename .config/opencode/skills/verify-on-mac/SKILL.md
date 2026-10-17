@@ -32,11 +32,16 @@ Do not touch the Mac's working tree. It may hold uncommitted work.
 
 ```bash
 ssh macbook 'cd <repo> && git fetch origin && git worktree add --detach /tmp/verify-<id> origin/<branch>'
-ssh macbook 'cd /tmp/verify-<id> && <command>'
+ssh macbook 'zsh -lc "cd /tmp/verify-<id> && <command>"'
 ssh macbook 'cd <repo> && git worktree remove /tmp/verify-<id> --force'
 ```
 
 Keep the worktree if the check fails, so you can inspect it.
+
+An SSH command on the Mac starts with a minimal `PATH`
+(`/usr/bin:/bin:/usr/sbin:/sbin`). Build tools live in `/opt/homebrew/bin`, so
+always run the check through `zsh -lc`. Without it, `go`, `npm`, and the other
+tools report "command not found".
 
 ## 4. Commands by repo
 
