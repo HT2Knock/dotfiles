@@ -5,6 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
+Environment=PATH=/home/t2knock/.opencode/bin:/home/t2knock/.local/bin:/home/t2knock/.bun/bin:/home/t2knock/go/bin:/home/t2knock/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin
 ExecStart=%h/.opencode/bin/opencode serve --service
 Restart=on-failure
 RestartSec=5
