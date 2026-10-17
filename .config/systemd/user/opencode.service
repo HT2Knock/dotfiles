@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/opencode serve --service
+ExecStart=%h/.opencode/bin/opencode serve --service
 Restart=on-failure
 RestartSec=5
 WorkingDirectory=%h
