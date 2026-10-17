@@ -1,24 +1,24 @@
 ---
 name: verify-on-mac
-description: Run builds, tests, and linters on the Mac from knockon. Use when a change needs verification heavier than an edit or a read, and the agent runs on knockon. If the Mac is unreachable, record the pending command instead of claiming a pass.
+description: Verify a change on the Mac, where the work repos build and test. Use when an edit or a read is not enough and the agent runs on knockon; when the Mac is unreachable, record the pending command instead of claiming a pass.
 ---
 
 # Verify on the Mac
 
-knockon is the always-on agent host. The Mac (M5, 24 GB) is the only machine
-that can build and test the work repos. The work repos have no CI.
+knockon is always on. The Mac builds and tests the work repos. The repos have no CI,
+so a real command with an exit code is the only proof.
 
-## 1. Check reachability
+## 1. Prove the Mac is reachable
 
 ```bash
 ssh -o BatchMode=yes -o ConnectTimeout=5 macbook true
 ```
 
-If this fails, stop. Report: "Verification pending: Mac unreachable." Write the
-exact command you would have run into the PR or the handoff note. Never report a
-pass without an exit code.
+Done when the command exits 0. If it fails, stop and report "Verification pending:
+Mac unreachable", with the exact command you would have run. Report a pass only with
+an exit code.
 
-## 2. Push the branch first
+## 2. Push the branch
 
 The Mac verifies pushed code, not knockon's working tree.
 
@@ -26,9 +26,12 @@ The Mac verifies pushed code, not knockon's working tree.
 git push -u origin <branch>
 ```
 
-## 3. Use a detached worktree on the Mac
+Done when the branch is on origin.
 
-Do not touch the Mac's working tree. It may hold uncommitted work.
+## 3. Check in a detached worktree
+
+Use a detached worktree, so the Mac's working tree stays untouched. It may hold
+uncommitted work.
 
 ```bash
 ssh macbook 'cd <repo> && git fetch origin && git worktree add --detach /tmp/verify-<id> origin/<branch>'
@@ -36,12 +39,11 @@ ssh macbook 'zsh -lc "cd /tmp/verify-<id> && <command>"'
 ssh macbook 'cd <repo> && git worktree remove /tmp/verify-<id> --force'
 ```
 
-Keep the worktree if the check fails, so you can inspect it.
+Keep the worktree when the check fails, so you can inspect it. An SSH command starts
+with a minimal `PATH` (`/usr/bin:/bin:/usr/sbin:/sbin`); build tools live in
+`/opt/homebrew/bin`, so run every check through `zsh -lc`.
 
-An SSH command on the Mac starts with a minimal `PATH`
-(`/usr/bin:/bin:/usr/sbin:/sbin`). Build tools live in `/opt/homebrew/bin`, so
-always run the check through `zsh -lc`. Without it, `go`, `npm`, and the other
-tools report "command not found".
+Done when the check returns an exit code.
 
 ## 4. Commands by repo
 
@@ -50,18 +52,14 @@ tools report "command not found".
 | iit | `~/Documents/T2Knock/iit` | `go test ./...` |
 | pim | `~/Documents/adam/pim` | `make test` |
 | pim-ui | `~/Documents/adam/pim-ui` | `npm run typecheck && npm run lint && npm test` |
-| infrastructure | `~/Documents/adam/infrastructure` | no test suite; see below |
+| infrastructure | `~/Documents/adam/infrastructure` | `gcx resources push -p ./rules --dry-run`, then `kubectl diff` |
 | linko | `~/Documents/T2Knock/linko` | no tests; open the page |
 
-`pim` tests may need OpenSearch or Temporal port-forwards. Start them with
+`pim` tests need OpenSearch and Temporal port-forwards. Start them with
 `make opensearch-forward` and `make temporal-dev` before the test, and stop them
 after.
 
-`infrastructure` holds Grafana, Kubernetes, AWS, and GitHub resources. Verify
-with `gcx resources push -p ./rules --dry-run` for Grafana and `kubectl diff`
-for Kubernetes. There is no test suite.
-
 ## 5. Report
 
-Return the command, the exit code, and the tail of the output. State which
-checks passed and which did not run.
+Done when you return the command, the exit code, and the tail of the output, and
+state which checks passed and which did not run.
