@@ -1,0 +1,14 @@
+# User-scoped tools. No sudo. Installed by scripts/install-user-tools.sh.
+# Format: <source>:<spec>
+#   webi:<tool>[@version]   curated catalog, installs to ~/.local
+#   github:<owner>/<repo>   latest Linux x86_64 release asset to ~/.local/bin
+#   official:<name>         the project's own installer
+
+github:omar16100/atlassian-cli
+github:grafana/gcx
+official:opencode
+
+# Add webi tools here when needed, for example:
+# webi:k9s
+# webi:terraform
+# webi:kind
