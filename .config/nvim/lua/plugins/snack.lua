@@ -17,6 +17,16 @@ local function setup_toggles()
   Snacks.toggle.option('wrap', { name = '󰖶 Wrap Long Lines' }):map '<leader>tw'
   Snacks.toggle.diagnostics({ name = ' Diagnostics' }):map '<leader>tD'
   Snacks.toggle.treesitter({ name = ' Treesitter Highlighting' }):map '<leader>tt'
+  Snacks.toggle({
+    id = 'prose_lint',
+    name = ' Prose Lint (harper)',
+    get = function()
+      return require('config.prose').enabled()
+    end,
+    set = function(state)
+      require('config.prose').set(state)
+    end,
+  }):map '<leader>tn'
 end
 
 -- Keymap configurations organized by category

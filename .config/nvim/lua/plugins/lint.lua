@@ -3,7 +3,8 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local lint = require 'lint'
-    local notes = require 'config.notes'
+
+    lint.linters.rumdl.stream = 'stdout'
 
     lint.linters_by_ft = {
       python = { 'ruff' },
@@ -15,15 +16,18 @@ return {
       markdown = { 'rumdl' },
     }
 
-    -- Create autocommand for linting
     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = lint_augroup,
       callback = function()
         local path = vim.fn.expand '%:p'
-        if not path:find 'leetcode' and vim.bo.modifiable and vim.bo.filetype ~= '' then
-          lint.try_lint()
+        if path:find 'leetcode' or not vim.bo.modifiable or vim.bo.filetype == '' then
+          return
         end
+        if vim.bo.filetype == 'markdown' then
+          return
+        end
+        lint.try_lint()
       end,
     })
   end,
