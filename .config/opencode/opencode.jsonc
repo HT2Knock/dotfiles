@@ -8,6 +8,13 @@
     { "action": "external_directory", "resource": "*", "effect": "allow" },
     { "action": "browser", "resource": "*", "effect": "deny" },
   ],
+  "agents": {
+    "reviewer": {
+      "description": "Fresh-context review of a document, a diff, or a decision trail. Reports findings the author can check.",
+      "mode": "subagent",
+      "model": "opencode-go/deepseek-v4.1-flash",
+    },
+  },
   "username": "ngoc (ht2knock)",
   "mcp": {
     "servers": {
