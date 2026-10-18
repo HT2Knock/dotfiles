@@ -79,6 +79,7 @@ vim.lsp.config('gopls', {
 })
 
 vim.diagnostic.config {
+  virtual_text = false,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = '󰅚 ',
@@ -94,11 +95,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-    -- harper-ls (natural language linter) is noisy on markdown written by others/AI.
-    -- Restrict it to the personal notes workspace only.
-    if client and client.name == 'harper_ls' and not require('config.notes').is_note() then
-      client:stop(true)
-      return
+    if client and client.name == 'harper_ls' then
+      local prose_enabled = require('config.prose').enabled()
+      local in_notes = require('config.notes').is_note(vim.api.nvim_buf_get_name(event.buf))
+      if not (prose_enabled and in_notes) then
+        client:stop(true)
+        return
+      end
     end
 
     if client and client:supports_method('textDocument/documentHighlight', event.buf) then

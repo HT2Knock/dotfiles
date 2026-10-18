@@ -7,7 +7,7 @@ return {
     'mason-org/mason-lspconfig.nvim',
     opts = {
       automatic_enable = {
-        exclude = { 'tsgo', 'ts_ls' },
+        exclude = { 'tsgo', 'ts_ls', 'rumdl', 'harper_ls' },
       },
     },
     dependencies = {

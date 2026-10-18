@@ -42,11 +42,23 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  desc = 'FileType specific settings',
+  desc = 'Prose filetypes that stay on one line',
   group = augroup 'filetype_settings',
-  pattern = { 'text', 'gitcommit', 'markdown' },
+  pattern = { 'text', 'gitcommit' },
   callback = function()
     vim.opt_local.wrap = false
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Markdown reading layout',
+  group = augroup 'markdown_reading',
+  pattern = { 'markdown' },
+  callback = function()
+    local o = vim.opt_local
+    o.wrap = true
+    o.relativenumber = false
+    o.signcolumn = 'auto'
   end,
 })
 

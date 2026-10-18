@@ -153,7 +153,9 @@ nvim/
 │   │   ├── keymaps.lua  # Keybindings
 │   │   ├── lazy.lua     # Plugin manager
 │   │   ├── lsp.lua      # LSP enable/servers
-│   │   └── autocmds.lua # Autocommands
+│   │   ├── notes.lua    # Personal notes workspace paths
+│   │   ├── prose.lua    # Opt-in prose linting (harper-ls)
+│   │   └── autocommands.lua # Autocommands
 │   ├── plugins/         # Plugin configs
 │   └── adapters/        # LSP adapters
 ├── lsp/                 # LSP server configs (native 0.11+)
