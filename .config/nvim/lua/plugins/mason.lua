@@ -7,7 +7,7 @@ return {
     'mason-org/mason-lspconfig.nvim',
     opts = {
       automatic_enable = {
-        exclude = { 'tsgo', 'ts_ls', 'rumdl', 'harper_ls' },
+        exclude = { 'tsgo', 'ts_ls', 'rumdl', 'harper_ls', 'oxfmt' },
       },
     },
     dependencies = {
@@ -37,7 +37,7 @@ return {
         'bash-language-server',
         'yaml-language-server',
         'json-lsp',
-        'eslint-lsp',
+        'oxlint',
         'postgres-language-server',
         'css-lsp',
         'tsc',
@@ -53,7 +53,8 @@ return {
         'rumdl',
 
         -- Formatter
-        'prettier',
+        'oxfmt',
+        'prettier', -- astro only: oxfmt has no Astro support
         'gofumpt',
         'goimports',
         'shfmt',
