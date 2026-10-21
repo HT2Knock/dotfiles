@@ -234,6 +234,9 @@ setup_dotfile() {
 	stow -vt ~/.config .config
 	log "INFO" "Dotfiles linked"
 
+	# oxfmt does not follow a symlinked config file, so copy it
+	cp "$HOME/dotfiles/.oxfmtrc.json" "$HOME/.oxfmtrc.json"
+
 	# Update bat binary cache
 	if command -v bat &>/dev/null; then
 		bat cache --build || log "WARN" "Failed to rebuild bat cache"
