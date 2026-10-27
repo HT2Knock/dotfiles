@@ -35,3 +35,5 @@
   line-numbers-zero-style       = "#3b4261"
 [init]
 	defaultBranch = main
+[includeIf "gitdir:~/work/airrlabs/"]
+	path = ~/.config/git/airrlabs.gitconfig
