@@ -24,6 +24,7 @@
     "image_preview": true
   },
   "diffs": {
-    "tree": false
+    "tree": false,
+    "view": "split"
   }
 }
