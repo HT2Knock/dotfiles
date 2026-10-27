@@ -2,7 +2,14 @@ return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },
-    opts = {},
+    opts = {
+      html = {
+        comment = {
+          -- Show HTML comments, for example Slidev speaker notes.
+          conceal = false,
+        },
+      },
+    },
   },
   {
     'obsidian-nvim/obsidian.nvim',
