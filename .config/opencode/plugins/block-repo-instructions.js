@@ -12,7 +12,7 @@
 
 const MARKER = "Instructions from: ";
 
-const BLOCKED_REPOS = ["/Users/ht2knock/Documents/adam/pim"];
+const BLOCKED_REPOS = ["/Users/ht2knock/work/airrlabs/adam/pim"];
 
 function is_blocked(file_path) {
   return BLOCKED_REPOS.some(

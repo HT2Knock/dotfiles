@@ -4,10 +4,7 @@
   "websearch": {
     "provider": "exa",
   },
-  "permissions": [
-    { "action": "external_directory", "resource": "*", "effect": "allow" },
-    { "action": "browser", "resource": "*", "effect": "deny" },
-  ],
+  "permissions": [{ "action": "external_directory", "resource": "*", "effect": "allow" }],
   "agents": {
     "reviewer": {
       "description": "Fresh-context review of a document, a diff, or a decision trail. Reports findings the author can check.",
@@ -18,15 +15,12 @@
   "username": "ngoc (ht2knock)",
   "mcp": {
     "servers": {
-      "chrome-devtools": {
+      "browser_control": {
         "type": "local",
         "command": [
-          "npx",
-          "-y",
-          "chrome-devtools-mcp@latest",
-          "--no-usage-statistics",
+          "/Users/ht2knock/.local/share/fnm/aliases/default/bin/node",
+          "/Users/ht2knock/.browser-control/runtime/current/node_modules/@opencode-ai/browser-control/dist/mcp.js",
         ],
-        "disabled": true,
       },
       "context7": {
         "type": "remote",
