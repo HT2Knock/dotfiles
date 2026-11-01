@@ -2,73 +2,73 @@
 name: m365-teams
 description: >-
   Read Microsoft 365 as the signed-in user: Teams chats and channels, SharePoint
-  files, Outlook mail, and calendars, through the claude.ai connector. Use for any
-  Teams, SharePoint, or M365 search or read request. Prefer this over browser
-  automation.
-allowed-tools: Bash(m365:*)
+  files, Outlook mail, and calendars, through the claude.ai connector in Claude
+  Code. Use for any Teams, SharePoint, or M365 search or read request. Prefer
+  this over browser automation.
+allowed-tools: Bash(claude:*)
 ---
 
 # m365-teams
 
-`m365` answers one Microsoft 365 question per call. It sends a request to the
-Anthropic Messages API with the claude.ai Microsoft 365 connector attached. Anthropic
-runs the connector server-side as the signed-in user, so no local Microsoft token and
-no tenant admin consent are needed.
-
-Source: [`m365.go`](m365.go) (Go, standard library only).
-
-## Setup
-
-```bash
-go build -o ~/.local/bin/m365 ~/.config/opencode/skills/m365-teams/m365.go
-```
+Answer Microsoft 365 questions by asking Claude Code. Claude Code has the
+claude.ai Microsoft 365 connector attached, so it calls Microsoft Graph as the
+signed-in user. No local Microsoft token and no tenant admin consent are needed.
 
 ## Run
 
 ```bash
-m365 "list my 3 most recent Teams chats"
-m365 -preset teams "summarize today in a team channel"
-m365 -preset docs "find Q4 planning decks in SharePoint"
-m365 -trace -preset chat "search my Teams messages for 'launch'"
+claude -p "<question>" \
+  --allowedTools "mcp__claude_ai_Microsoft_365__teams_list_chats" \
+  --append-system-prompt "Read only: never call a tool that sends, posts, uploads, or deletes." \
+  --output-format text
 ```
 
-`-trace` writes tool calls and token usage to stderr, and `-json` prints the raw
-response. `m365 -h` lists every flag.
+Write the question the way you want the answer. There is no fixed output shape,
+so ask for a markdown table, JSON, CSV, or a plain list. For a large answer, add
+`--add-dir /tmp/m365` and ask Claude to save the full result to a file there,
+then read that file.
 
-## Presets
+Use `--output-format json` when you need the run metadata: `result`,
+`permission_denials`, cost, and turn count. Use `--model` to override the model.
 
-Each preset enables only its tools. Unfiltered, the connector ships every tool schema
-and costs about 61,000 input tokens; a preset costs about 3,000 to 8,000.
+## Tools
 
-| Preset | Covers |
+Allow only the tools the question needs. Each name has the form
+`mcp__claude_ai_Microsoft_365__<tool>`. Allowing the server alone
+(`mcp__claude_ai_Microsoft_365`) permits every tool on it, including write
+tools.
+
+| Need | Tools |
 | --- | --- |
-| `chat` (default) | Teams chats: list chats, search messages |
-| `teams` | chats plus teams, channels, channel messages |
-| `docs` | SharePoint and OneDrive files |
-| `mail` | Outlook email |
-| `calendar` | calendar and meeting availability |
-| `people` | profile and people search |
-| `all` | every read tool above |
+| Teams chats | `teams_list_chats`, `chat_message_search` |
+| Teams channels | `teams_list_teams`, `teams_list_channels`, `teams_list_channel_messages` |
+| SharePoint, OneDrive | `sharepoint_search`, `sharepoint_folder_search` |
+| Outlook mail | `outlook_email_search` |
+| Calendar | `outlook_calendar_search`, `find_meeting_availability` |
+| People | `get_me`, `search_people` |
+| Open one result | `read_resource` |
 
-Keep the preset as narrow as the question allows, and widen it only when the question
-spans sources. The model defaults to `claude-haiku-4-5-20251001`; use
-`-model claude-sonnet-5` for heavy synthesis over many messages.
+Many results return a reference that `read_resource` expands, such as a chat or
+a file. Allow `read_resource` with any read set.
 
-`-tools a,b,c` narrows to exact connector tool names. Presets are read-only; add a
-write tool such as `teams_send_chat_message` with `-tools` when the user asks to send.
+Write tools exist, such as `teams_send_chat_message`. Add one only when the user
+asks to change data.
 
 ## Auth
 
-`m365` reads the Claude Code keychain item `Claude Code-credentials`, which carries the
-`user:mcp_servers` scope, and rotates the token on expiry, writing the new token back.
-Hold one refresh path at a time: `m365` locks `/tmp/m365-teams.lock` and serializes its
-own runs.
+Claude Code holds the credential. If a call fails with an auth error, run
+`claude mcp list` and check that `claude.ai Microsoft 365` is connected. To
+re-authenticate, open Claude Code and run `/mcp`.
 
 ## Notes
 
-- Connector tools run inside one Anthropic API call. Results return as text, not
-  OpenCode-native M365 tools.
-- It uses a subscription token against enterprise-governed connectors from a
-  non-official client. Confirm this against your organization's policy.
-- Tool results are echoed into context, so large result sets raise cost. Prefer
-  specific questions.
+- Claude Code loads the M365 tools on demand. Name Microsoft 365 or the tool in
+  the question, or Claude can answer that no M365 tools exist.
+- Each call starts a fresh session and resends the tool schemas. One call per
+  question costs less than several small calls. Use `--continue` to ask a
+  follow-up in the same session.
+- Microsoft Graph rate-limits repeated read calls. Space out runs, or expect one
+  wait of about a minute.
+- Do not add `--dangerously-skip-permissions`. In a non-interactive run a denied
+  tool is the safe result.
+- These are Claude Code tools, not OpenCode tools. The answer returns as text.
