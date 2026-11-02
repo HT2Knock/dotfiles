@@ -34,6 +34,31 @@ rex.action{
   end,
 }
 
+-- Rename the current session. Without a name, open the rename field in the
+-- app. With a name, set it at once from the CLI or the command palette.
+rex.action{
+  name = "session_rename",
+  title = "Rename Session",
+  description = "Rename the current session, or open the rename field when no name is given.",
+  category = "Sessions",
+  keywords = "rename name label title",
+  args = { label = "string?" },
+  run = function(ctx, args)
+    if args.label == nil or args.label == "" then
+      rex.client.queue("session.rename")
+      return
+    end
+
+    local _, err = rex.call("session.set_label", {
+      session_id = ctx.session_id,
+      label = args.label,
+    })
+    if err ~= nil then error(err, 0) end
+
+    return { label = args.label }
+  end,
+}
+
 -- Modes ----------------------------------------------------------------------
 
 -- Resize mode, entered with prefix r as in Ghostty. An exclusive mode keeps
@@ -85,6 +110,7 @@ end
 
 rex.bind(PREFIX .. ">shift+n", "session.new")
 rex.bind(PREFIX .. ">s", "session.switch")
+rex.bind(PREFIX .. ">,", "session_rename")
 rex.bind(PREFIX .. ">up", "session.previous")
 rex.bind(PREFIX .. ">down", "session.next")
 
