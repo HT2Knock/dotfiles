@@ -19,7 +19,6 @@
     "sidebar": "hide",
     "new_location": "launch"
   },
-  "plugins": ["./herdr-opencode"],
   "prompt": {
     "image_preview": true
   },
