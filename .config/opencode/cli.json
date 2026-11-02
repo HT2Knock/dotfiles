@@ -24,7 +24,9 @@
     "image_preview": true
   },
   "diffs": {
-    "tree": false,
-    "view": "split"
+    "tree": true,
+    "view": "unified",
+    "fullscreen": true,
+    "single": false
   }
 }
