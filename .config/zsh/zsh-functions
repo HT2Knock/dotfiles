@@ -86,6 +86,25 @@ function oc-knockon() {
     ssh -t -o BatchMode=yes knockon "cd ${(q)remote_dir} && exec opencode"
 }
 
+# Pick a directory from zoxide history and open it in a Rex session. When a
+# session with the same name exists, go to that session instead of creating a
+# second one.
+function rex_proj() {
+    local dir name index
+
+    dir=$(zoxide query -ls | awk '{ $1=""; sub(/^ +/, "") }1' | fzf --no-sort --height 40% --reverse) || return
+    [[ -z "$dir" ]] && return
+
+    name=${dir:t}
+    index=$(rex ls | awk -v n="$name" 'NR > 1 && $1 == n { print NR - 1 }')
+
+    if [[ -n "$index" ]]; then
+        rex do session_goto index="$index"
+    else
+        rex new "$name" --cwd "$dir"
+    fi
+}
+
 preexec() {
     set_title "${1%% *}"
 }
