@@ -356,6 +356,10 @@ end
 
 rex.bind(PREFIX .. ">shift+n", "session.new")
 rex.bind(PREFIX .. ">s", "session.switch")
+
+-- The switcher's list keys, ctrl+1, ctrl+2 and ctrl+3, are taken by AeroSpace.
+-- Open Activity on its own key instead of switching lists inside the switcher.
+rex.bind(PREFIX .. ">a", "pane.view_activity")
 rex.bind(PREFIX .. ">,", "session_rename")
 rex.bind(PREFIX .. ">up", "session.previous")
 rex.bind(PREFIX .. ">down", "session.next")
