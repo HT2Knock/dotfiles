@@ -88,21 +88,22 @@ function oc-knockon() {
 
 # Pick a directory from zoxide history and open it in a Rex session. When a
 # session with the same name exists, go to that session instead of creating a
-# second one.
+# second one. The jump runs session.select, so Remote Control must be on in
+# Rex, under Settings > Server.
 function rex_proj() {
-    local dir name index
+    local dir name session_id
 
     dir=$(zoxide query -ls | awk '{ $1=""; sub(/^ +/, "") }1' | fzf --no-sort --height 40% --reverse) || return
     [[ -z "$dir" ]] && return
 
     name=${dir:t}
-    index=$(rex ls | awk -v n="$name" 'NR > 1 && $1 == n { print NR - 1 }')
+    session_id=$(rex ls --json | jq -r --arg name "$name" '.sessions[] | select(.label == $name) | .session_id')
 
-    if [[ -n "$index" ]]; then
-        rex do session_goto index="$index"
-    else
-        rex new "$name" --cwd "$dir"
+    if [[ -z "$session_id" ]]; then
+        session_id=$(rex new "$name" --cwd "$dir" --json | jq -r '.session_id')
     fi
+
+    rex do session.select session_id="$session_id"
 }
 
 preexec() {
