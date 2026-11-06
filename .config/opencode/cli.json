@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/v2/cli.json",
+  "plugins": ["./tui-plugins/rex-status"],
   "theme": {
     "name": "tokyonight"
   },
