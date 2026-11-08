@@ -29,8 +29,9 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   once per process and once in plugin storage with a 48 h TTL.
 - Workout coach: `routines/workout-coach.md` in `JT-notes`, run by
   `~/dotfiles/scripts/workout-coach.sh` on `knockon` from
-  `workout-coach.timer` at 05:45. The runner sends the push to `routine`, not the
-  model. Verified 2026-11-08: one push in 18 s.
+  `workout-coach.timer` at 05:45. The coach writes the message to
+  `~/.local/state/workout-coach/message.txt`; the runner publishes that file to
+  `routine`. Verified 2026-11-08 with two pushes.
 
 ## Host state
 
@@ -38,11 +39,11 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   `opencode-beta` package at `/usr/bin/opencode`.
 - The unit is `Type=simple`, `ExecStart=/usr/bin/opencode serve --service`,
   `Restart=always`. It took several attempts to find this shape; see the traps.
-- **kimaki is still live.** The unit is enabled but failed since 17:39. The CLI
-  runs as two bun processes (`--if-not-running`) and keeps its scheduled tasks:
-  market digest at 08:45 UTC, daily coach at 22:45 UTC (05:45 ICT), direction
-  coach Sunday at 11:30 UTC. The market digest wrote a commit on 2026-11-08.
-  `~/.kimaki` and the kimaki plugin directories are still on disk.
+- **kimaki is removed.** The CLI processes are stopped, the unit is gone, the
+  plugin directories are gone, and `~/.kimaki` is deleted. The data is archived
+  at `~/.local/state/kimaki-2026-11-08.tar.gz` (18 MB). Its three routines
+  (market digest, daily coach, direction coach) no longer run. The calendar sync
+  that ran before the daily coach is also stopped.
 - `knockon` default model is `opencode-go/deepseek-v4.1-flash`. The OpenAI
   default returned `provider.auth` 400 (see issue 55211). The OpenAI credential
   is still stored.
@@ -50,14 +51,11 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 
 ## Open work
 
-1. Decide the kimaki end state. The daily coach now duplicates the 05:45 push.
-   Move the market digest to a runner, then remove the kimaki tasks, the unit,
-   the plugin directories, and `~/.kimaki`.
-2. Phase 5: add `knockon` to the phone web UI with **Add Server**
-   (`opencode pair --remote` gives the OpenTunnel origin). The Mac is already
-   added. The origin did not change; read it from `opencode api get /api/info`.
-3. Optional: report the `plugin add` bug (see below).
-4. The Mac commit (mac-dotfile) holds the plugin path, the `.gitignore` entry,
+1. Phase 5: add `knockon` to the phone web UI. Run `opencode pair --remote --yes`
+   on `knockon`, then scan the QR code or paste the one-time link into the
+   OpenCode app. The link expires in 5 minutes; the session lasts 30 days.
+2. Optional: report the `plugin add` bug (see below).
+3. The Mac commit (mac-dotfile) holds the plugin path, the `.gitignore` entry,
    and this handoff. `knockon` main holds the unit, the runner, and the notes
    reference.
 
@@ -71,11 +69,12 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 - **`opencode serve --service` must run as `Type=simple`.** With `Type=forking`
   systemd times out. With `Type=simple` and a held port it exits 0, so
   `Restart=always` enters a loop. Free the port first.
-- **The kimaki unit state hides the real state.** `systemctl --user is-active
-  kimaki` says `failed` while its CLI keeps running as user processes. Check
-  `pgrep -af kimaki` before you touch the port or the data.
-- **kimaki starts its own OpenCode server** if the port is free. Stop kimaki
-  before working on the service.
+- **The kimaki unit state hid the real state.** `systemctl --user is-active
+  kimaki` said `failed` while its CLI kept running as user processes. Check
+  `pgrep -af kimaki` before you trust a unit. The unit, the plugins, and the
+  data are now removed.
+- **kimaki used to start its own OpenCode server** if the port was free. That
+  risk is gone with kimaki.
 - **`opencode service restart` on `knockon` fights systemd.** Use
   `systemctl --user restart opencode`.
 - **The `ntfy` CLI config key is `default-token`.** `access-token` is silently
@@ -97,6 +96,8 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 - Routine units: `knockon`: `~/dotfiles/.config/systemd/user/workout-coach.service`
   and `.timer`.
 - Run log: `knockon`: `~/.local/state/workout-coach/run.log`.
+- Message file: `knockon`: `~/.local/state/workout-coach/message.txt`.
+- kimaki archive: `knockon`: `~/.local/state/kimaki-2026-11-08.tar.gz`.
 - Routine prompt: `JT-notes/routines/workout-coach.md`.
 - Tech note: `JT-notes/tech/ntfy-opencode-push.md`.
 
