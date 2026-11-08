@@ -1,7 +1,7 @@
 onboarding = false
 
 [ui.toast]
-delivery = "terminal"
+delivery = "herdr"
 delay_seconds = 1
 
 [keys]
@@ -14,8 +14,9 @@ switch_workspace = "prefix+shift+1..9"
 [theme]
 name = "tokyo-night"
 
+auto_switch = false
 [ui.sound]
-enabled = false
+enabled = true
 
 [ui]
 show_agent_labels_on_pane_borders = false

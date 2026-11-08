@@ -18,7 +18,9 @@
     "scrollbar": false,
     "thinking": "show",
     "markdown": "rendered",
-    "permissions": "prompt"
+    "permissions": "autoaccept",
+    "grouping": "auto",
+    "verbosity": "medium"
   },
   "tabs": {
     "layout": "horizontal",
@@ -27,10 +29,8 @@
     "enabled": false
   },
   "attention": {
-    "notifications": true,
-    "sound": true,
-    "volume": 0.7,
-    "sound_pack": "opencode.default"
+    "notifications": false,
+    "sound": false
   },
   "prompt": {
     "image_preview": true

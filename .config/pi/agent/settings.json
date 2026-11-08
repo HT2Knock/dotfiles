@@ -3,7 +3,7 @@
   "terminal": {
     "showTerminalProgress": true
   },
-  "lastChangelogVersion": "0.87.0",
+  "lastChangelogVersion": "1.0.4",
   "theme": "tokyonight-dark",
   "enableInstallTelemetry": false,
   "defaultProjectTrust": "ask",
