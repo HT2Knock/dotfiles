@@ -33,6 +33,10 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   `~/.local/state/workout-coach/message.txt`; the runner publishes that file to
   `routine`. The session stays visible as `Workout coach <date>`, so the user can
   open it on the phone and adjust the day. Verified 2026-11-08 with four pushes.
+- Evening nudge: `workout-coach-evening.timer` at 20:45 sends one fixed line when
+  the morning message ran and `personal/workout_log.md` has no `## <today>`
+  heading. On Sunday it adds the dates since the newest entry. It uses no model.
+  Verified 2026-11-08.
 
 ## Host state
 
@@ -104,9 +108,13 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 - CLI config: `~/.config/ntfy/client.yml` (not in git).
 - Unit: `knockon`: `~/dotfiles/.config/systemd/user/opencode.service`.
 - Runner: `knockon`: `~/dotfiles/scripts/workout-coach.sh`.
+- Evening runner: `knockon`: `~/dotfiles/scripts/workout-coach-evening.sh`.
 - Routine units: `knockon`: `~/dotfiles/.config/systemd/user/workout-coach.service`
   and `.timer`.
+- Evening units: `knockon`: `~/dotfiles/.config/systemd/user/workout-coach-evening.service`
+  and `.timer`.
 - Run log: `knockon`: `~/.local/state/workout-coach/run.log`.
+- Evening log: `knockon`: `~/.local/state/workout-coach/evening.log`.
 - Message file: `knockon`: `~/.local/state/workout-coach/message.txt`.
 - kimaki archive: `knockon`: `~/.local/state/kimaki-2026-11-08.tar.gz`.
 - Routine prompt: `JT-notes/routines/workout-coach.md`.
