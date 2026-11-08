@@ -51,15 +51,12 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 
 ## Open work
 
-1. Phase 5: add `knockon` to the phone web UI. Run `opencode pair --remote --yes`
-   on `knockon`, then scan the QR code or paste the one-time link into the
-   OpenCode app. The link expires in 5 minutes; the session lasts 30 days.
-   The phone web UI runs from the Mac origin, so `knockon` must allow that origin
-   in `cors`; without it, Add Server reports `Could not reach`.
-2. Optional: report the `plugin add` bug (see below).
-3. The Mac commit (mac-dotfile) holds the plugin path, the `.gitignore` entry,
+1. Optional: report the `plugin add` bug (see below).
+2. The Mac commit (mac-dotfile) holds the plugin path, the `.gitignore` entry,
    and this handoff. `knockon` main holds the unit, the runner, and the notes
    reference.
+3. The phone entry lasts 30 days. `knockon` allows the Mac tunnel origin in
+   `cors`; add the new origin if the Mac tunnel route changes.
 
 ## Traps
 
