@@ -1,10 +1,19 @@
 {
   "$schema": "./opencode.schema.json",
-  "plugins": ["@ex-machina/opencode-anthropic-auth@next"],
+  "plugins": [
+    "@ex-machina/opencode-anthropic-auth@next",
+    "/Users/ht2knock/personal/opencode-ntfy",
+  ],
   "websearch": {
     "provider": "exa",
   },
   "permissions": [{ "action": "external_directory", "resource": "*", "effect": "allow" }],
+  "references": {
+    "notes": {
+      "path": "~/Documents/T2Knock/JT-notes",
+      "description": "Second brain: personal notes, runbooks, and research. Search and inspect specific files on demand do not read the whole tree.",
+    },
+  },
   "agents": {
     "reviewer": {
       "description": "Fresh-context review of a document, a diff, or a decision trail. Reports findings the author can check.",
