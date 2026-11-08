@@ -7,13 +7,16 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 - Plugin: `https://github.com/HT2Knock/opencode-ntfy`, commit `404b0a7`.
 - Installed on the Mac at `/Users/ht2knock/personal/opencode-ntfy` and on
   `knockon` at `~/workspace/github.com/ht2knockA/opencode-ntfy`.
-- Config on each host: `~/.config/opencode/ntfy.json`, mode 600, gitignored.
-  Keys: `server`, `topic`, `routineTopic`, `token`, `holdMs`, `quiet`.
+- Config on each host: `~/.config/opencode/ntfy.json`, mode 600, gitignored on
+  both clones. Keys: `server`, `topic`, `routineTopic`, `token`, `holdMs`,
+  `quiet`.
 - The `ntfy` CLI is installed on both hosts. Client config at
   `~/.config/ntfy/client.yml` uses `default-host` and **`default-token`**. The
   key `access-token` does not work.
 - The plugin is verified. A tool call from each host produced exactly one push
   on `lab`, with near real time delivery to the phone.
+- `knockon` global config has the `notes` reference at `~/JT-notes`
+  (commit `7093e60`).
 
 ## What works
 
@@ -24,6 +27,10 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 - A `notify` tool sends a push or a delayed reminder.
 - Child sessions and other locations are filtered. Duplicate events are claimed
   once per process and once in plugin storage with a 48 h TTL.
+- Workout coach: `routines/workout-coach.md` in `JT-notes`, run by
+  `~/dotfiles/scripts/workout-coach.sh` on `knockon` from
+  `workout-coach.timer` at 05:45. The runner sends the push to `routine`, not the
+  model. Verified 2026-11-08: one push in 18 s.
 
 ## Host state
 
@@ -31,8 +38,11 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   `opencode-beta` package at `/usr/bin/opencode`.
 - The unit is `Type=simple`, `ExecStart=/usr/bin/opencode serve --service`,
   `Restart=always`. It took several attempts to find this shape; see the traps.
-- kimaki is stopped and disabled. Its old routines are not migrated. The
-  `~/.kimaki` data and the kimaki plugin directories are still on disk.
+- **kimaki is still live.** The unit is enabled but failed since 17:39. The CLI
+  runs as two bun processes (`--if-not-running`) and keeps its scheduled tasks:
+  market digest at 08:45 UTC, daily coach at 22:45 UTC (05:45 ICT), direction
+  coach Sunday at 11:30 UTC. The market digest wrote a commit on 2026-11-08.
+  `~/.kimaki` and the kimaki plugin directories are still on disk.
 - `knockon` default model is `opencode-go/deepseek-v4.1-flash`. The OpenAI
   default returned `provider.auth` 400 (see issue 55211). The OpenAI credential
   is still stored.
@@ -40,21 +50,16 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 
 ## Open work
 
-1. Phase 3: the workout coach.
-   - Write a lean `routines/workout-coach.md` in `JT-notes`.
-   - Run it from a systemd user timer at 05:45.
-   - The runner owns delivery: `opencode run --format json`, extract the text
-     between `<<<NOTIFY` and `NOTIFY>>>`, publish to `routine` with the CLI.
-     Do not let the model call the tool; the runner is deterministic.
-   - Pin `--model opencode-go/deepseek-v4.1-flash`. Do not use `--archived`;
-     `knockon` 2.2.5 lacked it, and the version is now 2.2.6.
-   - Remove the old kimaki routines and the `~/.kimaki` data after one good run.
+1. Decide the kimaki end state. The daily coach now duplicates the 05:45 push.
+   Move the market digest to a runner, then remove the kimaki tasks, the unit,
+   the plugin directories, and `~/.kimaki`.
 2. Phase 5: add `knockon` to the phone web UI with **Add Server**
    (`opencode pair --remote` gives the OpenTunnel origin). The Mac is already
-   added.
-3. Dotfiles: the Mac commit contains the plugin path, the `.gitignore` entry,
-   and this handoff. `knockon` has uncommitted unit changes in its own clone.
-4. Optional: report the `plugin add` bug (see below) and transfer nothing else.
+   added. The origin did not change; read it from `opencode api get /api/info`.
+3. Optional: report the `plugin add` bug (see below).
+4. The Mac commit (mac-dotfile) holds the plugin path, the `.gitignore` entry,
+   and this handoff. `knockon` main holds the unit, the runner, and the notes
+   reference.
 
 ## Traps
 
@@ -66,6 +71,9 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 - **`opencode serve --service` must run as `Type=simple`.** With `Type=forking`
   systemd times out. With `Type=simple` and a held port it exits 0, so
   `Restart=always` enters a loop. Free the port first.
+- **The kimaki unit state hides the real state.** `systemctl --user is-active
+  kimaki` says `failed` while its CLI keeps running as user processes. Check
+  `pgrep -af kimaki` before you touch the port or the data.
 - **kimaki starts its own OpenCode server** if the port is free. Stop kimaki
   before working on the service.
 - **`opencode service restart` on `knockon` fights systemd.** Use
@@ -76,6 +84,8 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   black page. Reynard works but drains battery while the event stream is open.
 - **A modified plugin file is not re-imported.** Restart the server after a
   build.
+- **`--archived` works on 2.2.6.** The runner uses it to keep routine sessions
+  out of the session list. 2.2.5 did not have the flag.
 
 ## Files
 
@@ -83,6 +93,11 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 - Plugin config: `~/.config/opencode/ntfy.json` (not in git).
 - CLI config: `~/.config/ntfy/client.yml` (not in git).
 - Unit: `knockon`: `~/dotfiles/.config/systemd/user/opencode.service`.
+- Runner: `knockon`: `~/dotfiles/scripts/workout-coach.sh`.
+- Routine units: `knockon`: `~/dotfiles/.config/systemd/user/workout-coach.service`
+  and `.timer`.
+- Run log: `knockon`: `~/.local/state/workout-coach/run.log`.
+- Routine prompt: `JT-notes/routines/workout-coach.md`.
 - Tech note: `JT-notes/tech/ntfy-opencode-push.md`.
 
 ## Suggested skills
