@@ -16,6 +16,9 @@ auth.json
 trust.json
 npm
 
+# ntfy publish token for the notification plugin
+.config/opencode/ntfy.json
+
 # OpenCode notifier state
 .config/opencode/opencode-notifier-state.json
 
