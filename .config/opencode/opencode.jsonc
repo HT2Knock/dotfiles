@@ -11,7 +11,7 @@
   "references": {
     "notes": {
       "path": "~/Documents/T2Knock/JT-notes",
-      "description": "Second brain: personal notes, runbooks, and research. Search and inspect specific files on demand do not read the whole tree.",
+      "description": "Second brain: personal notes, runbooks, and research. Search and inspect specific files on demand; do not read the whole tree.",
     },
   },
   "agents": {
