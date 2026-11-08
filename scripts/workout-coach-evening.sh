@@ -12,6 +12,9 @@ readonly CONFIG="$HOME/.config/opencode/ntfy.json"
 TODAY="$(date +%F)"
 readonly TODAY
 
+readonly START_HOUR=20
+readonly END_HOUR=22
+
 mkdir -p "$STATE_DIR"
 chmod 700 "$STATE_DIR"
 
@@ -42,6 +45,12 @@ readonly TOPIC
 
 if [[ "${1:-}" != "--force" && -f "$EVENING_SENT" && "$(cat "$EVENING_SENT")" == "$TODAY" ]]; then
   log "already sent for $TODAY; skip"
+  exit 0
+fi
+
+now_hour="$(date +%-H)"
+if [[ "${1:-}" != "--force" ]] && ((now_hour < START_HOUR || now_hour >= END_HOUR)); then
+  log "outside ${START_HOUR}:00-${END_HOUR}:00; skip"
   exit 0
 fi
 

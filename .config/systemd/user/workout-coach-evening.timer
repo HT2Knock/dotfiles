@@ -3,7 +3,6 @@ Description=Run the workout coach log nudge at 20:45
 
 [Timer]
 OnCalendar=*-*-* 20:45:00
-Persistent=true
 AccuracySec=1min
 Unit=workout-coach-evening.service
 
