@@ -54,6 +54,8 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
 1. Phase 5: add `knockon` to the phone web UI. Run `opencode pair --remote --yes`
    on `knockon`, then scan the QR code or paste the one-time link into the
    OpenCode app. The link expires in 5 minutes; the session lasts 30 days.
+   The phone web UI runs from the Mac origin, so `knockon` must allow that origin
+   in `cors`; without it, Add Server reports `Could not reach`.
 2. Optional: report the `plugin add` bug (see below).
 3. The Mac commit (mac-dotfile) holds the plugin path, the `.gitignore` entry,
    and this handoff. `knockon` main holds the unit, the runner, and the notes
@@ -81,6 +83,11 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   ignored and the server returns 403 under `deny-all`.
 - **The Mac web UI needs a Chromium-based browser on iOS 15.** Safari renders a
   black page. Reynard works but drains battery while the event stream is open.
+- **Add Server needs CORS on the target.** A web UI served from one origin cannot
+  fetch another server until that server allows the origin. Set it with
+  `opencode service set cors <origin>` and restart. A blocked fetch shows as
+  `Could not reach`, not as a CORS error. Pair links also expire in 5 minutes;
+  `opencode service get password` gives the stable password path.
 - **A modified plugin file is not re-imported.** Restart the server after a
   build.
 - **`--archived` works on 2.2.6.** The runner uses it to keep routine sessions
