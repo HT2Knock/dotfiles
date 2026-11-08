@@ -3,35 +3,19 @@
 # Fires only when the morning coach ran and the log has no entry for today.
 set -euo pipefail
 
-readonly STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/workout-coach"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR
+# shellcheck source=lib/workout-coach-common.sh
+source "$SCRIPT_DIR/lib/workout-coach-common.sh"
+
 readonly LOG_FILE="$STATE_DIR/evening.log"
 readonly MORNING_SENT="$STATE_DIR/last-sent"
 readonly EVENING_SENT="$STATE_DIR/evening-sent"
-readonly CONFIG="$HOME/.config/opencode/ntfy.json"
 
 TODAY="$(date +%F)"
 readonly TODAY
 
-readonly START_HOUR=20
-readonly END_HOUR=22
-
-mkdir -p "$STATE_DIR"
-chmod 700 "$STATE_DIR"
-
-log() {
-  printf '%s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" >>"$LOG_FILE"
-}
-
-find_notes_dir() {
-  local candidate
-  for candidate in "$HOME/JT-notes" "$HOME/Documents/T2Knock/JT-notes"; do
-    if [[ -d "$candidate/routines" ]]; then
-      printf '%s\n' "$candidate"
-      return 0
-    fi
-  done
-  return 1
-}
+init_state
 
 notes_dir="$(find_notes_dir)" || {
   log "FAILED: JT-notes not found"
@@ -40,7 +24,7 @@ notes_dir="$(find_notes_dir)" || {
 readonly NOTES_DIR="$notes_dir"
 readonly WORKOUT_LOG="${WORKOUT_LOG:-$NOTES_DIR/personal/workout_log.md}"
 
-TOPIC="$(jq -r '.routineTopic // "routine"' "$CONFIG" 2>/dev/null || printf 'routine')"
+TOPIC="$(read_topic)"
 readonly TOPIC
 
 if [[ "${1:-}" != "--force" && -f "$EVENING_SENT" && "$(cat "$EVENING_SENT")" == "$TODAY" ]]; then
@@ -48,9 +32,8 @@ if [[ "${1:-}" != "--force" && -f "$EVENING_SENT" && "$(cat "$EVENING_SENT")" ==
   exit 0
 fi
 
-now_hour="$(date +%-H)"
-if [[ "${1:-}" != "--force" ]] && ((now_hour < START_HOUR || now_hour >= END_HOUR)); then
-  log "outside ${START_HOUR}:00-${END_HOUR}:00; skip"
+if [[ "${1:-}" != "--force" ]] && ! within_hours 20 22; then
+  log "outside 20:00-22:00; skip"
   exit 0
 fi
 
@@ -74,17 +57,23 @@ message="No session logged today.
 If you trained, reply in today's Workout coach session with distance or sets, effort, and pain. A rest day needs no entry."
 
 if [[ "$(date +%u)" == "7" ]]; then
-  newest="$(grep -oE '^## [0-9]{4}-[0-9]{2}-[0-9]{2}' "$WORKOUT_LOG" | head -1 | cut -d' ' -f2)"
+  newest="$(grep -oE '^## [0-9]{4}-[0-9]{2}-[0-9]{2}' "$WORKOUT_LOG" | cut -d' ' -f2 | sort | tail -1)"
   if [[ -n "$newest" ]]; then
     open=()
-    for i in 1 2 3 4 5 6 7; do
+    more=""
+    for i in 1 2 3 4 5 6 7 8; do
       day="$(date -d "$newest + $i day" +%F 2>/dev/null)" || break
       [[ "$day" < "$TODAY" ]] || break
-      open+=("$day")
+      if ((${#open[@]} < 7)); then
+        open+=("$day")
+      else
+        more=", and more"
+        break
+      fi
     done
     if ((${#open[@]} > 0)); then
       joined="$(printf '%s, ' "${open[@]}")"
-      message+=$'\n\n'"Open since the last entry ($newest): ${joined%, }."
+      message+=$'\n\n'"Open since the last entry ($newest): ${joined%, }${more}."
     fi
   fi
 fi
