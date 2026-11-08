@@ -1,0 +1,15 @@
+[Unit]
+Description=OpenTunnel (default)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/home/t2knock/.cargo/bin/opentunnel --profile default serve
+Restart=on-failure
+RestartSec=5
+UMask=0077
+StandardOutput=append:/home/t2knock/.local/state/opentunnel/default/daemon.log
+StandardError=append:/home/t2knock/.local/state/opentunnel/default/daemon.log
+
+[Install]
+WantedBy=default.target
