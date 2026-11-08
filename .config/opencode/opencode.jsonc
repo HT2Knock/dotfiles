@@ -1,7 +1,10 @@
 {
   "$schema": "./opencode.schema.json",
-  "model": "openai/gpt-6-luna",
-  "plugins": ["@ex-machina/opencode-anthropic-auth@next"],
+  "model": "opencode-go/deepseek-v4.1-flash",
+  "plugins": [
+    "@ex-machina/opencode-anthropic-auth@next",
+    "/home/t2knock/workspace/github.com/ht2knockA/opencode-ntfy",
+  ],
   "websearch": {
     "provider": "exa",
   },
@@ -31,6 +34,12 @@
     { "action": "shell", "resource": "*pacman -Sy *", "effect": "deny" },
     { "action": "shell", "resource": "*paru -Sy *", "effect": "deny" },
   ],
+  "references": {
+    "notes": {
+      "path": "~/JT-notes",
+      "description": "Second brain: personal notes, runbooks, and research. Search and inspect specific files on demand do not read the whole tree.",
+    },
+  },
   "agents": {
     "reviewer": {
       "description": "Fresh-context review of a document, a diff, or a decision trail. Reports findings the author can check.",
