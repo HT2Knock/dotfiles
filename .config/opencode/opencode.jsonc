@@ -33,6 +33,7 @@
     { "action": "shell", "resource": "*run0 *", "effect": "deny" },
     { "action": "shell", "resource": "*pacman -Sy *", "effect": "deny" },
     { "action": "shell", "resource": "*paru -Sy *", "effect": "deny" },
+    { "action": "skill", "resource": "browser", "effect": "deny" },
   ],
   "references": {
     "notes": {
@@ -50,16 +51,6 @@
   "username": "ngock (ht2knock)",
   "mcp": {
     "servers": {
-      "chrome-devtools": {
-        "type": "local",
-        "command": [
-          "npx",
-          "-y",
-          "chrome-devtools-mcp@latest",
-          "--no-usage-statistics",
-        ],
-        "disabled": true,
-      },
       "context7": {
         "type": "remote",
         "url": "https://mcp.context7.com/mcp",
