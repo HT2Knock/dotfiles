@@ -4,43 +4,29 @@
 # the model never owns the side effect.
 set -euo pipefail
 
-readonly STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/tet-100"
-readonly CONFIG="$HOME/.config/opencode/ntfy.json"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR
+
+STATE_NAME=tet-100
+# shellcheck source=lib/workout-coach-common.sh
+source "$SCRIPT_DIR/lib/workout-coach-common.sh"
+
 readonly MODEL="opencode-go/deepseek-v4.1-flash"
 readonly TIMEOUT_SECONDS=900
 readonly LOG_FILE="$STATE_DIR/run.log"
 readonly MESSAGE_FILE="$STATE_DIR/message.txt"
+readonly FIRST_DAY="2026-11-09"
+readonly LAST_DAY="2027-02-16"
 
 TODAY="$(date +%F)"
 readonly TODAY
 
-log() {
-  printf '%s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" >>"$LOG_FILE"
-}
+init_state
 
-find_notes_dir() {
-  local candidate
-  for candidate in "$HOME/JT-notes" "$HOME/Documents/T2Knock/JT-notes"; do
-    if [[ -d "$candidate/routines" ]]; then
-      printf '%s\n' "$candidate"
-      return 0
-    fi
-  done
-  return 1
-}
-
-read_topic() {
-  jq -r '.routineTopic // "routine"' "$CONFIG" 2>/dev/null || printf 'routine'
-}
-
-within_hours() {
-  local start="$1" end="$2" hour
-  hour="$(date +%-H)"
-  ((hour >= start && hour < end))
-}
-
-mkdir -p "$STATE_DIR"
-chmod 700 "$STATE_DIR"
+if [[ "$TODAY" < "$FIRST_DAY" || "$TODAY" > "$LAST_DAY" ]]; then
+  log "outside the 100 days ($FIRST_DAY to $LAST_DAY); skip"
+  exit 0
+fi
 
 notes_dir="$(find_notes_dir)" || {
   log "FAILED: JT-notes not found"
@@ -50,11 +36,10 @@ readonly NOTES_DIR="$notes_dir"
 
 if [[ "$(date +%u)" == "7" ]]; then
   readonly ROUTINE="$NOTES_DIR/routines/tet-100-sunday.md"
-  readonly TITLE="TET100 week $TODAY"
 else
   readonly ROUTINE="$NOTES_DIR/routines/tet-100-daily.md"
-  readonly TITLE="TET100 $TODAY"
 fi
+readonly TITLE="TET100 $TODAY"
 
 TOPIC="$(read_topic)"
 readonly TOPIC
@@ -94,7 +79,7 @@ if command -v timeout >/dev/null; then
   runner=(timeout "$TIMEOUT_SECONDS" "${runner[@]}")
 fi
 
-log "start $TODAY ($TITLE)"
+log "start $TODAY ($ROUTINE)"
 if ! "${runner[@]}" "$prompt" >>"$LOG_FILE" 2>&1; then
   fail "opencode run returned non-zero"
 fi

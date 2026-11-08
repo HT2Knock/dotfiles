@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Shared helpers for the workout coach runners. Source this file.
 
-readonly STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/workout-coach"
+readonly STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/${STATE_NAME:-workout-coach}"
 readonly CONFIG="$HOME/.config/opencode/ntfy.json"
 
 log() {
