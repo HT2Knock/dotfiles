@@ -31,7 +31,8 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   `~/dotfiles/scripts/workout-coach.sh` on `knockon` from
   `workout-coach.timer` at 05:45. The coach writes the message to
   `~/.local/state/workout-coach/message.txt`; the runner publishes that file to
-  `routine`. Verified 2026-11-08 with two pushes.
+  `routine`. The session stays visible as `Workout coach <date>`, so the user can
+  open it on the phone and adjust the day. Verified 2026-11-08 with four pushes.
 
 ## Host state
 
@@ -48,6 +49,10 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   default returned `provider.auth` 400 (see issue 55211). The OpenAI credential
   is still stored.
 - The `always-on.service` unit blocks idle, sleep, and lid suspend.
+- **Headless cleanup (2026-11-08).** The synced Claude skills are removed on
+  `knockon` (archived at `~/.local/state/claude-skills-2026-11-08.tar.gz`). The
+  Chrome MCP is removed from the config, and the built-in `browser` skill is
+  denied for the model.
 
 ## Open work
 
@@ -87,8 +92,10 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   `opencode service get password` gives the stable password path.
 - **A modified plugin file is not re-imported.** Restart the server after a
   build.
-- **`--archived` works on 2.2.6.** The runner uses it to keep routine sessions
-  out of the session list. 2.2.5 did not have the flag.
+- **`--archived` hides a session.** The runner used it in the first version, and
+  the user could not reopen the coach to ask for a lighter day. The coach now
+  keeps its session visible with the title `Workout coach <date>`. Do not add the
+  flag back.
 
 ## Files
 
