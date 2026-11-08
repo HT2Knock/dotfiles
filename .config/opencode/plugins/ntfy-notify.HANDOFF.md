@@ -33,10 +33,11 @@ Date: 2026-11-08. Work continues in the dotfiles repository.
   `~/.local/state/workout-coach/message.txt`; the runner publishes that file to
   `routine`. The session stays visible as `Workout coach <date>`, so the user can
   open it on the phone and adjust the day. Verified 2026-11-08 with four pushes.
-- Evening nudge: `workout-coach-evening.timer` at 20:45 sends one fixed line when
-  the morning message ran and `personal/workout_log.md` has no `## <today>`
+- Evening nudge: `workout-coach-evening.timer` at 20:45 sends one fixed message
+  when the morning message ran and `personal/workout_log.md` has no `## <today>`
   heading. On Sunday it adds the dates since the newest entry. It uses no model.
-  Verified 2026-11-08.
+  Verified 2026-11-08. Both runners accept `--force` to bypass the daily and time
+  guards for tests.
 
 ## Host state
 
