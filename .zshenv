@@ -1,3 +1,17 @@
+# OpenSSH sends TERM only in the pty request, and Tailscale SSH starts the
+# login shell through login(1), which sets TERM=dumb. Use a real terminal
+# type. Keep an explicitly dumb TERM in non-interactive shells.
+case ${TERM-} in
+  ""|unknown)
+    export TERM=xterm-256color
+    ;;
+  dumb)
+    if [[ -o interactive ]]; then
+      export TERM=xterm-256color
+    fi
+    ;;
+esac
+
 export EDITOR="nvim"
 export TERMINAL="ghostty"
 export BROWSER="helium-browser"

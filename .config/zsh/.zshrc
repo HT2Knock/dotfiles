@@ -97,3 +97,6 @@ function zvm_after_init() {
 
 # Source local zshenv config contail api key
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
+
+# bun completions
+[ -s "/home/t2knock/.bun/_bun" ] && source "/home/t2knock/.bun/_bun"

@@ -39,3 +39,6 @@
 	helper = store --file=/home/t2knock/.config/hermes-github/personal.creds
 [credential "https://github.com/AIRR-Labs"]
 	helper = store --file=/home/t2knock/.config/hermes-github/work.creds
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

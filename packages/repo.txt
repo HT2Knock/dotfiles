@@ -24,6 +24,7 @@ bluez-utils
 bottom
 brightnessctl
 btop
+bun
 btrfsmaintenance
 btrfs-progs
 cantarell-fonts
