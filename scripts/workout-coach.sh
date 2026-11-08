@@ -4,36 +4,20 @@
 # the model never owns the side effect.
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR
+# shellcheck source=lib/workout-coach-common.sh
+source "$SCRIPT_DIR/lib/workout-coach-common.sh"
+
 readonly MODEL="opencode-go/deepseek-v4.1-flash"
 readonly TIMEOUT_SECONDS=900
-readonly STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/workout-coach"
 readonly LOG_FILE="$STATE_DIR/run.log"
 readonly MESSAGE_FILE="$STATE_DIR/message.txt"
-readonly CONFIG="$HOME/.config/opencode/ntfy.json"
 
 TODAY="$(date +%F)"
 readonly TODAY
 
-readonly START_HOUR=5
-readonly END_HOUR=10
-
-mkdir -p "$STATE_DIR"
-chmod 700 "$STATE_DIR"
-
-log() {
-  printf '%s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" >>"$LOG_FILE"
-}
-
-find_notes_dir() {
-  local candidate
-  for candidate in "$HOME/JT-notes" "$HOME/Documents/T2Knock/JT-notes"; do
-    if [[ -d "$candidate/routines" ]]; then
-      printf '%s\n' "$candidate"
-      return 0
-    fi
-  done
-  return 1
-}
+init_state
 
 notes_dir="$(find_notes_dir)" || {
   log "FAILED: JT-notes not found"
@@ -42,7 +26,7 @@ notes_dir="$(find_notes_dir)" || {
 readonly NOTES_DIR="$notes_dir"
 readonly ROUTINE="$NOTES_DIR/routines/workout-coach.md"
 
-TOPIC="$(jq -r '.routineTopic // "routine"' "$CONFIG" 2>/dev/null || printf 'routine')"
+TOPIC="$(read_topic)"
 readonly TOPIC
 readonly SENT_FILE="$STATE_DIR/last-sent"
 
@@ -58,9 +42,8 @@ if [[ "${1:-}" != "--force" && -f "$SENT_FILE" && "$(cat "$SENT_FILE")" == "$TOD
   exit 0
 fi
 
-now_hour="$(date +%-H)"
-if [[ "${1:-}" != "--force" ]] && ((now_hour < START_HOUR || now_hour >= END_HOUR)); then
-  log "outside ${START_HOUR}:00-${END_HOUR}:00; skip"
+if [[ "${1:-}" != "--force" ]] && ! within_hours 5 10; then
+  log "outside 5:00-10:00; skip"
   exit 0
 fi
 
@@ -74,7 +57,7 @@ prompt="Write today's training message to $MESSAGE_FILE.
 
 $(cat "$ROUTINE")"
 
-runner=(opencode run --model "$MODEL" --auto --title "Workout coach $TODAY")
+runner=(opencode run --model "$MODEL" --title "Workout coach $TODAY")
 if command -v timeout >/dev/null; then
   runner=(timeout "$TIMEOUT_SECONDS" "${runner[@]}")
 fi
