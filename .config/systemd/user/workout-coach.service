@@ -1,0 +1,11 @@
+[Unit]
+Description=Workout coach morning session
+After=opencode.service
+Wants=opencode.service
+
+[Service]
+Type=oneshot
+Environment=PATH=/usr/bin:/usr/local/bin:/home/t2knock/.local/bin:/home/t2knock/.bun/bin:/home/t2knock/go/bin:/home/t2knock/.cargo/bin:/usr/local/sbin:/bin
+WorkingDirectory=%h/JT-notes
+ExecStart=%h/dotfiles/scripts/workout-coach.sh
+TimeoutStartSec=20min
