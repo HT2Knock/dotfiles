@@ -20,6 +20,9 @@ return {
         {
           name = 'personal',
           path = '~/Documents/T2Knock/JT-notes',
+          -- A parent of JT-notes holds an .obsidian folder. Without strict,
+          -- obsidian.nvim walks up to it and resolves templates from the wrong root.
+          strict = true,
         },
       },
       daily_notes = {
