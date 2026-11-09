@@ -11,9 +11,12 @@ source "$SCRIPT_DIR/lib/workout-coach-common.sh"
 readonly LOG_FILE="$STATE_DIR/evening.log"
 readonly MORNING_SENT="$STATE_DIR/last-sent"
 readonly EVENING_SENT="$STATE_DIR/evening-sent"
+readonly SESSION_FILE="$STATE_DIR/last-session"
 
 TODAY="$(date +%F)"
 readonly TODAY
+TITLE="Log the session · $(LC_ALL=C date +'%-d %b')"
+readonly TITLE
 
 init_state
 
@@ -78,8 +81,17 @@ if [[ "$(date +%u)" == "7" ]]; then
   fi
 fi
 
-if ! printf '%s\n' "$message" | ntfy publish --title "Log the session" "$TOPIC" >>"$LOG_FILE" 2>&1; then
+session_id="$(cat "$SESSION_FILE" 2>/dev/null || true)"
+origin="$(public_origin || true)"
+link=""
+if [[ -n "$session_id" && -n "$origin" ]]; then
+  link="$(reynard_url "$(session_url "$origin" "$session_id")")"
+fi
+
+if ! publish_routine "$TITLE" memo "$message" "$link" >>"$LOG_FILE" 2>&1; then
   log "FAILED: ntfy publish failed"
+  printf 'Evening nudge failed at %s. Check the log on knockon.\n' "$(date +%H:%M)" |
+    ntfy publish --title "Evening nudge failed" --priority high --tags warning "$TOPIC" >/dev/null 2>&1 || true
   exit 1
 fi
 

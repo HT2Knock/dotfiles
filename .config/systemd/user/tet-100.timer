@@ -3,7 +3,7 @@ Description=Run the TET100 message at 21:30
 
 [Timer]
 OnCalendar=*-*-* 21:30:00
-Persistent=false
+Persistent=true
 AccuracySec=1min
 Unit=tet-100.service
 
