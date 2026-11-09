@@ -12,10 +12,14 @@ source "$SCRIPT_DIR/lib/workout-coach-common.sh"
 readonly MODEL="opencode-go/deepseek-v4.1-flash"
 readonly TIMEOUT_SECONDS=900
 readonly LOG_FILE="$STATE_DIR/run.log"
+readonly RUN_JSON="$STATE_DIR/run.jsonl"
 readonly MESSAGE_FILE="$STATE_DIR/message.txt"
+readonly SESSION_FILE="$STATE_DIR/last-session"
 
 TODAY="$(date +%F)"
 readonly TODAY
+TITLE="Workout coach · $(LC_ALL=C date +'%-d %b')"
+readonly TITLE
 
 init_state
 
@@ -33,7 +37,7 @@ readonly SENT_FILE="$STATE_DIR/last-sent"
 fail() {
   log "FAILED: $*"
   printf 'Workout coach failed at %s. Check the log on knockon.\n' "$(date +%H:%M)" |
-    ntfy publish --title "Workout coach failed" "$TOPIC" >/dev/null 2>&1 || true
+    ntfy publish --title "Workout coach failed" --priority high --tags warning "$TOPIC" >/dev/null 2>&1 || true
   exit 1
 }
 
@@ -51,19 +55,19 @@ fi
 command -v jq >/dev/null || fail "jq not found"
 command -v ntfy >/dev/null || fail "ntfy not found"
 
-rm -f "$MESSAGE_FILE"
+rm -f "$MESSAGE_FILE" "$RUN_JSON"
 
 prompt="Write today's training message to $MESSAGE_FILE.
 
 $(cat "$ROUTINE")"
 
-runner=(opencode run --model "$MODEL" --title "Workout coach $TODAY")
+runner=(opencode run --model "$MODEL" --title "Workout coach $TODAY" --format json)
 if command -v timeout >/dev/null; then
   runner=(timeout "$TIMEOUT_SECONDS" "${runner[@]}")
 fi
 
 log "start $TODAY"
-if ! "${runner[@]}" "$prompt" >>"$LOG_FILE" 2>&1; then
+if ! "${runner[@]}" "$prompt" >"$RUN_JSON" 2>>"$LOG_FILE"; then
   fail "opencode run returned non-zero"
 fi
 
@@ -75,9 +79,19 @@ if [[ -z "${message//[[:space:]]/}" ]]; then
   fail "the message file is empty"
 fi
 
-if ! printf '%s\n' "$message" | ntfy publish --title "Workout coach" "$TOPIC" >>"$LOG_FILE" 2>&1; then
+session_id="$(head -n 1 "$RUN_JSON" 2>/dev/null | jq -r '.sessionID // empty' 2>/dev/null || true)"
+origin="$(public_origin || true)"
+link=""
+if [[ -n "$session_id" && -n "$origin" ]]; then
+  link="$(reynard_url "$(session_url "$origin" "$session_id")")"
+fi
+
+if ! publish_routine "$TITLE" muscle "$message" "$link" >>"$LOG_FILE" 2>&1; then
   fail "ntfy publish failed"
 fi
 
+if [[ -n "$session_id" ]]; then
+  printf '%s\n' "$session_id" >"$SESSION_FILE"
+fi
 printf '%s\n' "$TODAY" >"$SENT_FILE"
-log "sent $TODAY: ${#message} bytes"
+log "sent $TODAY: ${#message} bytes, session=${session_id:-none}, link=$([[ -n "$link" ]] && printf yes || printf no)"
