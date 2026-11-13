@@ -25,7 +25,7 @@
   },
   "diffs": {
     "tree": true,
-    "view": "unified",
+    "view": "split",
     "fullscreen": true,
     "single": false
   }

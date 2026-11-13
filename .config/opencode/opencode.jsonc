@@ -1,9 +1,6 @@
 {
   "$schema": "./opencode.schema.json",
-  "plugins": [
-    "@ex-machina/opencode-anthropic-auth@next",
-    "/Users/ht2knock/personal/opencode-ntfy",
-  ],
+  "plugins": ["/Users/ht2knock/personal/opencode-ntfy"],
   "websearch": {
     "provider": "exa",
   },
