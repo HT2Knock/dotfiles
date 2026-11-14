@@ -63,7 +63,7 @@ Use the narrowest check that covers the change. Run it before you commit.
 | Neovim config load | `nvim --headless +'checkhealth' +qa` |
 | LSP config (`.config/nvim/lsp/*.lua`) | `nvim --headless +'lua vim.lsp.enable({"lua_ls", "gopls"})' +qa` |
 | Single Lua file syntax | `luac -p <file>` |
-| Rex Lua (`.config/rex/**/*.lua`) | `cd .config/rex && stylua --check .`, then `rex config check`; for a binding change, diff the key and action columns of `rex keymap` |
+| Rex Lua (`.config/rex/**/*.lua`) | `cd .config/rex && stylua --check .`, then `rex config check` |
 | Shell scripts (`scripts/*.sh`, `mac_setup.sh`) | `bash -n <file>`, then `shellcheck <file>` when installed |
 | Zsh (`.config/zsh/**`) | `zsh -i -c 'echo "Zsh config OK"'` |
 | tmux (`.config/tmux/tmux.conf`) | `tmux -f .config/tmux/tmux.conf start-server \; kill-server` |
