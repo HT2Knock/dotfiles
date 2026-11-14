@@ -1,15 +1,5 @@
 return {
   { 'folke/todo-comments.nvim', opts = {} },
-  { 'sindrets/diffview.nvim', opts = {} },
-  {
-    'martindur/zdiff.nvim',
-    cmd = 'Zdiff',
-    keys = {
-      { '<leader>zd', '<cmd>Zdiff<cr>', desc = 'Zdiff (uncommitted)' },
-      { '<leader>zD', '<cmd>Zdiff main<cr>', desc = 'Zdiff (vs main)' },
-    },
-    opts = {},
-  },
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
