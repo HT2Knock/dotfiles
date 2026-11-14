@@ -198,6 +198,14 @@ enable_gc = false                           # Periodic memory cleanup (adds CPU 
 font_size = 10
 font_family = ""
 border_width = 1
+# Cell fills are a light tint so the screen stays readable underneath. The cell
+# structure comes from the accent_alt borders, not from the fill.
+background_color = { light = "#26EEF2FF", dark = "#260A1338" }          # 15%
+matched_background_color = { light = "#40EEF2FF", dark = "#400A1338" }  # 25%
+text_color = { light = "#0B2377", dark = "#8FA2F0" }
+matched_text_color = { light = "#0B2377", dark = "#8FA2F0" }
+border_color = { light = "#990B2377", dark = "#998FA2F0" }
+matched_border_color = { light = "#0B2377", dark = "#8FA2F0" }
 
 # Recursive grid mode (recommended)
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#recursive_grid
