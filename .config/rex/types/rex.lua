@@ -47,10 +47,10 @@ rex = {}
 ---@field exclusive boolean
 ---@field source string
 
----@overload fun(key: string, fn: fun(ctx: rex.Context, ev: rex.KeyEvent): boolean?)
 ---@param key string
 ---@param action string
 ---@param args? table
+---@overload fun(key: string, fn: fun(ctx: rex.Context, ev: rex.KeyEvent): boolean?)
 function rex.bind(key, action, args) end
 
 ---@param key string|{ mode: string }|rex.Binding
@@ -227,14 +227,25 @@ function rex.call(method, args) end
 ---@class rex.Block
 rex.block = {}
 
+---@class rex.TerminalMode
+---@field ansi? boolean
+---@field default? boolean
+---@field name string
+---@field number integer
+---@field set boolean
+
+---@class rex.TerminalModes
+---@field modes? rex.TerminalMode[]
+---@field screen 'primary'|'alternate'|string
+
 ---@param creator string
 ---@param method string
 ---@param args? table
 ---@return table?, string?
+---@overload fun(creator: 'com.superlogical.terminal', method: 'modes', args?: { block_id?: string, session_id?: string }): rex.TerminalModes?, string?
 function rex.block.call(creator, method, args) end
 
 ---@class rex.Layout
-local layout_node = {}
 
 ---@class rex.TerminalOptions
 ---@field command? string[]
@@ -338,15 +349,12 @@ function process:kill(signal) end
 ---@return boolean
 function process:running() end
 
----@param argv string[]
----@param opts? rex.ExecOptions
----@return rex.ExecResult?, string?
-function rex.exec(argv, opts) end
-
----@param argv string[]
----@param opts? rex.ExecOptions
----@return rex.Process?, string?
-function rex.exec.start(argv, opts) end
+---Runs a command and waits for it to exit. The `start` field runs it
+---without waiting.
+---@class rex.Exec
+---@field start fun(argv: string[], opts?: rex.ExecOptions): rex.Process?, string?
+---@overload fun(argv: string[], opts?: rex.ExecOptions): rex.ExecResult?, string?
+rex.exec = {}
 
 ---@class rex.JsonLib
 rex.json = {}
