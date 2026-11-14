@@ -4,6 +4,7 @@
 -- one page, and n and p jump between prompts. In a full-screen program, every
 -- key sends Page Up or Page Down. Enter the mode with prefix u, in keys.lua.
 
+---@type 'com.superlogical.terminal'
 local TERMINAL_CREATOR = 'com.superlogical.terminal'
 
 local ALT_SCREEN = { [47] = true, [1047] = true, [1049] = true }
