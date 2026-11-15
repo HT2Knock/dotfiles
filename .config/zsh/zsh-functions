@@ -45,7 +45,7 @@ function f() {
 }
 
 function calendar() {
-    local file_path=~/workspace/github.com/T2Knock/JT-notes/personal/calendar.txt
+    local file_path="$HOME/Documents/T2Knock/JT-notes/personal/calendar.txt"
 
     if [[ ! -f "$file_path" ]]; then
         echo "Error: Calendar file not found at $file_path" >&2
@@ -55,6 +55,19 @@ function calendar() {
     local line_number=$(rg --line-number "$(date +%Y-%m-%d)" "$file_path" | cut -d: -f1 | head -n 1)
 
     nvim "$file_path" +$line_number
+}
+
+# One task list for the notes repo. zsh-exports points TODO_FILE at it.
+alias todo='tuxedo'
+
+# Print the next seven days of calendar.txt and the tasks due in that window.
+function week() {
+    bun run "$HOME/Documents/T2Knock/JT-notes/tools/calendar/day.ts" --plain --days 7 "$@"
+}
+
+# Day view for calendar.txt and todo.txt, in the terminal.
+function day() {
+    bun run "$HOME/Documents/T2Knock/JT-notes/tools/calendar/day.ts" "$@"
 }
 
 function get_git_root() {
