@@ -45,6 +45,14 @@ text = "#E8EEFF"
 "Primary+Shift+C" = "recursive_grid"
 "Primary+Shift+S" = "scroll"
 
+# Hooks
+# See https://github.com/y3owk1n/neru/blob/main/docs/reference/configuration.md#hooks
+[hooks]
+# Microsoft Teams is a Chromium app that keeps its accessibility tree off
+# until an AX client asks for the enhanced user interface. Without this, hints
+# find only the three window buttons.
+on_app_focus = "exec [ \"$NERU_BUNDLE_ID\" = com.microsoft.teams2 ] && \"$HOME/.config/neru/scripts/warm-ax.sh\" com.microsoft.teams2"
+
 # Macros — named action sequences, reused from any binding.
 # Written by hand, not recorded. $1, $2 ... are the call's arguments.
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#macros
