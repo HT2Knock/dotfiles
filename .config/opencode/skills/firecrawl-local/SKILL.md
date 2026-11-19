@@ -105,13 +105,13 @@ the table of contents intact.
 
 ## Failures
 
-| Symptom                                                  | Cause                                          | Action                                                               |
-| -------------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------- |
-| `dns error` on a path that starts with `/`               | `scrape` got a file path                       | serve the file on loopback                                           |
-| `BLOCKED_TARGET ... private address`                     | `--public-only` with a loopback URL            | drop the flag for your own file                                      |
-| `unexpected argument '--public-only'`                    | `map` has no such flag                         | use `scrape` or `crawl` on the URLs that `map` returns               |
-| Body says "Please enable JS", result has `blocked: true` | Bot wall. The local fetch got a challenge page | run `firecrawl-local login` once, so the cloud fallback can fetch it |
-| Empty output, no error                                   | Page needs a browser                           | add `--browser always`, then check with `wc -c`                      |
+| Symptom                                                  | Cause                                          | Action                                                                                        |
+| -------------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `dns error` on a path that starts with `/`               | `scrape` got a file path                       | serve the file on loopback                                                                    |
+| `BLOCKED_TARGET ... private address`                     | `--public-only` with a loopback URL            | drop the flag for your own file                                                               |
+| `unexpected argument '--public-only'`                    | `map` has no such flag                         | use `scrape` or `crawl` on the URLs that `map` returns                                        |
+| Body says "Please enable JS", result has `blocked: true` | Bot wall. The local fetch got a challenge page | run `firecrawl-local login` once, so the cloud fallback can try. Some sites the cloud refuses |
+| Empty output, no error                                   | Page needs a browser                           | add `--browser always`, then check with `wc -c`                                               |
 
 ## Limits
 
