@@ -69,6 +69,7 @@ rex.bind(PREFIX .. '>s', 'session.switch')
 -- Open Activity on its own key instead of switching lists inside the switcher.
 rex.bind(PREFIX .. '>a', 'pane.view_activity')
 rex.bind(PREFIX .. '>,', 'session_rename')
+rex.bind(PREFIX .. '>shift+p', 'project_open')
 rex.bind(PREFIX .. '>up', 'session.previous')
 rex.bind(PREFIX .. '>down', 'session.next')
 
@@ -78,9 +79,7 @@ end
 
 -- Search and configuration ---------------------------------------------------
 
--- Copy mode, as prefix [ in tmux. Rex has no built-in copy mode yet, so this
--- opens a read-only snapshot in nvim. See actions/copy_mode.lua.
-rex.bind(PREFIX .. '>[', 'copy_mode')
+rex.bind(PREFIX .. '>[', 'pane.copy_mode.enter')
 
 -- Search the scrollback.
 rex.bind(PREFIX .. '>/', 'client.find.open')

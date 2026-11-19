@@ -119,6 +119,26 @@ function rex_proj() {
     rex do session.select session_id="$session_id"
 }
 
+function oc-tab() {
+    if [[ -z ${REX_SESSION:-} ]]; then
+        OPENCODE_ENABLE_EXA=1 opencode "$@"
+        return
+    fi
+
+    rex run --interactive --cwd "$PWD" -- env OPENCODE_ENABLE_EXA=1 opencode "$@"
+}
+
+function lab-forward() {
+    local local_port="${1:?usage: lab-forward LOCAL_PORT [HOST:PORT]}"
+    local target="${2:-localhost:$local_port}"
+
+    if ! rex -S t2knock-lab session ls --json | jq -e '.sessions[] | select(.label == "lab")' >/dev/null; then
+        rex -S t2knock-lab session new lab >/dev/null
+    fi
+
+    rex -S t2knock-lab forward new -s lab -L "$local_port:$target"
+}
+
 preexec() {
     set_title "${1%% *}"
 }

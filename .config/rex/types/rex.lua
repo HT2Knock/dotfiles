@@ -356,6 +356,29 @@ function process:running() end
 ---@overload fun(argv: string[], opts?: rex.ExecOptions): rex.ExecResult?, string?
 rex.exec = {}
 
+---@class rex.UiItem
+---@field id string
+---@field title? string
+---@field subtitle? string
+---@field icon? string
+---@field detail? string
+---@field selected? boolean
+
+---@class rex.UiOptions
+---@field title string
+---@field placeholder? string
+---@field value? string
+---@field confirm? string
+---@field timeout? number
+---@field items? (rex.UiItem|string)[]
+---@field multiple? boolean
+---@field allow_other? boolean
+
+---@class rex.Ui
+---@field input fun(opts: rex.UiOptions): string?, string?, string?
+---@field pick fun(opts: rex.UiOptions): any, string?, string?
+rex.ui = {}
+
 ---@class rex.JsonLib
 rex.json = {}
 

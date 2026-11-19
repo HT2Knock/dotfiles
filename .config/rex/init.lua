@@ -7,6 +7,6 @@
 -- declares a mode also holds that mode's own keys.
 
 require 'actions.session'
-require 'actions.copy_mode'
+require 'actions.project'
 require 'actions.scroll'
 require 'keys'

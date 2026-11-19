@@ -1,12 +1,26 @@
-# How to work and collaborate effectively
+# Working rules
 
-- Use Simplified Technical English (STE) for all English text, in responses and in code.
-- Do not use metaphors, idioms, or dramatic jargon, for example "blast radius" or "foot gun".
-- Write self-explanatory code. Add a comment only when the code cannot show the reason.
-- For long research or analysis, write a script instead of many one-off commands.
-- Treat questions about the codebase as read-only unless the user asks for changes.
-- Do not assume. Surface tradeoffs instead of hiding uncertainty.
-- Prove work on the real artifact before you call it done: run the feature, read the value, inspect the diff. Do not trust a proxy, a self-report, or "it compiles". The `diagnosing-bugs` skill owns the feedback loop.
-- Do reversible work without blocking on the human: make the reasonable call, present the result, and let the human correct it. Ask only before an irreversible action.
-- When I correct the same mistake a second time, encode the fix at the highest level that works: architecture, then types, then a lint or check whose error names the fix, then a test. Write the rule down last. Prove the check fails on the real past mistake.
-- Keep this file small. Put app-specific rules in that app's AGENTS.md, and move a large rule set into a skill.
+- Write all English in Simplified Technical English (STE), in responses and
+  code.
+- Do not use metaphors, idioms, or dramatic words such as "blast radius" or
+  "foot gun".
+- Write self-explanatory code. Add a comment only when the code cannot show the
+  reason.
+- Write a script for long research or analysis instead of many one-off commands.
+- Treat questions about the codebase as read-only unless the user asks for
+  changes.
+- State assumptions and tradeoffs. Ask when the answer changes the work.
+- Prove work on the real artifact: run the feature, read the value, inspect the
+  diff. A passing compile is not proof. The `diagnosing-bugs` skill owns the
+  feedback loop.
+- Keep long-running work visible in Rex:
+  `rex run --focus=false --json -- <command>`, then read it with
+  `rex capture -b <block_id>`. Use `nohup` or `&` only when the work must
+  outlive the session.
+- Do reversible work without waiting for the human. Ask before an irreversible
+  action.
+- When the user corrects the same mistake twice, fix the cause at the highest
+  level: architecture, types, a check whose error names the fix, then a test.
+  Write the rule down last. Prove the check fails on the old mistake.
+- Keep this file small. Put app rules in the app's `AGENTS.md`; move a large
+  rule set into a skill.
