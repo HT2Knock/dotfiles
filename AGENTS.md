@@ -1,159 +1,123 @@
-# Dotfiles Repository - Agent Guidelines
+# Dotfiles repository
 
-This repository stores personal configuration files for GNU Stow. Each application
-directory under `.config/` is a Stow package. Stow links package files into `~/.config`.
+This repository holds personal configuration files. GNU Stow links them into
+`~/.config`.
 
 ## Instruction precedence
 
-Apply every relevant instruction file. If two instructions conflict, resolve them
-in this order:
+Apply every relevant instruction file. When two conflict, use this order:
 
-1. Explicit instructions from the user.
-2. The nearest app `AGENTS.md`, for example `.config/nvim/AGENTS.md` or
-   `.config/opencode/AGENTS.md`.
+1. The user's explicit instruction.
+2. The nearest app `AGENTS.md`, such as `.config/nvim/AGENTS.md`.
 3. This file.
 
-This file holds shared rules only. Put app-specific rules in that app's `AGENTS.md`,
-next to the code they govern.
+Put app-specific rules in that app's `AGENTS.md`, next to the code they govern.
+Keep each instruction file short.
 
-## Repository structure
+## Stow
 
-- `.config/<app>/` — one Stow package per application.
-- `scripts/` — utility shell scripts.
-- `fonts/` — custom fonts.
-- `assets/` — images, themes, and agent snippets.
-- `mac_setup.sh` — macOS setup script.
-- `README.md` — repository overview.
-- `.stow-local-ignore` — the Stow ignore list. This file is authoritative.
-- `.gitignore` — the Git ignore list. This file is authoritative.
-
-Run `ls` for the current list. The directories are the source of truth; this map is
-an overview only.
-
-## Deploying configurations (Stow)
-
-The repository is stowed as a single package, `.config`, with target `~/.config`.
+The repository is one Stow package, `.config`, with target `~/.config`.
 
 ```bash
-# Show what Stow would change, without changing it
 stow -n -v -t ~/.config .config
-
-# Create or update links for every app
 stow -t ~/.config .config
-
-# Re-create links after moving or renaming files
 stow -R -t ~/.config .config
-
-# Act on one app only: point the Stow directory at .config
-stow -d .config -t ~/.config nvim
-stow -R -d .config -t ~/.config nvim
-stow -D -d .config -t ~/.config nvim
 ```
 
-Stow rejects a package name that contains a slash, so `stow -t ~ .config/nvim` fails.
-Use the `.config` package form, or `-d .config` to act on one app.
+The first command shows the change. The second applies it. The third rebuilds
+links after a move or rename.
+
+Stow rejects a package name with a slash, so `stow -t ~ .config/nvim` fails. To
+act on one app, use `-d .config`:
+
+```bash
+stow -d .config -t ~/.config nvim
+```
 
 ## Verification by change type
 
 Use the narrowest check that covers the change. Run it before you commit.
 
-| Change | Check |
-| --- | --- |
-| Neovim Lua (`.config/nvim/**/*.lua`) | `cd .config/nvim && stylua --check .` |
-| Neovim config load | `nvim --headless +'checkhealth' +qa` |
-| LSP config (`.config/nvim/lsp/*.lua`) | `nvim --headless +'lua vim.lsp.enable({"lua_ls", "gopls"})' +qa` |
-| Single Lua file syntax | `luac -p <file>` |
-| Rex Lua (`.config/rex/**/*.lua`) | `cd .config/rex && stylua --check .`, then `rex config check` |
-| Shell scripts (`scripts/*.sh`, `mac_setup.sh`) | `bash -n <file>`, then `shellcheck <file>` when installed |
-| Zsh (`.config/zsh/**`) | `zsh -i -c 'echo "Zsh config OK"'` |
-| tmux (`.config/tmux/tmux.conf`) | `tmux -f .config/tmux/tmux.conf start-server \; kill-server` |
-| JSON | `python3 -m json.tool <file> > /dev/null` |
-| YAML | `python3 -m yaml <file> 2>/dev/null` or `yamllint <file>` |
-| TOML | `tomllint <file>` |
-| New or renamed Stow app | `stow -n -v -t ~/.config .config`, then `stow -t ~/.config .config` |
-| Aerospace, Ghostty, themes | Reload the running application and check it visually. No headless check exists. |
+| Change                                         | Check                                                                       |
+| ---------------------------------------------- | --------------------------------------------------------------------------- |
+| Neovim Lua (`.config/nvim/**/*.lua`)           | `cd .config/nvim && stylua --check .`                                       |
+| Neovim config load                             | `nvim --headless +'checkhealth' +qa`                                        |
+| LSP config (`.config/nvim/lua/config/lsp.lua`) | `nvim --headless +'lua vim.lsp.enable({"lua_ls", "gopls"})' +qa`            |
+| Single Lua file syntax                         | `luac -p <file>`                                                            |
+| Rex Lua (`.config/rex/**/*.lua`)               | `cd .config/rex && stylua --check .`, then `rex config check`               |
+| Rex bindings                                   | `rex keymap`                                                                |
+| Shell scripts (`scripts/*.sh`, `mac_setup.sh`) | `bash -n <file>`, then `shellcheck <file>` when installed                   |
+| Zsh (`.config/zsh/**`)                         | `zsh -n .config/zsh/zsh-functions`, then `zsh -i -c 'echo "Zsh config OK"'` |
+| tmux (`.config/tmux/tmux.conf`)                | `tmux -f .config/tmux/tmux.conf start-server \; kill-server`                |
+| JSON                                           | `python3 -m json.tool <file> > /dev/null`                                   |
+| YAML                                           | `python3 -m yaml <file> 2>/dev/null` or `yamllint <file>`                   |
+| TOML                                           | `tomllint <file>`                                                           |
+| New or renamed Stow app                        | `stow -n -v -t ~/.config .config`, then `stow -t ~/.config .config`         |
+| Aerospace, Ghostty, themes                     | Reload the application and check it visually. No headless check exists.     |
 
-## Generated artifacts
+## Generated files
 
-`~/.config/<app>` is a symlink that Stow generates from this repository. The file in
-the repository is the source of truth.
+`~/.config/<app>` is a symlink that Stow generates. The repository file is the
+source of truth.
 
-- Edit the file in the repository. Do not edit through the symlink with a tool that
-  replaces the file, because replacement breaks the link.
-- Rebuild links after moving or renaming files: `stow -R -t ~/.config .config`.
-- Do not copy files into `~/.config` by hand. Copies drift from the repository.
-- Do not commit caches or runtime state. See `.gitignore` for the list.
+Edit the repository file. Do not edit through the symlink with a tool that
+replaces the file, because the replacement breaks the link.
+
+Run `stow -R` after a move or rename. Do not copy files into `~/.config` by
+hand. Do not commit caches or runtime state; `.gitignore` lists them.
 
 ## Code style
 
-### Shell scripts (Bash and Zsh)
+### Shell scripts
+
+Start Bash scripts with:
 
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
 ```
 
-- Variables and functions: `snake_case`. Constants: `SCREAMING_SNAKE_CASE`.
-- Declare local variables with `local`.
-- Quote all variable expansions: `"$var"`.
-- Use `readonly` for constants.
-- Check command success with `if` or `||`.
+Use `snake_case` for variables and functions, `SCREAMING_SNAKE_CASE` for
+constants, and `local` for local variables. Quote every expansion. Use
+`readonly` for constants. Check success with `if` or `||`.
 
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
+### Lua
 
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly LOG_FILE="$HOME/install.log"
-
-log() {
-    local level="$1"
-    shift
-    echo "[$level] $*" >> "$LOG_FILE"
-}
-```
-
-### Lua (Neovim configuration)
-
-`.config/nvim/AGENTS.md` owns the detailed Lua rules. Key points:
-
-- Format with stylua, configured in `.config/nvim/.stylua.toml`.
-- Indent with 2 spaces, column width 160, single quotes.
-- Functions and variables: `snake_case`. Constants: `SCREAMING_SNAKE_CASE`.
-- Add LuaLS annotations, for example `---@type vim.lsp.Config`.
+`.config/nvim/AGENTS.md` owns the Lua rules. Format with stylua from
+`.config/nvim/.stylua.toml`. Use two spaces, 160 columns, and single quotes. Use
+`snake_case` for functions and variables, `SCREAMING_SNAKE_CASE` for constants,
+and LuaCATS annotations.
 
 ### Configuration files
 
-- JSON: 2-space indent. Validate with `python3 -m json.tool`.
-- YAML: 2-space indent, no tabs. Validate with `yamllint`.
-- TOML: inline tables for short data, section headers for groups.
+Use a two-space indent for JSON and YAML. Validate JSON with
+`python3 -m json.tool` and YAML with `yamllint`. Use inline TOML tables for
+short data and sections for groups.
 
-### Zsh configuration
+### Zsh
 
-- `.zshrc` is the entry point.
-- `zsh-aliases` holds aliases, `zsh-exports` holds environment variables, and
-  `zsh-functions` holds functions.
-- Aliases: lowercase and descriptive. Exports: uppercase. Functions: `snake_case`.
+`.zshrc` is the entry point. `zsh-aliases` holds aliases, `zsh-exports` holds
+environment variables, and `zsh-functions` holds functions. Use lowercase
+aliases, uppercase exports, and `snake_case` function names.
 
-## Hard prohibitions
+## Hard rules
 
-- Never run `stow` without `-n` first when the change adds, moves, or removes links.
-  The simulation shows the result before it happens.
-- Never run `git add -A`, `git add .`, `git reset --hard`, `git clean -fd`, or
-  `git stash`. These commands destroy uncommitted work.
-- Never commit API keys, tokens, or passwords. See `.gitignore`.
-- Never hand-edit a generated file when its generator or source exists.
-- Never use `#!/bin/bash`. Use `#!/usr/bin/env bash`, because the macOS system Bash
-  is version 3.2.
+- Run `stow -n` first when a change adds, moves, or removes links.
+- Stage explicit paths with `git add <path1> <path2>`. Never run `git add -A` or
+  `git add .`, because they stage files you did not review. Never run
+  `git reset --hard`, `git clean -fd`, or `git stash`, because they destroy or
+  hide uncommitted work.
+- Keep API keys, tokens, and passwords out of commits. See `.gitignore`.
+- Edit the source of a generated file, not the generated file.
+- Start Bash scripts with `#!/usr/bin/env bash`. The macOS system Bash is
+  version 3.2.
 
 ## Git
 
-- Stage explicit paths: `git add <path1> <path2>`.
-- Run `git status` before each commit and confirm that only your files are staged.
-- Keep one logical change per commit, with a short message.
+Run `git status` before each commit and confirm that only your files are staged.
+Keep one logical change per commit, with a short message.
 
 ## Plugins
 
-- Neovim: lazy.nvim, in `.config/nvim/lua/config/lazy.lua`.
-- Zsh: zinit, loaded in `.zshrc`.
-- tmux: TPM.
+Plugin managers: lazy.nvim in `.config/nvim/lua/config/lazy.lua`, zinit in
+`.zshrc`, and TPM for tmux.
