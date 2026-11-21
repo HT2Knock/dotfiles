@@ -1,6 +1,6 @@
 {
   "$schema": "./opencode.schema.json",
-  "plugins": ["/Users/ht2knock/personal/opencode-ntfy"],
+  "plugins": ["/Users/ht2knock/personal/opencode-ntfy", "/Users/ht2knock/personal/opencode-mpl"],
   "formatter": {
     // Prettier is built in and runs before custom entries. Remove markdown from
     // it so that oxfmt owns every .md file, not only the ones without a
