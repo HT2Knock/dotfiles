@@ -1,9 +1,10 @@
 [user]
-	email = huynnhtransongngoc@gmail.com
+	email = huynhtransongngoc@gmail.com
 	name = HT2Knock
 
 [core]
 	pager = delta
+	hooksPath = ~/.config/git/hooks
 
 [interactive]
 	diffFilter = delta --color-only

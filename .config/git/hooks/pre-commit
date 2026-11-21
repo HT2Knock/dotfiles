@@ -1,0 +1,25 @@
+#!/bin/sh
+# Refuse a commit whose author email is not linked to a GitHub account.
+# An unlinked email means the commit never appears on the contribution graph.
+set -eu
+
+allowed="huynhtransongngoc@gmail.com ngoc.hts@airrlabs.com"
+ident=$(git var GIT_AUTHOR_IDENT)
+email=${ident#*<}
+email=${email%%>*}
+
+case "$email" in
+*@users.noreply.github.com) exit 0 ;;
+esac
+
+for known in $allowed; do
+	if [ "$email" = "$known" ]; then
+		exit 0
+	fi
+done
+
+printf '%s\n' \
+	"commit blocked: author email '$email' is not linked to a GitHub account." \
+	"fix: git config user.email huynhtransongngoc@gmail.com" \
+	"bypass once: git commit --no-verify" >&2
+exit 1
