@@ -4,6 +4,7 @@
 
 [core]
 	pager = delta
+	hooksPath = ~/.config/git/hooks
 
 [interactive]
 	diffFilter = delta --color-only
@@ -16,10 +17,10 @@
 	colorMoved = default
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
 
 [delta]
   minus-style                   = syntax "#37222c"
