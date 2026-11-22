@@ -14,7 +14,7 @@ esac
 
 export EDITOR="nvim"
 export TERMINAL="ghostty"
-export BROWSER="helium-browser"
+export BROWSER="$HOME/dotfiles/scripts/agent-browser-open.sh"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"

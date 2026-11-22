@@ -1,0 +1,16 @@
+[Unit]
+Description=Window manager on the agent display
+# openbox gives focus, dialogs, and window placement on :99.
+Requires=browse-agent-xvfb.service
+After=browse-agent-xvfb.service
+PartOf=browse-agent.target
+
+[Service]
+Type=simple
+Environment=DISPLAY=:99
+ExecStart=/usr/bin/openbox
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=browse-agent.target

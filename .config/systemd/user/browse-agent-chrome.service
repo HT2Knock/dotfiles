@@ -1,0 +1,29 @@
+[Unit]
+Description=Agent Chrome on the virtual display
+# One profile for agents. The browse extension connects to the local relay.
+Requires=browse-agent-xvfb.service browse-agent-wm.service
+After=browse-agent-xvfb.service browse-agent-wm.service
+PartOf=browse-agent.target
+
+[Service]
+Type=simple
+Environment=DISPLAY=:99
+# The user manager copies WAYLAND_DISPLAY from the desktop session. Clear it,
+# so Chrome and openbox use the Xvfb display, not the Hyprland session.
+UnsetEnvironment=WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_BACKEND QT_QPA_PLATFORM
+# --password-store=basic stops a keyring prompt on a display with no secret
+# service. The margins keep the tab strip out from under the Screen Sharing
+# toolbar, which floats over the top edge of the remote screen.
+ExecStart=/usr/bin/google-chrome-stable \
+  --ozone-platform=x11 \
+  --user-data-dir=%h/.local/share/browse-agent/profile \
+  --password-store=basic \
+  --no-first-run \
+  --no-default-browser-check \
+  --window-size=1560,940 \
+  --window-position=20,40
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=browse-agent.target

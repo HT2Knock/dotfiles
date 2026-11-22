@@ -1,0 +1,7 @@
+[Unit]
+Description=Agent browser stack (Xvfb, openbox, Chrome, x11vnc)
+Wants=browse-agent-xvfb.service browse-agent-wm.service browse-agent-chrome.service browse-agent-vnc.service
+After=browse-agent-xvfb.service browse-agent-wm.service browse-agent-vnc.service
+
+[Install]
+WantedBy=default.target

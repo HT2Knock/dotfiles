@@ -11,6 +11,7 @@ dbeaver-ce-bin
 gcalcli
 getnf
 gnu-netcat
+google-chrome
 helium-browser-bin
 hunk-bin
 kanata

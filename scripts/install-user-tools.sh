@@ -89,6 +89,10 @@ install_official() {
             log info "official: opencode"
             curl -fsSL https://opencode.ai/v2/install | bash -s -- --no-modify-path
             ;;
+        browse)
+            log info "official: browse"
+            curl -fsSL https://opencode.ai/browse/install | bash -s -- --no-setup
+            ;;
         *)
             log error "no official installer for $name"
             return 1

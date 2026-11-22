@@ -1,0 +1,22 @@
+[Unit]
+Description=VNC for the agent display, loopback only
+# Reach it from another computer through an SSH tunnel:
+#   ssh -N -L 5900:127.0.0.1:5900 knockon
+# Then open vnc://localhost:5900. -localhost keeps the port off the network.
+Requires=browse-agent-xvfb.service
+After=browse-agent-xvfb.service
+PartOf=browse-agent.target
+
+[Service]
+Type=simple
+# The user manager copies the desktop session type. Clear it, so x11vnc serves
+# the Xvfb display instead of refusing with "Wayland display server detected".
+UnsetEnvironment=WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_BACKEND
+# macOS Screen Sharing closes a VNC server that offers no authentication, so use
+# a VNC password (8 characters) instead of -nopw. The SSH tunnel is the real gate.
+ExecStart=/usr/bin/x11vnc -display :99 -localhost -rfbport 5900 -forever -shared -rfbauth %h/.vnc/passwd
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=browse-agent.target

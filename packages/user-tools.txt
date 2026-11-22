@@ -7,6 +7,9 @@
 github:omar16100/atlassian-cli
 github:grafana/gcx
 official:opencode
+# The browse installer adds the binary only. Run `browse pair` once to connect
+# the extension.
+official:browse
 
 # Add webi tools here when needed, for example:
 # webi:k9s

@@ -1,0 +1,12 @@
+[Unit]
+Description=Virtual X display for the agent browser
+# A private display, so the agent browser does not touch the desktop session.
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/Xvfb :99 -screen 0 1600x1000x24 -nolisten tcp -noreset
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=browse-agent.target

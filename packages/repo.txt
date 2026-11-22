@@ -159,6 +159,7 @@ nss-mdns
 ntfs-3g
 ntp
 nwg-look
+openbox
 opencode
 openssh
 os-prober
@@ -241,6 +242,7 @@ wireplumber
 wl-clipboard
 wpa_supplicant
 wtype
+x11vnc
 xdg-desktop-portal-hyprland
 xdg-user-dirs
 xdg-utils
@@ -250,6 +252,7 @@ xf86-video-ati
 xfsprogs
 xl2tpd
 xorg-server
+xorg-server-xvfb
 xorg-xdpyinfo
 xorg-xinit
 xorg-xinput
