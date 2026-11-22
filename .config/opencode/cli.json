@@ -20,7 +20,7 @@
     "markdown": "rendered",
     "permissions": "autoaccept",
     "grouping": "auto",
-    "verbosity": "medium"
+    "verbosity": "high"
   },
   "tabs": {
     "layout": "horizontal",
