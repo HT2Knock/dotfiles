@@ -4,8 +4,8 @@
   code.
 - Do not use metaphors, idioms, or dramatic words such as "blast radius" or
   "foot gun".
-- Write self-explanatory code. Add a comment only when the code cannot show the
-  reason.
+- Write self-explanatory code. Put a non-obvious reason in an ADR, not a
+  comment. The `no-comments` skill removes comment slop.
 - Write a script for long research or analysis instead of many one-off commands.
 - Treat questions about the codebase as read-only unless the user asks for
   changes.
