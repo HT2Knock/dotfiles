@@ -18,7 +18,10 @@
     "thinking": "show",
     "permissions": "prompt",
     "sidebar": "hide",
-    "new_location": "launch"
+    "new_location": "launch",
+    "verbosity": "medium",
+    "image_preview": true,
+    "grouping": "auto"
   },
   "prompt": {
     "image_preview": true
