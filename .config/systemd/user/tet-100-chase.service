@@ -1,0 +1,10 @@
+[Unit]
+Description=TET100 phone chase at 21:45
+After=opencode.service
+
+[Service]
+Type=oneshot
+Environment=PATH=/usr/bin:/usr/local/bin:/home/t2knock/.local/bin:/home/t2knock/.bun/bin:/home/t2knock/go/bin:/home/t2knock/.cargo/bin:/usr/local/sbin:/bin
+WorkingDirectory=%h/JT-notes
+ExecStart=%h/dotfiles/scripts/tet-100.sh --chase
+TimeoutStartSec=2min
