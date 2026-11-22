@@ -1,0 +1,15 @@
+[Unit]
+Description=Log fan speed and temperatures for noise diagnosis
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/fan-watch.sh
+Restart=always
+RestartSec=30
+Nice=19
+CPUQuota=1%
+IOSchedulingClass=idle
+MemoryMax=16M
+
+[Install]
+WantedBy=default.target
