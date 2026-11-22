@@ -1,0 +1,12 @@
+[Unit]
+Description=Rex server (personal, reachable on the tailnet)
+
+[Service]
+Type=simple
+# Restart every 5s, so a start that fails before tailscaled is up recovers.
+ExecStart=/usr/local/bin/rex server run --extra-listen tailnet://:7297
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
