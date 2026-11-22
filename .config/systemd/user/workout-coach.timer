@@ -1,8 +1,8 @@
 [Unit]
-Description=Run the workout coach at 05:45
+Description=Run the workout coach at 06:35
 
 [Timer]
-OnCalendar=*-*-* 05:45:00
+OnCalendar=*-*-* 06:35:00
 Persistent=true
 AccuracySec=1min
 Unit=workout-coach.service

@@ -1,0 +1,12 @@
+[Unit]
+Description=Answer server for the 21:00 routine buttons
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 %h/JT-notes/scripts/answer-server.py
+Environment=NOTES_DIR=%h/JT-notes
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

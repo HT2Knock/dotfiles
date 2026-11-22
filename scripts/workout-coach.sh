@@ -18,7 +18,22 @@ readonly SESSION_FILE="$STATE_DIR/last-session"
 
 TODAY="$(date +%F)"
 readonly TODAY
-TITLE="Workout coach · $(LC_ALL=C date +'%-d %b')"
+
+TEST=0
+FORCE=0
+for arg in "$@"; do
+  case "$arg" in
+    --test) TEST=1 ;;
+    --force) FORCE=1 ;;
+  esac
+done
+readonly TEST FORCE
+
+if ((TEST)); then
+  TITLE="[TEST] Workout coach · $(LC_ALL=C date +'%-d %b')"
+else
+  TITLE="Workout coach · $(LC_ALL=C date +'%-d %b')"
+fi
 readonly TITLE
 
 init_state
@@ -41,12 +56,12 @@ fail() {
   exit 1
 }
 
-if [[ "${1:-}" != "--force" && -f "$SENT_FILE" && "$(cat "$SENT_FILE")" == "$TODAY" ]]; then
+if ((TEST == 0 && FORCE == 0)) && [[ -f "$SENT_FILE" && "$(cat "$SENT_FILE")" == "$TODAY" ]]; then
   log "already sent for $TODAY; skip"
   exit 0
 fi
 
-if [[ "${1:-}" != "--force" ]] && ! within_hours 5 10; then
+if ((TEST == 0 && FORCE == 0)) && ! within_hours 5 10; then
   log "outside 5:00-10:00; skip"
   exit 0
 fi
@@ -86,12 +101,14 @@ if [[ -n "$session_id" && -n "$origin" ]]; then
   link="$(reynard_url "$(session_url "$origin" "$session_id")")"
 fi
 
-if ! publish_routine "$TITLE" muscle "$message" "$link" >>"$LOG_FILE" 2>&1; then
+if ! publish_routine "$TITLE" muscle "$message" "$link" low >>"$LOG_FILE" 2>&1; then
   fail "ntfy publish failed"
 fi
 
 if [[ -n "$session_id" ]]; then
   printf '%s\n' "$session_id" >"$SESSION_FILE"
 fi
-printf '%s\n' "$TODAY" >"$SENT_FILE"
+if ((TEST == 0)); then
+  printf '%s\n' "$TODAY" >"$SENT_FILE"
+fi
 log "sent $TODAY: ${#message} bytes, session=${session_id:-none}, link=$([[ -n "$link" ]] && printf yes || printf no)"

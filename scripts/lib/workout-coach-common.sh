@@ -56,8 +56,11 @@ reynard_url() {
 
 # Publish a routine message. Appends the session footer when a link exists.
 publish_routine() {
-  local title="$1" tags="$2" message="$3" link="$4"
+  local title="$1" tags="$2" message="$3" link="$4" priority="${5:-}"
   local args=(--title "$title" --tags "$tags")
+  if [[ -n "$priority" ]]; then
+    args+=(--priority "$priority")
+  fi
   if [[ -n "$link" ]]; then
     args+=(--click "$link" --actions "view, Open session, $link, clear=true")
     message+=$'\n\n'"Tap to open today's session in Reynard."
