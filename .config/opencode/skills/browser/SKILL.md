@@ -24,8 +24,8 @@ watch the same window through the VNC view and take a tab back at any time.
 ## Start the lane
 
 Call `status` first. When it lists a browser, go to the loop. When it lists none, run the start script,
-wait 5 seconds, and call `status` again. When the extension is unpaired, give the user the step from
-`nextStep` and stop.
+then poll `status` every 5 seconds for up to 30 seconds; the extension needs that window to reconnect.
+When the extension is unpaired, give the user the step from `nextStep` and stop.
 
 Done when `status` lists a connected browser.
 
