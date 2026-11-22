@@ -1,0 +1,14 @@
+[Unit]
+Description=Monthly read check of the offsite restic repository
+ConditionPathExists=%h/.local/bin/restic-offsite-check.sh
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/restic-offsite-check.sh 5%
+Nice=10
+IOSchedulingClass=idle
+TimeoutStartSec=4h
+Restart=on-failure
+RestartSec=2h

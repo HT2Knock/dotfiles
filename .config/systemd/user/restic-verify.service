@@ -1,0 +1,9 @@
+[Unit]
+Description=Verify local restic repositories and offsite freshness
+ConditionPathExists=%h/.local/bin/restic-verify.sh
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/restic-verify.sh
+Nice=10
+IOSchedulingClass=idle

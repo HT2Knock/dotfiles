@@ -1,0 +1,18 @@
+[Unit]
+Description=Copy curated data to the offsite restic repository
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=%h/.local/bin/backup-offsite.sh
+StartLimitIntervalSec=6h
+StartLimitBurst=6
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/backup-offsite.sh
+Nice=10
+IOSchedulingClass=idle
+TimeoutStartSec=4h
+# The lab mirrors its repository hourly. A read that overlaps that rsync can
+# fail, so retry instead of waiting a whole week.
+Restart=on-failure
+RestartSec=30min

@@ -5,6 +5,6 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/dotfiles/scripts/backup.sh
+ExecStart=%h/.local/bin/backup-knockon.sh
 Nice=10
 IOSchedulingClass=idle
