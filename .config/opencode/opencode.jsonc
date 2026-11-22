@@ -1,20 +1,6 @@
 {
   "$schema": "./opencode.schema.json",
   "plugins": ["/Users/ht2knock/personal/opencode-ntfy", "/Users/ht2knock/personal/opencode-mpl"],
-  "formatter": {
-    // Prettier is built in and runs before custom entries. Remove markdown from
-    // it so that oxfmt owns every .md file, not only the ones without a
-    // project-local prettier.
-    "prettier": {
-      "extensions": [".js", ".jsx", ".mjs", ".cjs", ".ts", ".tsx", ".mts", ".cts", ".html", ".htm", ".css", ".scss", ".sass", ".less", ".vue", ".svelte", ".json", ".jsonc", ".yaml", ".yml", ".toml", ".xml", ".graphql", ".gql"],
-    },
-    // Same oxfmt binary and config lookup as the nvim conform setup, so a file
-    // the agent writes is already in the shape nvim would produce on save.
-    "oxfmt-markdown": {
-      "command": ["/Users/ht2knock/.local/share/nvim/mason/bin/oxfmt", "$FILE"],
-      "extensions": [".md", ".mdx"],
-    },
-  },
   "websearch": {
     "provider": "exa",
   },
