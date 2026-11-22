@@ -47,6 +47,9 @@ notes_dir="$(find_notes_dir)" || {
 }
 readonly NOTES_DIR="$notes_dir"
 
+TOPIC="$(read_topic)"
+readonly TOPIC
+
 fail() {
   log "FAILED: $*"
   printf 'TET100 cue failed at %s. Check the log on knockon.\n' "$(date +%H:%M)" |
@@ -66,9 +69,6 @@ fi
 
 command -v ntfy >/dev/null || fail "ntfy not found"
 command -v python3 >/dev/null || fail "python3 not found"
-
-TOPIC="$(read_topic)"
-readonly TOPIC
 
 message="$(python3 "$NOTES_DIR/scripts/tet100_stats.py" --cue --date "$TODAY")" ||
   fail "the cue script failed"
