@@ -29,6 +29,7 @@ btrfsmaintenance
 btrfs-progs
 cantarell-fonts
 clang
+cliphist
 cloudflared
 cmake
 cryptsetup
@@ -77,6 +78,7 @@ firefox
 firewalld
 fnm
 fx
+fuzzel
 ghostty
 gimp
 git
@@ -160,7 +162,6 @@ ntfs-3g
 ntp
 nwg-look
 openbox
-opencode
 openssh
 os-prober
 pacman-contrib

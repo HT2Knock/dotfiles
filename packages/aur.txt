@@ -2,6 +2,7 @@
 # Source of truth for 'scripts/install-packages.sh'. Edit by hand.
 # Refresh from the live system with 'scripts/export-packages.sh'.
 appimagelauncher
+bemoji
 bluetuith
 bruno-bin
 calibre-bin
@@ -16,6 +17,7 @@ helium-browser-bin
 hunk-bin
 kanata
 localsend-bin
+opencode-beta
 pi
 pspg
 responsively
@@ -25,6 +27,5 @@ sesh-bin
 snitch-bin
 thorium-browser-avx2-bin
 tokyonight-gtk-theme-git
-vicinae-bin
 waybar-git
 witr-bin
