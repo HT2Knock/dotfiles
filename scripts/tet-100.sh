@@ -86,8 +86,7 @@ token="$(python3 "$NOTES_DIR/scripts/answer-server.py" --token "$TODAY")" ||
   fail "the token script failed"
 [[ -n "$token" ]] || fail "the token is empty"
 
-actions="http, Yes, $ANSWER_BASE?d=$TODAY&v=yes&t=$token, method=GET"
-actions+="; http, No, $ANSWER_BASE?d=$TODAY&v=no&t=$token, method=GET"
+actions="http, Parked, $ANSWER_BASE?d=$TODAY&v=yes&t=$token, method=GET"
 
 if ! printf '%s\n' "$message" |
   ntfy publish --title "$TITLE" --tags bed --priority low --actions "$actions" "$TOPIC" >>"$LOG_FILE" 2>&1; then
@@ -95,4 +94,4 @@ if ! printf '%s\n' "$message" |
 fi
 
 printf '%s\n' "$TODAY" >"$SENT_FILE"
-log "cue sent $TODAY: ${#message} bytes, buttons=yes,no"
+log "cue sent $TODAY: ${#message} bytes, button=parked"
