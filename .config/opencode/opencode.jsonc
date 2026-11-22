@@ -35,12 +35,9 @@
   "username": "ngoc (ht2knock)",
   "mcp": {
     "servers": {
-      "browser_control": {
+      "browse": {
         "type": "local",
-        "command": [
-          "/Users/ht2knock/.local/share/fnm/aliases/default/bin/node",
-          "/Users/ht2knock/.browser-control/runtime/current/node_modules/@opencode-ai/browser-control/dist/mcp.js",
-        ],
+        "command": ["/Users/ht2knock/.local/bin/browse", "mcp"],
       },
       "context7": {
         "type": "remote",
