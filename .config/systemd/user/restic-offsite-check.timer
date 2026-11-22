@@ -2,8 +2,7 @@
 Description=Monthly offsite repository read check
 
 [Timer]
-OnCalendar=monthly
-Persistent=true
+OnCalendar=*-*-01 14:00:00
 RandomizedDelaySec=2h
 
 [Install]

@@ -2,8 +2,7 @@
 Description=Refresh Restic snapshot metric for node_exporter
 
 [Timer]
-OnCalendar=hourly
-Persistent=true
+OnCalendar=*-*-* 09..21:00:00
 Unit=restic-metric.service
 
 [Install]

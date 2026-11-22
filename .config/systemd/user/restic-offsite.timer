@@ -2,8 +2,7 @@
 Description=Weekly offsite restic copy
 
 [Timer]
-OnCalendar=weekly
-Persistent=true
+OnCalendar=Mon *-*-* 13:30:00
 RandomizedDelaySec=30m
 
 [Install]
