@@ -1,6 +1,6 @@
 {
   "$schema": "./opencode.schema.json",
-  "plugins": ["/Users/ht2knock/personal/opencode-ntfy", "/Users/ht2knock/personal/opencode-mpl"],
+  "plugins": ["/Users/ht2knock/personal/opencode-ntfy", "opencode-mpl@0.2.2"],
   "websearch": {
     "provider": "exa",
   },
