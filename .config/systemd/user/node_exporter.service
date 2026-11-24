@@ -1,11 +1,11 @@
 [Unit]
-Description=Prometheus node exporter (tailnet only)
+Description=Prometheus node exporter (LAN and tailnet)
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=%h/.local/bin/node_exporter --web.listen-address=100.72.20.11:9100 --collector.textfile.directory=%h/.local/share/node_exporter/textfile
+ExecStart=%h/.local/bin/node_exporter --web.listen-address=:9100 --collector.textfile.directory=%h/.local/share/node_exporter/textfile
 Restart=on-failure
 RestartSec=5s
 
