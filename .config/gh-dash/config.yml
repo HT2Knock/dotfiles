@@ -1,0 +1,176 @@
+prSections:
+  - title: Mine
+    filters: >-
+      is:open
+      author:@me
+      sort:updated-desc
+  - title: Review
+    filters: >-
+      is:open
+      review-requested:@me
+      -author:@me
+      sort:updated-desc
+  - title: Drafts
+    filters: >-
+      is:open
+      is:draft
+      author:@me
+      sort:updated-desc
+    limit: 10
+  - title: Work
+    filters: >-
+      is:open
+      owner:AIRR-Labs
+      -author:@me
+      sort:updated-desc
+    limit: 25
+  - title: Merged
+    filters: >-
+      is:merged
+      author:@me
+      sort:updated-desc
+    limit: 10
+issuesSections:
+  - title: Assigned
+    filters: >-
+      is:open
+      assignee:@me
+      sort:updated-desc
+  - title: Mine
+    filters: >-
+      is:open
+      author:@me
+      sort:updated-desc
+  - title: Work
+    filters: >-
+      is:open
+      owner:AIRR-Labs
+      sort:updated-desc
+    limit: 25
+notificationsSections:
+  - title: All
+    filters: ""
+  - title: Review Requested
+    filters: reason:review-requested
+  - title: Mentioned
+    filters: reason:mention
+repo:
+  branchesRefetchIntervalSeconds: 30
+  prsRefetchIntervalSeconds: 60
+defaults:
+  view: prs
+  prsLimit: 30
+  issuesLimit: 25
+  notificationsLimit: 20
+  prApproveComment: LGTM
+  refetchIntervalMinutes: 5
+  preview:
+    open: true
+    width: 0.5
+    height: 0.6
+    position: auto
+  layout:
+    prs:
+      updatedAt:
+        width: 7
+      createdAt:
+        hidden: true
+      state:
+        width: 3
+      repo:
+        width: 18
+      title:
+        grow: true
+      author:
+        width: 12
+      authorIcon:
+        hidden: true
+      labels:
+        hidden: true
+      assignees:
+        hidden: true
+      base:
+        hidden: true
+      numComments:
+        width: 3
+        align: right
+      reviewStatus:
+        width: 3
+      ci:
+        width: 3
+      lines:
+        width: 14
+    issues:
+      updatedAt:
+        width: 7
+      createdAt:
+        hidden: true
+      repo:
+        width: 16
+      title:
+        grow: true
+      creator:
+        width: 10
+      creatorIcon:
+        hidden: true
+      assignees:
+        hidden: true
+      comments:
+        width: 3
+        align: right
+      reactions:
+        width: 3
+        align: right
+keybindings:
+  prs:
+    - key: L
+      name: lazygit
+      command: |
+        repo_dir="{{.RepoPath}}"
+        name="{{.RepoName}}"
+        base="${name##*/}"
+        case "$repo_dir" in "~/"*) repo_dir="$HOME/${repo_dir#"~/"}" ;; esac
+        if [ -d "$repo_dir" ] && [ "${repo_dir##*/}" = "$base" ]; then
+          cd "$repo_dir" && lazygit
+        else
+          echo "No local clone for $name"
+        fi
+repoPaths:
+  AIRR-Labs/*: ~/work/airrlabs/*
+  HT2Knock/*: ~/personal/*
+  HT2Knock/dotfiles: ~/dotfiles
+pager:
+  diff: diffnav
+confirmQuit: false
+showAuthorIcons: true
+smartFilteringAtLaunch: true
+includeReadNotifications: true
+theme:
+  ui:
+    sectionsShowCount: true
+    table:
+      showSeparator: true
+      compact: false
+  colors:
+    text:
+      primary: "#c0caf5"
+      secondary: "#a9b1d6"
+      inverted: "#1a1b26"
+      faint: "#565f89"
+      warning: "#f7768e"
+      success: "#9ece6a"
+      error: "#db4b4b"
+      actor: "#7dcfff"
+    background:
+      selected: "#283457"
+    border:
+      primary: "#414868"
+      secondary: "#3b4261"
+      faint: "#1f2335"
+    icon:
+      newcontributor: "#9ece6a"
+      contributor: "#7aa2f7"
+      collaborator: "#bb9af7"
+      member: "#e0af68"
+      owner: "#f7768e"
+      unknownrole: "#565f89"
