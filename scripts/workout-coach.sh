@@ -70,6 +70,33 @@ fi
 command -v jq >/dev/null || fail "jq not found"
 command -v ntfy >/dev/null || fail "ntfy not found"
 
+# Create the notes the user fills by hand: last night's block and today's page.
+# A file that exists is never touched, and git trouble never blocks the message.
+ensure_daily_notes() {
+  local created path
+  created="$(python3 "$NOTES_DIR/scripts/daily-note.py" --ensure yesterday --ensure today 2>>"$LOG_FILE")" ||
+    { log "daily notes: ensure failed"; return 0; }
+  [[ -n "$created" ]] || return 0
+  while IFS= read -r path; do
+    [[ -n "$path" ]] || continue
+    git -C "$NOTES_DIR" add -- "$path"
+  done <<<"$created"
+  git -C "$NOTES_DIR" diff --cached --quiet || {
+    git -C "$NOTES_DIR" commit -q -m "note: create the daily notes for $TODAY" || log "daily notes: commit failed"
+  }
+  if git -C "$NOTES_DIR" push -q origin HEAD 2>>"$LOG_FILE"; then
+    log "daily notes: created $(tr '\n' ' ' <<<"$created")"
+    return 0
+  fi
+  git -C "$NOTES_DIR" pull --rebase --autostash -q 2>>"$LOG_FILE" &&
+    git -C "$NOTES_DIR" push -q origin HEAD 2>>"$LOG_FILE" && {
+      log "daily notes: created $(tr '\n' ' ' <<<"$created")"
+      return 0
+    }
+  log "daily notes: created $(tr '\n' ' ' <<<"$created"), push failed"
+}
+ensure_daily_notes
+
 rm -f "$MESSAGE_FILE" "$RUN_JSON"
 
 prompt="Write today's training message to $MESSAGE_FILE.
@@ -100,6 +127,8 @@ link=""
 if [[ -n "$session_id" && -n "$origin" ]]; then
   link="$(reynard_url "$(session_url "$origin" "$session_id")")"
 fi
+
+message+=$'\n\n'"Fill last night: dailies/$(date -d yesterday +%F).md"
 
 if ! publish_routine "$TITLE" muscle "$message" "$link" low >>"$LOG_FILE" 2>&1; then
   fail "ntfy publish failed"
