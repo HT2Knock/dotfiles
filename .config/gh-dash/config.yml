@@ -121,20 +121,6 @@ defaults:
       reactions:
         width: 3
         align: right
-keybindings:
-  prs:
-    - key: L
-      name: lazygit
-      command: |
-        repo_dir="{{.RepoPath}}"
-        name="{{.RepoName}}"
-        base="${name##*/}"
-        case "$repo_dir" in "~/"*) repo_dir="$HOME/${repo_dir#"~/"}" ;; esac
-        if [ -d "$repo_dir" ] && [ "${repo_dir##*/}" = "$base" ]; then
-          cd "$repo_dir" && lazygit
-        else
-          echo "No local clone for $name"
-        fi
 repoPaths:
   AIRR-Labs/*: ~/work/airrlabs/*
   HT2Knock/*: ~/personal/*
